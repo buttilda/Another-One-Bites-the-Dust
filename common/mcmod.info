@@ -1,0 +1,20 @@
+[
+{
+  "modid": "aobd",
+  "name": "Another One Bites The Dust",
+  "description": "A small mod that allows processing Ardite, Cobalt and Aluminium on IC2, TE3, Railcraft and Mekanism machines!",
+  "version": "1.1.0",
+  "url": "",
+  "updateUrl": "",
+  "authorList": [
+    "ganymedes01"
+  ],
+  "credits": "Dylan4Ever",
+  "logoFile": "",
+  "screenshots": [
+  ],
+  "parent":"",
+  "dependencies": [
+  ]
+}
+]
