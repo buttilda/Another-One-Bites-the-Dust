@@ -42,8 +42,16 @@ public class DustsItem extends Item {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void getSubItems(int itemID, CreativeTabs tabs, List list) {
-		for (int i = 0; i < NUM; i++)
+		for (int i = 0; i <= 4; i++)
 			list.add(new ItemStack(itemID, 1, i));
+
+		if (AOBD.enableIC2)
+			for (int i = 5; i <= 13; i++)
+				list.add(new ItemStack(itemID, 1, i));
+
+		if (AOBD.enableMekanism)
+			for (int i = 14; i <= 19; i++)
+				list.add(new ItemStack(itemID, 1, i));
 	}
 
 	@Override

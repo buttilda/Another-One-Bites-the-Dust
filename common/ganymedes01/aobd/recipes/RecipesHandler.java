@@ -24,8 +24,6 @@ import cpw.mods.fml.common.registry.GameRegistry;
 
 public class RecipesHandler {
 
-	private static int MULT;
-
 	private static ItemStack ingotArdite;
 	private static ItemStack ingotCobalt;
 	private static ItemStack ingotManyullyn;
@@ -214,22 +212,20 @@ public class RecipesHandler {
 	}
 
 	private static void TE3Recipes() {
-		MULT = 3;
-
 		addPulveriserRecipe(1000, ingotAluminium, DustsItem.getItem("dustAluminium"), null, 0);
 		addPulveriserRecipe(1000, ingotCobalt, DustsItem.getItem("dustCobalt"), null, 0);
 		addPulveriserRecipe(1000, ingotArdite, DustsItem.getItem("dustArdite"), null, 0);
 		for (ItemStack cobaltOre : OreDictionary.getOres("oreCobalt"))
-			addPulveriserRecipe(4000 * MULT, cobaltOre, DustsItem.getItem("dustCobalt", 2), dustIron, 10);
+			addPulveriserRecipe((int) (4000 * AOBD.energyMultiplier), cobaltOre, DustsItem.getItem("dustCobalt", 2), dustIron, 10);
 		for (ItemStack arditeOre : OreDictionary.getOres("oreArdite"))
-			addPulveriserRecipe(4000 * MULT, arditeOre, DustsItem.getItem("dustArdite", 2), dustGold, 10);
+			addPulveriserRecipe((int) (4000 * AOBD.energyMultiplier), arditeOre, DustsItem.getItem("dustArdite", 2), dustGold, 10);
 
 		ingotCobalt.stackSize = 3;
 		for (ItemStack cobaltOre : OreDictionary.getOres("oreCobalt"))
-			addInductionSmelterRecipe(4000 * MULT, cobaltOre, crystalCinnabar, ingotCobalt, new ItemStack(Item.ingotIron), 100);
+			addInductionSmelterRecipe((int) (4000 * AOBD.energyMultiplier), cobaltOre, crystalCinnabar, ingotCobalt, new ItemStack(Item.ingotIron), 100);
 		ingotArdite.stackSize = 3;
 		for (ItemStack arditeOre : OreDictionary.getOres("oreArdite"))
-			addInductionSmelterRecipe(4000 * MULT, arditeOre, crystalCinnabar, ingotArdite, new ItemStack(Item.ingotGold), 100);
+			addInductionSmelterRecipe((int) (4000 * AOBD.energyMultiplier), arditeOre, crystalCinnabar, ingotArdite, new ItemStack(Item.ingotGold), 100);
 
 		ingotArdite.stackSize = 1;
 		ingotCobalt.stackSize = 1;
