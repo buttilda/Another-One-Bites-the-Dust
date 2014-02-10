@@ -24,7 +24,6 @@ public class AOBD {
 	@Instance(Reference.MOD_ID)
 	public static AOBD instance;
 
-	public static boolean enableTE3 = true;
 	public static boolean enableIC2 = true;
 	public static boolean enableRailcraft = true;
 	public static boolean enableMekanism = true;
@@ -42,14 +41,11 @@ public class AOBD {
 	public void load(FMLInitializationEvent event) {
 		if (!Loader.isModLoaded("IC2"))
 			enableIC2 = false;
-		if (!Loader.isModLoaded("ThermalExpansion"))
-			enableTE3 = false;
 		if (!Loader.isModLoaded("Railcraft"))
 			enableRailcraft = false;
 		if (!Loader.isModLoaded("Mekanism"))
 			enableMekanism = false;
 
-		RecipesHandler.preInit();
 		RecipesHandler.init();
 	}
 

@@ -24,7 +24,6 @@ public class ConfigurationHandler {
 			AOBD.energyMultiplier = configuration.get("How much more expensive it is to process Cobalt/Ardite on TE3 machines", "energyMultiplier", AOBD.energyMultiplier).getDouble(AOBD.energyMultiplier);
 
 			AOBD.enableIC2 = configuration.get("Enable IC2 Recipes", "enableIC2", AOBD.enableIC2).getBoolean(AOBD.enableIC2);
-			AOBD.enableTE3 = configuration.get("Enable TE3 Recipes", "enableTE3", AOBD.enableTE3).getBoolean(AOBD.enableTE3);
 			AOBD.enableRailcraft = configuration.get("Enable Railcraft Recipes", "enableRailcraft", AOBD.enableRailcraft).getBoolean(AOBD.enableRailcraft);
 			AOBD.enableMekanism = configuration.get("Enable Mekanism Recipes", "enableMekanism", AOBD.enableMekanism).getBoolean(AOBD.enableMekanism);
 

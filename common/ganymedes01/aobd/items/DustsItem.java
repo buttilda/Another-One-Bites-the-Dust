@@ -42,9 +42,6 @@ public class DustsItem extends Item {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void getSubItems(int itemID, CreativeTabs tabs, List list) {
-		for (int i = 0; i <= 4; i++)
-			list.add(new ItemStack(itemID, 1, i));
-
 		if (AOBD.enableIC2)
 			for (int i = 5; i <= 13; i++)
 				list.add(new ItemStack(itemID, 1, i));
@@ -59,7 +56,7 @@ public class DustsItem extends Item {
 	public void registerIcons(IconRegister reg) {
 		icon = new Icon[NUM];
 
-		for (int i = 0; i < icon.length; i++)
+		for (int i = 5; i < icon.length; i++)
 			icon[i] = reg.registerIcon(Reference.MOD_ID + ":dustsItem" + i);
 	}
 
@@ -70,17 +67,7 @@ public class DustsItem extends Item {
 	public static ItemStack getItem(String name, int size) {
 		int meta;
 
-		if (name.matches("dustArdite"))
-			meta = 0;
-		else if (name.matches("dustCobalt"))
-			meta = 1;
-		else if (name.matches("dustManyullyn"))
-			meta = 2;
-		else if (name.matches("dustAluminiumBrass") || name.matches("dustAluminumBrass"))
-			meta = 3;
-		else if (name.matches("dustAluminium") || name.matches("dustAluminum"))
-			meta = 4;
-		else if (name.matches("crushedCobalt"))
+		if (name.matches("crushedCobalt"))
 			meta = 5;
 		else if (name.matches("crushedArdite"))
 			meta = 6;
