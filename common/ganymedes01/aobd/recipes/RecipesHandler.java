@@ -38,7 +38,7 @@ public class RecipesHandler {
 	private static void EnderIORecipes() {
 		addSAGMillRecipe("oreCobalt", 1080.0F, new ItemStack[] { getOreDictItem("dustCobalt", 2), getOreDictItem("dustIron", 1), new ItemStack(Block.netherrack) }, new float[] { 1.0F, 0.2F, 0.15F });
 		addSAGMillRecipe("oreArdite", 1080.0F, new ItemStack[] { getOreDictItem("dustArdite", 2), getOreDictItem("dustGold", 1), new ItemStack(Block.netherrack) }, new float[] { 1.0F, 0.2F, 0.15F });
-		addSAGMillRecipe("oreAluminum", 360.0F, new ItemStack[] { getOreDictItem("dustAluminum", 2), getOreDictItem("dustIron", 1) }, new float[] { 1.0F, 0.2F });
+		addSAGMillRecipe("oreAluminum", 360.0F, new ItemStack[] { getOreDictItem("dustAluminum", 2), getOreDictItem("dustIron", 1), new ItemStack(Block.cobblestone) }, new float[] { 1.0F, 0.2F, 0.15F });
 	}
 
 	private static void addSAGMillRecipe(String input, float energy, ItemStack[] outputs, float[] chance) {
