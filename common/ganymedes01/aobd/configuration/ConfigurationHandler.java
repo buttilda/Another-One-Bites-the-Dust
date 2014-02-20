@@ -26,6 +26,7 @@ public class ConfigurationHandler {
 			AOBD.enableIC2 = configuration.get("Enable IC2 Recipes", "enableIC2", AOBD.enableIC2).getBoolean(AOBD.enableIC2);
 			AOBD.enableRailcraft = configuration.get("Enable Railcraft Recipes", "enableRailcraft", AOBD.enableRailcraft).getBoolean(AOBD.enableRailcraft);
 			AOBD.enableMekanism = configuration.get("Enable Mekanism Recipes", "enableMekanism", AOBD.enableMekanism).getBoolean(AOBD.enableMekanism);
+			AOBD.enableEnderIO = configuration.get("Enable EnderIO Recipes", "enableEnderIO", AOBD.enableEnderIO).getBoolean(AOBD.enableEnderIO);
 
 		} catch (Exception e) {
 			FMLLog.log(Level.SEVERE, e, Reference.MOD_NAME + " has had a problem loading its configuration");

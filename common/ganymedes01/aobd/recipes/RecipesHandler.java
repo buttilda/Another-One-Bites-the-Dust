@@ -5,9 +5,15 @@ import ganymedes01.aobd.items.DustsItem;
 import ic2.api.recipe.IRecipeInput;
 import ic2.api.recipe.RecipeInputOreDict;
 import ic2.api.recipe.Recipes;
+
+import java.lang.reflect.Array;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Method;
+
 import mekanism.api.RecipeHelper;
 import mods.railcraft.api.crafting.IRockCrusherRecipe;
 import mods.railcraft.api.crafting.RailcraftCraftingManager;
+import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.nbt.NBTTagCompound;
@@ -25,6 +31,35 @@ public class RecipesHandler {
 			RailcraftRecipes();
 		if (AOBD.enableMekanism)
 			MekanismRecipes();
+		if (AOBD.enableEnderIO)
+			EnderIORecipes();
+	}
+
+	private static void EnderIORecipes() {
+		addSAGMillRecipe("oreCobalt", 1080.0F, new ItemStack[] { getOreDictItem("dustCobalt", 2), getOreDictItem("dustIron", 1), new ItemStack(Block.netherrack) }, new float[] { 1.0F, 0.2F, 0.15F });
+		addSAGMillRecipe("oreArdite", 1080.0F, new ItemStack[] { getOreDictItem("dustArdite", 2), getOreDictItem("dustGold", 1), new ItemStack(Block.netherrack) }, new float[] { 1.0F, 0.2F, 0.15F });
+		addSAGMillRecipe("oreAluminum", 360.0F, new ItemStack[] { getOreDictItem("dustAluminum", 2), getOreDictItem("dustIron", 1) }, new float[] { 1.0F, 0.2F });
+	}
+
+	private static void addSAGMillRecipe(String input, float energy, ItemStack[] outputs, float[] chance) {
+		try {
+			Object SAGMill = Class.forName("crazypants.enderio.machine.crusher.CrusherRecipeManager").getMethod("getInstance").invoke(null);
+			Method addRecipe = SAGMill.getClass().getMethod("addRecipe", Class.forName("crazypants.enderio.machine.recipe.Recipe"));
+
+			Class recipeInput = Class.forName("crazypants.enderio.machine.recipe.RecipeInput");
+			Class recipeOuput = Class.forName("crazypants.enderio.machine.recipe.RecipeOutput");
+			Constructor oreDictInput = Class.forName("crazypants.enderio.machine.recipe.OreDictionaryRecipeInput").getConstructor(ItemStack.class, int.class);
+
+			Object[] output = (Object[]) Array.newInstance(Class.forName("crazypants.enderio.machine.recipe.RecipeOutput"), outputs.length);
+			Constructor recipe = Class.forName("crazypants.enderio.machine.recipe.Recipe").getConstructor(recipeInput, float.class, output.getClass());
+
+			for (int i = 0; i < outputs.length; i++)
+				output[i] = recipeOuput.getConstructor(ItemStack.class, float.class).newInstance(outputs[i], chance[i]);
+
+			addRecipe.invoke(SAGMill, recipe.newInstance(oreDictInput.newInstance(getOreDictItem(input, 1), OreDictionary.getOreID(input)), energy, output));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	private static void MekanismRecipes() {
