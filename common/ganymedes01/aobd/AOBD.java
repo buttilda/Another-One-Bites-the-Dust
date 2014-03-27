@@ -16,6 +16,7 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
+import cpw.mods.fml.common.registry.GameRegistry;
 
 @Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.VERSION_NUMBER, dependencies = Reference.DEPENDENCIES)
 @NetworkMod(clientSideRequired = true, serverSideRequired = true)
@@ -36,6 +37,7 @@ public class AOBD {
 	public void preInit(FMLPreInitializationEvent event) {
 		ConfigurationHandler.init(new File(event.getModConfigurationDirectory().getAbsolutePath() + File.separator + Reference.MOD_ID + ".cfg"));
 		dusts = new DustsItem();
+		GameRegistry.registerItem(dusts, dusts.getUnlocalizedName());
 	}
 
 	@EventHandler

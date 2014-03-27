@@ -150,7 +150,7 @@ public class RecipesHandler {
 
 		FurnaceRecipes.smelting().addSmelting(AOBD.dusts.itemID, 5, getOreDictItem("ingotCobalt", 1), 0.2F);
 		FurnaceRecipes.smelting().addSmelting(AOBD.dusts.itemID, 6, getOreDictItem("ingotArdite", 1), 0.2F);
-		FurnaceRecipes.smelting().addSmelting(AOBD.dusts.itemID, 7, getOreDictItem("ingotArdite", 1), 0.2F);
+		FurnaceRecipes.smelting().addSmelting(AOBD.dusts.itemID, 7, getOreDictItem("ingotCobalt", 1), 0.2F);
 		FurnaceRecipes.smelting().addSmelting(AOBD.dusts.itemID, 8, getOreDictItem("ingotArdite", 1), 0.2F);
 		FurnaceRecipes.smelting().addSmelting(AOBD.dusts.itemID, 11, getOreDictItem("ingotAluminium", 1), 0.2F);
 		FurnaceRecipes.smelting().addSmelting(AOBD.dusts.itemID, 12, getOreDictItem("ingotAluminium", 1), 0.2F);
