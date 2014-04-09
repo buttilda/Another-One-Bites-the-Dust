@@ -29,6 +29,8 @@ public class AOBD {
 	public static boolean enableRailcraft = true;
 	public static boolean enableMekanism = true;
 	public static boolean enableEnderIO = true;
+	public static boolean enableTE3 = true;
+	public static boolean enableFZ = true;
 	public static double energyMultiplier = 3.0D;
 	public static Item dusts;
 	public static int dustsID;
@@ -50,6 +52,10 @@ public class AOBD {
 			enableMekanism = false;
 		if (!Loader.isModLoaded("EnderIO"))
 			enableEnderIO = false;
+		if (!Loader.isModLoaded("ThermalExpansion"))
+			enableTE3 = false;
+		if (!Loader.isModLoaded("factorization"))
+			enableFZ = false;
 
 		RecipesHandler.init();
 	}

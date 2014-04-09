@@ -2,6 +2,7 @@ package ganymedes01.aobd.recipes;
 
 import ganymedes01.aobd.AOBD;
 import ganymedes01.aobd.items.DustsItem;
+import ganymedes01.aobd.lib.Metals;
 import ic2.api.recipe.IRecipeInput;
 import ic2.api.recipe.RecipeInputOreDict;
 import ic2.api.recipe.Recipes;
@@ -23,35 +24,6 @@ import cpw.mods.fml.common.registry.GameRegistry;
 
 public class RecipesHandler {
 
-	enum Metals {
-		// @formatter:off
-		Cobalt(3, "Iron", Block.netherrack),
-		Ardite(3, "Gold", Block.netherrack),
-		Aluminium(1, "Iron", Block.cobblestone);
-		// @formatter:on
-		float energyMult;
-		String extra;
-		Block substract;
-
-		Metals(float energyMult, String extra, Block substract) {
-			this.energyMult = energyMult;
-			this.extra = extra;
-			this.substract = substract;
-		}
-
-		float getEnergy(float energy) {
-			return energy * energyMult;
-		}
-
-		String extra() {
-			return extra;
-		}
-
-		Block substract() {
-			return substract;
-		}
-	}
-
 	public static void init() {
 		craftingRecipes();
 		if (AOBD.enableIC2)
@@ -66,56 +38,70 @@ public class RecipesHandler {
 
 	private static void EnderIORecipes() {
 		for (Metals metal : Metals.values())
-			addSAGMillRecipe("ore" + metal.name(), metal.getEnergy(360.0F), new ItemStack[] { getOreDictItem("dust" + metal.name(), 2), getOreDictItem("dust" + metal.extra(), 1), new ItemStack(metal.substract()) }, new float[] { 1.0F, 0.2F, 0.15F });
+			if (metal.shouldUse())
+				addSAGMillRecipe("ore" + metal.name(), (float) metal.getEnergy(360.0F), new ItemStack[] { getOreDictItem("dust" + metal.name(), 2), getOreDictItem("dust" + metal.extra(), 1), new ItemStack(metal.substract()) }, new float[] { 1.0F, 0.2F, 0.15F });
 	}
 
 	private static void MekanismRecipes() {
-		for (Metals metal : Metals.values()) {
-			for (ItemStack ore : OreDictionary.getOres("ore" + metal.name()))
-				RecipeHelper.addPurificationChamberRecipe(ore, DustsItem.getItem("clump" + metal.name(), 3));
+		for (Metals metal : Metals.values())
+			if (metal.shouldUse()) {
+				for (ItemStack ore : OreDictionary.getOres("ore" + metal.name()))
+					RecipeHelper.addPurificationChamberRecipe(ore, DustsItem.getItem("clump" + metal.name(), 3));
 
-			RecipeHelper.addCrusherRecipe(DustsItem.getItem("clump" + metal.name()), DustsItem.getItem("dustDirty" + metal.name()));
-			if (AOBD.enableIC2)
-				Recipes.macerator.addRecipe(new RecipeInputOreDict("clump" + metal.name()), null, DustsItem.getItem("dustDirty" + metal.name()));
-			RecipeHelper.addEnrichmentChamberRecipe(DustsItem.getItem("dustDirty" + metal.name()), getOreDictItem("dust" + metal.name(), 1));
-		}
+				RecipeHelper.addCrusherRecipe(DustsItem.getItem("clump" + metal.name()), DustsItem.getItem("dustDirty" + metal.name()));
+				if (AOBD.enableIC2)
+					Recipes.macerator.addRecipe(new RecipeInputOreDict("clump" + metal.name()), null, DustsItem.getItem("dustDirty" + metal.name()));
+				RecipeHelper.addEnrichmentChamberRecipe(DustsItem.getItem("dustDirty" + metal.name()), getOreDictItem("dust" + metal.name(), 1));
+			}
 	}
 
 	private static void RailcraftRecipes() {
 		for (Metals metal : Metals.values())
-			for (ItemStack cobaltOre : OreDictionary.getOres("ore" + metal.name())) {
-				IRockCrusherRecipe recipeCobalt = RailcraftCraftingManager.rockCrusher.createNewRecipe(cobaltOre, true, false);
-				recipeCobalt.addOutput(DustsItem.getItem("crushed" + metal.name(), 2), 1.0F);
-			}
+			if (metal.shouldUse())
+				for (ItemStack cobaltOre : OreDictionary.getOres("ore" + metal.name())) {
+					IRockCrusherRecipe recipeCobalt = RailcraftCraftingManager.rockCrusher.createNewRecipe(cobaltOre, true, false);
+					recipeCobalt.addOutput(DustsItem.getItem("crushed" + metal.name(), 2), 1.0F);
+				}
 	}
 
 	private static void IC2Recipes() {
-		for (Metals metal : Metals.values()) {
-			Recipes.macerator.addRecipe(new RecipeInputOreDict("ore" + metal.name()), null, DustsItem.getItem("crushed" + metal.name(), 2));
-			Recipes.macerator.addRecipe(new RecipeInputOreDict("ingot" + metal.name()), null, getOreDictItem("dust" + metal.name(), 1));
+		for (Metals metal : Metals.values())
+			if (metal.shouldUse()) {
+				Recipes.macerator.addRecipe(new RecipeInputOreDict("ore" + metal.name()), null, DustsItem.getItem("crushed" + metal.name(), 2));
+				Recipes.macerator.addRecipe(new RecipeInputOreDict("ingot" + metal.name()), null, getOreDictItem("dust" + metal.name(), 1));
 
-			if (metal.substract().blockID == Block.cobblestone.blockID)
-				addCentrifugeRecipe(new RecipeInputOreDict("crushed" + metal.name()), (int) metal.getEnergy(1500), getOreDictItem("dust" + metal.name(), 1), getICItem("small" + metal.extra() + "Dust"), getICItem("stoneDust"));
-			else
-				addCentrifugeRecipe(new RecipeInputOreDict("crushed" + metal.name()), (int) metal.getEnergy(1500), getOreDictItem("dust" + metal.name(), 1), getICItem("small" + metal.extra() + "Dust"));
+				if (metal.substract().blockID == Block.cobblestone.blockID) {
+					addCentrifugeRecipe(new RecipeInputOreDict("crushed" + metal.name()), (int) metal.getEnergy(1500), getOreDictItem("dust" + metal.name(), 1), getOreDictItem("dustTiny" + metal.extra(), 1), getICItem("stoneDust"));
+					addOreWashingRecipe(new RecipeInputOreDict("crushed" + metal.name()), DustsItem.getItem("crushedPurified" + metal.name()), DustsItem.getItem("dustTiny" + metal.name(), 2), getICItem("stoneDust"));
+				} else {
+					addCentrifugeRecipe(new RecipeInputOreDict("crushed" + metal.name()), (int) metal.getEnergy(1500), getOreDictItem("dust" + metal.name(), 1), getOreDictItem("dustTiny" + metal.extra(), 1));
+					addOreWashingRecipe(new RecipeInputOreDict("crushed" + metal.name()), DustsItem.getItem("crushedPurified" + metal.name()), DustsItem.getItem("dustTiny" + metal.name(), 2));
+				}
 
-			addCentrifugeRecipe(new RecipeInputOreDict("crushedPurified" + metal.name()), (int) metal.getEnergy(1500), getOreDictItem("dust" + metal.name(), 1), getOreDictItem("dustTiny" + metal.name(), 1));
-			addOreWashingRecipe(new RecipeInputOreDict("crushed" + metal.name()), DustsItem.getItem("crushedPurified" + metal.name()), DustsItem.getItem("dustTiny" + metal.name(), 2));
-		}
+				addCentrifugeRecipe(new RecipeInputOreDict("crushedPurified" + metal.name()), (int) metal.getEnergy(1500), getOreDictItem("dust" + metal.name(), 1), getOreDictItem("dustTiny" + metal.name(), 1));
+			}
 	}
 
 	private static void craftingRecipes() {
-		for (Metals metal : Metals.values()) {
-			registerOre("crushed" + metal.name());
-			registerOre("crushedPurified" + metal.name());
-			registerOre("dustTiny" + metal.name());
-			registerOre("clump" + metal.name());
-			registerOre("dustDirty" + metal.name());
+		if (Metals.FzDarkIron.shouldUse())
+			registerOre("dustFzDarkIron");
 
-			GameRegistry.addRecipe(new ShapedOreRecipe(getOreDictItem("dust" + metal.name(), 1), "xxx", "xxx", "xxx", 'x', "dustTiny" + metal.name()));
-			addSmelting(getOreDictItem("crushed" + metal.name(), 1), getOreDictItem("ingot" + metal.name(), 1), 0.2F);
-			addSmelting(getOreDictItem("crushedPurified" + metal.name(), 1), getOreDictItem("ingot" + metal.name(), 1), 0.2F);
-		}
+		for (Metals metal : Metals.values())
+			if (metal.shouldUse()) {
+				registerOre("crushed" + metal.name());
+				registerOre("crushedPurified" + metal.name());
+				registerOre("dustTiny" + metal.name());
+				registerOre("clump" + metal.name());
+				registerOre("dustDirty" + metal.name());
+
+				GameRegistry.addRecipe(new ShapedOreRecipe(getOreDictItem("dust" + metal.name(), 1), "xxx", "xxx", "xxx", 'x', "dustTiny" + metal.name()));
+				addSmelting(getOreDictItem("crushed" + metal.name(), 1), getOreDictItem("ingot" + metal.name(), 1), 0.2F);
+				addSmelting(getOreDictItem("crushedPurified" + metal.name(), 1), getOreDictItem("ingot" + metal.name(), 1), 0.2F);
+			}
+
+		if (AOBD.enableIC2 && AOBD.enableTE3)
+			registerOre("dustTinyPlatinum");
+		GameRegistry.addRecipe(new ShapedOreRecipe(getOreDictItem("dustPlatinum", 1), "xxx", "xxx", "xxx", 'x', "dustTinyPlatinum"));
 	}
 
 	private static void addSmelting(ItemStack input, ItemStack output, float xp) {
@@ -150,6 +136,8 @@ public class RecipesHandler {
 	}
 
 	private static ItemStack getOreDictItem(String name, int size) {
+		while (OreDictionary.getOres(name).size() <= 0)
+			System.out.println(name);
 		ItemStack stack = OreDictionary.getOres(name).get(0).copy();
 		stack.stackSize = size;
 
