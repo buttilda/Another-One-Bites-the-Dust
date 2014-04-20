@@ -99,9 +99,10 @@ public class RecipesHandler {
 				addSmelting(getOreDictItem("crushedPurified" + metal.name(), 1), getOreDictItem("ingot" + metal.name(), 1), 0.2F);
 			}
 
-		if (AOBD.enableIC2 && AOBD.enableTE3)
+		if (AOBD.enableIC2 && AOBD.enableTE3) {
 			registerOre("dustTinyPlatinum");
-		GameRegistry.addRecipe(new ShapedOreRecipe(getOreDictItem("dustPlatinum", 1), "xxx", "xxx", "xxx", 'x', "dustTinyPlatinum"));
+			GameRegistry.addRecipe(new ShapedOreRecipe(getOreDictItem("dustPlatinum", 1), "xxx", "xxx", "xxx", 'x', "dustTinyPlatinum"));
+		}
 	}
 
 	private static void addSmelting(ItemStack input, ItemStack output, float xp) {
