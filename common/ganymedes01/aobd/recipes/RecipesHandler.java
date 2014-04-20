@@ -78,7 +78,7 @@ public class RecipesHandler {
 					addOreWashingRecipe(new RecipeInputOreDict("crushed" + metal.name()), DustsItem.getItem("crushedPurified" + metal.name()), DustsItem.getItem("dustTiny" + metal.name(), 2));
 				}
 
-				addCentrifugeRecipe(new RecipeInputOreDict("crushedPurified" + metal.name()), (int) metal.getEnergy(1500), getOreDictItem("dust" + metal.name(), 1), getOreDictItem("dustTiny" + metal.name(), 1));
+				addCentrifugeRecipe(new RecipeInputOreDict("crushedPurified" + metal.name()), (int) metal.getEnergy(1500), getOreDictItem("dust" + metal.name(), 1), getOreDictItem("dustTiny" + metal.extra(), 1));
 			}
 	}
 
@@ -137,8 +137,6 @@ public class RecipesHandler {
 	}
 
 	private static ItemStack getOreDictItem(String name, int size) {
-		while (OreDictionary.getOres(name).size() <= 0)
-			System.out.println(name);
 		ItemStack stack = OreDictionary.getOres(name).get(0).copy();
 		stack.stackSize = size;
 
