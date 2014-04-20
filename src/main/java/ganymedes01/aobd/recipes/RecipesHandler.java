@@ -155,7 +155,7 @@ public class RecipesHandler {
 
 			Class recipeInput = Class.forName("crazypants.enderio.machine.recipe.RecipeInput");
 			Class recipeOuput = Class.forName("crazypants.enderio.machine.recipe.RecipeOutput");
-			Constructor oreDictInput = Class.forName("crazypants.enderio.machine.recipe.OreDictionaryRecipeInput").getConstructor(ItemStack.class, int.class);
+			Constructor oreDictInput = Class.forName("crazypants.enderio.machine.recipe.OreDictionaryRecipeInput").getConstructor(ItemStack.class, int.class, int.class);
 
 			Object[] output = (Object[]) Array.newInstance(Class.forName("crazypants.enderio.machine.recipe.RecipeOutput"), outputs.length);
 			Constructor recipe = Class.forName("crazypants.enderio.machine.recipe.Recipe").getConstructor(recipeInput, float.class, output.getClass());
@@ -163,7 +163,7 @@ public class RecipesHandler {
 			for (int i = 0; i < outputs.length; i++)
 				output[i] = recipeOuput.getConstructor(ItemStack.class, float.class).newInstance(outputs[i], chance[i]);
 
-			addRecipe.invoke(SAGMill, recipe.newInstance(oreDictInput.newInstance(getOreDictItem(input, 1), OreDictionary.getOreID(input)), energy, output));
+			addRecipe.invoke(SAGMill, recipe.newInstance(oreDictInput.newInstance(getOreDictItem(input, 1), OreDictionary.getOreID(input), -1), energy, output));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

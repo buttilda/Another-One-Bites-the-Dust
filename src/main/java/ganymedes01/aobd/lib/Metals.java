@@ -31,7 +31,7 @@ public enum Metals {
 	}
 
 	public double getEnergy(float energy) {
-		return energy * energy;
+		return energy * this.energy;
 	}
 
 	public String extra() {
