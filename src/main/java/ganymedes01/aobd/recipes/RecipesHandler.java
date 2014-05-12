@@ -1,7 +1,9 @@
 package ganymedes01.aobd.recipes;
 
 import ganymedes01.aobd.AOBD;
+import ganymedes01.aobd.lib.Reference;
 import ganymedes01.aobd.ore.Ore;
+import ganymedes01.aobd.ore.OreFinder;
 import ic2.api.recipe.IRecipeInput;
 import ic2.api.recipe.RecipeInputOreDict;
 import ic2.api.recipe.Recipes;
@@ -9,13 +11,23 @@ import ic2.api.recipe.Recipes;
 import java.lang.reflect.Array;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
+import thaumcraft.api.ThaumcraftApi;
+import thaumcraft.api.aspects.Aspect;
+import thaumcraft.api.aspects.AspectList;
+import thaumcraft.api.crafting.CrucibleRecipe;
+import thaumcraft.api.research.ResearchCategories;
+import thaumcraft.api.research.ResearchItem;
+import thaumcraft.api.research.ResearchPage;
+import thaumcraft.common.config.ConfigResearch;
 import cpw.mods.fml.common.event.FMLInterModComms;
 import cpw.mods.fml.common.registry.GameRegistry;
 
@@ -35,12 +47,40 @@ public class RecipesHandler {
 			thaumcraftRecipes();
 	}
 
+	public static void postInit() {
+		if (AOBD.enableThaumcraft)
+			thaumcraftRecipesPost();
+	}
+
+	private static void thaumcraftRecipesPost() {
+		ItemStack cluster = null;
+		ArrayList<ResearchPage> pages = new ArrayList<ResearchPage>();
+		pages.add(new ResearchPage("tc.research_page.PUREORE.1"));
+		for (Ore ore : Ore.ores)
+			if (ore.shouldThaumcraft()) {
+				String name = ore.name();
+				if (!name.equals("Iron") && !name.equals("Gold") && !name.equals("Lead") && !name.equals("Silver") && !name.equals("Tin") && !name.equals("Copper")) {
+					cluster = getOreDictItem("cluster" + name).copy();
+					cluster.stackSize = 1;
+
+					CrucibleRecipe recipe = ThaumcraftApi.addCrucibleRecipe("PUREORE", cluster, "ore" + name, new AspectList().merge(Aspect.METAL, 1).merge(Aspect.ORDER, 1));
+					ConfigResearch.recipes.put("Pure" + name, recipe);
+					pages.add(new ResearchPage(recipe));
+				}
+			}
+
+		if (cluster != null) {
+			ResearchCategories.registerCategory("AOBD", new ResourceLocation(Reference.MOD_ID, "textures/items/dust.png"), new ResourceLocation("thaumcraft", "textures/gui/gui_researchback.png"));
+			new ResearchItem("PUREORE", "AOBD", new AspectList().add(Aspect.METAL, 5).add(Aspect.ORDER, 2), 0, 0, 1, cluster.copy()).setPages(pages.toArray(new ResearchPage[0])).setConcealed().setSecondary().setParents("PUREIRON").registerResearchItem();
+		}
+	}
+
 	private static void thaumcraftRecipes() {
 		for (Ore ore : Ore.ores)
 			if (ore.shouldThaumcraft()) {
 				String name = ore.name();
+				ItemStack cluster = getOreDictItem("cluster" + name);
 				for (ItemStack block : OreDictionary.getOres("ore" + name)) {
-					ItemStack cluster = getOreDictItem("cluster" + name);
 					String s1 = Item.getIdFromItem(block.getItem()) + "," + block.getItemDamage();
 					String s2 = Item.getIdFromItem(cluster.getItem()) + "," + cluster.getItemDamage();
 					FMLInterModComms.sendMessage("Thaumcraft", "nativeCluster", s1 + "," + s2 + "," + ore.chance());
@@ -109,6 +149,7 @@ public class RecipesHandler {
 			GameRegistry.addRecipe(new ShapedOreRecipe(getOreDictItem("dust" + name), "xxx", "xxx", "xxx", 'x', "dustTiny" + name));
 			GameRegistry.addSmelting(getOreDictItem("crushed" + name), getOreDictItem("ingot" + name), 0.2F);
 			GameRegistry.addSmelting(getOreDictItem("crushedPurified" + name), getOreDictItem("ingot" + name), 0.2F);
+			GameRegistry.addSmelting(getOreDictItem("cluster" + name), getOreDictItem("ingot" + name, 2), 0.2F);
 		}
 	}
 
@@ -140,8 +181,9 @@ public class RecipesHandler {
 	}
 
 	private static ItemStack getOreDictItem(String name, int size) {
-		while (OreDictionary.getOres(name).size() <= 0)
-			System.out.println(name);
+		if (OreFinder.itemMap.containsKey(name))
+			return new ItemStack(OreFinder.itemMap.get(name));
+
 		ItemStack stack = OreDictionary.getOres(name).get(0).copy();
 		stack.stackSize = size;
 

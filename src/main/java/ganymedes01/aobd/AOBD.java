@@ -63,5 +63,6 @@ public class AOBD {
 
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent event) {
+		RecipesHandler.postInit();
 	}
 }
