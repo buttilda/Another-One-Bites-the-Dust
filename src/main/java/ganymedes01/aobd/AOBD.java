@@ -25,6 +25,7 @@ public class AOBD {
 	public static boolean enableRailcraft = true;
 	public static boolean enableMekanism = true;
 	public static boolean enableEnderIO = true;
+	public static boolean enableThaumcraft = true;
 
 	public static CreativeTabs tab = new CreativeTabs(Reference.MOD_ID) {
 
@@ -49,6 +50,8 @@ public class AOBD {
 			enableMekanism = false;
 		if (!Loader.isModLoaded("EnderIO"))
 			enableEnderIO = false;
+		if (!Loader.isModLoaded("Thaumcraft"))
+			enableThaumcraft = false;
 
 		OreFinder.preInit();
 		ConfigurationHandler.initOreConfigs();

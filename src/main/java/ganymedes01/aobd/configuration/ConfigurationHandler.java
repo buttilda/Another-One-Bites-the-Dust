@@ -50,6 +50,7 @@ public class ConfigurationHandler {
 
 				ore.setExtra(getString(name, "extra", ore.extra()));
 				ore.setEnergy(getDouble(name, "energy", ore.energy(1)));
+				ore.setChance(getDouble(name, "chance", ore.chance()));
 			}
 		} catch (Exception e) {
 			FMLLog.severe(Reference.MOD_NAME + " has had a problem loading its configuration");

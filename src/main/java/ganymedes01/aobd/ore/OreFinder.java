@@ -70,6 +70,7 @@ public class OreFinder {
 		generateItems("crushed");
 		generateItems("crushedPurified");
 		generateItems("dustTiny");
+		generateItems("cluster");
 	}
 
 	public static void addCustomMetal(String name, Color colour, String... prefixes) {

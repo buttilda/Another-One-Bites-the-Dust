@@ -11,10 +11,12 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 
 import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
+import cpw.mods.fml.common.event.FMLInterModComms;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class RecipesHandler {
@@ -24,20 +26,35 @@ public class RecipesHandler {
 		if (AOBD.enableIC2)
 			IC2Recipes();
 		if (AOBD.enableRailcraft)
-			RailcraftRecipes();
+			railcraftRecipes();
 		if (AOBD.enableMekanism)
-			MekanismRecipes();
+			mekanismRecipes();
 		if (AOBD.enableEnderIO)
-			EnderIORecipes();
+			enderIORecipes();
+		if (AOBD.enableThaumcraft)
+			thaumcraftRecipes();
 	}
 
-	private static void EnderIORecipes() {
+	private static void thaumcraftRecipes() {
+		for (Ore ore : Ore.ores)
+			if (ore.shouldThaumcraft()) {
+				String name = ore.name();
+				for (ItemStack block : OreDictionary.getOres("ore" + name)) {
+					ItemStack cluster = getOreDictItem("cluster" + name);
+					String s1 = Item.getIdFromItem(block.getItem()) + "," + block.getItemDamage();
+					String s2 = Item.getIdFromItem(cluster.getItem()) + "," + cluster.getItemDamage();
+					FMLInterModComms.sendMessage("Thaumcraft", "nativeCluster", s1 + "," + s2 + "," + ore.chance());
+				}
+			}
+	}
+
+	private static void enderIORecipes() {
 		for (Ore ore : Ore.ores)
 			if (ore.shouldEnderIO())
 				addSAGMillRecipe("ore" + ore.name(), (float) ore.energy(360.0), new ItemStack[] { getOreDictItem("dust" + ore.name(), 2), getOreDictItem("dust" + ore.extra()), new ItemStack(Blocks.cobblestone) }, new float[] { 1.0F, 0.2F, 0.15F });
 	}
 
-	private static void MekanismRecipes() {
+	private static void mekanismRecipes() {
 		for (Ore ore : Ore.ores)
 			if (ore.shouldMeka()) {
 				//				for (ItemStack ore : OreDictionary.getOres("ore" + metal.name()))
@@ -50,7 +67,7 @@ public class RecipesHandler {
 			}
 	}
 
-	private static void RailcraftRecipes() {
+	private static void railcraftRecipes() {
 		try {
 			Class<?> RailcraftCraftingManager = Class.forName("mods.railcraft.api.crafting.RailcraftCraftingManager");
 			Object rockCrusher = RailcraftCraftingManager.getDeclaredField("rockCrusher").get(null);

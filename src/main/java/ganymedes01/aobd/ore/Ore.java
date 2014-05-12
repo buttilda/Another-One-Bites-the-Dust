@@ -8,15 +8,15 @@ public class Ore {
 
 	private final String name;
 	private String extra;
-	private double energy;
+	private double energy, chance;
 
-	private boolean ic2 = true, railcraft = true, enderio = true, mekanism = false;
+	private boolean ic2 = true, railcraft = true, enderio = true, mekanism = false, thaumcraft = true;
 
 	public static Ore newOre(String name) {
 		if (name.equals("Cobalt"))
-			return new Ore(name, "Iron", 3);
+			return new Ore(name, "Iron", 3, 2);
 		else if (name.equals("Ardite"))
-			return new Ore(name, "Gold", 3);
+			return new Ore(name, "Gold", 3, 2);
 		else if (name.equals("Aluminium"))
 			return new Ore(name, "Iron");
 		else if (name.equals("Copper"))
@@ -46,9 +46,14 @@ public class Ore {
 	}
 
 	private Ore(String name, String extra, double energy) {
+		this(name, extra, energy, 1);
+	}
+
+	private Ore(String name, String extra, double energy, double chance) {
 		this.name = name;
 		this.extra = extra;
 		this.energy = energy;
+		this.chance = chance;
 		ores.add(this);
 	}
 
@@ -64,12 +69,20 @@ public class Ore {
 		return e * energy;
 	}
 
+	public double chance() {
+		return chance;
+	}
+
 	public void setEnergy(double e) {
 		energy = e;
 	}
 
 	public void setExtra(String extra) {
 		this.extra = extra;
+	}
+
+	public void setChance(double c) {
+		chance = c;
 	}
 
 	public boolean shouldIC2() {
@@ -88,6 +101,10 @@ public class Ore {
 		return mekanism;
 	}
 
+	public boolean shouldThaumcraft() {
+		return thaumcraft;
+	}
+
 	public void setIC2(boolean flag) {
 		ic2 = flag;
 	}
@@ -102,6 +119,10 @@ public class Ore {
 
 	public void setMeka(boolean flag) {
 		mekanism = flag;
+	}
+
+	public void setThaumcraft(boolean flag) {
+		thaumcraft = flag;
 	}
 
 	@Override
