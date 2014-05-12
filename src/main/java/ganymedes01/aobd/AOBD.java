@@ -24,6 +24,7 @@ public class AOBD {
 	public static boolean enableIC2 = true;
 	public static boolean enableRailcraft = true;
 	public static boolean enableMekanism = true;
+	public static boolean enableTE3 = true;
 	public static boolean enableEnderIO = true;
 	public static boolean enableThaumcraft = true;
 
@@ -52,6 +53,8 @@ public class AOBD {
 			enableEnderIO = false;
 		if (!Loader.isModLoaded("Thaumcraft"))
 			enableThaumcraft = false;
+		if (!Loader.isModLoaded("ThermalExpansion"))
+			enableTE3 = false;
 
 		OreFinder.preInit();
 		ConfigurationHandler.initOreConfigs();

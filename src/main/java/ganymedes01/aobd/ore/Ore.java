@@ -10,7 +10,7 @@ public class Ore {
 	private String extra;
 	private double energy, chance;
 
-	private boolean ic2 = true, railcraft = true, enderio = true, mekanism = false, thaumcraft = true;
+	private boolean ic2 = true, railcraft = true, enderio = true, mekanism = false, te3 = false, thaumcraft = true;
 
 	public static Ore newOre(String name) {
 		if (name.equals("Cobalt"))
@@ -105,6 +105,10 @@ public class Ore {
 		return thaumcraft;
 	}
 
+	public boolean shouldTE3() {
+		return te3;
+	}
+
 	public void setIC2(boolean flag) {
 		ic2 = flag;
 	}
@@ -123,6 +127,10 @@ public class Ore {
 
 	public void setThaumcraft(boolean flag) {
 		thaumcraft = flag;
+	}
+
+	public void setTE3(boolean flag) {
+		te3 = flag;
 	}
 
 	@Override
