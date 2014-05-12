@@ -2,7 +2,10 @@ package ganymedes01.aobd.configuration;
 
 import ganymedes01.aobd.AOBD;
 import ganymedes01.aobd.lib.Reference;
+import ganymedes01.aobd.ore.Ore;
+import ganymedes01.aobd.ore.OreFinder;
 
+import java.awt.Color;
 import java.io.File;
 
 import net.minecraftforge.common.config.Configuration;
@@ -12,20 +15,16 @@ public class ConfigurationHandler {
 
 	public static Configuration configuration;
 
-	public static void init(File configFile) {
-		configuration = new Configuration(configFile);
+	public static void preInit(File configFile) {
+		configuration = new Configuration(configFile, true);
 
 		try {
 			configuration.load();
 
-			AOBD.energyMultiplier = configuration.get("How much more expensive it is to process Cobalt/Ardite on TE3 machines", "energyMultiplier", AOBD.energyMultiplier).getDouble(AOBD.energyMultiplier);
-
-			AOBD.enableIC2 = configuration.get("Enable IC2 Recipes", "enableIC2", AOBD.enableIC2).getBoolean(AOBD.enableIC2);
-			AOBD.enableRailcraft = configuration.get("Enable Railcraft Recipes", "enableRailcraft", AOBD.enableRailcraft).getBoolean(AOBD.enableRailcraft);
-			AOBD.enableMekanism = configuration.get("Enable Mekanism Recipes", "enableMekanism", AOBD.enableMekanism).getBoolean(AOBD.enableMekanism);
-			AOBD.enableEnderIO = configuration.get("Enable EnderIO Recipes", "enableEnderIO", AOBD.enableEnderIO).getBoolean(AOBD.enableEnderIO);
-			AOBD.enableTE3 = configuration.get("Enable TE3 metals processing", "enableTE3", AOBD.enableTE3).getBoolean(AOBD.enableTE3);
-			AOBD.enableFZ = configuration.get("Enable Factorization metals processing", "enableFZ", AOBD.enableFZ).getBoolean(AOBD.enableFZ);
+			AOBD.enableIC2 = getBoolean("Recipes", "IC2", AOBD.enableIC2);
+			AOBD.enableRailcraft = getBoolean("Recipes", "Railcraft", AOBD.enableRailcraft);
+			AOBD.enableMekanism = getBoolean("Recipes", "Mekanism", AOBD.enableMekanism);
+			AOBD.enableEnderIO = getBoolean("Recipes", "EnderIO", AOBD.enableEnderIO);
 
 		} catch (Exception e) {
 			FMLLog.severe(Reference.MOD_NAME + " has had a problem loading its configuration");
@@ -33,5 +32,64 @@ public class ConfigurationHandler {
 		} finally {
 			configuration.save();
 		}
+	}
+
+	public static void initOreConfigs() {
+		try {
+			configuration.load();
+
+			for (Ore ore : Ore.ores) {
+				String name = ore.name();
+
+				ore.setIC2(getBoolean(name, "IC2", ore.shouldIC2()));
+				ore.setRC(getBoolean(name, "Railcraft", ore.shouldRC()));
+				ore.setEnderIO(getBoolean(name, "EnderIO", ore.shouldEnderIO()));
+				ore.setMeka(getBoolean(name, "Mekanism", ore.shouldMeka()));
+
+				OreFinder.oreColourMap.put(name, getColour(name, "colour", OreFinder.oreColourMap.get(name)));
+
+				ore.setExtra(getString(name, "extra", ore.extra()));
+				ore.setEnergy(getDouble(name, "energy", ore.energy(1)));
+			}
+		} catch (Exception e) {
+			FMLLog.severe(Reference.MOD_NAME + " has had a problem loading its configuration");
+			throw new RuntimeException(e);
+		} finally {
+			configuration.save();
+		}
+	}
+
+	public static void initCustomMetals() {
+		try {
+			configuration.load();
+
+			for (String custom : getString("Custom", "custom", "Platinum-0x5cc9e8-dustTiny;").split(";")) {
+				String[] data = custom.trim().split("-");
+				OreFinder.addCustomMetal(data[0].trim(), Color.decode(data[1].trim()), data[2].trim().split(","));
+			}
+
+		} catch (Exception e) {
+			FMLLog.severe(Reference.MOD_NAME + " has had a problem loading its configuration");
+			throw new RuntimeException(e);
+		} finally {
+			configuration.save();
+		}
+	}
+
+	private static Color getColour(String category, String name, Color def) {
+		String hex = String.format("0x%02x%02x%02x", def.getRed(), def.getGreen(), def.getBlue());
+		return Color.decode(getString(category, name, hex));
+	}
+
+	private static String getString(String category, String name, String def) {
+		return configuration.get(category, name, def).getString();
+	}
+
+	private static boolean getBoolean(String category, String name, boolean def) {
+		return configuration.get(category, name, def).getBoolean(def);
+	}
+
+	private static double getDouble(String category, String name, double def) {
+		return configuration.get(category, name, def).getDouble(def);
 	}
 }

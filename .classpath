@@ -3,5 +3,6 @@
 	<classpathentry kind="src" path="src/main/java"/>
 	<classpathentry kind="src" path="src/main/resources"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/forge17"/>
+	<classpathentry kind="lib" path="/Users/Andre/Documents/Development/industrialcraft-2-2.1.477-experimental-api.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

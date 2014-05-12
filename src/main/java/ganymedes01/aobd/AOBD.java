@@ -1,12 +1,11 @@
 package ganymedes01.aobd;
 
 import ganymedes01.aobd.configuration.ConfigurationHandler;
-import ganymedes01.aobd.items.DustsItem;
 import ganymedes01.aobd.lib.Reference;
+import ganymedes01.aobd.ore.OreFinder;
 import ganymedes01.aobd.recipes.RecipesHandler;
-
-import java.io.File;
-
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Mod;
@@ -15,7 +14,6 @@ import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.common.registry.GameRegistry;
 
 @Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.VERSION_NUMBER, dependencies = Reference.DEPENDENCIES)
 public class AOBD {
@@ -27,20 +25,22 @@ public class AOBD {
 	public static boolean enableRailcraft = true;
 	public static boolean enableMekanism = true;
 	public static boolean enableEnderIO = true;
-	public static boolean enableTE3 = true;
-	public static boolean enableFZ = true;
-	public static double energyMultiplier = 3.0D;
-	public static Item dusts;
+
+	public static CreativeTabs tab = new CreativeTabs(Reference.MOD_ID) {
+
+		@Override
+		public Item getTabIconItem() {
+			return Items.glowstone_dust;
+		}
+	};
 
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
-		ConfigurationHandler.init(new File(event.getModConfigurationDirectory().getAbsolutePath() + File.separator + Reference.MOD_ID + ".cfg"));
-		dusts = new DustsItem();
-		GameRegistry.registerItem(dusts, dusts.getUnlocalizedName());
+		ConfigurationHandler.preInit(event.getSuggestedConfigurationFile());
 	}
 
 	@EventHandler
-	public void load(FMLInitializationEvent event) {
+	public void init(FMLInitializationEvent event) {
 		if (!Loader.isModLoaded("IC2"))
 			enableIC2 = false;
 		if (!Loader.isModLoaded("Railcraft"))
@@ -49,10 +49,11 @@ public class AOBD {
 			enableMekanism = false;
 		if (!Loader.isModLoaded("EnderIO"))
 			enableEnderIO = false;
-		if (!Loader.isModLoaded("ThermalExpansion"))
-			enableTE3 = false;
-		if (!Loader.isModLoaded("factorization"))
-			enableFZ = false;
+
+		OreFinder.preInit();
+		ConfigurationHandler.initOreConfigs();
+		OreFinder.init();
+		ConfigurationHandler.initCustomMetals();
 
 		RecipesHandler.init();
 	}
