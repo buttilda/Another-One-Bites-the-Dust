@@ -22,9 +22,15 @@ group = "ganymedes01.aobd" // http://maven.apache.org/guides/mini/guide-naming-c
 archivesBaseName = "AOBD"
 
 minecraft {
-    version = "1.7.2-10.12.0.1075"
+    version = "1.7.2-10.12.1.1075"
     assetDir = "eclipse/assets"
 }
+
+dependencies {
+	compile files("IC2.jar")
+	compile files("Thaumcraft.jar")
+}
+
 processResources
         {
             // replace stuff in mcmod.info, nothing else
