@@ -21,6 +21,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.oredict.OreDictionary;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.registry.GameRegistry;
+import cpw.mods.fml.relauncher.Side;
 
 public class OreFinder {
 
@@ -32,31 +33,23 @@ public class OreFinder {
 		return colour != null ? colour.getRGB() : Color.WHITE.getRGB();
 	}
 
-	@SuppressWarnings("unchecked")
-	public static void preInit() {
+	public static void preInit(Side side) {
 		removeIC2Nonsense();
 
 		ArrayList<String> ores = new ArrayList<String>();
 		try {
-			Field oreIDs = OreDictionary.class.getDeclaredField("oreIDs");
-			oreIDs.setAccessible(true);
-			HashMap<String, Integer> map = (HashMap<String, Integer>) oreIDs.get(null);
-			for (Entry<String, Integer> entry : map.entrySet()) {
-				String name = entry.getKey();
-				if (name.startsWith("ore") && !OreDictionary.getOres(entry.getValue()).isEmpty()) {
+			for (String name : OreDictionary.getOreNames())
+				if (name.startsWith("ore") && !OreDictionary.getOres(name).isEmpty()) {
 					String oreName = name.substring(3);
-					for (Entry<String, Integer> e : map.entrySet()) {
-						String n = e.getKey();
+					for (String n : OreDictionary.getOreNames())
 						if (n.startsWith("ingot") && n.endsWith(oreName) && !OreDictionary.getOres(n).isEmpty())
 							ores.add(oreName);
-					}
 				}
-			}
 			if (ores.contains("Aluminum") && ores.contains("Aluminium"))
 				ores.remove("Aluminum");
 
 			for (String ore : ores) {
-				oreColourMap.put(ore, getColour(ore));
+				oreColourMap.put(ore, side == Side.CLIENT ? getColour(ore) : Color.BLACK);
 				Ore.newOre(ore);
 			}
 
@@ -98,13 +91,15 @@ public class OreFinder {
 		}
 	}
 
-	private static Color getColour(String oreName) throws IOException {
+	private static Color getColour(String oreName) throws IOException, ClassNotFoundException {
 		float red = 0;
 		float green = 0;
 		float blue = 0;
 		ArrayList<Color> colours = new ArrayList<Color>();
 		for (ItemStack stack : OreDictionary.getOres("ingot" + oreName)) {
-			ResourceLocation res = getIconResource(stack.getItem().getIcon(stack, 0));
+			ResourceLocation res = getIconResource(stack);
+			if (res == null)
+				continue;
 			BufferedImage texture = ImageIO.read(Minecraft.getMinecraft().getResourceManager().getResource(res).getInputStream());
 			colours.add(getAverageColour(texture));
 			for (int pass = 0; pass < stack.getItem().getRenderPasses(stack.getItemDamage()); pass++) {
@@ -142,9 +137,21 @@ public class OreFinder {
 		return new Color((int) (red / count), (int) (green / count), (int) (blue / count));
 	}
 
-	private static ResourceLocation getIconResource(IIcon icon) {
+	private static ResourceLocation getIconResource(ItemStack stack) throws ClassNotFoundException {
+		IIcon icon = stack.getItem().getIconFromDamage(stack.getItemDamage());
+
+		String iconName = null;
+
+		if (Class.forName("cofh.item.ItemBase").isAssignableFrom(stack.getItem().getClass())) {
+			String name = OreDictionary.getOreName(OreDictionary.getOreID(stack));
+			name = name.substring(0, 1).toUpperCase() + name.substring(1);
+			iconName = "ThermalFoundation:material/" + name;
+		} else if (icon == null)
+			return null;
+		else
+			iconName = icon.getIconName();
+
 		String string = "minecraft";
-		String iconName = icon.getIconName();
 
 		int colonIndex = iconName.indexOf(58);
 		if (colonIndex >= 0) {

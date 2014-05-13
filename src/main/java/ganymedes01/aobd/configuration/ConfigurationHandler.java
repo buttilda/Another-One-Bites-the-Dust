@@ -10,6 +10,7 @@ import java.io.File;
 
 import net.minecraftforge.common.config.Configuration;
 import cpw.mods.fml.common.FMLLog;
+import cpw.mods.fml.relauncher.Side;
 
 public class ConfigurationHandler {
 
@@ -60,13 +61,15 @@ public class ConfigurationHandler {
 		}
 	}
 
-	public static void initCustomMetals() {
+	public static void initCustomMetals(Side side) {
 		try {
 			configuration.load();
 
-			for (String custom : getString("Custom", "custom", "Platinum-0x5cc9e8-dustTiny;").split(";")) {
+			//Platinum-0x5cc9e8-dustTiny;
+			for (String custom : getString("Custom", "custom", "").split(";")) {
 				String[] data = custom.trim().split("-");
-				OreFinder.addCustomMetal(data[0].trim(), Color.decode(data[1].trim()), data[2].trim().split(","));
+				if (data.length == 3)
+					OreFinder.addCustomMetal(data[0].trim(), side == Side.CLIENT ? Color.decode(data[1].trim()) : Color.BLACK, data[2].trim().split(","));
 			}
 
 		} catch (Exception e) {

@@ -56,10 +56,10 @@ public class AOBD {
 		if (!Loader.isModLoaded("ThermalExpansion"))
 			enableTE3 = false;
 
-		OreFinder.preInit();
+		OreFinder.preInit(event.getSide());
 		ConfigurationHandler.initOreConfigs();
 		OreFinder.init();
-		ConfigurationHandler.initCustomMetals();
+		ConfigurationHandler.initCustomMetals(event.getSide());
 
 		RecipesHandler.init();
 	}
