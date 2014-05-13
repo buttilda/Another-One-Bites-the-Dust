@@ -21,10 +21,8 @@ public class AOBDItem extends Item {
 	private final String base;
 
 	public AOBDItem(String base, String name) {
-		setMaxDamage(0);
 		this.name = name;
 		this.base = base;
-		setHasSubtypes(true);
 		setCreativeTab(AOBD.tab);
 		setUnlocalizedName(Reference.MOD_ID + "." + name);
 	}
