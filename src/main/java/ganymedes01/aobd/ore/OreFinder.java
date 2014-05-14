@@ -1,5 +1,6 @@
 package ganymedes01.aobd.ore;
 
+import ganymedes01.aobd.AOBD;
 import ganymedes01.aobd.items.AOBDItem;
 
 import java.awt.Color;
@@ -60,10 +61,13 @@ public class OreFinder {
 
 	public static void init() {
 		generateItems("dust");
-		generateItems("crushed");
-		generateItems("crushedPurified");
-		generateItems("dustTiny");
-		generateItems("cluster");
+		if (AOBD.enableIC2) {
+			generateItems("crushed");
+			generateItems("crushedPurified");
+			generateItems("dustTiny");
+		}
+		if (AOBD.enableThaumcraft)
+			generateItems("cluster");
 	}
 
 	public static void addCustomMetal(String name, Color colour, String... prefixes) {
