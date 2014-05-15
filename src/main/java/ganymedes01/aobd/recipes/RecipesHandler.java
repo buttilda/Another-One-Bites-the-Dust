@@ -38,10 +38,13 @@ public class RecipesHandler extends RecipesModule {
 	private static void craftingRecipes() {
 		for (Ore ore : Ore.ores) {
 			String name = ore.name();
-			GameRegistry.addRecipe(new ShapedOreRecipe(getOreDictItem("dust" + name), "xxx", "xxx", "xxx", 'x', "dustTiny" + name));
-			GameRegistry.addSmelting(getOreDictItem("crushed" + name), getOreDictItem("ingot" + name), 0.2F);
-			GameRegistry.addSmelting(getOreDictItem("crushedPurified" + name), getOreDictItem("ingot" + name), 0.2F);
-			GameRegistry.addSmelting(getOreDictItem("cluster" + name), getOreDictItem("ingot" + name, 2), 0.2F);
+			if (AOBD.enableIC2) {
+				GameRegistry.addRecipe(new ShapedOreRecipe(getOreDictItem("dust" + name), "xxx", "xxx", "xxx", 'x', "dustTiny" + name));
+				GameRegistry.addSmelting(getOreDictItem("crushed" + name), getOreDictItem("ingot" + name), 0.2F);
+				GameRegistry.addSmelting(getOreDictItem("crushedPurified" + name), getOreDictItem("ingot" + name), 0.2F);
+				GameRegistry.addSmelting(getOreDictItem("cluster" + name), getOreDictItem("ingot" + name, 2), 0.2F);
+			}
+			GameRegistry.addSmelting(getOreDictItem("dust" + name), getOreDictItem("ingot" + name), 0.2F);
 		}
 	}
 }

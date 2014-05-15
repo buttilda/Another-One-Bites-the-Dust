@@ -60,8 +60,7 @@ public class OreFinder {
 	}
 
 	public static void init() {
-		if (AOBD.enableEnderIO || AOBD.enableTE3)
-			generateItems("dust");
+		generateItems("dust");
 		if (AOBD.enableIC2) {
 			generateItems("crushed");
 			generateItems("crushedPurified");
