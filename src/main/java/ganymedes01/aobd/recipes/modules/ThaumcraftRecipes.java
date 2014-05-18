@@ -19,6 +19,7 @@ import thaumcraft.api.research.ResearchItem;
 import thaumcraft.api.research.ResearchPage;
 import thaumcraft.common.config.ConfigResearch;
 import cpw.mods.fml.common.event.FMLInterModComms;
+import cpw.mods.fml.common.registry.GameRegistry;
 
 public class ThaumcraftRecipes extends RecipesModule {
 
@@ -32,6 +33,7 @@ public class ThaumcraftRecipes extends RecipesModule {
 					String s2 = Item.getIdFromItem(cluster.getItem()) + "," + cluster.getItemDamage();
 					FMLInterModComms.sendMessage("Thaumcraft", "nativeCluster", s1 + "," + s2 + "," + ore.chance());
 				}
+				GameRegistry.addSmelting(cluster, getOreDictItem("ingot" + name, 2), 0.2F);
 			}
 	}
 
