@@ -141,19 +141,27 @@ public class OreFinder {
 		return new Color((int) (red / count), (int) (green / count), (int) (blue / count));
 	}
 
-	private static ResourceLocation getIconResource(ItemStack stack) throws ClassNotFoundException {
+	private static String getIconName(ItemStack stack) {
 		IIcon icon = stack.getItem().getIconFromDamage(stack.getItemDamage());
+		if (icon != null)
+			return icon.getIconName();
 
-		String iconName = null;
+		try {
+			if (Class.forName("cofh.item.ItemBase").isAssignableFrom(stack.getItem().getClass())) {
+				String name = OreDictionary.getOreName(OreDictionary.getOreID(stack));
+				name = name.substring(0, 1).toUpperCase() + name.substring(1);
+				return "ThermalFoundation:material/" + name;
+			}
+		} catch (ClassNotFoundException e) {
+		}
 
-		if (Class.forName("cofh.item.ItemBase").isAssignableFrom(stack.getItem().getClass())) {
-			String name = OreDictionary.getOreName(OreDictionary.getOreID(stack));
-			name = name.substring(0, 1).toUpperCase() + name.substring(1);
-			iconName = "ThermalFoundation:material/" + name;
-		} else if (icon == null)
+		return null;
+	}
+
+	private static ResourceLocation getIconResource(ItemStack stack) {
+		String iconName = getIconName(stack);
+		if (iconName == null)
 			return null;
-		else
-			iconName = icon.getIconName();
 
 		String string = "minecraft";
 

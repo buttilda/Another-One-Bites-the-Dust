@@ -20,15 +20,15 @@ public class Ore {
 		else if (name.equals("Aluminium"))
 			return new Ore(name, "Iron");
 		else if (name.equals("Copper"))
-			return new Ore(name, "Tin");
+			return new Ore(name, "Iron");
 		else if (name.equals("Tin"))
 			return new Ore(name, "Iron");
 		else if (name.equals("Lead"))
-			return new Ore(name, "Copper");
+			return new Ore(name, "Gold");
 		else if (name.equals("Iron"))
 			return new Ore(name, "Gold");
 		else if (name.equals("Gold"))
-			return new Ore(name, "Silver");
+			return new Ore(name, "Iron");
 		else
 			return new Ore(name);
 	}

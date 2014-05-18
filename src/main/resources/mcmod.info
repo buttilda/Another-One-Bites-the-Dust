@@ -2,8 +2,8 @@
 {
   "modid": "aobd",
   "name": "Another One Bites The Dust",
-  "description": "A small mod that allows processing Ardite, Cobalt and Aluminium on IC2, Railcraft, Mekanism and EnderIO machines!",
-  "version": "1.4.1",
+  "description": "AOBD dynamically finds all the ores and ingots added by any mod and makes them processable in IC2, EnderIO and RailCraft machines!",
+  "version": "2.0.1",
   "url": "",
   "updateUrl": "",
   "authorList": [

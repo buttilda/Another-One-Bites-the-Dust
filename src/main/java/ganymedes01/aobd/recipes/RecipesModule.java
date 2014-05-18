@@ -13,10 +13,13 @@ public class RecipesModule {
 	protected static ItemStack getOreDictItem(String name, int size) {
 		if (OreFinder.itemMap.containsKey(name))
 			return new ItemStack(OreFinder.itemMap.get(name));
+		try {
+			ItemStack stack = OreDictionary.getOres(name).get(0).copy();
+			stack.stackSize = size;
 
-		ItemStack stack = OreDictionary.getOres(name).get(0).copy();
-		stack.stackSize = size;
-
-		return stack;
+			return stack;
+		} catch (IndexOutOfBoundsException e) {
+			throw new NullPointerException("Ore dictionary item not found: " + name);
+		}
 	}
 }
