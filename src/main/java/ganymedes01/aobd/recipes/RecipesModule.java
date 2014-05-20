@@ -12,7 +12,7 @@ public class RecipesModule {
 
 	protected static ItemStack getOreDictItem(String name, int size) {
 		if (OreFinder.itemMap.containsKey(name))
-			return new ItemStack(OreFinder.itemMap.get(name));
+			return new ItemStack(OreFinder.itemMap.get(name), size);
 		try {
 			ItemStack stack = OreDictionary.getOres(name).get(0).copy();
 			stack.stackSize = size;
