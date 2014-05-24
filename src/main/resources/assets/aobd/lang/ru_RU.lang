@@ -1,0 +1,15 @@
+# Item localizations
+item.aobd.dust.name=%s пыль
+item.aobd.crushed.name=Измельчённая %s руда
+item.aobd.crushedPurified.name=Очищенная измельчённая %s руда
+item.aobd.dustTiny.name=Крошечная кучка %s пыли
+item.aobd.cluster.name=Природный %s кластер
+
+# Creative Tab
+itemGroup.aobd=AOBD
+
+# Research
+tc.research_category.AOBD=AOBD
+tc.research_name.PUREORE=Очищение руды
+tc.research_text.PUREORE=Очищайте ВСЕ руды
+tc.research_page.PUREORE.1=Природные кластеры являются редкими концентрациями металлов в своей чистейшей форме. Вы обнаружили способ очистки и концентрации обычной руды в природный кластера.<BR>Когда эти кластеры выплавлены, они произведут в два раза больше слитков.
