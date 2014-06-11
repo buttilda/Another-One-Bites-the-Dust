@@ -148,7 +148,10 @@ public class OreFinder {
 
 		try {
 			if (Class.forName("cofh.item.ItemBase").isAssignableFrom(stack.getItem().getClass())) {
-				String name = OreDictionary.getOreName(OreDictionary.getOreID(stack));
+				int[] ids = OreDictionary.getOreIDs(stack);
+				if (ids.length == 0)
+					return null;
+				String name = OreDictionary.getOreName(ids[0]);
 				name = name.substring(0, 1).toUpperCase() + name.substring(1);
 				return "ThermalFoundation:material/" + name;
 			}
