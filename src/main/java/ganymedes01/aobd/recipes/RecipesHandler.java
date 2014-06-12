@@ -15,10 +15,11 @@ public class RecipesHandler extends RecipesModule {
 	public static void init() {
 		craftingRecipes();
 
-		if (AOBD.enableIC2)
+		if (AOBD.enableIC2) {
 			IC2Recipes.init();
-		if (AOBD.enableRailcraft)
-			RailcraftRecipes.init();
+			if (AOBD.enableRailcraft)
+				RailcraftRecipes.init();
+		}
 		if (AOBD.enableMekanism)
 			MekanismRecipes.init();
 		if (AOBD.enableEnderIO)
