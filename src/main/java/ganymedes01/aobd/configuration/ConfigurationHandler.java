@@ -27,6 +27,8 @@ public class ConfigurationHandler {
 			AOBD.enableMekanism = getBoolean("Recipes", "Mekanism", AOBD.enableMekanism);
 			AOBD.enableEnderIO = getBoolean("Recipes", "EnderIO", AOBD.enableEnderIO);
 
+			AOBD.userDefinedItems = getStringWithComment("Add-your-items-here", "items", "", "Add prefixes separated by commas.\nTextures will be aobd:prefix and aobd:prefix_overlay.\nExample: dust,cluster");
+
 		} catch (Exception e) {
 			FMLLog.severe(Reference.MOD_NAME + " has had a problem loading its configuration");
 			throw new RuntimeException(e);
@@ -87,6 +89,10 @@ public class ConfigurationHandler {
 
 	private static String getString(String category, String name, String def) {
 		return configuration.get(category, name, def).getString();
+	}
+
+	private static String getStringWithComment(String category, String name, String def, String comment) {
+		return configuration.get(category, name, def, comment).getString();
 	}
 
 	private static boolean getBoolean(String category, String name, boolean def) {

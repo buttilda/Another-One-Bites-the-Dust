@@ -27,6 +27,7 @@ public class AOBD {
 	public static boolean enableTE3 = true;
 	public static boolean enableEnderIO = true;
 	public static boolean enableThaumcraft = true;
+	public static String userDefinedItems = "";
 
 	public static CreativeTabs tab = new CreativeTabs(Reference.MOD_ID) {
 

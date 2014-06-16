@@ -6,21 +6,22 @@ import ganymedes01.aobd.items.AOBDItem;
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.LinkedHashSet;
 import java.util.Map.Entry;
+import java.util.Set;
 
 import javax.imageio.ImageIO;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.oredict.OreDictionary;
-import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 
@@ -34,26 +35,29 @@ public class OreFinder {
 		return colour != null ? colour.getRGB() : Color.WHITE.getRGB();
 	}
 
+	private static Collection<String> getMetalsWithPrefixes(String prefix1, String prefix2) {
+		Set<String> ores = new LinkedHashSet<String>();
+		for (String name : OreDictionary.getOreNames())
+			if (name.startsWith(prefix1) && !OreDictionary.getOres(name).isEmpty()) {
+				String oreName = name.substring(prefix1.length());
+				for (String n : OreDictionary.getOreNames())
+					if (n.startsWith(prefix2) && n.endsWith(oreName) && !OreDictionary.getOres(n).isEmpty())
+						ores.add(oreName);
+			}
+		if (ores.contains("Aluminum") && ores.contains("Aluminium"))
+			ores.remove("Aluminum");
+		if (ores.contains("AluminumBrass") && ores.contains("AluminiumBrass"))
+			ores.remove("AluminumBrass");
+
+		return Collections.unmodifiableSet(ores);
+	}
+
 	public static void preInit(Side side) {
-		removeIC2Nonsense();
-
-		ArrayList<String> ores = new ArrayList<String>();
 		try {
-			for (String name : OreDictionary.getOreNames())
-				if (name.startsWith("ore") && !OreDictionary.getOres(name).isEmpty()) {
-					String oreName = name.substring(3);
-					for (String n : OreDictionary.getOreNames())
-						if (n.startsWith("ingot") && n.endsWith(oreName) && !OreDictionary.getOres(n).isEmpty())
-							ores.add(oreName);
-				}
-			if (ores.contains("Aluminum") && ores.contains("Aluminium"))
-				ores.remove("Aluminum");
-
-			for (String ore : ores) {
+			for (String ore : getMetalsWithPrefixes("ore", "ingot")) {
 				oreColourMap.put(ore, side == Side.CLIENT ? getColour(ore) : Color.BLACK);
 				Ore.newOre(ore);
 			}
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -68,6 +72,11 @@ public class OreFinder {
 		}
 		if (AOBD.enableThaumcraft)
 			generateItems("cluster");
+
+		String[] items = AOBD.userDefinedItems.trim().split(",");
+		if (items.length > 0)
+			for (String item : items)
+				generateItems(item.trim());
 	}
 
 	public static void addCustomMetal(String name, Color colour, String... prefixes) {
@@ -179,24 +188,5 @@ public class OreFinder {
 		string = string.toLowerCase();
 		iconName = "textures/items/" + iconName + ".png";
 		return new ResourceLocation(string, iconName);
-	}
-
-	@SuppressWarnings("unchecked")
-	private static void removeIC2Nonsense() {
-		if (Loader.isModLoaded("IC2"))
-			try {
-				Field field1 = OreDictionary.class.getDeclaredField("oreStacks");
-				field1.setAccessible(true);
-				HashMap<Integer, ArrayList<ItemStack>> oreStacks = (HashMap<Integer, ArrayList<ItemStack>>) field1.get(null);
-				oreStacks.remove(OreDictionary.getOreID("ingotRefinedIron"));
-
-				Field field2 = OreDictionary.class.getDeclaredField("oreIDs");
-				field2.setAccessible(true);
-				HashMap<String, Integer> oreIDs = (HashMap<String, Integer>) field2.get(null);
-				oreIDs.remove("ingotRefinedIron");
-
-				OreDictionary.registerOre("ingotIron", Items.iron_ingot);
-			} catch (Exception e) {
-			}
 	}
 }
