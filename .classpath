@@ -3,7 +3,7 @@
 	<classpathentry kind="src" path="src/main/java"/>
 	<classpathentry kind="src" path="src/main/resources"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/forge17"/>
-	<classpathentry kind="lib" path="/Users/Andre/Documents/Development/1.7.2Workspace/AOBD/Thaumcraft.jar"/>
-	<classpathentry kind="lib" path="/Users/Andre/Documents/Development/industrialcraft-2-2.1.477-experimental-api.jar"/>
+	<classpathentry kind="lib" path="libs/IC2.jar"/>
+	<classpathentry kind="lib" path="libs/Thaumcraft.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
