@@ -58,7 +58,7 @@ public class OreFinder {
 		}
 	}
 
-	public static void getColoursForOres() {
+	public static void initColours() {
 		try {
 			for (String ore : oreColourMap.keySet())
 				oreColourMap.put(ore, getColour(ore));
@@ -109,7 +109,7 @@ public class OreFinder {
 		}
 	}
 
-	private static Color getColour(String oreName) throws IOException, ClassNotFoundException {
+	private static Color getColour(String oreName) throws IOException {
 		float red = 0;
 		float green = 0;
 		float blue = 0;
@@ -136,7 +136,7 @@ public class OreFinder {
 		return new Color((int) (red / count), (int) (green / count), (int) (blue / count)).brighter();
 	}
 
-	private static Color getAverageColour(BufferedImage image) throws IOException {
+	private static Color getAverageColour(BufferedImage image) {
 		float red = 0;
 		float green = 0;
 		float blue = 0;

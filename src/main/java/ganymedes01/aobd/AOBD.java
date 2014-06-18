@@ -90,7 +90,7 @@ public class AOBD {
 	public void loadTextures(TextureStitchEvent.Post event) {
 		if (event.map.getTextureType() == 1) {
 			// Calculate the ores colours
-			OreFinder.getColoursForOres();
+			OreFinder.initColours();
 
 			//Create colour configs
 			ConfigurationHandler.initColourConfigs();
