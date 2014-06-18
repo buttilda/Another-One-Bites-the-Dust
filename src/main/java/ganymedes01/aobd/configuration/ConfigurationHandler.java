@@ -10,7 +10,6 @@ import java.io.File;
 
 import net.minecraftforge.common.config.Configuration;
 import cpw.mods.fml.common.FMLLog;
-import cpw.mods.fml.relauncher.Side;
 
 public class ConfigurationHandler {
 
@@ -49,8 +48,6 @@ public class ConfigurationHandler {
 				ore.setEnderIO(getBoolean(name, "EnderIO", ore.shouldEnderIO()));
 				ore.setMeka(getBoolean(name, "Mekanism", ore.shouldMeka()));
 
-				OreFinder.oreColourMap.put(name, getColour(name, "colour", OreFinder.oreColourMap.get(name)));
-
 				ore.setExtra(getString(name, "extra", ore.extra()));
 				ore.setEnergy(getDouble(name, "energy", ore.energy(1)));
 				ore.setChance(getDouble(name, "chance", ore.chance()));
@@ -63,7 +60,7 @@ public class ConfigurationHandler {
 		}
 	}
 
-	public static void initCustomMetals(Side side) {
+	public static void initCustomMetals() {
 		try {
 			configuration.load();
 
@@ -71,9 +68,26 @@ public class ConfigurationHandler {
 			for (String custom : getString("Custom", "custom", "").split(";")) {
 				String[] data = custom.trim().split("-");
 				if (data.length == 3)
-					OreFinder.addCustomMetal(data[0].trim(), side == Side.CLIENT ? Color.decode(data[1].trim()) : Color.BLACK, data[2].trim().split(","));
+					OreFinder.addCustomMetal(data[0].trim(), Color.decode(data[1].trim()), data[2].trim().split(","));
 			}
 
+		} catch (Exception e) {
+			FMLLog.severe(Reference.MOD_NAME + " has had a problem loading its configuration");
+			throw new RuntimeException(e);
+		} finally {
+			configuration.save();
+		}
+	}
+
+	public static void initColourConfigs() {
+		try {
+			configuration.load();
+
+			for (Ore ore : Ore.ores) {
+				String name = ore.name();
+
+				OreFinder.oreColourMap.put(name, getColour(name, "colour", OreFinder.oreColourMap.get(name)));
+			}
 		} catch (Exception e) {
 			FMLLog.severe(Reference.MOD_NAME + " has had a problem loading its configuration");
 			throw new RuntimeException(e);

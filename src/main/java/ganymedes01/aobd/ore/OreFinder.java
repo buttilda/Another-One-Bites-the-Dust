@@ -23,7 +23,6 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.oredict.OreDictionary;
 import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.relauncher.Side;
 
 public class OreFinder {
 
@@ -52,12 +51,17 @@ public class OreFinder {
 		return Collections.unmodifiableSet(ores);
 	}
 
-	public static void preInit(Side side) {
+	public static void preInit() {
+		for (String ore : getMetalsWithPrefixes("ore", "ingot")) {
+			oreColourMap.put(ore, Color.BLACK);
+			Ore.newOre(ore);
+		}
+	}
+
+	public static void getColoursForOres() {
 		try {
-			for (String ore : getMetalsWithPrefixes("ore", "ingot")) {
-				oreColourMap.put(ore, side == Side.CLIENT ? getColour(ore) : Color.BLACK);
-				Ore.newOre(ore);
-			}
+			for (String ore : oreColourMap.keySet())
+				oreColourMap.put(ore, getColour(ore));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -76,7 +80,8 @@ public class OreFinder {
 		String[] items = AOBD.userDefinedItems.trim().split(",");
 		if (items.length > 0)
 			for (String item : items)
-				generateItems(item.trim());
+				if (item.length() > 0)
+					generateItems(item.trim());
 	}
 
 	public static void addCustomMetal(String name, Color colour, String... prefixes) {
@@ -154,19 +159,6 @@ public class OreFinder {
 		IIcon icon = stack.getItem().getIconFromDamage(stack.getItemDamage());
 		if (icon != null)
 			return icon.getIconName();
-
-		try {
-			if (Class.forName("cofh.item.ItemBase").isAssignableFrom(stack.getItem().getClass())) {
-				int[] ids = OreDictionary.getOreIDs(stack);
-				if (ids.length == 0)
-					return null;
-				String name = OreDictionary.getOreName(ids[0]);
-				name = name.substring(0, 1).toUpperCase() + name.substring(1);
-				return "ThermalFoundation:material/" + name;
-			}
-		} catch (ClassNotFoundException e) {
-		}
-
 		return null;
 	}
 
