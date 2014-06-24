@@ -6,6 +6,7 @@ import ganymedes01.aobd.items.AOBDItem;
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -22,6 +23,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.oredict.OreDictionary;
+import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class OreFinder {
@@ -109,6 +111,20 @@ public class OreFinder {
 		}
 	}
 
+	private static int getStackColour(ItemStack stack, int pass) {
+		if (Loader.isModLoaded("gregtech"))
+			try {
+				Class<?> cls = Class.forName("gregtech.api.items.GT_MetaGenerated_Item");
+				if (cls.isAssignableFrom(stack.getItem().getClass())) {
+					Method m = cls.getMethod("getRGBa", ItemStack.class);
+					short[] rgba = (short[]) m.invoke(stack.getItem(), stack);
+					return new Color(rgba[0], rgba[1], rgba[2], rgba[3]).getRGB();
+				}
+			} catch (Exception e) {
+			}
+		return stack.getItem().getColorFromItemStack(stack, pass);
+	}
+
 	private static Color getColour(String oreName) throws IOException {
 		float red = 0;
 		float green = 0;
@@ -119,11 +135,14 @@ public class OreFinder {
 			if (res == null)
 				continue;
 			BufferedImage texture = ImageIO.read(Minecraft.getMinecraft().getResourceManager().getResource(res).getInputStream());
-			colours.add(getAverageColour(texture));
+			Color texColour = getAverageColour(texture);
+			colours.add(texColour);
 			for (int pass = 0; pass < stack.getItem().getRenderPasses(stack.getItemDamage()); pass++) {
-				int c = stack.getItem().getColorFromItemStack(stack, pass);
-				if (c != 16777215)
+				int c = getStackColour(stack, pass);
+				if (c != 0xFFFFFF) {
 					colours.add(new Color(c));
+					colours.remove(texColour);
+				}
 			}
 		}
 
@@ -144,7 +163,7 @@ public class OreFinder {
 		for (int i = 0; i < image.getWidth(); i++)
 			for (int j = 0; j < image.getHeight(); j++) {
 				Color c = new Color(image.getRGB(i, j));
-				if (c.getRed() <= 10 && c.getGreen() <= 10 && c.getBlue() <= 10)
+				if (c.getAlpha() <= 10 || c.getRed() <= 10 && c.getGreen() <= 10 && c.getBlue() <= 10)
 					continue;
 				red += c.getRed();
 				green += c.getGreen();
