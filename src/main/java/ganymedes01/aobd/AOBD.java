@@ -1,6 +1,6 @@
 package ganymedes01.aobd;
 
-import ganymedes01.aobd.configuration.ConfigurationHandler;
+import ganymedes01.aobd.configuration.ConfigHandler;
 import ganymedes01.aobd.lib.Reference;
 import ganymedes01.aobd.ore.OreFinder;
 import ganymedes01.aobd.recipes.RecipesHandler;
@@ -9,6 +9,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.common.MinecraftForge;
+import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -20,7 +21,7 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-@Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.VERSION_NUMBER, dependencies = Reference.DEPENDENCIES)
+@Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.VERSION_NUMBER, dependencies = Reference.DEPENDENCIES, guiFactory = Reference.GUI_FACTORY_CLASS)
 public class AOBD {
 
 	@Instance(Reference.MOD_ID)
@@ -44,7 +45,8 @@ public class AOBD {
 
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
-		ConfigurationHandler.preInit(event.getSuggestedConfigurationFile());
+		ConfigHandler.INSTANCE.preInit(event.getSuggestedConfigurationFile());
+		FMLCommonHandler.instance().bus().register(ConfigHandler.INSTANCE);
 		MinecraftForge.EVENT_BUS.register(this);
 	}
 
@@ -67,13 +69,13 @@ public class AOBD {
 		OreFinder.preInit();
 
 		// Create configs for each ore
-		ConfigurationHandler.initOreConfigs();
+		ConfigHandler.INSTANCE.initOreConfigs();
 
 		// Add items (dusts, crushed, cluster, etc)
 		OreFinder.init();
 
 		// Add user defined metals
-		ConfigurationHandler.initCustomMetals();
+		ConfigHandler.INSTANCE.initCustomMetals();
 
 		// Add recipes
 		RecipesHandler.init();
@@ -93,7 +95,7 @@ public class AOBD {
 			OreFinder.initColours();
 
 			//Create colour configs
-			ConfigurationHandler.initColourConfigs();
+			ConfigHandler.INSTANCE.initColourConfigs();
 		}
 	}
 }
