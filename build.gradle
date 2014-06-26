@@ -22,7 +22,7 @@ group = "ganymedes01.aobd" // http://maven.apache.org/guides/mini/guide-naming-c
 archivesBaseName = "AOBD"
 
 minecraft {
-    version = "1.7.2-10.12.2.1148"
+    version = "1.7.2-10.13.0.1151"
     assetDir = "eclipse/assets"
 }
 
