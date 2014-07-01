@@ -1,0 +1,15 @@
+# Item localizations
+item.aobd.dust.name=Polvere di %s
+item.aobd.crushed.name=%s grezzo schiacciato
+item.aobd.crushedPurified.name=%s grezzo schiacciato purificato
+item.aobd.dustTiny.name=Piccola pila di polvere di %s
+item.aobd.cluster.name=Agglomerato di %s puro
+
+# Creative Tab
+itemGroup.aobd=AOBD
+
+# Research
+tc.research_category.AOBD=AOBD
+tc.research_name.PUREORE=Purificazione dei metalli
+tc.research_text.PUREORE=Purifica TUTTI i tipi di metallo
+tc.research_page.PUREORE.1=Agglomerati puri sono rare concentrazioni di metalli nella loro forma più pura. Hai scoperto un modo per purificare e concentrale dei normali minerali in un agglomerato puro.<BR>Quando fuso questi agglomerati ti daranno il doppio della normale quantità di lingotti di stagno.
