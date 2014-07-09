@@ -4,6 +4,10 @@ item.aobd.crushed.name=%s grezzo schiacciato
 item.aobd.crushedPurified.name=%s grezzo schiacciato purificato
 item.aobd.dustTiny.name=Piccola pila di polvere di %s
 item.aobd.cluster.name=Agglomerato di %s puro
+item.aobd.dirtyGravel.name=Ghiaia di %s sporca
+item.aobd.cleanGravel.name=Ghiaia %s pulita
+item.aobd.reduced.name=Pezzo di  %s ridotto
+item.aobd.crystalline.name=%s cristallino
 
 # Creative Tab
 itemGroup.aobd=AOBD
