@@ -15,15 +15,11 @@ public class TE3Recipes extends RecipesModule {
 			if (ore.shouldTE3()) {
 				String name = ore.name();
 
-				ItemStack ingot = getOreDictItem("ingot" + name);
-				ItemStack dust = getOreDictItem("dust" + name);
 				ItemStack block = getOreDictItem("ore" + name);
 
-				addPulveriserRecipe(1000, ingot.copy(), dust.copy(), null, 0);
-				dust.stackSize = 2;
-				addPulveriserRecipe((int) ore.energy(4000), block, dust.copy(), getOreDictItem("dust" + ore.extra()), 10);
-				ingot.stackSize = 3;
-				addInductionSmelterRecipe((int) ore.energy(4000), block, cinnabar.copy(), ingot, getOreDictItem("ingot" + ore.extra()), 100);
+				addPulveriserRecipe(1000, getOreDictItem("ingot" + name), getOreDictItem("dust" + name), null, 0);
+				addPulveriserRecipe((int) ore.energy(4000), block, getOreDictItem("dust" + name, 2), getOreDictItem("dust" + ore.extra()), 10);
+				addInductionSmelterRecipe((int) ore.energy(4000), block, cinnabar.copy(), getOreDictItem("ingot" + name, 3), getOreDictItem("ingot" + ore.extra()), 100);
 			}
 	}
 
