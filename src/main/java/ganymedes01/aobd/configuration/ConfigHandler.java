@@ -33,6 +33,7 @@ public class ConfigHandler {
 		AOBD.enableRailcraft = getBoolean("Recipes", "Railcraft", true, AOBD.enableRailcraft);
 		AOBD.enableMekanism = getBoolean("Recipes", "Mekanism", true, AOBD.enableMekanism);
 		AOBD.enableEnderIO = getBoolean("Recipes", "EnderIO", true, AOBD.enableEnderIO);
+		AOBD.enableFactorization = getBoolean("Recipes", "Factorization", true, AOBD.enableFactorization);
 
 		AOBD.userDefinedItems = getStringWithComment("Custom", "items", "", "Add prefixes separated by commas.\nTextures will be aobd:prefix and aobd:prefix_overlay.\nExample: dust,cluster");
 
@@ -47,7 +48,8 @@ public class ConfigHandler {
 			ore.setIC2(getBoolean(name, "IC2", true, ore.shouldIC2()));
 			ore.setRC(getBoolean(name, "Railcraft", true, ore.shouldRC()));
 			ore.setEnderIO(getBoolean(name, "EnderIO", true, ore.shouldEnderIO()));
-			ore.setMeka(getBoolean(name, "Mekanism", true, ore.shouldMeka()));
+			ore.setMekanism(getBoolean(name, "Mekanism", true, ore.shouldMekanism()));
+			ore.setFactorization(getBoolean(name, "Factorization", true, ore.shouldFactorization()));
 
 			ore.setExtra(getString(name, "extra", ore.extra()));
 			ore.setEnergy(getDouble(name, "energy", ore.energy(1)));

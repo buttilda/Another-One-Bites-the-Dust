@@ -2,6 +2,7 @@ package ganymedes01.aobd.ore;
 
 import ganymedes01.aobd.AOBD;
 import ganymedes01.aobd.items.AOBDItem;
+import ganymedes01.aobd.recipes.modules.FactorizationRecipes;
 
 import java.awt.Color;
 import java.awt.image.BufferedImage;
@@ -78,6 +79,12 @@ public class OreFinder {
 		}
 		if (AOBD.enableThaumcraft)
 			generateItems("cluster");
+		if (AOBD.enableFactorization) {
+			generateItems("dirtyGravel", FactorizationRecipes.blacklist);
+			generateItems("reduced", FactorizationRecipes.blacklist);
+			generateItems("cleanGravel", FactorizationRecipes.blacklist);
+			generateItems("crystalline", FactorizationRecipes.blacklist);
+		}
 
 		String[] items = AOBD.userDefinedItems.trim().split(",");
 		if (items.length > 0)
@@ -96,9 +103,13 @@ public class OreFinder {
 		}
 	}
 
-	private static void generateItems(String orePrefix) {
-		for (Entry<String, Color> entry : oreColourMap.entrySet()) {
+	private static void generateItems(String orePrefix, String... blacklist) {
+		label: for (Entry<String, Color> entry : oreColourMap.entrySet()) {
 			String oreName = entry.getKey();
+			if (blacklist != null && blacklist.length > 0)
+				for (String bEntry : blacklist)
+					if (oreName.equalsIgnoreCase(bEntry))
+						continue label;
 			registerOre(orePrefix + oreName, new AOBDItem(orePrefix, oreName));
 		}
 	}

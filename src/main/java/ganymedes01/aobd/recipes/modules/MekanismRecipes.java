@@ -6,7 +6,7 @@ public class MekanismRecipes {
 
 	public static void init() {
 		for (Ore ore : Ore.ores)
-			if (ore.shouldMeka()) {
+			if (ore.shouldMekanism()) {
 				//				for (ItemStack ore : OreDictionary.getOres("ore" + metal.name()))
 				//					RecipeHelper.addPurificationChamberRecipe(ore, DustsItem.getItem("clump" + metal.name(), 3));
 				//

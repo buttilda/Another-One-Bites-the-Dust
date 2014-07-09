@@ -33,6 +33,7 @@ public class AOBD {
 	public static boolean enableTE3 = true;
 	public static boolean enableEnderIO = true;
 	public static boolean enableThaumcraft = true;
+	public static boolean enableFactorization = true;
 	public static String userDefinedItems = "";
 
 	public static CreativeTabs tab = new CreativeTabs(Reference.MOD_ID) {
@@ -64,6 +65,8 @@ public class AOBD {
 			enableThaumcraft = false;
 		if (!Loader.isModLoaded("ThermalExpansion"))
 			enableTE3 = false;
+		if (!Loader.isModLoaded("factorization"))
+			enableFactorization = false;
 
 		// Find ores
 		OreFinder.preInit();

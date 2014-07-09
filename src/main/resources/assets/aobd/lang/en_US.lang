@@ -4,6 +4,10 @@ item.aobd.crushed.name=Crushed %s Ore
 item.aobd.crushedPurified.name=Purified Crushed %s Ore
 item.aobd.dustTiny.name=Tiny Pile of %s Dust
 item.aobd.cluster.name=Native %s Cluster
+item.aobd.dirtyGravel.name=Dirty %s Gravel
+item.aobd.cleanGravel.name=Clean %s Gravel
+item.aobd.reduced.name=Reduced %s Chunks
+item.aobd.crystalline.name=Crystalline %s
 
 # Creative Tab
 itemGroup.aobd=AOBD
