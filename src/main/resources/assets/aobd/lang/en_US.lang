@@ -1,4 +1,4 @@
-# Item localizations
+# Item
 item.aobd.dust.name=%s Dust
 item.aobd.crushed.name=Crushed %s Ore
 item.aobd.crushedPurified.name=Purified Crushed %s Ore
@@ -8,6 +8,14 @@ item.aobd.dirtyGravel.name=Dirty %s Gravel
 item.aobd.cleanGravel.name=Clean %s Gravel
 item.aobd.reduced.name=Reduced %s Chunks
 item.aobd.crystalline.name=Crystalline %s
+item.aobd.clump.name=%s Clump
+item.aobd.shard.name=%s Shard
+item.aobd.dustDirty.name=Dirty %s Dust
+item.aobd.crystal.name=%s Crystal
+
+# Gas
+gas.aobd.clean.name=Clean %s Slurry
+gas.aobd.dirty.name=%s Slurry
 
 # Creative Tab
 itemGroup.aobd=AOBD

@@ -4,6 +4,7 @@ import ganymedes01.aobd.configuration.ConfigHandler;
 import ganymedes01.aobd.lib.Reference;
 import ganymedes01.aobd.ore.OreFinder;
 import ganymedes01.aobd.recipes.RecipesHandler;
+import ganymedes01.aobd.recipes.modules.MekanismRecipes;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -97,8 +98,12 @@ public class AOBD {
 			// Calculate the ores colours
 			OreFinder.initColours();
 
-			//Create colour configs
+			// Create colour configs
 			ConfigHandler.INSTANCE.initColourConfigs();
 		}
+
+		if (event.map.getTextureType() == 0)
+			// Register icons for Mekanism's gases
+			MekanismRecipes.registerIcons(event.map);
 	}
 }

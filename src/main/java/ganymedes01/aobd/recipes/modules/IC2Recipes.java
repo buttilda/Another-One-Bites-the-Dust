@@ -1,5 +1,6 @@
 package ganymedes01.aobd.recipes.modules;
 
+import ganymedes01.aobd.AOBD;
 import ganymedes01.aobd.ore.Ore;
 import ganymedes01.aobd.recipes.RecipesModule;
 import ic2.api.recipe.IRecipeInput;
@@ -30,6 +31,9 @@ public class IC2Recipes extends RecipesModule {
 					GameRegistry.addRecipe(new ShapedOreRecipe(getOreDictItem("dust" + name), "xxx", "xxx", "xxx", 'x', "dustTiny" + name));
 					GameRegistry.addSmelting(getOreDictItem("crushed" + name), getOreDictItem("ingot" + name), 0.2F);
 					GameRegistry.addSmelting(getOreDictItem("crushedPurified" + name), getOreDictItem("ingot" + name), 0.2F);
+
+					if (AOBD.enableMekanism && ore.shouldMekanism())
+						Recipes.macerator.addRecipe(new RecipeInputOreDict("clump" + name), null, getOreDictItem("dustDirty" + name));
 
 				} catch (Exception e) {
 					continue;

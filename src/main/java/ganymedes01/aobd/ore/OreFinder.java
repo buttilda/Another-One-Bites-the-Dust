@@ -3,6 +3,7 @@ package ganymedes01.aobd.ore;
 import ganymedes01.aobd.AOBD;
 import ganymedes01.aobd.items.AOBDItem;
 import ganymedes01.aobd.recipes.modules.FactorizationRecipes;
+import ganymedes01.aobd.recipes.modules.MekanismRecipes;
 
 import java.awt.Color;
 import java.awt.image.BufferedImage;
@@ -84,6 +85,12 @@ public class OreFinder {
 			generateItems("reduced", FactorizationRecipes.blacklist);
 			generateItems("cleanGravel", FactorizationRecipes.blacklist);
 			generateItems("crystalline", FactorizationRecipes.blacklist);
+		}
+		if (AOBD.enableMekanism) {
+			generateItems("dustDirty", MekanismRecipes.blacklist);
+			generateItems("shard", MekanismRecipes.blacklist);
+			generateItems("crystal", MekanismRecipes.blacklist);
+			generateItems("clump", MekanismRecipes.blacklist);
 		}
 
 		String[] items = AOBD.userDefinedItems.trim().split(",");

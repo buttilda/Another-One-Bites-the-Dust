@@ -10,7 +10,7 @@ public class Ore {
 	private String extra;
 	private double energy, chance;
 
-	private boolean ic2 = true, railcraft = true, enderio = true, mekanism = false, te3 = false, thaumcraft = true, factorization = true;
+	private boolean ic2 = true, railcraft = true, enderio = true, mekanism = true, te3 = true, thaumcraft = true, factorization = true;
 
 	public static Ore newOre(String name) {
 		if (name.equals("Cobalt"))
