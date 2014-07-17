@@ -93,7 +93,7 @@ public class AOBD {
 
 	@SubscribeEvent
 	@SideOnly(Side.CLIENT)
-	public void loadTextures(TextureStitchEvent.Post event) {
+	public void stitchEventPost(TextureStitchEvent.Post event) {
 		if (event.map.getTextureType() == 1) {
 			// Calculate the ores colours
 			OreFinder.initColours();
@@ -101,9 +101,13 @@ public class AOBD {
 			// Create colour configs
 			ConfigHandler.INSTANCE.initColourConfigs();
 		}
+	}
 
-		if (event.map.getTextureType() == 0)
-			// Register icons for Mekanism's gases
+	@SubscribeEvent
+	@SideOnly(Side.CLIENT)
+	public void stitchEventPre(TextureStitchEvent.Pre event) {
+		// Register icons for Mekanism's gases
+		if (Loader.isModLoaded("Mekanism") && event.map.getTextureType() == 0)
 			MekanismRecipes.registerIcons(event.map);
 	}
 }

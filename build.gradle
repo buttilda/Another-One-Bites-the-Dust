@@ -17,12 +17,12 @@ buildscript {
 
 apply plugin: 'forge'
 
-version = "2.2.0"
+version = "2.2.1"
 group = "ganymedes01.aobd" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "AOBD"
 
 minecraft {
-    version = "1.7.10-10.13.0.1151"
+    version = "1.7.10-10.13.0.1180"
     assetDir = "eclipse/assets"
 }
 
