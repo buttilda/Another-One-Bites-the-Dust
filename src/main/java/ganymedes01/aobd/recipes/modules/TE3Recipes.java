@@ -8,12 +8,17 @@ import cpw.mods.fml.common.event.FMLInterModComms;
 
 public class TE3Recipes extends RecipesModule {
 
+	public static final String[] blacklist = { "iron", "gold", "copper", "tin", "silver", "lead", "nickel", "platinum", "mithril" };
+
 	public static void init() {
 		ItemStack cinnabar = getOreDictItem("crystalCinnabar");
 
-		for (Ore ore : Ore.ores)
+		label: for (Ore ore : Ore.ores)
 			if (ore.shouldTE3()) {
 				String name = ore.name();
+				for (String bEntry : blacklist)
+					if (ore.name().equalsIgnoreCase(bEntry))
+						continue label;
 
 				ItemStack block = getOreDictItem("ore" + name);
 
