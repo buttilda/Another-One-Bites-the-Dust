@@ -64,8 +64,11 @@ public class OreFinder {
 
 	public static void initColours() {
 		try {
-			for (String ore : oreColourMap.keySet())
-				oreColourMap.put(ore, getColour(ore));
+			for (String ore : oreColourMap.keySet()) {
+				Color colour = getColour(ore);
+				if (colour != null)
+					oreColourMap.put(ore, colour);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -144,11 +147,15 @@ public class OreFinder {
 	}
 
 	private static Color getColour(String oreName) throws IOException {
+		ArrayList<ItemStack> ores = OreDictionary.getOres("ingot" + oreName);
+		if (ores.isEmpty())
+			return null;
+
 		float red = 0;
 		float green = 0;
 		float blue = 0;
 		ArrayList<Color> colours = new ArrayList<Color>();
-		for (ItemStack stack : OreDictionary.getOres("ingot" + oreName)) {
+		for (ItemStack stack : ores) {
 			ResourceLocation res = getIconResource(stack);
 			if (res == null)
 				continue;
