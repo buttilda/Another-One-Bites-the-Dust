@@ -23,9 +23,15 @@ import cpw.mods.fml.common.registry.GameRegistry;
 
 public class ThaumcraftRecipes extends RecipesModule {
 
+	public static final String[] blacklist = { "iron", "gold", "copper", "tin", "lead", "silver" };
+
 	public static void init() {
-		for (Ore ore : Ore.ores)
+		label: for (Ore ore : Ore.ores)
 			if (ore.shouldThaumcraft()) {
+				for (String bEntry : blacklist)
+					if (ore.name().equalsIgnoreCase(bEntry))
+						continue label;
+
 				String name = ore.name();
 				ItemStack cluster = getOreDictItem("cluster" + name);
 				for (ItemStack block : OreDictionary.getOres("ore" + name)) {
