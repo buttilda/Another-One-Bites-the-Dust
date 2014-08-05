@@ -13,11 +13,17 @@ import cpw.mods.fml.common.registry.GameRegistry;
 
 public class IC2Recipes extends RecipesModule {
 
+	public static final String[] blacklist = { "iron", "gold", "copper", "tin", "silver", "lead" };
+
 	public static void init() {
 		ItemStack stoneDust = getICItem("stoneDust");
 
-		for (Ore ore : Ore.ores)
+		label: for (Ore ore : Ore.ores)
 			if (ore.shouldIC2()) {
+				for (String bEntry : blacklist)
+					if (ore.name().equalsIgnoreCase(bEntry))
+						continue label;
+
 				String name = ore.name();
 				try {
 					Recipes.macerator.addRecipe(new RecipeInputOreDict("ore" + name), null, getOreDictItem("crushed" + name, 2));

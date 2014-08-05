@@ -21,6 +21,7 @@ public class EnderIORecipes extends RecipesModule {
 				for (String bEntry : blacklist)
 					if (ore.name().equalsIgnoreCase(bEntry))
 						continue label;
+
 				addSAGMillRecipe("ore" + ore.name(), (float) ore.energy(360.0), new ItemStack[] { getOreDictItem("dust" + ore.name(), 2), getOreDictItem("dust" + ore.extra()), new ItemStack(Blocks.cobblestone) }, new float[] { 1.0F, 0.1F, 0.15F });
 			}
 	}

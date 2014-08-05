@@ -15,11 +15,11 @@ public class TE3Recipes extends RecipesModule {
 
 		label: for (Ore ore : Ore.ores)
 			if (ore.shouldTE3()) {
-				String name = ore.name();
 				for (String bEntry : blacklist)
 					if (ore.name().equalsIgnoreCase(bEntry))
 						continue label;
 
+				String name = ore.name();
 				ItemStack block = getOreDictItem("ore" + name);
 
 				addPulveriserRecipe(1000, getOreDictItem("ingot" + name), getOreDictItem("dust" + name), null, 0);
