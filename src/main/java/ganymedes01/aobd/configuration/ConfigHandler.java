@@ -36,6 +36,7 @@ public class ConfigHandler {
 		AOBD.enableFactorization = getBoolean("Recipes", "Factorization", true, AOBD.enableFactorization);
 
 		AOBD.userDefinedItems = getStringWithComment("Custom", "items", "", "Add prefixes separated by commas.\nTextures will be aobd:prefix and aobd:prefix_overlay.\nExample: dust,cluster");
+		AOBD.userDefinedGases = getStringWithComment("Custom", "gases", "", "Add ore names that will be turned into Mekanism gases (First letter must be capitalised). Example: Iron,Gold,Titanium");
 
 		if (configFile.hasChanged())
 			configFile.save();

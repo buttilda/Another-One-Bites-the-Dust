@@ -36,6 +36,7 @@ public class AOBD {
 	public static boolean enableThaumcraft = true;
 	public static boolean enableFactorization = true;
 	public static String userDefinedItems = "";
+	public static String userDefinedGases = "";
 
 	public static CreativeTabs tab = new CreativeTabs(Reference.MOD_ID) {
 

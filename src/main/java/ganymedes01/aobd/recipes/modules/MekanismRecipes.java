@@ -1,5 +1,6 @@
 package ganymedes01.aobd.recipes.modules;
 
+import ganymedes01.aobd.AOBD;
 import ganymedes01.aobd.ore.Ore;
 import ganymedes01.aobd.recipes.RecipesModule;
 
@@ -27,6 +28,13 @@ public class MekanismRecipes extends RecipesModule {
 
 	public static void init() {
 		Gas hydrogenChloride = GasRegistry.getGas("hydrogenChloride");
+
+		for (String gas : AOBD.userDefinedGases.split(",")) {
+			String name = gas.trim();
+			OreGas gass = new OreGasAOBD(name, name, "oregas." + name.toLowerCase()).setCleanGas(new OreGasAOBD(name, "clean" + name, "oregas." + name.toLowerCase()));
+			gasList.add(gass);
+			GasRegistry.register(gass);
+		}
 
 		label: for (Ore ore : Ore.ores)
 			if (ore.shouldMekanism()) {
