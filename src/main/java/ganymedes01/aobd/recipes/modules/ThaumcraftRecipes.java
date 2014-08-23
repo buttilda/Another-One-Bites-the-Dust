@@ -5,6 +5,9 @@ import ganymedes01.aobd.ore.Ore;
 import ganymedes01.aobd.recipes.RecipesModule;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
 
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -23,14 +26,13 @@ import cpw.mods.fml.common.registry.GameRegistry;
 
 public class ThaumcraftRecipes extends RecipesModule {
 
-	public static final String[] blacklist = { "iron", "gold", "copper", "tin", "lead", "silver" };
+	public static final List<String> blacklist = Arrays.asList("iron", "gold", "copper", "tin", "lead", "silver");
 
 	public static void init() {
 		label: for (Ore ore : Ore.ores)
 			if (ore.shouldThaumcraft()) {
-				for (String bEntry : blacklist)
-					if (ore.name().equalsIgnoreCase(bEntry))
-						continue label;
+				if (blacklist.contains(ore.name().toLowerCase()))
+					continue label;
 
 				String name = ore.name();
 				ItemStack cluster = getOreDictItem("cluster" + name);
@@ -44,25 +46,26 @@ public class ThaumcraftRecipes extends RecipesModule {
 	}
 
 	public static void postInit() {
-		ItemStack cluster = null;
+		List<ItemStack> clusters = new ArrayList<ItemStack>();
 		ArrayList<ResearchPage> pages = new ArrayList<ResearchPage>();
 		pages.add(new ResearchPage("tc.research_page.PUREORE.1"));
 		for (Ore ore : Ore.ores)
 			if (ore.shouldThaumcraft()) {
 				String name = ore.name();
-				if (!name.equals("Iron") && !name.equals("Gold") && !name.equals("Lead") && !name.equals("Silver") && !name.equals("Tin") && !name.equals("Copper")) {
-					cluster = getOreDictItem("cluster" + name).copy();
+				if (!blacklist.contains(ore.name().toLowerCase())) {
+					ItemStack cluster = getOreDictItem("cluster" + name).copy();
 					cluster.stackSize = 1;
 
 					CrucibleRecipe recipe = ThaumcraftApi.addCrucibleRecipe("PUREORE", cluster, "ore" + name, new AspectList().merge(Aspect.METAL, 1).merge(Aspect.ORDER, 1));
 					ConfigResearch.recipes.put("Pure" + name, recipe);
 					pages.add(new ResearchPage(recipe));
+					clusters.add(cluster);
 				}
 			}
 
-		if (cluster != null) {
+		if (!clusters.isEmpty()) {
 			ResearchCategories.registerCategory("AOBD", new ResourceLocation(Reference.MOD_ID, "textures/items/dust.png"), new ResourceLocation("thaumcraft", "textures/gui/gui_researchback.png"));
-			new ResearchItem("PUREORE", "AOBD", new AspectList().add(Aspect.METAL, 5).add(Aspect.ORDER, 2), 0, 0, 1, cluster.copy()).setPages(pages.toArray(new ResearchPage[0])).setConcealed().setSecondary().setParents("PUREIRON").registerResearchItem();
+			new ResearchItem("PUREORE", "AOBD", new AspectList().add(Aspect.METAL, 5).add(Aspect.ORDER, 2), 0, 0, 1, clusters.get(new Random().nextInt(clusters.size())).copy()).setPages(pages.toArray(new ResearchPage[0])).setSecondary().setParents("PUREIRON").registerResearchItem();
 		}
 	}
 }
