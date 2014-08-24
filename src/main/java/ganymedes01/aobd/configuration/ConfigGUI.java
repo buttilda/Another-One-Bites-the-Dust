@@ -20,7 +20,7 @@ import cpw.mods.fml.client.config.IConfigElement;
 public class ConfigGUI extends GuiConfig {
 
 	public ConfigGUI(GuiScreen parent) {
-		super(parent, getElements(), Reference.MOD_ID, false, false, GuiConfig.getAbridgedConfigPath(ConfigHandler.INSTANCE.configFile.toString()));
+		super(parent, getElements(), Reference.MOD_ID, Reference.MOD_ID, false, false, GuiConfig.getAbridgedConfigPath(ConfigHandler.INSTANCE.configFile.toString()));
 	}
 
 	@SuppressWarnings({ "rawtypes" })
