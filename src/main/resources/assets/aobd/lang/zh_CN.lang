@@ -1,0 +1,29 @@
+#zh_CN#
+
+# Item
+item.aobd.dust.name=%s 粉
+item.aobd.crushed.name=粉碎 %s 矿石
+item.aobd.crushedPurified.name=纯净的粉碎 %s 矿石
+item.aobd.dustTiny.name=小撮 %s 粉
+item.aobd.cluster.name=纯净的 %s 矿簇
+item.aobd.dirtyGravel.name=污浊的 %s 砾石
+item.aobd.cleanGravel.name=纯净的 %s 砾石
+item.aobd.reduced.name=还原 %s 块
+item.aobd.crystalline.name=晶状 %s
+item.aobd.clump.name=%s 团簇
+item.aobd.shard.name=%s 碎片
+item.aobd.dustDirty.name=污浊的 %s 粉
+item.aobd.crystal.name=%s 晶体
+
+# Gas
+gas.aobd.clean.name=纯净的 %s 浆
+gas.aobd.dirty.name=%s 浆
+
+# Creative Tab
+itemGroup.aobd=AOBD
+
+# Research
+tc.research_category.AOBD=AOBD
+tc.research_name.PUREORE=矿石提纯
+tc.research_text.PUREORE=净化所有的矿石
+tc.research_page.PUREORE.1=纯净矿簇是金属处在纯粹形态时极为罕见的浓聚物. 你发现了如何提纯以及浓缩普通的矿石, 让它们成为纯净的矿簇.<BR>烧制这些矿簇可以得到两倍的金属锭产量.
