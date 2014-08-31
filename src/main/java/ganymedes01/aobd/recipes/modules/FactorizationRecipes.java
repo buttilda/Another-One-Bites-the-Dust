@@ -4,6 +4,8 @@ import ganymedes01.aobd.ore.Ore;
 import ganymedes01.aobd.recipes.RecipesModule;
 
 import java.lang.reflect.Method;
+import java.util.Arrays;
+import java.util.List;
 
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
@@ -13,14 +15,13 @@ import cpw.mods.fml.common.registry.GameRegistry;
 
 public class FactorizationRecipes extends RecipesModule {
 
-	public static final String[] blacklist = { "tin", "copper", "gold", "iron", "lead", "silver", "cobalt", "ardite", "fzdarkiron" };
+	public static final List<String> blacklist = Arrays.asList("tin", "copper", "gold", "iron", "lead", "silver", "cobalt", "ardite", "fzdarkiron");
 
 	public static void init() {
-		label: for (Ore ore : Ore.ores)
+		for (Ore ore : Ore.ores)
 			if (ore.shouldFactorization()) {
-				for (String bEntry : blacklist)
-					if (ore.name().equalsIgnoreCase(bEntry))
-						continue label;
+				if (blacklist.contains(ore.name().toLowerCase()))
+					continue;
 
 				String name = ore.name();
 				ItemStack ingot = getOreDictItem("ingot" + name);

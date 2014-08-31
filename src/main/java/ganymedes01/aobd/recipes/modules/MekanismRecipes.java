@@ -5,6 +5,7 @@ import ganymedes01.aobd.ore.Ore;
 import ganymedes01.aobd.recipes.RecipesModule;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import mekanism.api.AdvancedInput;
@@ -23,7 +24,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class MekanismRecipes extends RecipesModule {
 
-	public static final String[] blacklist = { "iron", "gold", "silver", "lead", "osmium", "copper", "tin" };
+	public static final List<String> blacklist = Arrays.asList("iron", "gold", "silver", "lead", "osmium", "copper", "tin");
 	private static List<OreGas> gasList = new ArrayList<OreGas>();
 
 	public static void init() {
@@ -31,21 +32,20 @@ public class MekanismRecipes extends RecipesModule {
 
 		for (String gas : AOBD.userDefinedGases.split(",")) {
 			String name = gas.trim();
-			OreGas gass = new OreGasAOBD(name, name, "oregas." + name.toLowerCase()).setCleanGas(new OreGasAOBD(name, "clean" + name, "oregas." + name.toLowerCase()));
-			gasList.add(gass);
-			GasRegistry.register(gass);
+			OreGas clean = new OreGasAOBD(name, "clean" + name, "oregas." + name.toLowerCase());
+			OreGas slurry = new OreGasAOBD(name, name, "oregas." + name.toLowerCase()).setCleanGas(clean);
+			gasList.add(slurry);
 		}
 
-		label: for (Ore ore : Ore.ores)
+		for (Ore ore : Ore.ores)
 			if (ore.shouldMekanism()) {
-				for (String bEntry : blacklist)
-					if (ore.name().equalsIgnoreCase(bEntry))
-						continue label;
+				if (blacklist.contains(ore.name().toLowerCase()))
+					continue;
 
 				String name = ore.name();
-				OreGas slurry = new OreGasAOBD(name, name, "oregas." + name.toLowerCase()).setCleanGas(new OreGasAOBD(name, "clean" + name, "oregas." + name.toLowerCase()));
+				OreGas clean = new OreGasAOBD(name, "clean" + name, "oregas." + name.toLowerCase());
+				OreGas slurry = new OreGasAOBD(name, name, "oregas." + name.toLowerCase()).setCleanGas(clean);
 				gasList.add(slurry);
-				GasRegistry.register(slurry);
 
 				for (ItemStack stack : OreDictionary.getOres("ore" + name))
 					RecipeHandler.addEnrichmentChamberRecipe(stack, getOreDictItem("dust" + name, 2));
@@ -85,6 +85,7 @@ public class MekanismRecipes extends RecipesModule {
 		public OreGasAOBD(String ore, String s, String name) {
 			super(s, name);
 			this.ore = ore;
+			GasRegistry.register(this);
 		}
 
 		@Override

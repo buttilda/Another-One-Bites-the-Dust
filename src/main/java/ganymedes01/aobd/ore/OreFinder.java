@@ -14,6 +14,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Map.Entry;
 import java.util.Set;
 
@@ -75,14 +76,14 @@ public class OreFinder {
 	}
 
 	public static void init() {
-		generateItems("dust");
+		generateItems("dust", null);
 		if (AOBD.enableIC2) {
-			generateItems("crushed");
-			generateItems("crushedPurified");
-			generateItems("dustTiny");
+			generateItems("crushed", null);
+			generateItems("crushedPurified", null);
+			generateItems("dustTiny", null);
 		}
 		if (AOBD.enableThaumcraft)
-			generateItems("cluster");
+			generateItems("cluster", null);
 		if (AOBD.enableFactorization) {
 			generateItems("dirtyGravel", FactorizationRecipes.blacklist);
 			generateItems("reduced", FactorizationRecipes.blacklist);
@@ -100,7 +101,7 @@ public class OreFinder {
 		if (items.length > 0)
 			for (String item : items)
 				if (item.length() > 0)
-					generateItems(item.trim());
+					generateItems(item.trim(), null);
 	}
 
 	public static void addCustomMetal(String name, Color colour, String... prefixes) {
@@ -113,13 +114,12 @@ public class OreFinder {
 		}
 	}
 
-	private static void generateItems(String orePrefix, String... blacklist) {
-		label: for (Entry<String, Color> entry : oreColourMap.entrySet()) {
+	private static void generateItems(String orePrefix, List<String> blacklist) {
+		for (Entry<String, Color> entry : oreColourMap.entrySet()) {
 			String oreName = entry.getKey();
-			if (blacklist != null && blacklist.length > 0)
-				for (String bEntry : blacklist)
-					if (oreName.equalsIgnoreCase(bEntry))
-						continue label;
+			if (blacklist != null && !blacklist.isEmpty())
+				if (blacklist.contains(oreName.toLowerCase()))
+					continue;
 			registerOre(orePrefix + oreName, new AOBDItem(orePrefix, oreName));
 		}
 	}
