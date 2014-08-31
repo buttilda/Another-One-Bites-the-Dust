@@ -16,6 +16,7 @@ item.aobd.crystal.name=%s Crystal
 # Gas
 gas.aobd.clean.name=Clean %s Slurry
 gas.aobd.dirty.name=%s Slurry
+gas.aobd.ore.name=%s Ore
 
 # Creative Tab
 itemGroup.aobd=AOBD

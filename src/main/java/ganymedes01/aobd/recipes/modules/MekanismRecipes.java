@@ -92,5 +92,10 @@ public class MekanismRecipes extends RecipesModule {
 		public String getLocalizedName() {
 			return String.format(StatCollector.translateToLocal("gas.aobd." + (isClean() ? "clean" : "dirty") + ".name"), ore);
 		}
+
+		@Override
+		public String getOreName() {
+			return String.format(StatCollector.translateToLocal("gas.aobd.ore.name"), ore);
+		}
 	}
 }
