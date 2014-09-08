@@ -18,6 +18,7 @@ item.aobd.crystal.name=%s 晶体
 # Gas
 gas.aobd.clean.name=纯净的 %s 浆
 gas.aobd.dirty.name=%s 浆
+gas.aobd.ore.name=%s 矿石
 
 # Creative Tab
 itemGroup.aobd=AOBD
