@@ -15,7 +15,8 @@ item.aobd.crystal.name=%s 수정
 
 # Gas
 gas.aobd.clean.name=새척한 %s광석 슬러리
-gas.aobd.dirty.name=%s 슬러
+gas.aobd.dirty.name=%s 슬러지
+gas.aobd.ore.name=%s 광석
 
 # Creative Tab
 itemGroup.aobd=AOBD
