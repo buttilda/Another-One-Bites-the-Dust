@@ -51,6 +51,7 @@ public class ConfigHandler {
 			ore.setEnderIO(getBoolean(name, "EnderIO", true, ore.shouldEnderIO()));
 			ore.setMekanism(getBoolean(name, "Mekanism", true, ore.shouldMekanism()));
 			ore.setFactorization(getBoolean(name, "Factorization", true, ore.shouldFactorization()));
+			ore.setDisabled(getBoolean(name, "Disable All", true, false));
 
 			ore.setExtra(getString(name, "extra", ore.extra()));
 			ore.setEnergy(getDouble(name, "energy", ore.energy(1)));

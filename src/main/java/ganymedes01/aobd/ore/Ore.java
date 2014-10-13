@@ -10,7 +10,7 @@ public class Ore {
 	private String extra;
 	private double energy, chance;
 
-	private boolean ic2 = true, railcraft = true, enderio = true, mekanism = true, te3 = true, thaumcraft = true, factorization = true;
+	private boolean ic2 = true, railcraft = true, enderio = true, mekanism = true, te3 = true, thaumcraft = true, factorization = true, disabled = false;
 
 	public static Ore newOre(String name) {
 		if (name.equals("Cobalt"))
@@ -86,31 +86,35 @@ public class Ore {
 	}
 
 	public boolean shouldIC2() {
-		return ic2;
+		return isEnabled() && ic2;
 	}
 
 	public boolean shouldRC() {
-		return railcraft;
+		return isEnabled() && railcraft;
 	}
 
 	public boolean shouldEnderIO() {
-		return enderio;
+		return isEnabled() && enderio;
 	}
 
 	public boolean shouldMekanism() {
-		return mekanism;
+		return isEnabled() && mekanism;
 	}
 
 	public boolean shouldThaumcraft() {
-		return thaumcraft;
+		return isEnabled() && thaumcraft;
 	}
 
 	public boolean shouldTE3() {
-		return te3;
+		return isEnabled() && te3;
 	}
 
 	public boolean shouldFactorization() {
-		return factorization;
+		return isEnabled() && factorization;
+	}
+
+	public boolean isEnabled() {
+		return !disabled;
 	}
 
 	public void setIC2(boolean flag) {
@@ -139,6 +143,10 @@ public class Ore {
 
 	public void setFactorization(boolean flag) {
 		factorization = flag;
+	}
+
+	public void setDisabled(boolean flag) {
+		disabled = flag;
 	}
 
 	@Override

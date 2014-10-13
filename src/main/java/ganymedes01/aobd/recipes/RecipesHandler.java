@@ -39,9 +39,10 @@ public class RecipesHandler extends RecipesModule {
 	}
 
 	private static void craftingRecipes() {
-		for (Ore ore : Ore.ores) {
-			String name = ore.name();
-			GameRegistry.addSmelting(getOreDictItem("dust" + name), getOreDictItem("ingot" + name), 0.2F);
-		}
+		for (Ore ore : Ore.ores)
+			if (ore.isEnabled()) {
+				String name = ore.name();
+				GameRegistry.addSmelting(getOreDictItem("dust" + name), getOreDictItem("ingot" + name), 0.2F);
+			}
 	}
 }
