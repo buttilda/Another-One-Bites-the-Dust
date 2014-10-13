@@ -2,8 +2,8 @@ package ganymedes01.aobd.ore;
 
 import ganymedes01.aobd.AOBD;
 import ganymedes01.aobd.items.AOBDItem;
-import ganymedes01.aobd.recipes.modules.FactorizationRecipes;
-import ganymedes01.aobd.recipes.modules.MekanismRecipes;
+import ganymedes01.aobd.lib.CompatType;
+import ganymedes01.aobd.recipes.ModulesHandler;
 
 import java.awt.Color;
 import java.awt.image.BufferedImage;
@@ -77,24 +77,29 @@ public class OreFinder {
 
 	public static void init() {
 		generateItems("dust", null);
-		if (AOBD.enableIC2) {
-			generateItems("crushed", null);
-			generateItems("crushedPurified", null);
-			generateItems("dustTiny", null);
+		if (AOBD.isCompatEnabled(CompatType.IC2)) {
+			List<String> blacklist = ModulesHandler.getBlacklist(CompatType.IC2);
+			generateItems("crushed", blacklist);
+			generateItems("crushedPurified", blacklist);
+			generateItems("dustTiny", blacklist);
 		}
-		if (AOBD.enableThaumcraft)
-			generateItems("cluster", null);
-		if (AOBD.enableFactorization) {
-			generateItems("dirtyGravel", FactorizationRecipes.blacklist);
-			generateItems("reduced", FactorizationRecipes.blacklist);
-			generateItems("cleanGravel", FactorizationRecipes.blacklist);
-			generateItems("crystalline", FactorizationRecipes.blacklist);
+		if (AOBD.isCompatEnabled(CompatType.THAUMCRAFT)) {
+			List<String> blacklist = ModulesHandler.getBlacklist(CompatType.THAUMCRAFT);
+			generateItems("cluster", blacklist);
 		}
-		if (AOBD.enableMekanism) {
-			generateItems("dustDirty", MekanismRecipes.blacklist);
-			generateItems("shard", MekanismRecipes.blacklist);
-			generateItems("crystal", MekanismRecipes.blacklist);
-			generateItems("clump", MekanismRecipes.blacklist);
+		if (AOBD.isCompatEnabled(CompatType.FACTORISATION)) {
+			List<String> blacklist = ModulesHandler.getBlacklist(CompatType.FACTORISATION);
+			generateItems("dirtyGravel", blacklist);
+			generateItems("reduced", blacklist);
+			generateItems("cleanGravel", blacklist);
+			generateItems("crystalline", blacklist);
+		}
+		if (AOBD.isCompatEnabled(CompatType.MEKANISM)) {
+			List<String> blacklist = ModulesHandler.getBlacklist(CompatType.MEKANISM);
+			generateItems("dustDirty", blacklist);
+			generateItems("shard", blacklist);
+			generateItems("crystal", blacklist);
+			generateItems("clump", blacklist);
 		}
 
 		String[] items = AOBD.userDefinedItems.trim().split(",");

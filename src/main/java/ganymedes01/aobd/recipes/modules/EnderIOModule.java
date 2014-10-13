@@ -1,13 +1,12 @@
 package ganymedes01.aobd.recipes.modules;
 
+import ganymedes01.aobd.lib.CompatType;
 import ganymedes01.aobd.ore.Ore;
 import ganymedes01.aobd.recipes.RecipesModule;
 import cpw.mods.fml.common.event.FMLInterModComms;
 
-public class EnderIORecipes extends RecipesModule {
-
-	public static final String[] blacklist = { "iron", "gold", "copper", "tin", "lead", "silver", "nickel" };
-
+public class EnderIOModule extends RecipesModule {
+	
 	//@formatter:off
 	private static final String xmlMessage ="<recipeGroup name=\"AOBD\">" + 
 												"<recipe name=\"%sOre\" energyCost=\"%f\">" +
@@ -23,15 +22,13 @@ public class EnderIORecipes extends RecipesModule {
         									"</recipeGroup>";
 	//@formatter:on
 
-	public static void init() {
-		label: for (Ore ore : Ore.ores)
-			if (ore.shouldEnderIO()) {
-				for (String bEntry : blacklist)
-					if (ore.name().equalsIgnoreCase(bEntry))
-						continue label;
+	public EnderIOModule() {
+		super(CompatType.ENDERIO, "iron", "gold", "copper", "tin", "lead", "silver", "nickel");
+	}
 
-				addSAGMillRecipe(ore.name(), (float) ore.energy(360.0), ore.extra());
-			}
+	@Override
+	public void initOre(Ore ore) {
+		addSAGMillRecipe(ore.name(), (float) ore.energy(360.0), ore.extra());
 	}
 
 	private static void addSAGMillRecipe(String input, float energy, String extra) {

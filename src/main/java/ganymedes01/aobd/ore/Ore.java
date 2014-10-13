@@ -1,6 +1,11 @@
 package ganymedes01.aobd.ore;
 
+import ganymedes01.aobd.lib.CompatType;
+
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Ore {
 
@@ -9,8 +14,8 @@ public class Ore {
 	private final String name;
 	private String extra;
 	private double energy, chance;
-
-	private boolean ic2 = true, railcraft = true, enderio = true, mekanism = true, te3 = true, thaumcraft = true, factorization = true, disabled = false;
+	private final Set<CompatType> enabledTypes = new HashSet<CompatType>();
+	private boolean disabled = false;
 
 	public static Ore newOre(String name) {
 		if (name.equals("Cobalt"))
@@ -55,6 +60,8 @@ public class Ore {
 		this.energy = energy;
 		this.chance = chance;
 		ores.add(this);
+
+		enabledTypes.addAll(Arrays.asList(CompatType.values()));
 	}
 
 	public String name() {
@@ -85,64 +92,19 @@ public class Ore {
 		chance = c;
 	}
 
-	public boolean shouldIC2() {
-		return isEnabled() && ic2;
-	}
-
-	public boolean shouldRC() {
-		return isEnabled() && railcraft;
-	}
-
-	public boolean shouldEnderIO() {
-		return isEnabled() && enderio;
-	}
-
-	public boolean shouldMekanism() {
-		return isEnabled() && mekanism;
-	}
-
-	public boolean shouldThaumcraft() {
-		return isEnabled() && thaumcraft;
-	}
-
-	public boolean shouldTE3() {
-		return isEnabled() && te3;
-	}
-
-	public boolean shouldFactorization() {
-		return isEnabled() && factorization;
+	public boolean isCompatEnabled(CompatType type) {
+		return isEnabled() && enabledTypes.contains(type);
 	}
 
 	public boolean isEnabled() {
 		return !disabled;
 	}
 
-	public void setIC2(boolean flag) {
-		ic2 = flag;
-	}
-
-	public void setRC(boolean flag) {
-		railcraft = flag;
-	}
-
-	public void setEnderIO(boolean flag) {
-		enderio = flag;
-	}
-
-	public void setMekanism(boolean flag) {
-		mekanism = flag;
-	}
-
-	public void setThaumcraft(boolean flag) {
-		thaumcraft = flag;
-	}
-
-	public void setTE3(boolean flag) {
-		te3 = flag;
-	}
-
-	public void setFactorization(boolean flag) {
-		factorization = flag;
+	public void configType(boolean enable, CompatType type) {
+		if (enable)
+			enabledTypes.add(type);
+		else
+			enabledTypes.remove(type);
 	}
 
 	public void setDisabled(boolean flag) {

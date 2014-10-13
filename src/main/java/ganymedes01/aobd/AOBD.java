@@ -1,10 +1,15 @@
 package ganymedes01.aobd;
 
 import ganymedes01.aobd.configuration.ConfigHandler;
+import ganymedes01.aobd.lib.CompatType;
 import ganymedes01.aobd.lib.Reference;
 import ganymedes01.aobd.ore.OreFinder;
-import ganymedes01.aobd.recipes.RecipesHandler;
-import ganymedes01.aobd.recipes.modules.MekanismRecipes;
+import ganymedes01.aobd.recipes.ModulesHandler;
+import ganymedes01.aobd.recipes.modules.MekanismModule;
+
+import java.util.HashSet;
+import java.util.Set;
+
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -28,13 +33,7 @@ public class AOBD {
 	@Instance(Reference.MOD_ID)
 	public static AOBD instance;
 
-	public static boolean enableIC2 = true;
-	public static boolean enableRailcraft = true;
-	public static boolean enableMekanism = true;
-	public static boolean enableTE3 = true;
-	public static boolean enableEnderIO = true;
-	public static boolean enableThaumcraft = true;
-	public static boolean enableFactorization = true;
+	public static Set<CompatType> enabledTypes = new HashSet<CompatType>();
 	public static String userDefinedItems = "";
 	public static String userDefinedGases = "";
 
@@ -53,22 +52,21 @@ public class AOBD {
 		MinecraftForge.EVENT_BUS.register(this);
 	}
 
+	public static void configType(boolean enabled, CompatType type) {
+		if (enabled)
+			enabledTypes.add(type);
+		else
+			enabledTypes.remove(type);
+	}
+
+	public static boolean isCompatEnabled(CompatType type) {
+		return enabledTypes.contains(type);
+	}
+
 	@EventHandler
 	public void init(FMLInitializationEvent event) {
-		if (!Loader.isModLoaded("IC2"))
-			enableIC2 = false;
-		if (!Loader.isModLoaded("Railcraft"))
-			enableRailcraft = false;
-		if (!Loader.isModLoaded("Mekanism"))
-			enableMekanism = false;
-		if (!Loader.isModLoaded("EnderIO"))
-			enableEnderIO = false;
-		if (!Loader.isModLoaded("Thaumcraft"))
-			enableThaumcraft = false;
-		if (!Loader.isModLoaded("ThermalExpansion"))
-			enableTE3 = false;
-		if (!Loader.isModLoaded("factorization"))
-			enableFactorization = false;
+		for (CompatType type : CompatType.values())
+			configType(Loader.isModLoaded(type.modID()), type);
 
 		// Find ores
 		OreFinder.preInit();
@@ -83,13 +81,13 @@ public class AOBD {
 		ConfigHandler.INSTANCE.initCustomMetals();
 
 		// Add recipes
-		RecipesHandler.init();
+		ModulesHandler.init();
 	}
 
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent event) {
 		// Add the rest of the recipes
-		RecipesHandler.postInit();
+		ModulesHandler.postInit();
 	}
 
 	@SubscribeEvent
@@ -109,6 +107,6 @@ public class AOBD {
 	public void stitchEventPre(TextureStitchEvent.Pre event) {
 		// Register icons for Mekanism's gases
 		if (Loader.isModLoaded("Mekanism") && event.map.getTextureType() == 0)
-			MekanismRecipes.registerIcons(event.map);
+			MekanismModule.registerIcons(event.map);
 	}
 }

@@ -1,6 +1,7 @@
 package ganymedes01.aobd.configuration;
 
 import ganymedes01.aobd.AOBD;
+import ganymedes01.aobd.lib.CompatType;
 import ganymedes01.aobd.lib.Reference;
 import ganymedes01.aobd.ore.Ore;
 import ganymedes01.aobd.ore.OreFinder;
@@ -29,11 +30,8 @@ public class ConfigHandler {
 	}
 
 	private void preInit() {
-		AOBD.enableIC2 = getBoolean("Recipes", "IC2", true, AOBD.enableIC2);
-		AOBD.enableRailcraft = getBoolean("Recipes", "Railcraft", true, AOBD.enableRailcraft);
-		AOBD.enableMekanism = getBoolean("Recipes", "Mekanism", true, AOBD.enableMekanism);
-		AOBD.enableEnderIO = getBoolean("Recipes", "EnderIO", true, AOBD.enableEnderIO);
-		AOBD.enableFactorization = getBoolean("Recipes", "Factorization", true, AOBD.enableFactorization);
+		for (CompatType type : CompatType.values())
+			AOBD.configType(getBoolean("Recipes", type.modID(), true, AOBD.isCompatEnabled(type)), type);
 
 		AOBD.userDefinedItems = getStringWithComment("Custom", "items", "", "Add prefixes separated by commas.\nTextures will be aobd:prefix and aobd:prefix_overlay.\nExample: dust,cluster");
 		AOBD.userDefinedGases = getStringWithComment("Custom", "gases", "", "Add ore names that will be turned into Mekanism gases (First letter must be capitalised). Example: Iron,Gold,Titanium");
@@ -46,11 +44,8 @@ public class ConfigHandler {
 		for (Ore ore : Ore.ores) {
 			String name = ore.name();
 
-			ore.setIC2(getBoolean(name, "IC2", true, ore.shouldIC2()));
-			ore.setRC(getBoolean(name, "Railcraft", true, ore.shouldRC()));
-			ore.setEnderIO(getBoolean(name, "EnderIO", true, ore.shouldEnderIO()));
-			ore.setMekanism(getBoolean(name, "Mekanism", true, ore.shouldMekanism()));
-			ore.setFactorization(getBoolean(name, "Factorization", true, ore.shouldFactorization()));
+			for (CompatType type : CompatType.values())
+				ore.configType(getBoolean(name, type.modID(), true, true), type);
 			ore.setDisabled(getBoolean(name, "Disable All", true, false));
 
 			ore.setExtra(getString(name, "extra", ore.extra()));

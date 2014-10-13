@@ -1,11 +1,11 @@
 package ganymedes01.aobd.recipes.modules;
 
+import ganymedes01.aobd.lib.CompatType;
 import ganymedes01.aobd.lib.Reference;
 import ganymedes01.aobd.ore.Ore;
 import ganymedes01.aobd.recipes.RecipesModule;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -24,43 +24,39 @@ import thaumcraft.common.config.ConfigResearch;
 import cpw.mods.fml.common.event.FMLInterModComms;
 import cpw.mods.fml.common.registry.GameRegistry;
 
-public class ThaumcraftRecipes extends RecipesModule {
+public class ThaumcraftModule extends RecipesModule {
 
-	public static final List<String> blacklist = Arrays.asList("iron", "gold", "copper", "tin", "lead", "silver");
-
-	public static void init() {
-		label: for (Ore ore : Ore.ores)
-			if (ore.shouldThaumcraft()) {
-				if (blacklist.contains(ore.name().toLowerCase()))
-					continue label;
-
-				String name = ore.name();
-				ItemStack cluster = getOreDictItem("cluster" + name);
-				for (ItemStack block : OreDictionary.getOres("ore" + name)) {
-					String s1 = Item.getIdFromItem(block.getItem()) + "," + block.getItemDamage();
-					String s2 = Item.getIdFromItem(cluster.getItem()) + "," + cluster.getItemDamage();
-					FMLInterModComms.sendMessage("Thaumcraft", "nativeCluster", s1 + "," + s2 + "," + ore.chance());
-				}
-				GameRegistry.addSmelting(cluster, getOreDictItem("ingot" + name, 2), 0.2F);
-			}
+	public ThaumcraftModule() {
+		super(CompatType.THAUMCRAFT, "iron", "gold", "copper", "tin", "lead", "silver");
 	}
 
-	public static void postInit() {
+	@Override
+	public void initOre(Ore ore) {
+		String name = ore.name();
+		ItemStack cluster = getOreDictItem("cluster" + name);
+		for (ItemStack block : OreDictionary.getOres("ore" + name)) {
+			String s1 = Item.getIdFromItem(block.getItem()) + "," + block.getItemDamage();
+			String s2 = Item.getIdFromItem(cluster.getItem()) + "," + cluster.getItemDamage();
+			FMLInterModComms.sendMessage("Thaumcraft", "nativeCluster", s1 + "," + s2 + "," + ore.chance());
+		}
+		GameRegistry.addSmelting(cluster, getOreDictItem("ingot" + name, 2), 0.2F);
+	}
+
+	@Override
+	public void postInit() {
 		List<ItemStack> clusters = new ArrayList<ItemStack>();
 		ArrayList<ResearchPage> pages = new ArrayList<ResearchPage>();
 		pages.add(new ResearchPage("tc.research_page.PUREORE.1"));
 		for (Ore ore : Ore.ores)
-			if (ore.shouldThaumcraft()) {
+			if (isOreEnabled(ore)) {
 				String name = ore.name();
-				if (!blacklist.contains(ore.name().toLowerCase())) {
-					ItemStack cluster = getOreDictItem("cluster" + name).copy();
-					cluster.stackSize = 1;
+				ItemStack cluster = getOreDictItem("cluster" + name).copy();
+				cluster.stackSize = 1;
 
-					CrucibleRecipe recipe = ThaumcraftApi.addCrucibleRecipe("PUREORE", cluster, "ore" + name, new AspectList().merge(Aspect.METAL, 1).merge(Aspect.ORDER, 1));
-					ConfigResearch.recipes.put("Pure" + name, recipe);
-					pages.add(new ResearchPage(recipe));
-					clusters.add(cluster);
-				}
+				CrucibleRecipe recipe = ThaumcraftApi.addCrucibleRecipe("PUREORE", cluster, "ore" + name, new AspectList().merge(Aspect.METAL, 1).merge(Aspect.ORDER, 1));
+				ConfigResearch.recipes.put("Pure" + name, recipe);
+				pages.add(new ResearchPage(recipe));
+				clusters.add(cluster);
 			}
 
 		if (!clusters.isEmpty()) {

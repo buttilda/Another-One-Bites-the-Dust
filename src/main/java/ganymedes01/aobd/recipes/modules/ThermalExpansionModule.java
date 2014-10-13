@@ -1,31 +1,28 @@
 package ganymedes01.aobd.recipes.modules;
 
+import ganymedes01.aobd.lib.CompatType;
 import ganymedes01.aobd.ore.Ore;
 import ganymedes01.aobd.recipes.RecipesModule;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import cpw.mods.fml.common.event.FMLInterModComms;
 
-public class TE3Recipes extends RecipesModule {
+public class ThermalExpansionModule extends RecipesModule {
 
-	public static final String[] blacklist = { "iron", "gold", "copper", "tin", "silver", "lead", "nickel", "platinum", "mithril" };
+	public ThermalExpansionModule() {
+		super(CompatType.THERMAL_EXPANTION, "iron", "gold", "copper", "tin", "silver", "lead", "nickel", "platinum", "mithril");
+	}
 
-	public static void init() {
+	@Override
+	public void initOre(Ore ore) {
 		ItemStack cinnabar = getOreDictItem("crystalCinnabar");
 
-		label: for (Ore ore : Ore.ores)
-			if (ore.shouldTE3()) {
-				for (String bEntry : blacklist)
-					if (ore.name().equalsIgnoreCase(bEntry))
-						continue label;
+		String name = ore.name();
+		ItemStack block = getOreDictItem("ore" + name);
 
-				String name = ore.name();
-				ItemStack block = getOreDictItem("ore" + name);
-
-				addPulveriserRecipe(1000, getOreDictItem("ingot" + name), getOreDictItem("dust" + name), null, 0);
-				addPulveriserRecipe((int) ore.energy(4000), block, getOreDictItem("dust" + name, 2), getOreDictItem("dust" + ore.extra()), 10);
-				addInductionSmelterRecipe((int) ore.energy(4000), block, cinnabar.copy(), getOreDictItem("ingot" + name, 3), getOreDictItem("ingot" + ore.extra()), 100);
-			}
+		addPulveriserRecipe(1000, getOreDictItem("ingot" + name), getOreDictItem("dust" + name), null, 0);
+		addPulveriserRecipe((int) ore.energy(4000), block, getOreDictItem("dust" + name, 2), getOreDictItem("dust" + ore.extra()), 10);
+		addInductionSmelterRecipe((int) ore.energy(4000), block, cinnabar.copy(), getOreDictItem("ingot" + name, 3), getOreDictItem("ingot" + ore.extra()), 100);
 	}
 
 	private static void addPulveriserRecipe(int energy, ItemStack input, ItemStack output, ItemStack bonus, int chance) {
