@@ -8,6 +8,7 @@ import ganymedes01.aobd.recipes.modules.FactorizationModule;
 import ganymedes01.aobd.recipes.modules.IC2Module;
 import ganymedes01.aobd.recipes.modules.MekanismModule;
 import ganymedes01.aobd.recipes.modules.RailcraftModule;
+import ganymedes01.aobd.recipes.modules.RandomAdditionsModule;
 import ganymedes01.aobd.recipes.modules.ThaumcraftModule;
 import ganymedes01.aobd.recipes.modules.ThermalExpansionModule;
 
@@ -39,6 +40,8 @@ public class ModulesHandler {
 			modules.add(new ThermalExpansionModule());
 		if (AOBD.isCompatEnabled(CompatType.FACTORISATION))
 			modules.add(new FactorizationModule());
+		if (AOBD.isCompatEnabled(CompatType.RANDOM_ADDITIONS))
+			modules.add(new RandomAdditionsModule());
 
 		if (modules.isEmpty())
 			return;

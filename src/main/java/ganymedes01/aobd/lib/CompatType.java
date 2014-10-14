@@ -8,7 +8,8 @@ public enum CompatType {
 	MEKANISM("Mekanism"),
 	THAUMCRAFT("Thaumcraft"),
 	THERMAL_EXPANTION("ThermalExpansion"),
-	FACTORISATION("factorization");
+	FACTORISATION("factorization"),
+	RANDOM_ADDITIONS("randomadditions");
 
 	final String modid;
 
