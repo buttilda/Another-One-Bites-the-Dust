@@ -16,12 +16,9 @@ public class RailcraftModule extends RecipesModule {
 
 	@Override
 	public void initOre(Ore ore) {
-		try {
-			for (ItemStack stack : OreDictionary.getOres("ore" + ore.name())) {
-				IRockCrusherRecipe recipe = RailcraftCraftingManager.rockCrusher.createNewRecipe(stack, true, false);
-				recipe.addOutput(getOreDictItem("crushed" + ore.name(), 2), 1.0F);
-			}
-		} catch (Exception e) {
+		for (ItemStack stack : OreDictionary.getOres("ore" + ore.name())) {
+			IRockCrusherRecipe recipe = RailcraftCraftingManager.rockCrusher.createNewRecipe(stack, true, false);
+			recipe.addOutput(getOreDictItem("crushed" + ore.name(), 2), 1.0F);
 		}
 	}
 }
