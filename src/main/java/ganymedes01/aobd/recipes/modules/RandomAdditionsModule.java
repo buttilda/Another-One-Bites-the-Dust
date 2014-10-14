@@ -10,7 +10,7 @@ import com.creativemd.randomadditions.common.energy.machine.recipe.MachineRecipe
 public class RandomAdditionsModule extends RecipesModule {
 
 	public RandomAdditionsModule() {
-		super(CompatType.RANDOM_ADDITIONS, "iron", "gold", "copper", "tin", "silver", "lead");
+		super(CompatType.RANDOM_ADDITIONS, "iron", "gold", "copper", "tin", "silver", "lead", "aluminium");
 	}
 
 	@Override
