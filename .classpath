@@ -8,5 +8,6 @@
 	<classpathentry kind="lib" path="libs/Mekanism-1.7.10-7.1.0.92.jar"/>
 	<classpathentry kind="lib" path="libs/RandomAdditions Alpha 0.9.3 mc1.7.10.jar"/>
 	<classpathentry kind="lib" path="libs/Railcraft_1.7.10-9.3.3.0.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/Gany-s-Nether"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

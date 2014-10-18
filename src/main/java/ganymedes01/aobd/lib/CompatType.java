@@ -9,7 +9,8 @@ public enum CompatType {
 	THAUMCRAFT("Thaumcraft"),
 	THERMAL_EXPANTION("ThermalExpansion"),
 	FACTORISATION("factorization"),
-	RANDOM_ADDITIONS("randomadditions");
+	RANDOM_ADDITIONS("randomadditions"),
+	GANYS_NETHER("ganysnether");
 
 	final String modid;
 

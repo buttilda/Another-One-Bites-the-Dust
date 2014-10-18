@@ -25,7 +25,7 @@ public class ThermalExpansionModule extends RecipesModule {
 		addInductionSmelterRecipe((int) ore.energy(4000), block, cinnabar.copy(), getOreDictItem("ingot" + name, 3), getOreDictItem("ingot" + ore.extra()), 100);
 	}
 
-	private static void addPulveriserRecipe(int energy, ItemStack input, ItemStack output, ItemStack bonus, int chance) {
+	private void addPulveriserRecipe(int energy, ItemStack input, ItemStack output, ItemStack bonus, int chance) {
 		NBTTagCompound data = new NBTTagCompound();
 
 		data.setInteger("energy", energy);
@@ -49,7 +49,7 @@ public class ThermalExpansionModule extends RecipesModule {
 		FMLInterModComms.sendMessage("ThermalExpansion", "PulverizerRecipe", data);
 	}
 
-	private static void addInductionSmelterRecipe(int energy, ItemStack input1, ItemStack input2, ItemStack output1, ItemStack output2, int chance) {
+	private void addInductionSmelterRecipe(int energy, ItemStack input1, ItemStack input2, ItemStack output1, ItemStack output2, int chance) {
 		NBTTagCompound data = new NBTTagCompound();
 
 		data.setInteger("energy", energy);

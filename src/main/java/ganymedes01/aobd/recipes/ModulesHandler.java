@@ -5,6 +5,7 @@ import ganymedes01.aobd.lib.CompatType;
 import ganymedes01.aobd.ore.Ore;
 import ganymedes01.aobd.recipes.modules.EnderIOModule;
 import ganymedes01.aobd.recipes.modules.FactorizationModule;
+import ganymedes01.aobd.recipes.modules.GanysNetherModule;
 import ganymedes01.aobd.recipes.modules.IC2Module;
 import ganymedes01.aobd.recipes.modules.MekanismModule;
 import ganymedes01.aobd.recipes.modules.RailcraftModule;
@@ -42,6 +43,8 @@ public class ModulesHandler {
 			modules.add(new FactorizationModule());
 		if (AOBD.isCompatEnabled(CompatType.RANDOM_ADDITIONS))
 			modules.add(new RandomAdditionsModule());
+		if (AOBD.isCompatEnabled(CompatType.GANYS_NETHER))
+			modules.add(new GanysNetherModule());
 
 		if (modules.isEmpty())
 			return;
