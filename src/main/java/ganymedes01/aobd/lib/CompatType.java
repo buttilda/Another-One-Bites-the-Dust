@@ -10,7 +10,8 @@ public enum CompatType {
 	THERMAL_EXPANTION("ThermalExpansion"),
 	FACTORISATION("factorization"),
 	RANDOM_ADDITIONS("randomadditions"),
-	GANYS_NETHER("ganysnether");
+	GANYS_NETHER("ganysnether"),
+	ULTRA_TECH("UltraTech");
 
 	final String modid;
 

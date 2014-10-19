@@ -9,5 +9,6 @@
 	<classpathentry kind="lib" path="libs/RandomAdditions Alpha 0.9.3 mc1.7.10.jar"/>
 	<classpathentry kind="lib" path="libs/Railcraft_1.7.10-9.3.3.0.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/Gany-s-Nether"/>
+	<classpathentry kind="lib" path="libs/Ultratech-1.7.10-0.9.6.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

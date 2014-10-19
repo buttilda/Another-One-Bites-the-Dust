@@ -12,6 +12,7 @@ import ganymedes01.aobd.recipes.modules.RailcraftModule;
 import ganymedes01.aobd.recipes.modules.RandomAdditionsModule;
 import ganymedes01.aobd.recipes.modules.ThaumcraftModule;
 import ganymedes01.aobd.recipes.modules.ThermalExpansionModule;
+import ganymedes01.aobd.recipes.modules.UltraTechModule;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -45,6 +46,8 @@ public class ModulesHandler {
 			modules.add(new RandomAdditionsModule());
 		if (AOBD.isCompatEnabled(CompatType.GANYS_NETHER))
 			modules.add(new GanysNetherModule());
+		if (AOBD.isCompatEnabled(CompatType.ULTRA_TECH))
+			modules.add(new UltraTechModule());
 
 		if (modules.isEmpty())
 			return;

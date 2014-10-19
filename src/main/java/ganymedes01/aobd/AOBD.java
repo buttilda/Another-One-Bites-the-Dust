@@ -6,6 +6,7 @@ import ganymedes01.aobd.lib.Reference;
 import ganymedes01.aobd.ore.OreFinder;
 import ganymedes01.aobd.recipes.ModulesHandler;
 import ganymedes01.aobd.recipes.modules.MekanismModule;
+import ganymedes01.aobd.recipes.modules.UltraTechModule;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -67,6 +68,9 @@ public class AOBD {
 	public void init(FMLInitializationEvent event) {
 		for (CompatType type : CompatType.values())
 			configType(Loader.isModLoaded(type.modID()), type);
+
+		if (AOBD.isCompatEnabled(CompatType.ULTRA_TECH))
+			UltraTechModule.registerOres();
 
 		// Find ores
 		OreFinder.preInit();

@@ -101,6 +101,10 @@ public class OreFinder {
 			generateItems("crystal", blacklist);
 			generateItems("clump", blacklist);
 		}
+		if (AOBD.isCompatEnabled(CompatType.ULTRA_TECH)) {
+			List<String> blacklist = ModulesHandler.getBlacklist(CompatType.ULTRA_TECH);
+			generateItems("chunk", blacklist);
+		}
 
 		String[] items = AOBD.userDefinedItems.trim().split(",");
 		if (items.length > 0)

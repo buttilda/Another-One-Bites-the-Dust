@@ -12,6 +12,7 @@ item.aobd.clump.name=%s Clump
 item.aobd.shard.name=%s Shard
 item.aobd.dustDirty.name=Dirty %s Dust
 item.aobd.crystal.name=%s Crystal
+item.aobd.chunk.name=Dirty %s Chunk
 
 # Gas
 gas.aobd.clean.name=Clean %s Slurry
