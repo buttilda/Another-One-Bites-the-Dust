@@ -1,24 +1,24 @@
 #zh_CN#
 
 # Item
-item.aobd.dust.name=%s 粉
-item.aobd.crushed.name=粉碎 %s 矿石
-item.aobd.crushedPurified.name=纯净的粉碎 %s 矿石
-item.aobd.dustTiny.name=小撮 %s 粉
-item.aobd.cluster.name=纯净的 %s 矿簇
-item.aobd.dirtyGravel.name=污浊的 %s 砾石
-item.aobd.cleanGravel.name=纯净的 %s 砾石
-item.aobd.reduced.name=还原 %s 块
-item.aobd.crystalline.name=晶状 %s
-item.aobd.clump.name=%s 团簇
-item.aobd.shard.name=%s 碎片
-item.aobd.dustDirty.name=污浊的 %s 粉
-item.aobd.crystal.name=%s 晶体
+item.aobd.dust.name=%s粉
+item.aobd.crushed.name=粉碎%s矿石
+item.aobd.crushedPurified.name=纯净的粉碎%s矿石
+item.aobd.dustTiny.name=小撮%s粉
+item.aobd.cluster.name=纯净的%s矿簇
+item.aobd.dirtyGravel.name=污浊的%s砾石
+item.aobd.cleanGravel.name=纯净的%s砾石
+item.aobd.reduced.name=还原%s块
+item.aobd.crystalline.name=结晶质%s
+item.aobd.clump.name=%s碎块
+item.aobd.shard.name=%s碎片
+item.aobd.dustDirty.name=污浊的%s粉
+item.aobd.crystal.name=%s晶体
+item.aobd.chunk.name=污浊的%块
 
 # Gas
-gas.aobd.clean.name=纯净的 %s 浆
-gas.aobd.dirty.name=%s 浆
-gas.aobd.ore.name=%s 矿石
+gas.aobd.clean.name=纯净的%s浆液
+gas.aobd.dirty.name=%s浆液
 
 # Creative Tab
 itemGroup.aobd=AOBD
