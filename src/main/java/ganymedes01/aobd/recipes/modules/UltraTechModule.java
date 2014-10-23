@@ -28,9 +28,9 @@ public class UltraTechModule extends RecipesModule {
 
 	public static void registerOres() {
 		Item chunk = ItemManager.ItemName.get("Chunk");
+
 		OreDictionary.registerOre("chunkAluminium", new ItemStack(chunk, 1, 0));
 		OreDictionary.registerOre("chunkAluminum", new ItemStack(chunk, 1, 0));
-
 		OreDictionary.registerOre("chunkCopper", new ItemStack(chunk, 1, 1));
 		OreDictionary.registerOre("chunkTin", new ItemStack(chunk, 1, 2));
 		OreDictionary.registerOre("chunkLead", new ItemStack(chunk, 1, 3));
