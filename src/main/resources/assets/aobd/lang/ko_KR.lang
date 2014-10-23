@@ -7,11 +7,12 @@ item.aobd.cluster.name=순수한 %s 덩어리
 item.aobd.dirtyGravel.name=더러운 %s광석 자갈
 item.aobd.cleanGravel.name=새척한 %s광석 자갈
 item.aobd.reduced.name=작은 %s광석 덩어리
-item.aobd.crystalline.name=수정같은 %s광석
-item.aobd.clump.name=%s광석 묵음
+item.aobd.crystalline.name=수정 %s광석
+item.aobd.clump.name=%s광석 묶음
 item.aobd.shard.name=%s 샤드
 item.aobd.dustDirty.name=더러운 %s광석 가루
 item.aobd.crystal.name=%s 수정
+item.aobd.chunk.name=더러운 %s 조각
 
 # Gas
 gas.aobd.clean.name=새척한 %s광석 슬러리
