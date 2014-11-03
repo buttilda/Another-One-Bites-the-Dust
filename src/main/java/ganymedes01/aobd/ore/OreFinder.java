@@ -105,6 +105,10 @@ public class OreFinder {
 			List<String> blacklist = ModulesHandler.getBlacklist(CompatType.ULTRA_TECH);
 			generateItems("chunk", blacklist);
 		}
+		if (AOBD.isCompatEnabled(CompatType.GANYS_NETHER)) {
+			List<String> blacklist = ModulesHandler.getBlacklist(CompatType.GANYS_NETHER);
+			generateItems("nugget", blacklist);
+		}
 
 		String[] items = AOBD.userDefinedItems.trim().split(",");
 		if (items.length > 0)

@@ -13,6 +13,7 @@ item.aobd.shard.name=%s Shard
 item.aobd.dustDirty.name=Dirty %s Dust
 item.aobd.crystal.name=%s Crystal
 item.aobd.chunk.name=Dirty %s Chunk
+item.aobd.nugget.name=%s Nugget
 
 # Gas
 gas.aobd.clean.name=Clean %s Slurry
