@@ -1,5 +1,3 @@
-#zh_CN#
-
 # Item
 item.aobd.dust.name=%s粉
 item.aobd.crushed.name=粉碎%s矿石
@@ -15,6 +13,7 @@ item.aobd.shard.name=%s碎片
 item.aobd.dustDirty.name=污浊的%s粉
 item.aobd.crystal.name=%s晶体
 item.aobd.chunk.name=污浊的%块
+item.aobd.nugget.name=%s粒
 
 # Gas
 gas.aobd.clean.name=纯净的%s浆液
@@ -27,4 +26,4 @@ itemGroup.aobd=AOBD
 tc.research_category.AOBD=AOBD
 tc.research_name.PUREORE=矿石提纯
 tc.research_text.PUREORE=净化所有的矿石
-tc.research_page.PUREORE.1=纯净矿簇是金属处在纯粹形态时极为罕见的浓聚物. 你发现了如何提纯以及浓缩普通的矿石, 让它们成为纯净的矿簇.<BR>烧制这些矿簇可以得到两倍的金属锭产量.
+tc.research_page.PUREORE.1=纯净矿簇是金属处在纯粹形态时极为罕见的浓聚物. 你发现了如何提纯以及浓缩普通的矿石,让它们成为纯净的矿簇.<BR>烧制这些矿簇可以得到两倍的金属锭产量.
