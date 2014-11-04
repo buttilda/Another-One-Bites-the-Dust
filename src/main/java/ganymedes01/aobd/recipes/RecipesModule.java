@@ -48,11 +48,38 @@ public abstract class RecipesModule {
 
 	private static final Map<String, ItemStack> cache = new HashMap<String, ItemStack>();
 
-	protected static ItemStack getOreDictItem(String name) {
-		return getOreDictItem(name, 1);
+	protected static ItemStack getOreStack(String prefix, Ore ore) {
+		return getOreStack(prefix, ore, 1, false);
 	}
 
-	protected static ItemStack getOreDictItem(String name, int size) {
+	protected static ItemStack getOreStack(String prefix, Ore ore, int size) {
+		return getOreStack(prefix, ore, size, false);
+	}
+
+	protected static ItemStack getOreStackExtra(String prefix, Ore ore) {
+		return getOreStack(prefix, ore, 1, true);
+	}
+
+	protected static ItemStack getOreStackExtra(String prefix, Ore ore, int size) {
+		return getOreStack(prefix, ore, size, true);
+	}
+
+	private static ItemStack getOreStack(String prefix, Ore ore, int size, boolean extra) {
+		if (extra)
+			try {
+				return getOreStack(prefix + ore.extra(), size);
+			} catch (NullPointerException e) {
+				return getOreStack(prefix, ore, size);
+			}
+		else
+			return getOreStack(prefix + ore.name(), size);
+	}
+
+	protected static ItemStack getOreStack(String name) {
+		return getOreStack(name, 1);
+	}
+
+	protected static ItemStack getOreStack(String name, int size) {
 		try {
 			if (OreFinder.itemMap.containsKey(name))
 				return new ItemStack(OreFinder.itemMap.get(name), size);
@@ -63,7 +90,7 @@ public abstract class RecipesModule {
 					return stack;
 				} else {
 					stack = ItemStack.copyItemStack(OreDictionary.getOres(name).get(0));
-					cache.put(name, stack);
+					cache.put(name, stack.copy());
 					stack.stackSize = size;
 
 					return stack;

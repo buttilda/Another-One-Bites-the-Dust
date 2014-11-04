@@ -55,7 +55,7 @@ public class ModulesHandler {
 
 	private static void registerSmelting(String name) {
 		try {
-			GameRegistry.addSmelting(RecipesModule.getOreDictItem("dust" + name), RecipesModule.getOreDictItem("ingot" + name), 0.2F);
+			GameRegistry.addSmelting(RecipesModule.getOreStack("dust" + name), RecipesModule.getOreStack("ingot" + name), 0.2F);
 		} catch (NullPointerException e) {
 		}
 	}

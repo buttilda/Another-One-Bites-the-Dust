@@ -50,23 +50,23 @@ public class MekanismModule extends RecipesModule {
 		gasList.add(slurry);
 
 		for (ItemStack stack : OreDictionary.getOres("ore" + name))
-			RecipeHandler.addEnrichmentChamberRecipe(stack, getOreDictItem("dust" + name, 2));
-		RecipeHandler.addEnrichmentChamberRecipe(getOreDictItem("dustDirty" + name), getOreDictItem("dust" + name));
+			RecipeHandler.addEnrichmentChamberRecipe(stack, getOreStack("dust", ore, 2));
+		RecipeHandler.addEnrichmentChamberRecipe(getOreStack("dustDirty", ore), getOreStack("dust", ore));
 
-		RecipeHandler.addCrusherRecipe(getOreDictItem("clump" + name), getOreDictItem("dustDirty" + name));
-
-		for (ItemStack stack : OreDictionary.getOres("ore" + name))
-			RecipeHandler.addPurificationChamberRecipe(stack, getOreDictItem("clump" + name, 3));
-		RecipeHandler.addPurificationChamberRecipe(getOreDictItem("shard" + name), getOreDictItem("clump" + name));
+		RecipeHandler.addCrusherRecipe(getOreStack("clump", ore), getOreStack("dustDirty", ore));
 
 		for (ItemStack stack : OreDictionary.getOres("ore" + name))
-			RecipeHandler.addChemicalInjectionChamberRecipe(new AdvancedInput(stack, hydrogenChloride), getOreDictItem("shard" + name, 4));
-		RecipeHandler.addChemicalInjectionChamberRecipe(new AdvancedInput(getOreDictItem("crystal" + name), hydrogenChloride), getOreDictItem("shard" + name));
+			RecipeHandler.addPurificationChamberRecipe(stack, getOreStack("clump", ore, 3));
+		RecipeHandler.addPurificationChamberRecipe(getOreStack("shard", ore), getOreStack("clump", ore));
+
+		for (ItemStack stack : OreDictionary.getOres("ore" + name))
+			RecipeHandler.addChemicalInjectionChamberRecipe(new AdvancedInput(stack, hydrogenChloride), getOreStack("shard", ore, 4));
+		RecipeHandler.addChemicalInjectionChamberRecipe(new AdvancedInput(getOreStack("crystal", ore), hydrogenChloride), getOreStack("shard", ore));
 
 		for (ItemStack stack : OreDictionary.getOres("ore" + name))
 			RecipeHandler.addChemicalDissolutionChamberRecipe(stack, new GasStack(slurry, 1000));
 		RecipeHandler.addChemicalWasherRecipe(new GasStack(slurry, 1), new GasStack(slurry.getCleanGas(), 1));
-		RecipeHandler.addChemicalCrystallizerRecipe(new GasStack(slurry.getCleanGas(), 200), getOreDictItem("crystal" + name));
+		RecipeHandler.addChemicalCrystallizerRecipe(new GasStack(slurry.getCleanGas(), 200), getOreStack("crystal", ore));
 	}
 
 	@SideOnly(Side.CLIENT)

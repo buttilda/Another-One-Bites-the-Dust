@@ -24,20 +24,20 @@ public class IC2Module extends RecipesModule {
 
 		String name = ore.name();
 		try {
-			Recipes.macerator.addRecipe(new RecipeInputOreDict("ore" + name), null, getOreDictItem("crushed" + name, 2));
-			Recipes.macerator.addRecipe(new RecipeInputOreDict("ingot" + name), null, getOreDictItem("dust" + name));
+			Recipes.macerator.addRecipe(new RecipeInputOreDict("ore" + name), null, getOreStack("crushed", ore, 2));
+			Recipes.macerator.addRecipe(new RecipeInputOreDict("ingot" + name), null, getOreStack("dust", ore));
 
-			addCentrifugeRecipe(new RecipeInputOreDict("crushed" + name), (int) ore.energy(1500), getOreDictItem("dust" + name), getOreDictItem("dustTiny" + name), stoneDust.copy());
-			addOreWashingRecipe(new RecipeInputOreDict("crushed" + name), getOreDictItem("crushedPurified" + name), getOreDictItem("dustTiny" + name, 2), stoneDust.copy());
+			addCentrifugeRecipe(new RecipeInputOreDict("crushed" + name), (int) ore.energy(1500), getOreStack("dust", ore), getOreStack("dustTiny", ore), stoneDust.copy());
+			addOreWashingRecipe(new RecipeInputOreDict("crushed" + name), getOreStack("crushedPurified", ore), getOreStack("dustTiny", ore, 2), stoneDust.copy());
 
-			addCentrifugeRecipe(new RecipeInputOreDict("crushedPurified" + name), (int) ore.energy(1500), getOreDictItem("dust" + name, 1), getOreDictItem("dustTiny" + name));
+			addCentrifugeRecipe(new RecipeInputOreDict("crushedPurified" + name), (int) ore.energy(1500), getOreStack("dust", ore, 1), getOreStack("dustTiny", ore));
 
-			GameRegistry.addRecipe(new ShapedOreRecipe(getOreDictItem("dust" + name), "xxx", "xxx", "xxx", 'x', "dustTiny" + name));
-			GameRegistry.addSmelting(getOreDictItem("crushed" + name), getOreDictItem("ingot" + name), 0.2F);
-			GameRegistry.addSmelting(getOreDictItem("crushedPurified" + name), getOreDictItem("ingot" + name), 0.2F);
+			GameRegistry.addRecipe(new ShapedOreRecipe(getOreStack("dust", ore), "xxx", "xxx", "xxx", 'x', "dustTiny" + name));
+			GameRegistry.addSmelting(getOreStack("crushed", ore), getOreStack("ingot", ore), 0.2F);
+			GameRegistry.addSmelting(getOreStack("crushedPurified", ore), getOreStack("ingot", ore), 0.2F);
 
 			if (AOBD.isCompatEnabled(CompatType.MEKANISM) && ore.isCompatEnabled(CompatType.MEKANISM))
-				Recipes.macerator.addRecipe(new RecipeInputOreDict("clump" + name), null, getOreDictItem("dustDirty" + name));
+				Recipes.macerator.addRecipe(new RecipeInputOreDict("clump" + name), null, getOreStack("dustDirty", ore));
 
 		} catch (Exception e) {
 		}

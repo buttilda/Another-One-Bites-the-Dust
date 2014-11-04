@@ -1,5 +1,6 @@
 package ganymedes01.aobd.recipes.modules;
 
+import net.minecraftforge.oredict.OreDictionary;
 import ganymedes01.aobd.lib.CompatType;
 import ganymedes01.aobd.ore.Ore;
 import ganymedes01.aobd.recipes.RecipesModule;
@@ -32,6 +33,9 @@ public class EnderIOModule extends RecipesModule {
 	}
 
 	private static void addSAGMillRecipe(String input, float energy, String extra) {
+		if (OreDictionary.getOres("dust" + extra).isEmpty())
+			extra = input;
+		
 		FMLInterModComms.sendMessage("EnderIO", "recipe:sagmill", String.format(xmlMessage, input, energy, input, input, extra));
 	}
 }

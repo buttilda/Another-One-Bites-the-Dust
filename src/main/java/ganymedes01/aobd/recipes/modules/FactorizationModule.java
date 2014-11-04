@@ -21,12 +21,12 @@ public class FactorizationModule extends RecipesModule {
 	@Override
 	public void initOre(Ore ore) {
 		String name = ore.name();
-		ItemStack ingot = getOreDictItem("ingot" + name);
-		ItemStack reduced = getOreDictItem("reduced" + name);
-		ItemStack dirtyGravel = getOreDictItem("dirtyGravel" + name);
-		ItemStack cleanGravel = getOreDictItem("cleanGravel" + name);
-		ItemStack crystalline = getOreDictItem("crystalline" + name);
-		ItemStack aquaRegia = getOreDictItem("aquaRegia");
+		ItemStack ingot = getOreStack("ingot", ore);
+		ItemStack reduced = getOreStack("reduced", ore);
+		ItemStack dirtyGravel = getOreStack("dirtyGravel", ore);
+		ItemStack cleanGravel = getOreStack("cleanGravel", ore);
+		ItemStack crystalline = getOreStack("crystalline", ore);
+		ItemStack aquaRegia = getOreStack("aquaRegia");
 
 		for (ItemStack stack : OreDictionary.getOres("dirtyGravel" + name))
 			addSlagFurnaceRecipe(stack, ingot, 1.1F, Blocks.dirt, 0.2F);
@@ -40,7 +40,7 @@ public class FactorizationModule extends RecipesModule {
 			addCrystalliserRecipe(stack, crystalline, 1.2F, aquaRegia);
 
 		String dirty = "dirtyGravel" + name;
-		GameRegistry.addRecipe(new ShapelessOreRecipe(getOreDictItem("cleanGravel" + name, 8), "fz.waterBucketLike", dirty, dirty, dirty, dirty, dirty, dirty, dirty, dirty));
+		GameRegistry.addRecipe(new ShapelessOreRecipe(getOreStack("cleanGravel", ore, 8), "fz.waterBucketLike", dirty, dirty, dirty, dirty, dirty, dirty, dirty, dirty));
 		GameRegistry.addRecipe(new ShapelessOreRecipe(cleanGravel, "fz.waterBucketLike", dirty));
 
 		GameRegistry.addSmelting(reduced, ingot, 1.0F);

@@ -21,9 +21,9 @@ public class UltraTechModule extends RecipesModule {
 		String name = ore.name();
 
 		for (ItemStack stack : OreDictionary.getOres("ore" + name))
-			RecipeRegistry.addRecipeCutter(stack, getOreDictItem("chunk" + name, 3));
+			RecipeRegistry.addRecipeCutter(stack, getOreStack("chunk", ore, 3));
 		for (ItemStack stack : OreDictionary.getOres("chunk" + name))
-			RecipeRegistry.addRecipePurifier(getOreDictItem("dust" + name), stack);
+			RecipeRegistry.addRecipePurifier(getOreStack("dust", ore), stack);
 	}
 
 	public static void registerOres() {

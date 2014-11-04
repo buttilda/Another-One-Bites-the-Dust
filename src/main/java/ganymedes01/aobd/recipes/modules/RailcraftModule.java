@@ -22,24 +22,24 @@ public class RailcraftModule extends RecipesModule {
 	@Override
 	public void initOre(Ore ore) {
 		for (ItemStack stack : OreDictionary.getOres("ore" + ore.name()))
-			addRecipe(stack, ore.name());
+			addRecipe(stack, ore);
 	}
 
 	@SuppressWarnings("unchecked")
-	private void addRecipe(ItemStack input, String name) {
+	private void addRecipe(ItemStack input, Ore ore) {
 		for (IRockCrusherRecipe rec : RailcraftCraftingManager.rockCrusher.getRecipes())
 			if (rec != null && areStacksTheSame(input, rec.getInput()))
 				return;
 
 		IRockCrusherRecipe recipe = RailcraftCraftingManager.rockCrusher.createNewRecipe(input, true, false);
-		recipe.addOutput(getOreDictItem("crushed" + name, 2), 1.0F);
+		recipe.addOutput(getOreStack("crushed", ore, 2), 1.0F);
 
 		// Make sure we don't register the smelting recipe twice
-		ItemStack crushed = getOreDictItem("crushed" + name);
+		ItemStack crushed = getOreStack("crushed", ore);
 		for (ItemStack stack : (Set<ItemStack>) FurnaceRecipes.smelting().getSmeltingList().keySet())
 			if (areStacksTheSame(stack, crushed))
 				return;
-		GameRegistry.addSmelting(crushed, getOreDictItem("ingot" + name), 0.2F);
+		GameRegistry.addSmelting(crushed, getOreStack("ingot", ore), 0.2F);
 	}
 
 	private boolean areStacksTheSame(ItemStack stack1, ItemStack stack2) {

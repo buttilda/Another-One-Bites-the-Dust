@@ -15,14 +15,11 @@ public class ThermalExpansionModule extends RecipesModule {
 
 	@Override
 	public void initOre(Ore ore) {
-		ItemStack cinnabar = getOreDictItem("crystalCinnabar");
+		ItemStack cinnabar = getOreStack("crystalCinnabar");
 
-		String name = ore.name();
-		ItemStack block = getOreDictItem("ore" + name);
-
-		addPulveriserRecipe(1000, getOreDictItem("ingot" + name), getOreDictItem("dust" + name), null, 0);
-		addPulveriserRecipe((int) ore.energy(4000), block, getOreDictItem("dust" + name, 2), getOreDictItem("dust" + ore.extra()), 10);
-		addInductionSmelterRecipe((int) ore.energy(4000), block, cinnabar.copy(), getOreDictItem("ingot" + name, 3), getOreDictItem("ingot" + ore.extra()), 100);
+		addPulveriserRecipe(1000, getOreStack("ingot", ore), getOreStack("dust", ore), null, 0);
+		addPulveriserRecipe((int) ore.energy(4000), getOreStack("ore", ore), getOreStack("dust", ore, 2), getOreStackExtra("dust", ore), 10);
+		addInductionSmelterRecipe((int) ore.energy(4000), getOreStack("ore", ore), cinnabar.copy(), getOreStack("ingot", ore, 3), getOreStackExtra("ingot", ore), 100);
 	}
 
 	private void addPulveriserRecipe(int energy, ItemStack input, ItemStack output, ItemStack bonus, int chance) {

@@ -16,7 +16,7 @@ public class RandomAdditionsModule extends RecipesModule {
 	@Override
 	public void initOre(Ore ore) {
 		String name = ore.name();
-		MachineSystem.crusher.registerRecipe(new MachineRecipe("ingot" + name, getOreDictItem("dust" + name), 250));
-		MachineSystem.crusher.registerRecipe(new MachineRecipe("ore" + name, getOreDictItem("dust" + name, 2), 250));
+		MachineSystem.crusher.registerRecipe(new MachineRecipe("ingot" + name, getOreStack("dust", ore), 250));
+		MachineSystem.crusher.registerRecipe(new MachineRecipe("ore" + name, getOreStack("dust", ore, 2), 250));
 	}
 }

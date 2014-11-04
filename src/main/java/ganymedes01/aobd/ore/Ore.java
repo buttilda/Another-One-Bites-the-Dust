@@ -5,12 +5,28 @@ import ganymedes01.aobd.lib.CompatType;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 public class Ore {
 
 	public static final ArrayList<Ore> ores = new ArrayList<Ore>();
+
+	private static final Map<String, String> defaultOres = new HashMap<String, String>();
+	static {
+		defaultOres.put("Cobalt", "Iron");
+		defaultOres.put("Ardite", "Gold");
+		defaultOres.put("Aluminium", "Tin");
+		defaultOres.put("Copper", "Gold");
+		defaultOres.put("Tin", "Iron");
+		defaultOres.put("Lead", "Silver");
+		defaultOres.put("Iron", "Nickel");
+		defaultOres.put("Silver", "Lead");
+		defaultOres.put("Nickel", "Platinum");
+		defaultOres.put("FzDarkIron", "Silver");
+	}
 
 	private final String name;
 	private String extra;
@@ -20,36 +36,15 @@ public class Ore {
 	private Color colour = Color.WHITE;
 
 	public static Ore newOre(String name) {
-		if (name.equals("Cobalt"))
-			return new Ore(name, "Iron", 3);
-		else if (name.equals("Ardite"))
-			return new Ore(name, "Gold", 3);
-		else if (name.equals("Aluminium"))
-			return new Ore(name, "Iron");
-		else if (name.equals("Copper"))
-			return new Ore(name, "Iron");
-		else if (name.equals("Tin"))
-			return new Ore(name, "Iron");
-		else if (name.equals("Lead"))
-			return new Ore(name, "Gold");
-		else if (name.equals("Iron"))
-			return new Ore(name, "Gold");
-		else if (name.equals("Gold"))
-			return new Ore(name, "Iron");
-		else
-			return new Ore(name);
-	}
+		int e = 1;
+		if (name.equals("Cobalt") || name.equals("Ardite") || name.equals("FzDarkIron"))
+			e = 3;
 
-	private Ore(String name) {
-		this(name, name, 1);
-	}
+		String extra = defaultOres.get(name);
+		if (extra == null)
+			extra = name;
 
-	private Ore(String name, double energy) {
-		this(name, name, energy);
-	}
-
-	private Ore(String name, String extra) {
-		this(name, extra, 1);
+		return new Ore(name, extra, e);
 	}
 
 	private Ore(String name, String extra, double energy) {

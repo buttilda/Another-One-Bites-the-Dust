@@ -33,13 +33,13 @@ public class ThaumcraftModule extends RecipesModule {
 	@Override
 	public void initOre(Ore ore) {
 		String name = ore.name();
-		ItemStack cluster = getOreDictItem("cluster" + name);
+		ItemStack cluster = getOreStack("cluster", ore);
 		for (ItemStack block : OreDictionary.getOres("ore" + name)) {
 			String s1 = Item.getIdFromItem(block.getItem()) + "," + block.getItemDamage();
 			String s2 = Item.getIdFromItem(cluster.getItem()) + "," + cluster.getItemDamage();
 			FMLInterModComms.sendMessage("Thaumcraft", "nativeCluster", s1 + "," + s2 + "," + 1);
 		}
-		GameRegistry.addSmelting(cluster, getOreDictItem("ingot" + name, 2), 0.2F);
+		GameRegistry.addSmelting(cluster, getOreStack("ingot", ore, 2), 0.2F);
 	}
 
 	@Override
@@ -50,8 +50,7 @@ public class ThaumcraftModule extends RecipesModule {
 		for (Ore ore : Ore.ores)
 			if (isOreEnabled(ore)) {
 				String name = ore.name();
-				ItemStack cluster = getOreDictItem("cluster" + name).copy();
-				cluster.stackSize = 1;
+				ItemStack cluster = getOreStack("cluster", ore);
 
 				CrucibleRecipe recipe = ThaumcraftApi.addCrucibleRecipe("PUREORE", cluster, "ore" + name, new AspectList().merge(Aspect.METAL, 1).merge(Aspect.ORDER, 1));
 				ConfigResearch.recipes.put("Pure" + name, recipe);
