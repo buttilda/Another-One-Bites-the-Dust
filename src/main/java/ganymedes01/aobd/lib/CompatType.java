@@ -1,7 +1,16 @@
 package ganymedes01.aobd.lib;
 
 import ganymedes01.aobd.recipes.RecipesModule;
-import ganymedes01.aobd.recipes.modules.*;
+import ganymedes01.aobd.recipes.modules.EnderIOModule;
+import ganymedes01.aobd.recipes.modules.FactorizationModule;
+import ganymedes01.aobd.recipes.modules.GanysNetherModule;
+import ganymedes01.aobd.recipes.modules.IC2Module;
+import ganymedes01.aobd.recipes.modules.MekanismModule;
+import ganymedes01.aobd.recipes.modules.RailcraftModule;
+import ganymedes01.aobd.recipes.modules.RandomAdditionsModule;
+import ganymedes01.aobd.recipes.modules.ThaumcraftModule;
+import ganymedes01.aobd.recipes.modules.ThermalExpansionModule;
+import ganymedes01.aobd.recipes.modules.UltraTechModule;
 
 public enum CompatType {
 
@@ -13,7 +22,7 @@ public enum CompatType {
 	THERMAL_EXPANTION("ThermalExpansion", ThermalExpansionModule.class, "dust"),
 	FACTORISATION("factorization", FactorizationModule.class, "crystalline", "cleanGravel", "reduced", "dirtyGravel"),
 	RANDOM_ADDITIONS("randomadditions", RandomAdditionsModule.class, "dust"),
-	GANYS_NETHER("ganysnether", GanysNetherModule.class, "nugget"),
+	GANYS_NETHER("ganysnether", GanysNetherModule.class),
 	ULTRA_TECH("UltraTech", UltraTechModule.class, "chunk", "dust");
 
 	final String modid;
