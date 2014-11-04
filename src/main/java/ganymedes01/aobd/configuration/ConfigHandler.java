@@ -4,7 +4,6 @@ import ganymedes01.aobd.AOBD;
 import ganymedes01.aobd.lib.CompatType;
 import ganymedes01.aobd.lib.Reference;
 import ganymedes01.aobd.ore.Ore;
-import ganymedes01.aobd.ore.OreFinder;
 
 import java.awt.Color;
 import java.io.File;
@@ -50,7 +49,6 @@ public class ConfigHandler {
 
 			ore.setExtra(getString(name, "extra", ore.extra()));
 			ore.setEnergy(getDouble(name, "energy", ore.energy(1)));
-			ore.setChance(getDouble(name, "chance", ore.chance()));
 
 			usedCategories.add(name);
 		}
@@ -59,23 +57,9 @@ public class ConfigHandler {
 			configFile.save();
 	}
 
-	public void initCustomMetals() {
-		for (String custom : getStringWithComment("Custom", "custom", "", "Add custom metals.\n Example: Platinum-0x5cc9e8-dustTiny").split(";")) {
-			String[] data = custom.trim().split("-");
-			if (data.length == 3)
-				OreFinder.addCustomMetal(data[0].trim(), Color.decode(data[1].trim()), data[2].trim().split(","));
-		}
-
-		if (configFile.hasChanged())
-			configFile.save();
-	}
-
 	public void initColourConfigs() {
-		for (Ore ore : Ore.ores) {
-			String name = ore.name();
-
-			OreFinder.oreColourMap.put(name, getColour(name, "colour", OreFinder.oreColourMap.get(name)));
-		}
+		for (Ore ore : Ore.ores)
+			ore.setColour(getColour(ore.name(), "colour", ore.colour()));
 
 		if (configFile.hasChanged())
 			configFile.save();
@@ -88,14 +72,12 @@ public class ConfigHandler {
 
 			preInit();
 			initOreConfigs();
-			initCustomMetals();
 			initColourConfigs();
 		}
 	}
 
-	private Color getColour(String category, String name, Color def) {
-		String hex = String.format("0x%02x%02x%02x", def.getRed(), def.getGreen(), def.getBlue());
-		return Color.decode(getString(category, name, hex));
+	private Color getColour(String category, String name, int def) {
+		return Color.decode(getString(category, name, "0x" + Integer.toHexString(def)));
 	}
 
 	private String getString(String category, String name, String def) {

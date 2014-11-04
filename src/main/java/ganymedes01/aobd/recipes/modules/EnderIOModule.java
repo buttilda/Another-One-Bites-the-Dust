@@ -23,7 +23,7 @@ public class EnderIOModule extends RecipesModule {
 	//@formatter:on
 
 	public EnderIOModule() {
-		super(CompatType.ENDERIO, "iron", "gold", "copper", "tin", "lead", "silver", "nickel");
+		super(CompatType.ENDERIO, "iron", "gold");
 	}
 
 	@Override

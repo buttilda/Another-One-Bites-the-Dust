@@ -29,12 +29,6 @@ import cpw.mods.fml.common.registry.GameRegistry;
 public class OreFinder {
 
 	public static final HashMap<String, AOBDItem> itemMap = new HashMap<String, AOBDItem>();
-	public static final HashMap<String, Color> oreColourMap = new HashMap<String, Color>();
-
-	public static int getOreColour(String oreName) {
-		Color colour = oreColourMap.get(oreName);
-		return colour != null ? colour.getRGB() : Color.WHITE.getRGB();
-	}
 
 	private static Collection<String> getMetalsWithPrefixes(String prefix1, String prefix2) {
 		Set<String> ores = new LinkedHashSet<String>();
@@ -54,21 +48,16 @@ public class OreFinder {
 	}
 
 	public static void preInit() {
-		for (String ore : getMetalsWithPrefixes("ore", "ingot")) {
-			oreColourMap.put(ore, Color.BLACK);
+		for (String ore : getMetalsWithPrefixes("ore", "ingot"))
 			Ore.newOre(ore);
-		}
 	}
 
 	public static void initColours() {
 		try {
-			for (String ore : oreColourMap.keySet()) {
-				Color colour = getColour(ore);
-				if (colour != null)
-					oreColourMap.put(ore, colour);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
+			for (Ore ore : Ore.ores)
+				ore.setColour(getColour(ore.name()));
+		} catch (IOException e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -78,31 +67,26 @@ public class OreFinder {
 
 		String[] items = AOBD.userDefinedItems.trim().split(",");
 		if (items.length > 0)
-			generateItems(null, items);
-	}
-
-	public static void addCustomMetal(String name, Color colour, String... prefixes) {
-		if (!oreColourMap.containsKey(name)) {
-			oreColourMap.put(name, colour);
-			for (String prefix : prefixes) {
-				String pre = prefix.trim();
-				registerOre(pre + name, new AOBDItem(pre, name));
+			for (String prefix : items) {
+				prefix = prefix.trim();
+				if (!prefix.isEmpty())
+					for (Ore ore : Ore.ores) {
+						String name = ore.name();
+						registerOre(prefix + name, new AOBDItem(prefix, ore));
+					}
 			}
-		}
 	}
 
 	private static void generateItems(CompatType compat, String[] prefixes) {
-		if (compat == null || AOBD.isCompatEnabled(compat))
+		if (AOBD.isCompatEnabled(compat))
 			for (Ore ore : Ore.ores) {
 				String name = ore.name();
-				if (!ore.isCompatEnabled(compat))
-					continue;
-				if (compat != null && ModulesHandler.getBlacklist(compat).contains(name.toLowerCase()))
+				if (!ore.isCompatEnabled(compat) || ModulesHandler.isOreBlacklisted(compat, name))
 					continue;
 
 				for (String prefix : prefixes) {
 					String str = prefix.trim();
-					registerOre(str + name, new AOBDItem(str, name));
+					registerOre(str + name, new AOBDItem(str, ore));
 				}
 			}
 	}

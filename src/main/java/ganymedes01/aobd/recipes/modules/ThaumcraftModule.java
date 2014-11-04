@@ -37,7 +37,7 @@ public class ThaumcraftModule extends RecipesModule {
 		for (ItemStack block : OreDictionary.getOres("ore" + name)) {
 			String s1 = Item.getIdFromItem(block.getItem()) + "," + block.getItemDamage();
 			String s2 = Item.getIdFromItem(cluster.getItem()) + "," + cluster.getItemDamage();
-			FMLInterModComms.sendMessage("Thaumcraft", "nativeCluster", s1 + "," + s2 + "," + ore.chance());
+			FMLInterModComms.sendMessage("Thaumcraft", "nativeCluster", s1 + "," + s2 + "," + 1);
 		}
 		GameRegistry.addSmelting(cluster, getOreDictItem("ingot" + name, 2), 0.2F);
 	}

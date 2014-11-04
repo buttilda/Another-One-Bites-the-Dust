@@ -2,7 +2,7 @@ package ganymedes01.aobd.items;
 
 import ganymedes01.aobd.AOBD;
 import ganymedes01.aobd.lib.Reference;
-import ganymedes01.aobd.ore.OreFinder;
+import ganymedes01.aobd.ore.Ore;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -17,25 +17,31 @@ public class AOBDItem extends Item {
 	@SideOnly(Side.CLIENT)
 	private IIcon[] icon;
 
-	private final String name;
+	private final Ore ore;
 	private final String base;
 
-	public AOBDItem(String base, String name) {
-		this.name = name;
+	public AOBDItem(String base, Ore ore) {
+		this.ore = ore;
 		this.base = base;
 		setCreativeTab(AOBD.tab);
-		setUnlocalizedName(Reference.MOD_ID + "." + name);
+		setUnlocalizedName(Reference.MOD_ID + "." + ore);
 	}
 
 	@Override
 	public String getItemStackDisplayName(ItemStack stack) {
-		return String.format(StatCollector.translateToLocal("item.aobd." + base + ".name"), name);
+		return String.format(StatCollector.translateToLocal("item.aobd." + base + ".name"), ore);
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public int getColorFromItemStack(ItemStack stack, int pass) {
+		return pass == 0 ? ore.colour() : super.getColorFromItemStack(stack, pass);
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public boolean hasEffect(ItemStack stack, int pass) {
-		for (ItemStack ingot : OreDictionary.getOres("ingot" + name))
+		for (ItemStack ingot : OreDictionary.getOres("ingot" + ore))
 			if (ingot != null && ingot.getItem().hasEffect(stack, pass))
 				return true;
 		return false;
@@ -45,12 +51,6 @@ public class AOBDItem extends Item {
 	@SideOnly(Side.CLIENT)
 	public boolean requiresMultipleRenderPasses() {
 		return true;
-	}
-
-	@Override
-	@SideOnly(Side.CLIENT)
-	public int getColorFromItemStack(ItemStack stack, int pass) {
-		return pass == 0 ? OreFinder.getOreColour(name) : super.getColorFromItemStack(stack, pass);
 	}
 
 	@Override

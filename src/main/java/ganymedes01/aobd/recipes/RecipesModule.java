@@ -74,6 +74,10 @@ public abstract class RecipesModule {
 		}
 	}
 
+	public static void clearCache() {
+		cache.clear();
+	}
+
 	public List<String> blacklist() {
 		return Collections.unmodifiableList(blacklist);
 	}

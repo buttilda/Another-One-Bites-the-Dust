@@ -2,6 +2,7 @@ package ganymedes01.aobd.ore;
 
 import ganymedes01.aobd.lib.CompatType;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -13,15 +14,16 @@ public class Ore {
 
 	private final String name;
 	private String extra;
-	private double energy, chance;
+	private double energy;
 	private final Set<CompatType> enabledTypes = new HashSet<CompatType>();
 	private boolean disabled = false;
+	private Color colour = Color.WHITE;
 
 	public static Ore newOre(String name) {
 		if (name.equals("Cobalt"))
-			return new Ore(name, "Iron", 3, 2);
+			return new Ore(name, "Iron", 3);
 		else if (name.equals("Ardite"))
-			return new Ore(name, "Gold", 3, 2);
+			return new Ore(name, "Gold", 3);
 		else if (name.equals("Aluminium"))
 			return new Ore(name, "Iron");
 		else if (name.equals("Copper"))
@@ -51,14 +53,9 @@ public class Ore {
 	}
 
 	private Ore(String name, String extra, double energy) {
-		this(name, extra, energy, 1);
-	}
-
-	private Ore(String name, String extra, double energy, double chance) {
 		this.name = name;
 		this.extra = extra;
 		this.energy = energy;
-		this.chance = chance;
 		ores.add(this);
 
 		enabledTypes.addAll(Arrays.asList(CompatType.values()));
@@ -76,20 +73,12 @@ public class Ore {
 		return e * energy;
 	}
 
-	public double chance() {
-		return chance;
-	}
-
 	public void setEnergy(double e) {
 		energy = e;
 	}
 
 	public void setExtra(String extra) {
 		this.extra = extra;
-	}
-
-	public void setChance(double c) {
-		chance = c;
 	}
 
 	public boolean isCompatEnabled(CompatType type) {
@@ -111,6 +100,15 @@ public class Ore {
 		disabled = flag;
 	}
 
+	public int colour() {
+		return colour.getRGB() & 0x00FFFFFF;
+	}
+
+	public void setColour(Color colour) {
+		if (colour != null)
+			this.colour = colour;
+	}
+
 	@Override
 	public int hashCode() {
 		return name.hashCode();
@@ -119,5 +117,10 @@ public class Ore {
 	@Override
 	public boolean equals(Object obj) {
 		return obj instanceof Ore && name.equals(((Ore) obj).name);
+	}
+
+	@Override
+	public String toString() {
+		return name();
 	}
 }
