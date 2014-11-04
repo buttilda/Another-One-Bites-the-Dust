@@ -81,9 +81,6 @@ public class AOBD {
 		// Add items (dusts, crushed, cluster, etc)
 		OreFinder.init();
 
-		// Add user defined metals
-		ConfigHandler.INSTANCE.initCustomMetals();
-
 		// Add recipes
 		ModulesHandler.init();
 	}
