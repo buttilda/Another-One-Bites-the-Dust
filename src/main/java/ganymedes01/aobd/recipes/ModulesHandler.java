@@ -3,16 +3,6 @@ package ganymedes01.aobd.recipes;
 import ganymedes01.aobd.AOBD;
 import ganymedes01.aobd.lib.CompatType;
 import ganymedes01.aobd.ore.Ore;
-import ganymedes01.aobd.recipes.modules.EnderIOModule;
-import ganymedes01.aobd.recipes.modules.FactorizationModule;
-import ganymedes01.aobd.recipes.modules.GanysNetherModule;
-import ganymedes01.aobd.recipes.modules.IC2Module;
-import ganymedes01.aobd.recipes.modules.MekanismModule;
-import ganymedes01.aobd.recipes.modules.RailcraftModule;
-import ganymedes01.aobd.recipes.modules.RandomAdditionsModule;
-import ganymedes01.aobd.recipes.modules.ThaumcraftModule;
-import ganymedes01.aobd.recipes.modules.ThermalExpansionModule;
-import ganymedes01.aobd.recipes.modules.UltraTechModule;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -27,27 +17,13 @@ public class ModulesHandler {
 	public static void init() {
 		smeltingRecipes();
 
-		if (AOBD.isCompatEnabled(CompatType.IC2)) {
-			modules.add(new IC2Module());
-			if (AOBD.isCompatEnabled(CompatType.RAILCRAFT))
-				modules.add(new RailcraftModule());
-		}
-		if (AOBD.isCompatEnabled(CompatType.MEKANISM))
-			modules.add(new MekanismModule());
-		if (AOBD.isCompatEnabled(CompatType.ENDERIO))
-			modules.add(new EnderIOModule());
-		if (AOBD.isCompatEnabled(CompatType.THAUMCRAFT))
-			modules.add(new ThaumcraftModule());
-		if (AOBD.isCompatEnabled(CompatType.THERMAL_EXPANTION))
-			modules.add(new ThermalExpansionModule());
-		if (AOBD.isCompatEnabled(CompatType.FACTORISATION))
-			modules.add(new FactorizationModule());
-		if (AOBD.isCompatEnabled(CompatType.RANDOM_ADDITIONS))
-			modules.add(new RandomAdditionsModule());
-		if (AOBD.isCompatEnabled(CompatType.GANYS_NETHER))
-			modules.add(new GanysNetherModule());
-		if (AOBD.isCompatEnabled(CompatType.ULTRA_TECH))
-			modules.add(new UltraTechModule());
+		for (CompatType compat : CompatType.values())
+			if (AOBD.isCompatEnabled(compat))
+				try {
+					modules.add(compat.getModule());
+				} catch (Exception e) {
+					throw new RuntimeException(e);
+				}
 
 		if (modules.isEmpty())
 			return;
@@ -74,7 +50,10 @@ public class ModulesHandler {
 		for (Ore ore : Ore.ores)
 			if (ore.isEnabled()) {
 				String name = ore.name();
-				GameRegistry.addSmelting(RecipesModule.getOreDictItem("dust" + name), RecipesModule.getOreDictItem("ingot" + name), 0.2F);
+				try {
+					GameRegistry.addSmelting(RecipesModule.getOreDictItem("dust" + name), RecipesModule.getOreDictItem("ingot" + name), (float) ore.chance());
+				} catch (NullPointerException e) {
+				}
 			}
 	}
 }

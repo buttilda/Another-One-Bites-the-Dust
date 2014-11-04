@@ -6,7 +6,9 @@ import ganymedes01.aobd.ore.OreFinder;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
@@ -44,19 +46,30 @@ public abstract class RecipesModule {
 	protected void postInit() {
 	}
 
+	private static final Map<String, ItemStack> cache = new HashMap<String, ItemStack>();
+
 	protected static ItemStack getOreDictItem(String name) {
 		return getOreDictItem(name, 1);
 	}
 
 	protected static ItemStack getOreDictItem(String name, int size) {
-		if (OreFinder.itemMap.containsKey(name))
-			return new ItemStack(OreFinder.itemMap.get(name), size);
 		try {
-			ItemStack stack = OreDictionary.getOres(name).get(0).copy();
-			stack.stackSize = size;
+			if (OreFinder.itemMap.containsKey(name))
+				return new ItemStack(OreFinder.itemMap.get(name), size);
+			else {
+				ItemStack stack = ItemStack.copyItemStack(cache.get(name));
+				if (stack != null) {
+					stack.stackSize = size;
+					return stack;
+				} else {
+					stack = ItemStack.copyItemStack(OreDictionary.getOres(name).get(0));
+					cache.put(name, stack);
+					stack.stackSize = size;
 
-			return stack;
-		} catch (IndexOutOfBoundsException e) {
+					return stack;
+				}
+			}
+		} catch (Exception e) {
 			throw new NullPointerException("Ore dictionary item not found: " + name);
 		}
 	}
