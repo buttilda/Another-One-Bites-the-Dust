@@ -73,15 +73,8 @@ public class OreFinder {
 	}
 
 	public static void init() {
-		generateItems(CompatType.IC2, "dustTiny", "crushedPurified", "crushed", "dust");
-		generateItems(CompatType.THAUMCRAFT, "cluster");
-		generateItems(CompatType.FACTORISATION, "crystalline", "cleanGravel", "reduced", "dirtyGravel");
-		generateItems(CompatType.MEKANISM, "clump", "crystal", "shard", "dustDirty", "dust");
-		generateItems(CompatType.ULTRA_TECH, "chunk", "dust");
-		generateItems(CompatType.GANYS_NETHER, "nugget");
-		generateItems(CompatType.ENDERIO, "dust");
-		generateItems(CompatType.RANDOM_ADDITIONS, "dust");
-		generateItems(CompatType.THERMAL_EXPANTION, "dust");
+		for (CompatType compat : CompatType.values())
+			generateItems(compat, compat.prefixes());
 
 		String[] items = AOBD.userDefinedItems.trim().split(",");
 		if (items.length > 0)
@@ -98,7 +91,7 @@ public class OreFinder {
 		}
 	}
 
-	private static void generateItems(CompatType compat, String... prefixes) {
+	private static void generateItems(CompatType compat, String[] prefixes) {
 		if (compat == null || AOBD.isCompatEnabled(compat))
 			for (Ore ore : Ore.ores) {
 				String name = ore.name();
