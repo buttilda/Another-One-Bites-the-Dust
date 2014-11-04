@@ -14,14 +14,11 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import javax.imageio.ImageIO;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.ResourceLocation;
@@ -31,7 +28,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 
 public class OreFinder {
 
-	public static final HashMap<String, Item> itemMap = new HashMap<String, Item>();
+	public static final HashMap<String, AOBDItem> itemMap = new HashMap<String, AOBDItem>();
 	public static final HashMap<String, Color> oreColourMap = new HashMap<String, Color>();
 
 	public static int getOreColour(String oreName) {
@@ -76,45 +73,19 @@ public class OreFinder {
 	}
 
 	public static void init() {
-		generateItems("dust", null);
-		if (AOBD.isCompatEnabled(CompatType.IC2)) {
-			List<String> blacklist = ModulesHandler.getBlacklist(CompatType.IC2);
-			generateItems("crushed", blacklist);
-			generateItems("crushedPurified", blacklist);
-			generateItems("dustTiny", blacklist);
-		}
-		if (AOBD.isCompatEnabled(CompatType.THAUMCRAFT)) {
-			List<String> blacklist = ModulesHandler.getBlacklist(CompatType.THAUMCRAFT);
-			generateItems("cluster", blacklist);
-		}
-		if (AOBD.isCompatEnabled(CompatType.FACTORISATION)) {
-			List<String> blacklist = ModulesHandler.getBlacklist(CompatType.FACTORISATION);
-			generateItems("dirtyGravel", blacklist);
-			generateItems("reduced", blacklist);
-			generateItems("cleanGravel", blacklist);
-			generateItems("crystalline", blacklist);
-		}
-		if (AOBD.isCompatEnabled(CompatType.MEKANISM)) {
-			List<String> blacklist = ModulesHandler.getBlacklist(CompatType.MEKANISM);
-			generateItems("dustDirty", blacklist);
-			generateItems("shard", blacklist);
-			generateItems("crystal", blacklist);
-			generateItems("clump", blacklist);
-		}
-		if (AOBD.isCompatEnabled(CompatType.ULTRA_TECH)) {
-			List<String> blacklist = ModulesHandler.getBlacklist(CompatType.ULTRA_TECH);
-			generateItems("chunk", blacklist);
-		}
-		if (AOBD.isCompatEnabled(CompatType.GANYS_NETHER)) {
-			List<String> blacklist = ModulesHandler.getBlacklist(CompatType.GANYS_NETHER);
-			generateItems("nugget", blacklist);
-		}
+		generateItems(CompatType.IC2, "dustTiny", "crushedPurified", "crushed", "dust");
+		generateItems(CompatType.THAUMCRAFT, "cluster");
+		generateItems(CompatType.FACTORISATION, "crystalline", "cleanGravel", "reduced", "dirtyGravel");
+		generateItems(CompatType.MEKANISM, "clump", "crystal", "shard", "dustDirty", "dust");
+		generateItems(CompatType.ULTRA_TECH, "chunk", "dust");
+		generateItems(CompatType.GANYS_NETHER, "nugget");
+		generateItems(CompatType.ENDERIO, "dust");
+		generateItems(CompatType.RANDOM_ADDITIONS, "dust");
+		generateItems(CompatType.THERMAL_EXPANTION, "dust");
 
 		String[] items = AOBD.userDefinedItems.trim().split(",");
 		if (items.length > 0)
-			for (String item : items)
-				if (item.length() > 0)
-					generateItems(item.trim(), null);
+			generateItems(null, items);
 	}
 
 	public static void addCustomMetal(String name, Color colour, String... prefixes) {
@@ -127,17 +98,23 @@ public class OreFinder {
 		}
 	}
 
-	private static void generateItems(String orePrefix, List<String> blacklist) {
-		for (Entry<String, Color> entry : oreColourMap.entrySet()) {
-			String oreName = entry.getKey();
-			if (blacklist != null && !blacklist.isEmpty())
-				if (blacklist.contains(oreName.toLowerCase()))
+	private static void generateItems(CompatType compat, String... prefixes) {
+		if (compat == null || AOBD.isCompatEnabled(compat))
+			for (Ore ore : Ore.ores) {
+				String name = ore.name();
+				if (!ore.isCompatEnabled(compat))
 					continue;
-			registerOre(orePrefix + oreName, new AOBDItem(orePrefix, oreName));
-		}
+				if (compat != null && ModulesHandler.getBlacklist(compat).contains(name.toLowerCase()))
+					continue;
+
+				for (String prefix : prefixes) {
+					String str = prefix.trim();
+					registerOre(str + name, new AOBDItem(str, name));
+				}
+			}
 	}
 
-	private static void registerOre(String ore, Item item) {
+	private static void registerOre(String ore, AOBDItem item) {
 		if (OreDictionary.getOres(ore).isEmpty()) {
 			GameRegistry.registerItem(item, ore);
 			OreDictionary.registerOre(ore, item);
