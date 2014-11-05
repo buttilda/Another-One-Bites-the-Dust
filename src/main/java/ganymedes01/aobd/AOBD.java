@@ -7,9 +7,6 @@ import ganymedes01.aobd.ore.OreFinder;
 import ganymedes01.aobd.recipes.ModulesHandler;
 import ganymedes01.aobd.recipes.modules.MekanismModule;
 import ganymedes01.aobd.recipes.modules.UltraTechModule;
-
-import java.util.Random;
-
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -40,9 +37,7 @@ public class AOBD {
 
 		@Override
 		public Item getTabIconItem() {
-			if (OreFinder.itemMap.isEmpty())
-				return Items.glowstone_dust;
-			return OreFinder.itemMap.get(new Random().nextInt(OreFinder.itemMap.size()));
+			return Items.glowstone_dust;
 		}
 	};
 
