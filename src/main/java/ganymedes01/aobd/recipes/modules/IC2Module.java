@@ -32,7 +32,7 @@ public class IC2Module extends RecipesModule {
 			addCentrifugeRecipe(new RecipeInputOreDict("crushedPurified" + name), (int) ore.energy(1500), getOreStack("dust", ore, 1), getOreStack("dustTiny", ore));
 
 			GameRegistry.addRecipe(new ShapedOreRecipe(getOreStack("dust", ore), "xxx", "xxx", "xxx", 'x', "dustTiny" + name));
-			GameRegistry.addSmelting(getOreStack("crushed", ore), getOreStack("ingot", ore), 0.2F);
+			addSmeltingNoDupes(getOreStack("crushed", ore), getOreStack("ingot", ore), 0.2F);
 			GameRegistry.addSmelting(getOreStack("crushedPurified", ore), getOreStack("ingot", ore), 0.2F);
 
 			if (CompatType.MEKANISM.isEnabled() && ore.isCompatEnabled(CompatType.MEKANISM))

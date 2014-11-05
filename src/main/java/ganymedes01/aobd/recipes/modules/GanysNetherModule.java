@@ -65,7 +65,8 @@ public class GanysNetherModule extends RecipesModule {
 		return obj1.equals(obj2);
 	}
 
-	private boolean areStacksTheSame(ItemStack stack1, ItemStack stack2) {
+	@Override
+	protected boolean areStacksTheSame(ItemStack stack1, ItemStack stack2) {
 		if (stack1 == null || stack2 == null)
 			return false;
 

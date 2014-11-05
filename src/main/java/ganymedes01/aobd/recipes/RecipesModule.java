@@ -9,9 +9,12 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraftforge.oredict.OreDictionary;
+import cpw.mods.fml.common.registry.GameRegistry;
 
 public abstract class RecipesModule {
 
@@ -103,6 +106,18 @@ public abstract class RecipesModule {
 
 	public static void clearCache() {
 		cache.clear();
+	}
+
+	@SuppressWarnings("unchecked")
+	protected void addSmeltingNoDupes(ItemStack input, ItemStack output, float xp) {
+		for (ItemStack stack : (Set<ItemStack>) FurnaceRecipes.smelting().getSmeltingList().keySet())
+			if (areStacksTheSame(stack, input))
+				return;
+		GameRegistry.addSmelting(input, output, xp);
+	}
+
+	protected boolean areStacksTheSame(ItemStack stack1, ItemStack stack2) {
+		return stack1.getItem() == stack2.getItem() && stack1.getItemDamage() == stack2.getItemDamage();
 	}
 
 	public List<String> blacklist() {
