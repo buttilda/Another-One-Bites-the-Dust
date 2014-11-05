@@ -8,8 +8,7 @@ import ganymedes01.aobd.recipes.ModulesHandler;
 import ganymedes01.aobd.recipes.modules.MekanismModule;
 import ganymedes01.aobd.recipes.modules.UltraTechModule;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.Random;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
@@ -34,7 +33,6 @@ public class AOBD {
 	@Instance(Reference.MOD_ID)
 	public static AOBD instance;
 
-	public static Set<CompatType> enabledTypes = new HashSet<CompatType>();
 	public static String userDefinedItems = "";
 	public static String userDefinedGases = "";
 
@@ -42,7 +40,9 @@ public class AOBD {
 
 		@Override
 		public Item getTabIconItem() {
-			return Items.glowstone_dust;
+			if (OreFinder.itemMap.isEmpty())
+				return Items.glowstone_dust;
+			return OreFinder.itemMap.get(new Random().nextInt(OreFinder.itemMap.size()));
 		}
 	};
 
@@ -53,23 +53,9 @@ public class AOBD {
 		MinecraftForge.EVENT_BUS.register(this);
 	}
 
-	public static void configType(boolean enabled, CompatType type) {
-		if (enabled)
-			enabledTypes.add(type);
-		else
-			enabledTypes.remove(type);
-	}
-
-	public static boolean isCompatEnabled(CompatType type) {
-		return enabledTypes.contains(type);
-	}
-
 	@EventHandler
 	public void init(FMLInitializationEvent event) {
-		for (CompatType type : CompatType.values())
-			configType(Loader.isModLoaded(type.modID()), type);
-
-		if (AOBD.isCompatEnabled(CompatType.ULTRA_TECH))
+		if (CompatType.ULTRA_TECH.isEnabled())
 			UltraTechModule.registerOres();
 
 		// Find ores
@@ -77,6 +63,9 @@ public class AOBD {
 
 		// Create configs for each ore
 		ConfigHandler.INSTANCE.initOreConfigs();
+
+		// Creates the necessary support modules
+		ModulesHandler.createModules();
 
 		// Add items (dusts, crushed, cluster, etc)
 		OreFinder.init();

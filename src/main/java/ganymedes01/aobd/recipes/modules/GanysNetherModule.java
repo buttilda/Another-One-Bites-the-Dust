@@ -26,8 +26,8 @@ public class GanysNetherModule extends RecipesModule {
 		ItemStack nugget = getOreStackExtra("nugget", ore);
 
 		MagmaticCentrifugeRecipes.INSTANCE.addRecipe("ore" + name, "ore" + name, ingot, ingot, ingot, nugget);
-		addRecipe(new ShapedOreRecipe(getOreStack("ingot", ore), "xxx", "xxx", "xxx", 'x', "nugget" + name));
-		addRecipe(new ShapedOreRecipe(getOreStackExtra("nugget", ore, 9), "x", 'x', "ingot" + ore.extra()));
+		addRecipe(new ShapedOreRecipe(ingot.copy(), "xxx", "xxx", "xxx", 'x', nugget.copy()));
+		addRecipe(new ShapedOreRecipe(getOreStackExtra("nugget", ore, 9), "x", 'x', ingot.copy()));
 	}
 
 	@SuppressWarnings("unchecked")

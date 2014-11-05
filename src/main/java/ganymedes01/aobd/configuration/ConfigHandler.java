@@ -30,7 +30,7 @@ public class ConfigHandler {
 
 	private void preInit() {
 		for (CompatType type : CompatType.values())
-			AOBD.configType(getBoolean("Recipes", type.modID(), true, AOBD.isCompatEnabled(type)), type);
+			type.setStatus(getBoolean("Recipes", type.modID(), true, true));
 
 		AOBD.userDefinedItems = getStringWithComment("Custom", "items", "", "Add prefixes separated by commas.\nTextures will be aobd:prefix and aobd:prefix_overlay.\nExample: dust,cluster");
 		AOBD.userDefinedGases = getStringWithComment("Custom", "gases", "", "Add ore names that will be turned into Mekanism gases (First letter must be capitalised). Example: Iron,Gold,Titanium");

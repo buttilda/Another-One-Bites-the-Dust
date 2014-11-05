@@ -1,6 +1,5 @@
 package ganymedes01.aobd.recipes.modules;
 
-import ganymedes01.aobd.AOBD;
 import ganymedes01.aobd.lib.CompatType;
 import ganymedes01.aobd.ore.Ore;
 import ganymedes01.aobd.recipes.RecipesModule;
@@ -36,7 +35,7 @@ public class IC2Module extends RecipesModule {
 			GameRegistry.addSmelting(getOreStack("crushed", ore), getOreStack("ingot", ore), 0.2F);
 			GameRegistry.addSmelting(getOreStack("crushedPurified", ore), getOreStack("ingot", ore), 0.2F);
 
-			if (AOBD.isCompatEnabled(CompatType.MEKANISM) && ore.isCompatEnabled(CompatType.MEKANISM))
+			if (CompatType.MEKANISM.isEnabled() && ore.isCompatEnabled(CompatType.MEKANISM))
 				Recipes.macerator.addRecipe(new RecipeInputOreDict("clump" + name), null, getOreStack("dustDirty", ore));
 
 		} catch (Exception e) {

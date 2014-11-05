@@ -7,7 +7,6 @@ import ganymedes01.aobd.recipes.ModulesHandler;
 
 import java.awt.Color;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -53,12 +52,8 @@ public class OreFinder {
 	}
 
 	public static void initColours() {
-		try {
-			for (Ore ore : Ore.ores)
-				ore.setColour(getColour(ore.name()));
-		} catch (IOException e) {
-			throw new RuntimeException(e);
-		}
+		for (Ore ore : Ore.ores)
+			ore.setColour(getColour(ore.name()));
 	}
 
 	public static void init() {
@@ -78,7 +73,7 @@ public class OreFinder {
 	}
 
 	private static void generateItems(CompatType compat, String[] prefixes) {
-		if (AOBD.isCompatEnabled(compat))
+		if (compat.isEnabled())
 			for (Ore ore : Ore.ores) {
 				String name = ore.name();
 				if (!ore.isCompatEnabled(compat) || ModulesHandler.isOreBlacklisted(compat, name))
@@ -113,7 +108,7 @@ public class OreFinder {
 		return stack.getItem().getColorFromItemStack(stack, pass);
 	}
 
-	private static Color getColour(String oreName) throws IOException {
+	private static Color getColour(String oreName) {
 		ArrayList<ItemStack> ores = OreDictionary.getOres("ingot" + oreName);
 		if (ores.isEmpty())
 			return null;
@@ -122,21 +117,21 @@ public class OreFinder {
 		float green = 0;
 		float blue = 0;
 		ArrayList<Color> colours = new ArrayList<Color>();
-		for (ItemStack stack : ores) {
-			ResourceLocation res = getIconResource(stack);
-			if (res == null)
-				continue;
-			BufferedImage texture = ImageIO.read(Minecraft.getMinecraft().getResourceManager().getResource(res).getInputStream());
-			Color texColour = getAverageColour(texture);
-			colours.add(texColour);
-			for (int pass = 0; pass < stack.getItem().getRenderPasses(stack.getItemDamage()); pass++) {
-				int c = getStackColour(stack, pass);
-				if (c != 0xFFFFFF) {
-					colours.add(new Color(c));
-					colours.remove(texColour);
+		for (ItemStack stack : ores)
+			try {
+				BufferedImage texture = ImageIO.read(Minecraft.getMinecraft().getResourceManager().getResource(getIconResource(stack)).getInputStream());
+				Color texColour = getAverageColour(texture);
+				colours.add(texColour);
+				for (int pass = 0; pass < stack.getItem().getRenderPasses(stack.getItemDamage()); pass++) {
+					int c = getStackColour(stack, pass);
+					if (c != 0xFFFFFF) {
+						colours.add(new Color(c));
+						colours.remove(texColour);
+					}
 				}
+			} catch (Exception e) {
+				continue;
 			}
-		}
 
 		for (Color c : colours) {
 			red += c.getRed();

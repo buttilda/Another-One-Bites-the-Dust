@@ -1,50 +1,47 @@
 package ganymedes01.aobd.recipes;
 
-import ganymedes01.aobd.AOBD;
 import ganymedes01.aobd.lib.CompatType;
 import ganymedes01.aobd.ore.Ore;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class ModulesHandler {
 
-	private static final List<RecipesModule> modules = new ArrayList<RecipesModule>();
+	private static final Map<CompatType, RecipesModule> modules = new HashMap<CompatType, RecipesModule>();
+
+	public static void createModules() {
+		try {
+			for (CompatType compat : CompatType.values())
+				if (compat.isEnabled())
+					modules.put(compat, compat.getModule());
+		} catch (Exception e) {
+			throw new RuntimeException(e); // Impossible?
+		}
+	}
 
 	public static void init() {
 		smeltingRecipes();
 
-		for (CompatType compat : CompatType.values())
-			if (AOBD.isCompatEnabled(compat))
-				try {
-					modules.add(compat.getModule());
-				} catch (Exception e) {
-					throw new RuntimeException(e);
-				}
-
 		if (modules.isEmpty())
 			return;
-		for (RecipesModule module : modules)
+		for (RecipesModule module : modules.values())
 			module.init();
 	}
 
 	public static void postInit() {
 		if (modules.isEmpty())
 			return;
-		for (RecipesModule module : modules)
+		for (RecipesModule module : modules.values())
 			module.postInit();
 
 		RecipesModule.clearCache();
 	}
 
 	public static boolean isOreBlacklisted(CompatType type, String ore) {
-		for (RecipesModule module : modules)
-			if (module.type() == type)
-				return module.blacklist().contains(ore.toLowerCase());
-
-		return false;
+		return modules.get(type).blacklist().contains(ore.toLowerCase());
 	}
 
 	private static void smeltingRecipes() {
