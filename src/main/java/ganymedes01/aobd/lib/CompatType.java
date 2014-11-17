@@ -6,6 +6,7 @@ import ganymedes01.aobd.recipes.modules.FactorizationModule;
 import ganymedes01.aobd.recipes.modules.GanysNetherModule;
 import ganymedes01.aobd.recipes.modules.IC2Module;
 import ganymedes01.aobd.recipes.modules.MekanismModule;
+import ganymedes01.aobd.recipes.modules.ModularSystemsModule;
 import ganymedes01.aobd.recipes.modules.RailcraftModule;
 import ganymedes01.aobd.recipes.modules.RandomAdditionsModule;
 import ganymedes01.aobd.recipes.modules.ThaumcraftModule;
@@ -24,7 +25,8 @@ public enum CompatType {
 	FACTORISATION("factorization", FactorizationModule.class, "crystalline", "cleanGravel", "reduced", "dirtyGravel"),
 	RANDOM_ADDITIONS("randomadditions", RandomAdditionsModule.class, "dust"),
 	GANYS_NETHER("ganysnether", GanysNetherModule.class, "nugget"),
-	ULTRA_TECH("UltraTech", UltraTechModule.class, "chunk", "dust");
+	ULTRA_TECH("UltraTech", UltraTechModule.class, "chunk", "dust"),
+	MODULAR_SYSTEMS("modularsystems", ModularSystemsModule.class, "dust");
 
 	final String modid;
 	final String[] prefixes;
