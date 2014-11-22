@@ -36,9 +36,13 @@ public class Ore {
 	private Color colour = Color.WHITE;
 
 	public static Ore newOre(String name) {
-		int e = 1;
+		int e;
 		if (name.equals("Cobalt") || name.equals("Ardite") || name.equals("FzDarkIron"))
 			e = 3;
+		else if (name.equals("Osmium") || name.equals("Tungsten"))
+			e = 2;
+		else
+			e = 1;
 
 		String extra = defaultOres.get(name);
 		if (extra == null)
@@ -47,7 +51,13 @@ public class Ore {
 		return new Ore(name, extra, e);
 	}
 
-	private Ore(String name, String extra, double energy) {
+	public static Ore newNetherOre(String name) {
+		Ore ore = newOre(name);
+		ore.energy *= 2;
+		return ore;
+	}
+
+	protected Ore(String name, String extra, double energy) {
 		this.name = name;
 		this.extra = extra;
 		this.energy = energy;

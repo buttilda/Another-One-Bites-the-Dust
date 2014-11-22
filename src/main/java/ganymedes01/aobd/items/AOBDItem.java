@@ -1,6 +1,7 @@
 package ganymedes01.aobd.items;
 
 import ganymedes01.aobd.AOBD;
+import ganymedes01.aobd.client.ItemOreRenderer;
 import ganymedes01.aobd.lib.Reference;
 import ganymedes01.aobd.ore.Ore;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -8,6 +9,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.StatCollector;
+import net.minecraftforge.client.IItemRenderer;
 import net.minecraftforge.oredict.OreDictionary;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -16,6 +18,8 @@ public class AOBDItem extends Item {
 
 	@SideOnly(Side.CLIENT)
 	private IIcon[] icon;
+	@SideOnly(Side.CLIENT)
+	private Boolean hasEffect = null;
 
 	private final Ore ore;
 	private final String base;
@@ -29,7 +33,7 @@ public class AOBDItem extends Item {
 
 	@Override
 	public String getItemStackDisplayName(ItemStack stack) {
-		return String.format(StatCollector.translateToLocal("item.aobd." + base + ".name"), ore);
+		return String.format(StatCollector.translateToLocal("item.aobd." + base + ".name"), ore.name());
 	}
 
 	@Override
@@ -41,10 +45,14 @@ public class AOBDItem extends Item {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public boolean hasEffect(ItemStack stack, int pass) {
-		for (ItemStack ingot : OreDictionary.getOres("ingot" + ore))
-			if (ingot != null && ingot.getItem().hasEffect(stack, pass))
-				return true;
-		return false;
+		if (hasEffect == null) {
+			for (ItemStack ingot : OreDictionary.getOres("ingot" + ore.name()))
+				if (ingot != null && ingot.getItem().hasEffect(stack, pass))
+					hasEffect = true;
+			hasEffect = false;
+		}
+
+		return hasEffect;
 	}
 
 	@Override
@@ -65,5 +73,12 @@ public class AOBDItem extends Item {
 		icon = new IIcon[2];
 		icon[0] = reg.registerIcon(Reference.MOD_ID + ":" + base);
 		icon[1] = reg.registerIcon(Reference.MOD_ID + ":" + base + "_overlay");
+	}
+
+	@SideOnly(Side.CLIENT)
+	public IItemRenderer getSpecialRenderer() {
+		if ("ore".equals(base))
+			return ItemOreRenderer.INSTANCE;
+		return null;
 	}
 }

@@ -1,6 +1,7 @@
 package ganymedes01.aobd;
 
 import ganymedes01.aobd.configuration.ConfigHandler;
+import ganymedes01.aobd.items.AOBDItem;
 import ganymedes01.aobd.lib.CompatType;
 import ganymedes01.aobd.lib.Reference;
 import ganymedes01.aobd.ore.OreFinder;
@@ -10,6 +11,8 @@ import ganymedes01.aobd.recipes.modules.UltraTechModule;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
+import net.minecraftforge.client.IItemRenderer;
+import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.common.MinecraftForge;
 import cpw.mods.fml.common.FMLCommonHandler;
@@ -73,6 +76,10 @@ public class AOBD {
 	public void postInit(FMLPostInitializationEvent event) {
 		// Add the rest of the recipes
 		ModulesHandler.postInit();
+
+		// Register special item renderers
+		if (Side.CLIENT == event.getSide())
+			registerRenderers();
 	}
 
 	@SubscribeEvent
@@ -93,5 +100,14 @@ public class AOBD {
 		// Register icons for Mekanism's gases
 		if (Loader.isModLoaded("Mekanism") && event.map.getTextureType() == 0)
 			MekanismModule.registerIcons(event.map);
+	}
+
+	@SideOnly(Side.CLIENT)
+	private void registerRenderers() {
+		for (AOBDItem item : OreFinder.itemMap.values()) {
+			IItemRenderer renderer = item.getSpecialRenderer();
+			if (renderer != null)
+				MinecraftForgeClient.registerItemRenderer(item, renderer);
+		}
 	}
 }

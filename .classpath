@@ -5,11 +5,11 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/forge17"/>
 	<classpathentry kind="lib" path="libs/industrialcraft-2-2.2.560-experimental-dev.jar"/>
 	<classpathentry kind="lib" path="libs/Mekanism-1.7.10-7.1.0.92.jar"/>
-	<classpathentry kind="lib" path="libs/RandomAdditions Alpha 0.9.3 mc1.7.10.jar"/>
 	<classpathentry kind="lib" path="libs/Railcraft_1.7.10-9.3.3.0.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/Gany-s-Nether"/>
 	<classpathentry kind="lib" path="libs/Ultratech-1.7.10-0.9.6.1.jar"/>
 	<classpathentry kind="lib" path="libs/Thaumcraft-1.7.10-4.2.1.4.jar"/>
 	<classpathentry kind="lib" path="libs/Factorization-1.7.10-0.8.88.1.jar"/>
+	<classpathentry kind="lib" path="libs/RandomAdditions Pre-Alpha 0.10 mc1.7.10.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
