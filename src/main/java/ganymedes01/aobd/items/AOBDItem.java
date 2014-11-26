@@ -46,10 +46,10 @@ public class AOBDItem extends Item {
 	@SideOnly(Side.CLIENT)
 	public boolean hasEffect(ItemStack stack, int pass) {
 		if (hasEffect == null) {
+			hasEffect = false;
 			for (ItemStack ingot : OreDictionary.getOres("ingot" + ore.name()))
 				if (ingot != null && ingot.getItem().hasEffect(stack, pass))
 					hasEffect = true;
-			hasEffect = false;
 		}
 
 		return hasEffect;
