@@ -1,6 +1,7 @@
 package ganymedes01.aobd.lib;
 
 import ganymedes01.aobd.recipes.RecipesModule;
+import ganymedes01.aobd.recipes.modules.AppEnergisticsModule;
 import ganymedes01.aobd.recipes.modules.EnderIOModule;
 import ganymedes01.aobd.recipes.modules.FactorizationModule;
 import ganymedes01.aobd.recipes.modules.GanysNetherModule;
@@ -28,7 +29,8 @@ public enum CompatType {
 	GANYS_NETHER("ganysnether", GanysNetherModule.class, "nugget"),
 	ULTRA_TECH("UltraTech", UltraTechModule.class, "chunk", "dust"),
 	MODULAR_SYSTEMS("modularsystems", ModularSystemsModule.class, "dust"),
-	NETHER_ORES("NetherOres", NetherOreModule.class, "ore");
+	NETHER_ORES("NetherOres", NetherOreModule.class, "ore"),
+	APPLIED_ENERGISTICS("appliedenergistics2", AppEnergisticsModule.class, "dust");
 
 	final String modid;
 	final String[] prefixes;
