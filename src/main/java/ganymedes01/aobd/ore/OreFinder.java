@@ -49,8 +49,9 @@ public class OreFinder {
 	public static void preInit() {
 		for (String ore : getMetalsWithPrefixes("ore", "ingot"))
 			Ore.newOre(ore);
-		for (String ore : getMetalsWithPrefixes("oreNether", "ingot"))
-			Ore.newNetherOre(ore);
+		if (CompatType.NETHER_ORES.isEnabled())
+			for (String ore : getMetalsWithPrefixes("oreNether", "ingot"))
+				Ore.newNetherOre(ore);
 	}
 
 	public static void initColours() {
