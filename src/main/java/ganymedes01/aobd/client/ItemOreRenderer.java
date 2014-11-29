@@ -57,6 +57,9 @@ public class ItemOreRenderer implements IItemRenderer {
 		float G = (colour >> 8 & 255) / 255.0F;
 		float B = (colour & 255) / 255.0F;
 		GL11.glColor3f(R, G, B);
+		boolean alpha = GL11.glIsEnabled(GL11.GL_ALPHA_TEST);
+		if (!alpha)
+			GL11.glEnable(GL11.GL_ALPHA_TEST);
 
 		tessellator.startDrawingQuads();
 		tessellator.setNormal(0, -1, 0);
@@ -76,8 +79,10 @@ public class ItemOreRenderer implements IItemRenderer {
 
 		tessellator.setNormal(1, 0, 0);
 		renderer.renderFaceXPos(null, 0, 0, 0, icon);
-
 		tessellator.draw();
+
+		if (!alpha)
+			GL11.glDisable(GL11.GL_ALPHA_TEST);
 		GL11.glPopMatrix();
 	}
 }
