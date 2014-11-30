@@ -5,6 +5,7 @@ import ganymedes01.aobd.recipes.modules.AppEnergisticsModule;
 import ganymedes01.aobd.recipes.modules.EnderIOModule;
 import ganymedes01.aobd.recipes.modules.FactorizationModule;
 import ganymedes01.aobd.recipes.modules.GanysNetherModule;
+import ganymedes01.aobd.recipes.modules.HydraulicraftModule;
 import ganymedes01.aobd.recipes.modules.IC2Module;
 import ganymedes01.aobd.recipes.modules.MekanismModule;
 import ganymedes01.aobd.recipes.modules.ModularSystemsModule;
@@ -30,7 +31,8 @@ public enum CompatType {
 	ULTRA_TECH("UltraTech", UltraTechModule.class, "chunk", "dust"),
 	MODULAR_SYSTEMS("modularsystems", ModularSystemsModule.class, "dust"),
 	NETHER_ORES("NetherOres", NetherOreModule.class, "ore"),
-	APPLIED_ENERGISTICS("appliedenergistics2", AppEnergisticsModule.class, "dust");
+	APPLIED_ENERGISTICS("appliedenergistics2", AppEnergisticsModule.class, "dust"),
+	HYDRAULICRAFT("HydCraft", HydraulicraftModule.class, "dust", "chunk");
 
 	final String modid;
 	final String[] prefixes;
