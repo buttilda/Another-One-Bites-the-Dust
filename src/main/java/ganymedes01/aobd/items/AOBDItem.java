@@ -18,7 +18,7 @@ public class AOBDItem extends Item {
 
 	@SideOnly(Side.CLIENT)
 	private IIcon[] icon;
-	@SideOnly(Side.CLIENT)
+
 	private Boolean hasEffect = null;
 
 	private final Ore ore;
