@@ -35,7 +35,7 @@ public class OreFinder {
 			if (name.startsWith(prefix1) && !OreDictionary.getOres(name).isEmpty()) {
 				String oreName = name.substring(prefix1.length());
 				for (String n : OreDictionary.getOreNames())
-					if (n.startsWith(prefix2) && n.endsWith(oreName) && !OreDictionary.getOres(n).isEmpty())
+					if (n.equals(prefix2 + oreName) && !OreDictionary.getOres(n).isEmpty())
 						ores.add(oreName);
 			}
 		if (ores.contains("Aluminum") && ores.contains("Aluminium"))
@@ -47,11 +47,14 @@ public class OreFinder {
 	}
 
 	public static void preInit() {
-		for (String ore : getMetalsWithPrefixes("ore", "ingot"))
+		Collection<String> ores = getMetalsWithPrefixes("ore", "ingot");
+		for (String ore : ores)
 			Ore.newOre(ore);
+
 		if (CompatType.NETHER_ORES.isEnabled())
 			for (String ore : getMetalsWithPrefixes("oreNether", "ingot"))
-				Ore.newNetherOre(ore);
+				if (!ores.contains(ore))
+					Ore.newNetherOre(ore);
 	}
 
 	public static void initColours() {
