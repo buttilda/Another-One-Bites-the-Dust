@@ -23,7 +23,7 @@ public enum CompatType {
 	ENDERIO("EnderIO", EnderIOModule.class, "dust"),
 	MEKANISM("Mekanism", MekanismModule.class, "clump", "crystal", "shard", "dustDirty", "dust"),
 	THAUMCRAFT("Thaumcraft", ThaumcraftModule.class, "cluster"),
-	THERMAL_EXPANTION("ThermalExpansion", ThermalExpansionModule.class, "dust"),
+	THERMAL_EXPANSION("ThermalExpansion", ThermalExpansionModule.class, "dust"),
 	FACTORISATION("factorization", FactorizationModule.class, "crystalline", "cleanGravel", "reduced", "dirtyGravel"),
 	RANDOM_ADDITIONS("randomadditions", RandomAdditionsModule.class, "dust"),
 	GANYS_NETHER("ganysnether", GanysNetherModule.class, "nugget"),

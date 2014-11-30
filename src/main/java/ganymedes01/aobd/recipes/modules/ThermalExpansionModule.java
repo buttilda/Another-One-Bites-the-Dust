@@ -10,7 +10,7 @@ import cpw.mods.fml.common.event.FMLInterModComms;
 public class ThermalExpansionModule extends RecipesModule {
 
 	public ThermalExpansionModule() {
-		super(CompatType.THERMAL_EXPANTION, "iron", "gold", "copper", "tin", "silver", "lead", "nickel", "platinum", "mithril");
+		super(CompatType.THERMAL_EXPANSION, "iron", "gold", "copper", "tin", "silver", "lead", "nickel", "platinum", "mithril");
 	}
 
 	@Override
