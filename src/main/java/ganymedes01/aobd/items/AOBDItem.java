@@ -28,7 +28,7 @@ public class AOBDItem extends Item {
 		this.ore = ore;
 		this.base = base;
 		setCreativeTab(AOBD.tab);
-		setUnlocalizedName(Reference.MOD_ID + "." + ore);
+		setUnlocalizedName(Reference.MOD_ID + "." + base + ore);
 	}
 
 	@Override
