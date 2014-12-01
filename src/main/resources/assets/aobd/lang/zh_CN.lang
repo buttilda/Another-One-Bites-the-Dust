@@ -12,12 +12,14 @@ item.aobd.clump.name=%s碎块
 item.aobd.shard.name=%s碎片
 item.aobd.dustDirty.name=污浊的%s粉
 item.aobd.crystal.name=%s晶体
-item.aobd.chunk.name=污浊的%块
+item.aobd.chunk.name=%块
 item.aobd.nugget.name=%s粒
+item.aobd.ore.name=%s矿石
 
 # Gas
 gas.aobd.clean.name=纯净的%s浆液
 gas.aobd.dirty.name=%s浆液
+gas.aobd.ore.name=%s矿石
 
 # Creative Tab
 itemGroup.aobd=AOBD
