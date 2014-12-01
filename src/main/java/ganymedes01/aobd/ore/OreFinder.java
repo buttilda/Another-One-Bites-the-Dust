@@ -8,11 +8,11 @@ import ganymedes01.aobd.recipes.ModulesHandler;
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.lang.reflect.Method;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.imageio.ImageIO;
@@ -115,14 +115,14 @@ public class OreFinder {
 	}
 
 	private static Color getColour(String oreName) {
-		ArrayList<ItemStack> ores = OreDictionary.getOres("ingot" + oreName);
+		List<ItemStack> ores = OreDictionary.getOres("ingot" + oreName);
 		if (ores.isEmpty())
 			return null;
 
 		float red = 0;
 		float green = 0;
 		float blue = 0;
-		ArrayList<Color> colours = new ArrayList<Color>();
+		Set<Color> colours = new LinkedHashSet<Color>();
 		for (ItemStack stack : ores)
 			try {
 				BufferedImage texture = ImageIO.read(Minecraft.getMinecraft().getResourceManager().getResource(getIconResource(stack)).getInputStream());
