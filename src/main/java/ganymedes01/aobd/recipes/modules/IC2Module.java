@@ -26,10 +26,10 @@ public class IC2Module extends RecipesModule {
 			Recipes.macerator.addRecipe(new RecipeInputOreDict("ore" + name), null, getOreStack("crushed", ore, 2));
 			Recipes.macerator.addRecipe(new RecipeInputOreDict("ingot" + name), null, getOreStack("dust", ore));
 
-			addCentrifugeRecipe(new RecipeInputOreDict("crushed" + name), (int) ore.energy(1500), getOreStack("dust", ore), getOreStack("dustTiny", ore), stoneDust.copy());
+			addCentrifugeRecipe(new RecipeInputOreDict("crushed" + name), (int) ore.energy(1500), getOreStack("dust", ore), getOreStackExtra("dustTiny", ore), stoneDust.copy());
 			addOreWashingRecipe(new RecipeInputOreDict("crushed" + name), getOreStack("crushedPurified", ore), getOreStack("dustTiny", ore, 2), stoneDust.copy());
 
-			addCentrifugeRecipe(new RecipeInputOreDict("crushedPurified" + name), (int) ore.energy(1500), getOreStack("dust", ore, 1), getOreStack("dustTiny", ore));
+			addCentrifugeRecipe(new RecipeInputOreDict("crushedPurified" + name), (int) ore.energy(1500), getOreStack("dust", ore, 1), getOreStackExtra("dustTiny", ore));
 
 			GameRegistry.addRecipe(new ShapedOreRecipe(getOreStack("dust", ore), "xxx", "xxx", "xxx", 'x', "dustTiny" + name));
 			addSmeltingNoDupes(getOreStack("crushed", ore), getOreStack("ingot", ore), 0.2F);
