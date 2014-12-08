@@ -10,13 +10,6 @@ import net.minecraftforge.common.config.ConfigElement;
 import cpw.mods.fml.client.config.GuiConfig;
 import cpw.mods.fml.client.config.IConfigElement;
 
-/**
- * Gany's End
- *
- * @author ganymedes01
- *
- */
-
 public class ConfigGUI extends GuiConfig {
 
 	public ConfigGUI(GuiScreen parent) {

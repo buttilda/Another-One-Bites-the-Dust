@@ -6,13 +6,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import cpw.mods.fml.client.IModGuiFactory;
 
-/**
- * Gany's End
- *
- * @author ganymedes01
- *
- */
-
 public class ConfigGuiFactory implements IModGuiFactory {
 
 	@Override
