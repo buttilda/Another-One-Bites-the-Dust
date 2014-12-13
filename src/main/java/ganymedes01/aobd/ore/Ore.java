@@ -28,13 +28,6 @@ public class Ore {
 		defaultOres.put("FzDarkIron", "Silver");
 	}
 
-	private final String name;
-	private String extra;
-	private double energy;
-	private final Set<CompatType> enabledTypes = new HashSet<CompatType>();
-	private boolean disabled = false;
-	private Color colour = Color.WHITE;
-
 	public static Ore newOre(String name) {
 		int e;
 		if (name.equals("Cobalt") || name.equals("Ardite") || name.equals("FzDarkIron"))
@@ -57,8 +50,24 @@ public class Ore {
 		return ore;
 	}
 
+	private static String adjustName(String name) {
+		if (name.equals("FzDarkIron"))
+			return "Dark Iron";
+		else
+			return name;
+	}
+
+	private final String name;
+	private String inGameName;
+	private String extra;
+	private double energy;
+	private final Set<CompatType> enabledTypes = new HashSet<CompatType>();
+	private boolean disabled = false;
+	private Color colour = Color.WHITE;
+
 	protected Ore(String name, String extra, double energy) {
 		this.name = name;
+		inGameName = adjustName(name);
 		this.extra = extra;
 		this.energy = energy;
 		ores.add(this);
@@ -70,8 +79,16 @@ public class Ore {
 		return name;
 	}
 
+	public String inGameName() {
+		return inGameName;
+	}
+
 	public String extra() {
 		return extra;
+	}
+
+	public void setInGameName(String name) {
+		inGameName = name;
 	}
 
 	public double energy(double e) {

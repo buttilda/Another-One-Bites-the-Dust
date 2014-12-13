@@ -43,6 +43,7 @@ public class ConfigHandler {
 		for (Ore ore : Ore.ores) {
 			String name = ore.name();
 
+			ore.setInGameName(getString(name, "In game name", ore.inGameName()));
 			for (CompatType type : CompatType.values())
 				ore.configType(getBoolean(name, type.modID(), true, true), type);
 			ore.setDisabled(getBoolean(name, "Disable All", true, false));

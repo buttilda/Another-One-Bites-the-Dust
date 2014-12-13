@@ -33,7 +33,7 @@ public class AOBDItem extends Item {
 
 	@Override
 	public String getItemStackDisplayName(ItemStack stack) {
-		return String.format(StatCollector.translateToLocal("item.aobd." + base + ".name"), ore.name());
+		return String.format(StatCollector.translateToLocal("item.aobd." + base + ".name"), ore.inGameName());
 	}
 
 	@Override
