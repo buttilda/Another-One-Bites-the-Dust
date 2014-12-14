@@ -29,7 +29,7 @@ public class EnderIOModule extends RecipesModule {
 
 	@Override
 	public void initOre(Ore ore) {
-		addSAGMillRecipe(ore.name(), (float) ore.energy(360.0), ore.extra());
+		addSAGMillRecipe(ore.name(), (float) ore.energy(3600), ore.extra());
 	}
 
 	private static void addSAGMillRecipe(String input, float energy, String extra) {
