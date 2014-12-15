@@ -104,8 +104,9 @@ public class OreFinder {
 		if (Loader.isModLoaded("gregtech"))
 			try {
 				Class<?> cls = Class.forName("gregtech.api.items.GT_MetaGenerated_Item");
-				if (cls.isAssignableFrom(stack.getItem().getClass())) {
-					Method m = cls.getMethod("getRGBa", ItemStack.class);
+				Class<?> itemCls = stack.getItem().getClass();
+				if (cls.isAssignableFrom(itemCls)) {
+					Method m = itemCls.getMethod("getRGBa", ItemStack.class);
 					short[] rgba = (short[]) m.invoke(stack.getItem(), stack);
 					return new Color(rgba[0], rgba[1], rgba[2], rgba[3]).getRGB();
 				}
@@ -145,7 +146,7 @@ public class OreFinder {
 			blue += c.getBlue();
 		}
 		float count = colours.size();
-		return new Color((int) (red / count), (int) (green / count), (int) (blue / count)).brighter();
+		return new Color((int) (red / count), (int) (green / count), (int) (blue / count));
 	}
 
 	private static Color getAverageColour(BufferedImage image) {
@@ -156,7 +157,7 @@ public class OreFinder {
 		for (int i = 0; i < image.getWidth(); i++)
 			for (int j = 0; j < image.getHeight(); j++) {
 				Color c = new Color(image.getRGB(i, j));
-				if (c.getAlpha() <= 10 || c.getRed() <= 10 && c.getGreen() <= 10 && c.getBlue() <= 10)
+				if (c.getAlpha() <= 10)
 					continue;
 				red += c.getRed();
 				green += c.getGreen();
