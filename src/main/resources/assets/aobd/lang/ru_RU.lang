@@ -12,10 +12,14 @@ item.aobd.clump.name=%s глыба
 item.aobd.shard.name=%s осколок
 item.aobd.dustDirty.name=Грязная %s пыль
 item.aobd.crystal.name=%s кристалл
+item.aobd.chunk.name=%s кусок
+item.aobd.nugget.name=%s самородок
+item.aobd.ore.name=%s руда
 
 # Gas
 gas.aobd.clean.name=Чистое расплавленное %s
 gas.aobd.dirty.name=Расплавленное %s
+gas.aobd.ore.name=%s руда
 
 # Creative Tab
 itemGroup.aobd=AOBD
