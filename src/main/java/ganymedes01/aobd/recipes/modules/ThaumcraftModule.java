@@ -6,8 +6,6 @@ import ganymedes01.aobd.ore.Ore;
 import ganymedes01.aobd.recipes.RecipesModule;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
 
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -44,7 +42,7 @@ public class ThaumcraftModule extends RecipesModule {
 
 	@Override
 	public void postInit() {
-		List<ItemStack> clusters = new ArrayList<ItemStack>();
+		boolean addedAtLeastOne = false;
 		ArrayList<ResearchPage> pages = new ArrayList<ResearchPage>();
 		pages.add(new ResearchPage("tc.research_page.PUREORE.1"));
 		for (Ore ore : Ore.ores)
@@ -55,12 +53,13 @@ public class ThaumcraftModule extends RecipesModule {
 				CrucibleRecipe recipe = ThaumcraftApi.addCrucibleRecipe("PUREORE", cluster, "ore" + name, new AspectList().merge(Aspect.METAL, 1).merge(Aspect.ORDER, 1));
 				ConfigResearch.recipes.put("Pure" + name, recipe);
 				pages.add(new ResearchPage(recipe));
-				clusters.add(cluster);
+				addedAtLeastOne = true;
 			}
 
-		if (!clusters.isEmpty()) {
-			ResearchCategories.registerCategory("AOBD", new ResourceLocation(Reference.MOD_ID, "textures/items/dust.png"), new ResourceLocation("thaumcraft", "textures/gui/gui_researchback.png"));
-			new ResearchItem("PUREORE", "AOBD", new AspectList().add(Aspect.METAL, 5).add(Aspect.ORDER, 2), 0, 0, 1, clusters.get(new Random().nextInt(clusters.size())).copy()).setPages(pages.toArray(new ResearchPage[0])).setSecondary().setParents("PUREIRON").registerResearchItem();
+		if (addedAtLeastOne) {
+			ResourceLocation texture = new ResourceLocation(Reference.MOD_ID, "textures/items/research_cluster.png");
+			ResearchCategories.registerCategory("AOBD", texture, new ResourceLocation("thaumcraft", "textures/gui/gui_researchback.png"));
+			new ResearchItem("PUREORE", "AOBD", new AspectList().add(Aspect.METAL, 5).add(Aspect.ORDER, 2), 0, 0, 1, texture).setPages(pages.toArray(new ResearchPage[pages.size()])).setSecondary().setParents("PUREIRON").registerResearchItem();
 		}
 	}
 }
