@@ -157,12 +157,12 @@ public class OreFinder {
 		for (int i = 0; i < image.getWidth(); i++)
 			for (int j = 0; j < image.getHeight(); j++) {
 				Color c = new Color(image.getRGB(i, j));
-				if (c.getAlpha() >= 255 && c.getRed() > 10 && c.getBlue() > 10 && c.getGreen() > 10) {
-					red += c.getRed();
-					green += c.getGreen();
-					blue += c.getBlue();
-					count++;
-				}
+				if (c.getAlpha() != 255 || c.getRed() <= 10 && c.getBlue() <= 10 && c.getGreen() <= 10)
+					continue;
+				red += c.getRed();
+				green += c.getGreen();
+				blue += c.getBlue();
+				count++;
 			}
 
 		return new Color((int) (red / count), (int) (green / count), (int) (blue / count));
