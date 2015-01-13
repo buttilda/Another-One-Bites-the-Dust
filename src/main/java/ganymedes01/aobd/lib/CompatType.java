@@ -14,6 +14,7 @@ import ganymedes01.aobd.recipes.modules.RailcraftModule;
 import ganymedes01.aobd.recipes.modules.RandomAdditionsModule;
 import ganymedes01.aobd.recipes.modules.ThaumcraftModule;
 import ganymedes01.aobd.recipes.modules.ThermalExpansionModule;
+import ganymedes01.aobd.recipes.modules.TinkersConstructModule;
 import ganymedes01.aobd.recipes.modules.UltraTechModule;
 import cpw.mods.fml.common.Loader;
 
@@ -32,7 +33,8 @@ public enum CompatType {
 	MODULAR_SYSTEMS("modularsystems", ModularSystemsModule.class, "dust"),
 	NETHER_ORES("NetherOres", NetherOreModule.class, "ore"),
 	APPLIED_ENERGISTICS("appliedenergistics2", AppEnergisticsModule.class, "dust"),
-	HYDRAULICRAFT("HydCraft", HydraulicraftModule.class, "dust", "chunk");
+	HYDRAULICRAFT("HydCraft", HydraulicraftModule.class, "dust", "chunk"),
+	TINKERS_CONSTRUCT("TConstruct", TinkersConstructModule.class);
 
 	final String modid;
 	final String[] prefixes;

@@ -7,6 +7,7 @@ import ganymedes01.aobd.lib.Reference;
 import ganymedes01.aobd.ore.OreFinder;
 import ganymedes01.aobd.recipes.ModulesHandler;
 import ganymedes01.aobd.recipes.modules.MekanismModule;
+import ganymedes01.aobd.recipes.modules.TinkersConstructModule;
 import ganymedes01.aobd.recipes.modules.UltraTechModule;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
@@ -16,7 +17,6 @@ import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.common.MinecraftForge;
 import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -98,8 +98,12 @@ public class AOBD {
 	@SideOnly(Side.CLIENT)
 	public void stitchEventPre(TextureStitchEvent.Pre event) {
 		// Register icons for Mekanism's gases
-		if (Loader.isModLoaded("Mekanism") && event.map.getTextureType() == 0)
+		if (CompatType.MEKANISM.isEnabled() && event.map.getTextureType() == 0)
 			MekanismModule.registerIcons(event.map);
+
+		// Register icons for TiC's molten metals
+		if (CompatType.TINKERS_CONSTRUCT.isEnabled() && event.map.getTextureType() == 0)
+			TinkersConstructModule.registerIcons(event.map);
 	}
 
 	@SideOnly(Side.CLIENT)
