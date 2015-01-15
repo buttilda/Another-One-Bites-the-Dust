@@ -10,7 +10,7 @@ public class EnderIOModule extends RecipesModule {
 	
 	//@formatter:off
 	private static final String xmlMessage = "<recipeGroup name=\"AOBD\">" + 
-                                                 "<recipe name=\"%sOre\" energyCost=\"%f\">" +
+                                                 "<recipe name=\"%sOre\" energyCost=\"%d\">" +
                                                      "<input>" +
                                                          "<itemStack oreDictionary=\"ore%s\" />" +
                                                     "</input>" +
@@ -29,10 +29,10 @@ public class EnderIOModule extends RecipesModule {
 
 	@Override
 	public void initOre(Ore ore) {
-		addSAGMillRecipe(ore.name(), (float) ore.energy(3600), ore.extra());
+		addSAGMillRecipe(ore.name(), (int) ore.energy(3600), ore.extra());
 	}
 
-	private static void addSAGMillRecipe(String input, float energy, String extra) {
+	private static void addSAGMillRecipe(String input, int energy, String extra) {
 		if (OreDictionary.getOres("dust" + extra).isEmpty())
 			extra = input;
 		
