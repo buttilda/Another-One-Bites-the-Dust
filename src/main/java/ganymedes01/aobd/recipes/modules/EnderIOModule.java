@@ -9,18 +9,18 @@ import cpw.mods.fml.common.event.FMLInterModComms;
 public class EnderIOModule extends RecipesModule {
 	
 	//@formatter:off
-	private static final String xmlMessage ="<recipeGroup name=\"AOBD\">" + 
-												"<recipe name=\"%sOre\" energyCost=\"%f\">" +
-      										 		"<input>" +
-      										 			"<itemStack oreDictionary=\"ore%s\" />" +
-      										 		"</input>" +
-      										 		"<output>" +
-      										 		"<itemStack oreDictionary=\"dust%s\" number=\"2\" />" +      
-        												"<itemStack oreDictionary=\"dust%s\" number=\"1\" chance=\"0.1\" />" +       
-        												"<itemStack modID=\"minecraft\" itemName=\"cobblestone\" chance=\"0.15\"/>" +
-        											"</output>" +
-        										"</recipe>" + 
-        									"</recipeGroup>";
+	private static final String xmlMessage = "<recipeGroup name=\"AOBD\">" + 
+                                                 "<recipe name=\"%sOre\" energyCost=\"%f\">" +
+                                                     "<input>" +
+                                                         "<itemStack oreDictionary=\"ore%s\" />" +
+                                                    "</input>" +
+                                                    "<output>" +
+                                                        "<itemStack oreDictionary=\"dust%s\" number=\"2\" />" +      
+                                                        "<itemStack oreDictionary=\"dust%s\" number=\"1\" chance=\"0.1\" />" +       
+                                                        "<itemStack modID=\"minecraft\" itemName=\"cobblestone\" chance=\"0.15\"/>" +
+                                                    "</output>" +
+                                                "</recipe>" + 
+                                            "</recipeGroup>";
 	//@formatter:on
 
 	public EnderIOModule() {
