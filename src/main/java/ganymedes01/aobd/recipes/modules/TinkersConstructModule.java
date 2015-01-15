@@ -59,7 +59,7 @@ public class TinkersConstructModule extends RecipesModule {
 		};
 		FluidRegistry.registerFluid(fluid);
 
-		int temp = (int) ore.energy(500);
+		int temp = (int) ore.energy(600);
 
 		ItemStack block;
 		try {
