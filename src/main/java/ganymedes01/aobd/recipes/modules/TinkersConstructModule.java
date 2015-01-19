@@ -30,33 +30,8 @@ public class TinkersConstructModule extends RecipesModule {
 	}
 
 	@Override
-	public void initOre(final Ore ore) {
-		Fluid fluid = new Fluid(ore.name().toLowerCase()) {
-			@Override
-			public IIcon getStillIcon() {
-				return still;
-			}
-
-			@Override
-			public IIcon getFlowingIcon() {
-				return flow;
-			}
-
-			@Override
-			public int getColor() {
-				return ore.colour();
-			}
-
-			@Override
-			public String getUnlocalizedName() {
-				return "fluid." + Reference.MOD_ID + "." + unlocalizedName;
-			}
-
-			@Override
-			public String getLocalizedName(FluidStack stack) {
-				return ore.inGameName();
-			}
-		};
+	public void initOre(Ore ore) {
+		Fluid fluid = new MoltenMetal(ore);
 		FluidRegistry.registerFluid(fluid);
 
 		int temp = (int) ore.energy(600);
@@ -97,5 +72,40 @@ public class TinkersConstructModule extends RecipesModule {
 	public static void registerIcons(TextureMap map) {
 		still = map.registerIcon(Reference.MOD_ID + ":fluid_still");
 		flow = map.registerIcon(Reference.MOD_ID + ":fluid_flow");
+	}
+
+	private static class MoltenMetal extends Fluid {
+
+		private final Ore ore;
+
+		public MoltenMetal(Ore ore) {
+			super(ore.name().toLowerCase());
+			this.ore = ore;
+		}
+
+		@Override
+		public IIcon getStillIcon() {
+			return still;
+		}
+
+		@Override
+		public IIcon getFlowingIcon() {
+			return flow;
+		}
+
+		@Override
+		public int getColor() {
+			return ore.colour();
+		}
+
+		@Override
+		public String getUnlocalizedName() {
+			return "fluid." + Reference.MOD_ID + "." + unlocalizedName;
+		}
+
+		@Override
+		public String getLocalizedName(FluidStack stack) {
+			return ore.inGameName();
+		}
 	}
 }
