@@ -26,7 +26,7 @@ public class TinkersConstructModule extends RecipesModule {
 	private static IIcon still, flow;
 
 	public TinkersConstructModule() {
-		super(CompatType.TINKERS_CONSTRUCT, "iron", "gold", "aluminium", "cobalt", "ardite", "platinum", "nickel", "silver", "lead", "copper", "tin", "steel");
+		super(CompatType.TINKERS_CONSTRUCT, "iron", "gold", "aluminium", "cobalt", "ardite", "platinum", "nickel", "silver", "lead", "copper", "tin", "steel", "endium");
 	}
 
 	@Override
@@ -61,9 +61,14 @@ public class TinkersConstructModule extends RecipesModule {
 		Smeltery.addMelting(getOreStack("ingot", ore), Block.getBlockFromItem(block.getItem()), block.getItemDamage(), temp, new FluidStack(fluid, TConstruct.ingotLiquidValue));
 		TConstructRegistry.getTableCasting().addCastingRecipe(getOreStack("ingot", ore), new FluidStack(fluid, TConstruct.ingotLiquidValue), new ItemStack(TinkerSmeltery.metalPattern), 50);
 
-		// Nugget
+		// Others
+		tryAddRecipeForItem("nugget", ore, block, fluid, temp, TConstruct.nuggetLiquidValue);
+		tryAddRecipeForItem("dust", ore, block, fluid, temp, TConstruct.ingotLiquidValue);
+	}
+
+	private void tryAddRecipeForItem(String prefix, Ore ore, ItemStack block, Fluid fluid, int temp, int fluidAmount) {
 		try {
-			Smeltery.addMelting(getOreStack("nugget", ore), Block.getBlockFromItem(block.getItem()), block.getItemDamage(), temp, new FluidStack(fluid, TConstruct.nuggetLiquidValue));
+			Smeltery.addMelting(getOreStack(prefix, ore), Block.getBlockFromItem(block.getItem()), block.getItemDamage(), temp, new FluidStack(fluid, fluidAmount));
 		} catch (NullPointerException e) {
 		}
 	}
