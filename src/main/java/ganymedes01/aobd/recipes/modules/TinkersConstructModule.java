@@ -10,6 +10,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
+import net.minecraft.util.StatCollector;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
@@ -110,7 +111,7 @@ public class TinkersConstructModule extends RecipesModule {
 
 		@Override
 		public String getLocalizedName(FluidStack stack) {
-			return ore.inGameName();
+			return String.format(StatCollector.translateToLocal("fluid.aobd.moltenMetal"), ore.inGameName());
 		}
 	}
 }

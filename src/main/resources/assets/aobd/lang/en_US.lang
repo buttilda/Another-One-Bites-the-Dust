@@ -16,6 +16,9 @@ item.aobd.chunk.name=%s Chunk
 item.aobd.nugget.name=%s Nugget
 item.aobd.ore.name=%s Ore
 
+# Fluid
+fluid.aobd.moltenMetal.name=Molten %s
+
 # Gas
 gas.aobd.clean.name=Clean %s Slurry
 gas.aobd.dirty.name=%s Slurry
