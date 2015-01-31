@@ -1,4 +1,4 @@
-# Item
+# Items
 item.aobd.dust.name=%s Dust
 item.aobd.crushed.name=Crushed %s Ore
 item.aobd.crushedPurified.name=Purified Crushed %s Ore
@@ -16,10 +16,13 @@ item.aobd.chunk.name=%s Chunk
 item.aobd.nugget.name=%s Nugget
 item.aobd.ore.name=%s Ore
 
-# Fluid
+# Blocks
+tile.aobd.block.name=%s Block
+
+# Fluids
 fluid.aobd.moltenMetal.name=Molten %s
 
-# Gas
+# Gases
 gas.aobd.clean.name=Clean %s Slurry
 gas.aobd.dirty.name=%s Slurry
 gas.aobd.ore.name=%s Ore

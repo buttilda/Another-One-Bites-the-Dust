@@ -108,10 +108,11 @@ public class AOBD {
 
 	@SideOnly(Side.CLIENT)
 	private void registerRenderers() {
-		for (AOBDItem item : OreFinder.itemMap.values()) {
-			IItemRenderer renderer = item.getSpecialRenderer();
-			if (renderer != null)
-				MinecraftForgeClient.registerItemRenderer(item, renderer);
-		}
+		for (Item item : OreFinder.itemMap.values())
+			if (item instanceof AOBDItem) {
+				IItemRenderer renderer = ((AOBDItem) item).getSpecialRenderer();
+				if (renderer != null)
+					MinecraftForgeClient.registerItemRenderer(item, renderer);
+			}
 	}
 }

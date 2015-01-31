@@ -1,7 +1,9 @@
 package ganymedes01.aobd.ore;
 
 import ganymedes01.aobd.AOBD;
+import ganymedes01.aobd.blocks.AOBDBlock;
 import ganymedes01.aobd.items.AOBDItem;
+import ganymedes01.aobd.items.AOBDItemBlock;
 import ganymedes01.aobd.lib.CompatType;
 import ganymedes01.aobd.recipes.ModulesHandler;
 
@@ -18,6 +20,7 @@ import java.util.Set;
 import javax.imageio.ImageIO;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.ResourceLocation;
@@ -27,7 +30,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 
 public class OreFinder {
 
-	public static final HashMap<String, AOBDItem> itemMap = new HashMap<String, AOBDItem>();
+	public static final HashMap<String, Item> itemMap = new HashMap<String, Item>();
 
 	private static Collection<String> getMetalsWithPrefixes(String prefix1, String prefix2) {
 		Set<String> ores = new LinkedHashSet<String>();
@@ -87,9 +90,20 @@ public class OreFinder {
 
 				for (String prefix : prefixes) {
 					String str = prefix.trim();
-					registerOre(str + name, new AOBDItem(str, ore));
+					if (AOBDBlock.BLOCKS_PREFIXES.contains(str))
+						registerOre(str + name, new AOBDBlock(str, ore));
+					else
+						registerOre(str + name, new AOBDItem(str, ore));
 				}
 			}
+	}
+
+	private static void registerOre(String ore, AOBDBlock block) {
+		if (OreDictionary.getOres(ore).isEmpty()) {
+			GameRegistry.registerBlock(block, AOBDItemBlock.class, ore);
+			OreDictionary.registerOre(ore, block);
+			itemMap.put(ore, Item.getItemFromBlock(block));
+		}
 	}
 
 	private static void registerOre(String ore, AOBDItem item) {

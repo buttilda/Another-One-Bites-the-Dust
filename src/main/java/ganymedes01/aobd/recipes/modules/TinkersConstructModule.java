@@ -1,5 +1,6 @@
 package ganymedes01.aobd.recipes.modules;
 
+import ganymedes01.aobd.items.AOBDItemBlock;
 import ganymedes01.aobd.lib.CompatType;
 import ganymedes01.aobd.lib.Reference;
 import ganymedes01.aobd.ore.Ore;
@@ -14,10 +15,13 @@ import net.minecraft.util.StatCollector;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.oredict.ShapedOreRecipe;
+import net.minecraftforge.oredict.ShapelessOreRecipe;
 import tconstruct.TConstruct;
 import tconstruct.library.TConstructRegistry;
 import tconstruct.library.crafting.Smeltery;
 import tconstruct.smeltery.TinkerSmeltery;
+import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -37,26 +41,14 @@ public class TinkersConstructModule extends RecipesModule {
 
 		int temp = (int) ore.energy(600);
 
-		ItemStack block;
-		try {
-			block = getOreStack("block", ore);
-		} catch (NullPointerException e) {
-			block = null;
-		}
+		ItemStack block = getOreStack("block", ore);
 
 		// Block
-		if (block != null) {
-			Smeltery.addMelting(block, temp, new FluidStack(fluid, TConstruct.blockLiquidValue));
-			TConstructRegistry.getBasinCasting().addCastingRecipe(block, new FluidStack(fluid, TConstruct.blockLiquidValue), 50);
-		} else
-			block = new ItemStack(Blocks.iron_block); // Just for looks
+		addMeltingRecipe(block, temp, new FluidStack(fluid, TConstruct.blockLiquidValue));
+		TConstructRegistry.getBasinCasting().addCastingRecipe(block, new FluidStack(fluid, TConstruct.blockLiquidValue), 50);
 
 		// Ore
-		ItemStack oreBlock = getOreStack("ore", ore);
-		if (oreBlock.getItem() instanceof ItemBlock)
-			Smeltery.addMelting(oreBlock, temp, new FluidStack(fluid, TConstruct.oreLiquidValue));
-		else
-			Smeltery.addMelting(oreBlock, Block.getBlockFromItem(block.getItem()), block.getItemDamage(), temp, new FluidStack(fluid, TConstruct.oreLiquidValue));
+		addMeltingRecipe(getOreStack("ore", ore), temp, new FluidStack(fluid, TConstruct.oreLiquidValue));
 
 		// Ingot
 		Smeltery.addMelting(getOreStack("ingot", ore), Block.getBlockFromItem(block.getItem()), block.getItemDamage(), temp, new FluidStack(fluid, TConstruct.ingotLiquidValue));
@@ -65,6 +57,17 @@ public class TinkersConstructModule extends RecipesModule {
 		// Others
 		tryAddRecipeForItem("nugget", ore, block, fluid, temp, TConstruct.nuggetLiquidValue);
 		tryAddRecipeForItem("dust", ore, block, fluid, temp, TConstruct.ingotLiquidValue);
+		if (block.getItem() instanceof AOBDItemBlock) { // Avoid adding duplicate recipes this way
+			GameRegistry.addRecipe(new ShapedOreRecipe(block, "xxx", "xxx", "xxx", 'x', "ingot" + ore.name()));
+			GameRegistry.addRecipe(new ShapelessOreRecipe(getOreStack("ingot", ore, 9), "block" + ore.name()));
+		}
+	}
+
+	private void addMeltingRecipe(ItemStack input, int temp, FluidStack output) {
+		if (input.getItem() instanceof ItemBlock)
+			Smeltery.addMelting(input, temp, output);
+		else
+			Smeltery.addMelting(input, Blocks.iron_block, 0, temp, output);
 	}
 
 	private void tryAddRecipeForItem(String prefix, Ore ore, ItemStack block, Fluid fluid, int temp, int fluidAmount) {
@@ -111,7 +114,7 @@ public class TinkersConstructModule extends RecipesModule {
 
 		@Override
 		public String getLocalizedName(FluidStack stack) {
-			return String.format(StatCollector.translateToLocal("fluid.aobd.moltenMetal"), ore.inGameName());
+			return String.format(StatCollector.translateToLocal("fluid.aobd.moltenMetal.name"), ore.inGameName());
 		}
 	}
 }

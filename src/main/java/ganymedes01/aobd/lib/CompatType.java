@@ -35,7 +35,7 @@ public enum CompatType {
 	NETHER_ORES("NetherOres", NetherOreModule.class, "ore"),
 	APPLIED_ENERGISTICS("appliedenergistics2", AppEnergisticsModule.class, "dust"),
 	HYDRAULICRAFT("HydCraft", HydraulicraftModule.class, "dust", "chunk"),
-	TINKERS_CONSTRUCT("TConstruct", TinkersConstructModule.class),
+	TINKERS_CONSTRUCT("TConstruct", TinkersConstructModule.class, "block"),
 	SIMPLE_ORE_GRINDER("simpleoregrinder", SimpleOreGrinderModule.class, "dust");
 
 	final String modid;
