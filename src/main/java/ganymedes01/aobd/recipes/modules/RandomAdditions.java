@@ -7,9 +7,9 @@ import ganymedes01.aobd.recipes.RecipesModule;
 import com.creativemd.randomadditions.common.energy.machine.MachineSystem;
 import com.creativemd.randomadditions.common.energy.machine.recipe.MachineRecipe;
 
-public class RandomAdditionsModule extends RecipesModule {
+public class RandomAdditions extends RecipesModule {
 
-	public RandomAdditionsModule() {
+	public RandomAdditions() {
 		super(CompatType.RANDOM_ADDITIONS, "iron", "gold", "copper", "tin", "silver", "lead", "aluminium");
 	}
 

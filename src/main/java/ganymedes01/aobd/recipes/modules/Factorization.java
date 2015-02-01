@@ -12,9 +12,9 @@ import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 import cpw.mods.fml.common.registry.GameRegistry;
 
-public class FactorizationModule extends RecipesModule {
+public class Factorization extends RecipesModule {
 
-	public FactorizationModule() {
+	public Factorization() {
 		super(CompatType.FACTORISATION, "tin", "copper", "gold", "iron", "lead", "silver", "cobalt", "ardite", "fzdarkiron");
 	}
 

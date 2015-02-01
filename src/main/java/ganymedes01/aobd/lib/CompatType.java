@@ -1,42 +1,44 @@
 package ganymedes01.aobd.lib;
 
 import ganymedes01.aobd.recipes.RecipesModule;
-import ganymedes01.aobd.recipes.modules.AppEnergisticsModule;
-import ganymedes01.aobd.recipes.modules.EnderIOModule;
-import ganymedes01.aobd.recipes.modules.FactorizationModule;
-import ganymedes01.aobd.recipes.modules.GanysNetherModule;
-import ganymedes01.aobd.recipes.modules.HydraulicraftModule;
-import ganymedes01.aobd.recipes.modules.IC2Module;
-import ganymedes01.aobd.recipes.modules.MekanismModule;
-import ganymedes01.aobd.recipes.modules.ModularSystemsModule;
-import ganymedes01.aobd.recipes.modules.NetherOreModule;
-import ganymedes01.aobd.recipes.modules.RailcraftModule;
-import ganymedes01.aobd.recipes.modules.RandomAdditionsModule;
-import ganymedes01.aobd.recipes.modules.SimpleOreGrinderModule;
-import ganymedes01.aobd.recipes.modules.ThaumcraftModule;
-import ganymedes01.aobd.recipes.modules.ThermalExpansionModule;
-import ganymedes01.aobd.recipes.modules.TinkersConstructModule;
-import ganymedes01.aobd.recipes.modules.UltraTechModule;
+import ganymedes01.aobd.recipes.modules.AppliedEnergistics;
+import ganymedes01.aobd.recipes.modules.BCAdditions;
+import ganymedes01.aobd.recipes.modules.EnderIO;
+import ganymedes01.aobd.recipes.modules.Factorization;
+import ganymedes01.aobd.recipes.modules.GanysNether;
+import ganymedes01.aobd.recipes.modules.Hydraulicraft;
+import ganymedes01.aobd.recipes.modules.IndustrialCraft;
+import ganymedes01.aobd.recipes.modules.Mekanism;
+import ganymedes01.aobd.recipes.modules.ModularSystems;
+import ganymedes01.aobd.recipes.modules.NetherOres;
+import ganymedes01.aobd.recipes.modules.Railcraft;
+import ganymedes01.aobd.recipes.modules.RandomAdditions;
+import ganymedes01.aobd.recipes.modules.SimpleOreGrinder;
+import ganymedes01.aobd.recipes.modules.Thaumcraft;
+import ganymedes01.aobd.recipes.modules.ThermalExpansion;
+import ganymedes01.aobd.recipes.modules.TinkersConstruct;
+import ganymedes01.aobd.recipes.modules.UltraTech;
 import cpw.mods.fml.common.Loader;
 
 public enum CompatType {
 
-	IC2("IC2", IC2Module.class, "dustTiny", "crushedPurified", "crushed", "dust"),
-	RAILCRAFT("Railcraft", RailcraftModule.class, "crushed"),
-	ENDERIO("EnderIO", EnderIOModule.class, "dust"),
-	MEKANISM("Mekanism", MekanismModule.class, "clump", "crystal", "shard", "dustDirty", "dust"),
-	THAUMCRAFT("Thaumcraft", ThaumcraftModule.class, "cluster"),
-	THERMAL_EXPANSION("ThermalExpansion", ThermalExpansionModule.class, "dust"),
-	FACTORISATION("factorization", FactorizationModule.class, "crystalline", "cleanGravel", "reduced", "dirtyGravel"),
-	RANDOM_ADDITIONS("randomadditions", RandomAdditionsModule.class, "dust"),
-	GANYS_NETHER("ganysnether", GanysNetherModule.class, "nugget"),
-	ULTRA_TECH("UltraTech", UltraTechModule.class, "chunk", "dust"),
-	MODULAR_SYSTEMS("modularsystems", ModularSystemsModule.class, "dust"),
-	NETHER_ORES("NetherOres", NetherOreModule.class, "ore"),
-	APPLIED_ENERGISTICS("appliedenergistics2", AppEnergisticsModule.class, "dust"),
-	HYDRAULICRAFT("HydCraft", HydraulicraftModule.class, "dust", "chunk"),
-	TINKERS_CONSTRUCT("TConstruct", TinkersConstructModule.class, "block"),
-	SIMPLE_ORE_GRINDER("simpleoregrinder", SimpleOreGrinderModule.class, "dust");
+	IC2("IC2", IndustrialCraft.class, "dustTiny", "crushedPurified", "crushed", "dust"),
+	RAILCRAFT("Railcraft", Railcraft.class, "crushed"),
+	ENDERIO("EnderIO", EnderIO.class, "dust"),
+	MEKANISM("Mekanism", Mekanism.class, "clump", "crystal", "shard", "dustDirty", "dust"),
+	THAUMCRAFT("Thaumcraft", Thaumcraft.class, "cluster"),
+	THERMAL_EXPANSION("ThermalExpansion", ThermalExpansion.class, "dust"),
+	FACTORISATION("factorization", Factorization.class, "crystalline", "cleanGravel", "reduced", "dirtyGravel"),
+	RANDOM_ADDITIONS("randomadditions", RandomAdditions.class, "dust"),
+	GANYS_NETHER("ganysnether", GanysNether.class, "nugget"),
+	ULTRA_TECH("UltraTech", UltraTech.class, "chunk", "dust"),
+	MODULAR_SYSTEMS("modularsystems", ModularSystems.class, "dust"),
+	NETHER_ORES("NetherOres", NetherOres.class, "ore"),
+	APPLIED_ENERGISTICS("appliedenergistics2", AppliedEnergistics.class, "dust"),
+	HYDRAULICRAFT("HydCraft", Hydraulicraft.class, "dust", "chunk"),
+	TINKERS_CONSTRUCT("TConstruct", TinkersConstruct.class, "block"),
+	SIMPLE_ORE_GRINDER("simpleoregrinder", SimpleOreGrinder.class, "dust"),
+	BUILDCRAFT_ADDITIONS("bcadditions", BCAdditions.class, "dust");
 
 	final String modid;
 	final String[] prefixes;

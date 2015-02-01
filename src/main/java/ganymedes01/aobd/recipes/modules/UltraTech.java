@@ -10,9 +10,9 @@ import ultratech.api.recipes.RecipeRegistry;
 
 import common.cout970.UltraTech.managers.ItemManager;
 
-public class UltraTechModule extends RecipesModule {
+public class UltraTech extends RecipesModule {
 
-	public UltraTechModule() {
+	public UltraTech() {
 		super(CompatType.ULTRA_TECH, "gold", "iron");
 	}
 

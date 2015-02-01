@@ -6,7 +6,7 @@ import ganymedes01.aobd.ore.Ore;
 import ganymedes01.aobd.recipes.RecipesModule;
 import cpw.mods.fml.common.event.FMLInterModComms;
 
-public class EnderIOModule extends RecipesModule {
+public class EnderIO extends RecipesModule {
 	
 	//@formatter:off
 	private static final String xmlMessage = "<recipeGroup name=\"AOBD\">" + 
@@ -23,7 +23,7 @@ public class EnderIOModule extends RecipesModule {
                                             "</recipeGroup>";
 	//@formatter:on
 
-	public EnderIOModule() {
+	public EnderIO() {
 		super(CompatType.ENDERIO, "iron", "gold");
 	}
 

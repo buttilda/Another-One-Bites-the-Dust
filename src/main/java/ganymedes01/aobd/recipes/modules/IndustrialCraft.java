@@ -11,9 +11,9 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import cpw.mods.fml.common.registry.GameRegistry;
 
-public class IC2Module extends RecipesModule {
+public class IndustrialCraft extends RecipesModule {
 
-	public IC2Module() {
+	public IndustrialCraft() {
 		super(CompatType.IC2, "iron", "gold", "copper", "tin", "silver", "lead");
 	}
 

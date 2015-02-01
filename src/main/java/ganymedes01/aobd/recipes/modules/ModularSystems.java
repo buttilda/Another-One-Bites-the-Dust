@@ -4,10 +4,10 @@ import ganymedes01.aobd.lib.CompatType;
 import ganymedes01.aobd.ore.Ore;
 import ganymedes01.aobd.recipes.RecipesModule;
 
-public class SimpleOreGrinderModule extends RecipesModule {
+public class ModularSystems extends RecipesModule {
 
-	public SimpleOreGrinderModule() {
-		super(CompatType.SIMPLE_ORE_GRINDER);
+	public ModularSystems() {
+		super(CompatType.MODULAR_SYSTEMS, "iron", "gold");
 	}
 
 	@Override

@@ -8,9 +8,9 @@ import net.minecraftforge.oredict.OreDictionary;
 import appeng.api.AEApi;
 import appeng.core.AEConfig;
 
-public class AppEnergisticsModule extends RecipesModule {
+public class AppliedEnergistics extends RecipesModule {
 
-	public AppEnergisticsModule() {
+	public AppliedEnergistics() {
 		super(CompatType.APPLIED_ENERGISTICS, "iron", "gold");
 	}
 

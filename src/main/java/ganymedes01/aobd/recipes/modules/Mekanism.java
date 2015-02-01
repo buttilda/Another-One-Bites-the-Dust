@@ -22,11 +22,11 @@ import net.minecraftforge.oredict.OreDictionary;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class MekanismModule extends RecipesModule {
+public class Mekanism extends RecipesModule {
 
 	private static List<OreGas> gasList = new ArrayList<OreGas>();
 
-	public MekanismModule() {
+	public Mekanism() {
 		super(CompatType.MEKANISM, "iron", "gold", "silver", "lead", "osmium", "copper", "tin");
 	}
 

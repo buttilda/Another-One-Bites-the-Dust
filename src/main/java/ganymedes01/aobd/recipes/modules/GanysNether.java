@@ -13,9 +13,9 @@ import net.minecraft.item.crafting.IRecipe;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import cpw.mods.fml.common.registry.GameRegistry;
 
-public class GanysNetherModule extends RecipesModule {
+public class GanysNether extends RecipesModule {
 
-	public GanysNetherModule() {
+	public GanysNether() {
 		super(CompatType.GANYS_NETHER);
 	}
 

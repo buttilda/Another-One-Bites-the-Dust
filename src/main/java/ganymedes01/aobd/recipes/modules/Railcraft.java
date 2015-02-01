@@ -8,9 +8,9 @@ import mods.railcraft.api.crafting.RailcraftCraftingManager;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 
-public class RailcraftModule extends RecipesModule {
+public class Railcraft extends RecipesModule {
 
-	public RailcraftModule() {
+	public Railcraft() {
 		super(CompatType.RAILCRAFT);
 	}
 

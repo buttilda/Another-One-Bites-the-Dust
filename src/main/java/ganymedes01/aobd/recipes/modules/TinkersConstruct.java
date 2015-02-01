@@ -25,12 +25,12 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class TinkersConstructModule extends RecipesModule {
+public class TinkersConstruct extends RecipesModule {
 
 	@SideOnly(Side.CLIENT)
 	private static IIcon still, flow;
 
-	public TinkersConstructModule() {
+	public TinkersConstruct() {
 		super(CompatType.TINKERS_CONSTRUCT, "iron", "gold", "aluminium", "cobalt", "ardite", "platinum", "nickel", "silver", "lead", "copper", "tin", "steel", "endium");
 	}
 

@@ -8,9 +8,9 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.oredict.OreDictionary;
 import cpw.mods.fml.common.event.FMLInterModComms;
 
-public class HydraulicraftModule extends RecipesModule {
+public class Hydraulicraft extends RecipesModule {
 
-	public HydraulicraftModule() {
+	public Hydraulicraft() {
 		super(CompatType.HYDRAULICRAFT, "iron", "gold", "copper", "lead", "tin", "silver", "nickel", "ardite", "cobalt", "fzdarkiron");
 	}
 

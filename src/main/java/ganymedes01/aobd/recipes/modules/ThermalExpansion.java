@@ -7,9 +7,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import cpw.mods.fml.common.event.FMLInterModComms;
 
-public class ThermalExpansionModule extends RecipesModule {
+public class ThermalExpansion extends RecipesModule {
 
-	public ThermalExpansionModule() {
+	public ThermalExpansion() {
 		super(CompatType.THERMAL_EXPANSION, "iron", "gold", "copper", "tin", "silver", "lead", "nickel", "platinum", "mithril");
 	}
 

@@ -22,9 +22,9 @@ import thaumcraft.common.config.ConfigResearch;
 import cpw.mods.fml.common.event.FMLInterModComms;
 import cpw.mods.fml.common.registry.GameRegistry;
 
-public class ThaumcraftModule extends RecipesModule {
+public class Thaumcraft extends RecipesModule {
 
-	public ThaumcraftModule() {
+	public Thaumcraft() {
 		super(CompatType.THAUMCRAFT, "iron", "gold", "copper", "tin", "lead", "silver");
 	}
 
