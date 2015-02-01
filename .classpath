@@ -13,5 +13,6 @@
 	<classpathentry kind="lib" path="libs/appliedenergistics2-rv1-stable-1.jar"/>
 	<classpathentry kind="lib" path="libs/industrialcraft-2-2.2.667-experimental-dev.jar"/>
 	<classpathentry kind="lib" path="libs/TConstruct-1.7.10-1.7.1d.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/Flaxbeards-Steam-Power"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
