@@ -12,10 +12,20 @@ item.aobd.clump.name=Tesson de %s
 item.aobd.shard.name=Eclat de %s
 item.aobd.dustDirty.name=Poudre Sale de %s
 item.aobd.crystal.name=Cristal de %s
+item.aobd.chunk.name=Eclat de %s
+item.aobd.nugget.name=Pépite de %s
+item.aobd.ore.name=Minerai de %s
+
+# Blocks
+tile.aobd.block.name=Bloc de %s
+
+# Fluids
+fluid.aobd.moltenMetal.name=%s Fondu
 
 # Gas
-gas.aobd.clean.name=Boue Propre de %s
-gas.aobd.dirty.name=Boue de %s
+gas.aobd.clean.name=Pâte Propre de %s
+gas.aobd.dirty.name=Pâte de %s
+gas.aobd.ore.name=Minerai de %s
 
 # Creative Tab
 itemGroup.aobd=AOBD
