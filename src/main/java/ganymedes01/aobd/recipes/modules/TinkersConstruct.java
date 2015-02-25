@@ -15,6 +15,7 @@ import net.minecraft.util.StatCollector;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 import tconstruct.TConstruct;
@@ -41,7 +42,13 @@ public class TinkersConstruct extends RecipesModule {
 
 		int temp = (int) ore.energy(600);
 
-		ItemStack block = getOreStack("block", ore);
+		ItemStack block = null;
+		for (ItemStack b : OreDictionary.getOres("block" + ore.name()))
+			if (b.getItem() instanceof ItemBlock)
+				block = b;
+
+		if (block == null)
+			throw new RuntimeException("Couldn't find a block" + ore.name() + " that was actually a block. This error should not happen. Please report it!");
 
 		// Block
 		addMeltingRecipe(block, temp, new FluidStack(fluid, TConstruct.blockLiquidValue));
