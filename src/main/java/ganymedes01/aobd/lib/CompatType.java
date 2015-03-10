@@ -40,7 +40,7 @@ public enum CompatType {
 	TINKERS_CONSTRUCT("TConstruct", TinkersConstruct.class, "block"),
 	SIMPLE_ORE_GRINDER("simpleoregrinder", SimpleOreGrinder.class, "dust"),
 	STEAMCRAFT("Steamcraft", Steamcraft.class, "dust"),
-	BC_ADDITIONS("Railcraft", BuildCraftAdditions.class, "dust");
+	BC_ADDITIONS("bcadditions", BuildCraftAdditions.class, "dust");
 
 	final String modid;
 	final String[] prefixes;
