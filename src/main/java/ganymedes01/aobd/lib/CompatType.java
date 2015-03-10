@@ -2,6 +2,7 @@ package ganymedes01.aobd.lib;
 
 import ganymedes01.aobd.recipes.RecipesModule;
 import ganymedes01.aobd.recipes.modules.AppliedEnergistics;
+import ganymedes01.aobd.recipes.modules.BuildCraftAdditions;
 import ganymedes01.aobd.recipes.modules.EnderIO;
 import ganymedes01.aobd.recipes.modules.Factorization;
 import ganymedes01.aobd.recipes.modules.GanysNether;
@@ -38,7 +39,8 @@ public enum CompatType {
 	HYDRAULICRAFT("HydCraft", Hydraulicraft.class, "dust", "chunk"),
 	TINKERS_CONSTRUCT("TConstruct", TinkersConstruct.class, "block"),
 	SIMPLE_ORE_GRINDER("simpleoregrinder", SimpleOreGrinder.class, "dust"),
-	STEAMCRAFT("Steamcraft", Steamcraft.class, "dust");
+	STEAMCRAFT("Steamcraft", Steamcraft.class, "dust"),
+	BC_ADDITIONS("Railcraft", BuildCraftAdditions.class, "dust");
 
 	final String modid;
 	final String[] prefixes;
