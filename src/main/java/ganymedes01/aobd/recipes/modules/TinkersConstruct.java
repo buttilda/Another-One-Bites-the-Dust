@@ -121,7 +121,7 @@ public class TinkersConstruct extends RecipesModule {
 
 		@Override
 		public String getLocalizedName(FluidStack stack) {
-			return String.format(StatCollector.translateToLocal("fluid.aobd.moltenMetal.name"), ore.inGameName());
+			return String.format(StatCollector.translateToLocal("fluid.aobd.moltenMetal.name"), ore.translatedName());
 		}
 	}
 }

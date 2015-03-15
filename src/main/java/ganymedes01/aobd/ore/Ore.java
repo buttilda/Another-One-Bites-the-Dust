@@ -1,6 +1,7 @@
 package ganymedes01.aobd.ore;
 
 import ganymedes01.aobd.lib.CompatType;
+import ganymedes01.aobd.lib.Reference;
 
 import java.awt.Color;
 import java.util.ArrayList;
@@ -9,6 +10,8 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+
+import net.minecraft.util.StatCollector;
 
 public class Ore {
 
@@ -50,15 +53,7 @@ public class Ore {
 		return ore;
 	}
 
-	private static String adjustName(String name) {
-		if (name.equals("FzDarkIron"))
-			return "Dark Iron";
-		else
-			return name;
-	}
-
 	private final String name;
-	private String inGameName;
 	private String extra;
 	private double energy;
 	private final Set<CompatType> enabledTypes = new HashSet<CompatType>();
@@ -67,7 +62,6 @@ public class Ore {
 
 	protected Ore(String name, String extra, double energy) {
 		this.name = name;
-		inGameName = adjustName(name);
 		this.extra = extra;
 		this.energy = energy;
 		ores.add(this);
@@ -79,16 +73,13 @@ public class Ore {
 		return name;
 	}
 
-	public String inGameName() {
-		return inGameName;
+	public String translatedName() {
+		String unloc = "metal." + Reference.MOD_ID + "." + name().toLowerCase() + ".name";
+		return StatCollector.canTranslate(unloc) ? StatCollector.translateToLocal(unloc) : name();
 	}
 
 	public String extra() {
 		return extra;
-	}
-
-	public void setInGameName(String name) {
-		inGameName = name;
 	}
 
 	public double energy(double e) {
