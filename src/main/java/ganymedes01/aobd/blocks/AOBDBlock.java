@@ -32,7 +32,9 @@ public class AOBDBlock extends Block {
 
 	@Override
 	public String getLocalizedName() {
-		return String.format(StatCollector.translateToLocal("tile.aobd." + base + ".name"), ore.translatedName());
+		String fullName = "tile.aobd." + base + ore.name() + ".name";
+		String shortName = "tile.aobd." + base + ".name";
+		return StatCollector.canTranslate(fullName) ? StatCollector.translateToLocal(fullName) : String.format(StatCollector.translateToLocal(shortName), ore.translatedName());
 	}
 
 	@Override
