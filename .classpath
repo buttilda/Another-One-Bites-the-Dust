@@ -13,6 +13,6 @@
 	<classpathentry kind="lib" path="libs/industrialcraft-2-2.2.667-experimental-dev.jar"/>
 	<classpathentry kind="lib" path="libs/TConstruct-1.7.10-1.7.1d.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/Flaxbeards-Steam-Power"/>
-	<classpathentry kind="lib" path="libs/MekanismAll-1.7.10-8.0.0.jar"/>
+	<classpathentry kind="lib" path="libs/MekanismAll-1.7.10-8.0.0.homebaked.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
