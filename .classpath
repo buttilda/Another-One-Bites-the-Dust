@@ -9,10 +9,10 @@
 	<classpathentry kind="lib" path="libs/Thaumcraft-1.7.10-4.2.1.4.jar"/>
 	<classpathentry kind="lib" path="libs/Factorization-1.7.10-0.8.88.1.jar"/>
 	<classpathentry kind="lib" path="libs/RandomAdditions Pre-Alpha 0.10 mc1.7.10.jar"/>
-	<classpathentry kind="lib" path="libs/Mekanism-1.7.10-7.1.1.127.jar"/>
 	<classpathentry kind="lib" path="libs/appliedenergistics2-rv1-stable-1.jar"/>
 	<classpathentry kind="lib" path="libs/industrialcraft-2-2.2.667-experimental-dev.jar"/>
 	<classpathentry kind="lib" path="libs/TConstruct-1.7.10-1.7.1d.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/Flaxbeards-Steam-Power"/>
+	<classpathentry kind="lib" path="libs/MekanismAll-1.7.10-8.0.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -8,10 +8,12 @@ import ganymedes01.aobd.recipes.RecipesModule;
 import java.util.ArrayList;
 import java.util.List;
 
+import mekanism.api.AdvancedInput;
+import mekanism.api.RecipeHelper;
+import mekanism.api.gas.Gas;
 import mekanism.api.gas.GasRegistry;
 import mekanism.api.gas.GasStack;
 import mekanism.api.gas.OreGas;
-import mekanism.api.recipe.RecipeHelper;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
@@ -40,6 +42,7 @@ public class Mekanism8 extends RecipesModule {
 
 	@Override
 	public void initOre(Ore ore) {
+		Gas hydrogenChloride = GasRegistry.getGas("hydrogenChloride");
 		String name = ore.name();
 		OreGas clean = new OreGasAOBD(name, "clean" + name, "oregas." + name.toLowerCase());
 		OreGas slurry = new OreGasAOBD(name, name, "oregas." + name.toLowerCase()).setCleanGas(clean);
@@ -56,8 +59,8 @@ public class Mekanism8 extends RecipesModule {
 		RecipeHelper.addPurificationChamberRecipe(getOreStack("shard", ore), getOreStack("clump", ore));
 
 		for (ItemStack stack : OreDictionary.getOres("ore" + name))
-			RecipeHelper.addChemicalInjectionChamberRecipe(stack, "hydrogenChloride", getOreStack("shard", ore, 4));
-		RecipeHelper.addChemicalInjectionChamberRecipe(getOreStack("crystal", ore), "hydrogenChloride", getOreStack("shard", ore));
+			RecipeHelper.addChemicalInjectionChamberRecipe(new AdvancedInput(stack, hydrogenChloride), getOreStack("shard", ore, 4));
+		RecipeHelper.addChemicalInjectionChamberRecipe(new AdvancedInput(getOreStack("crystal", ore), hydrogenChloride), getOreStack("shard", ore));
 
 		for (ItemStack stack : OreDictionary.getOres("ore" + name))
 			RecipeHelper.addChemicalDissolutionChamberRecipe(stack, new GasStack(slurry, 1000));
