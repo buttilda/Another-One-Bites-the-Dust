@@ -8,7 +8,8 @@ import ganymedes01.aobd.recipes.modules.Factorization;
 import ganymedes01.aobd.recipes.modules.GanysNether;
 import ganymedes01.aobd.recipes.modules.Hydraulicraft;
 import ganymedes01.aobd.recipes.modules.IndustrialCraft;
-import ganymedes01.aobd.recipes.modules.Mekanism;
+import ganymedes01.aobd.recipes.modules.Mekanism7;
+import ganymedes01.aobd.recipes.modules.Mekanism8;
 import ganymedes01.aobd.recipes.modules.ModularSystems;
 import ganymedes01.aobd.recipes.modules.NetherOres;
 import ganymedes01.aobd.recipes.modules.Railcraft;
@@ -21,12 +22,34 @@ import ganymedes01.aobd.recipes.modules.TinkersConstruct;
 import ganymedes01.aobd.recipes.modules.UltraTech;
 import cpw.mods.fml.common.Loader;
 
-public enum CompatType {
+public enum CompatType
+{
 
 	IC2("IC2", IndustrialCraft.class, "dustTiny", "crushedPurified", "crushed", "dust"),
 	RAILCRAFT("Railcraft", Railcraft.class, "crushed"),
 	ENDERIO("EnderIO", EnderIO.class, "dust"),
-	MEKANISM("Mekanism", Mekanism.class, "clump", "crystal", "shard", "dustDirty", "dust"),
+	MEKANISM7("Mekanism", Mekanism7.class, "clump", "crystal", "shard", "dustDirty", "dust")
+			{
+				@Override
+				public boolean isEnabled() {
+					if(!(enabled && Loader.isModLoaded(modID())))
+							return false;
+
+					try {return Class.forName("mekanism.common.recipe.RecipeHandler") != null;}
+					catch(ClassNotFoundException e) {return false;}
+				}
+			},
+	MEKANISM8("Mekanism", Mekanism8.class, "clump", "crystal", "shard", "dustDirty", "dust")
+			{
+				@Override
+				public boolean isEnabled() {
+					if(!(enabled && Loader.isModLoaded(modID())))
+						return false;
+
+					try {return Class.forName("mekanism.api.recipe.RecipeHelper") != null;}
+					catch(ClassNotFoundException e) {return false;}
+				}
+			},
 	THAUMCRAFT("Thaumcraft", Thaumcraft.class, "cluster"),
 	THERMAL_EXPANSION("ThermalExpansion", ThermalExpansion.class, "dust"),
 	FACTORISATION("factorization", Factorization.class, "crystalline", "cleanGravel", "reduced", "dirtyGravel"),

@@ -8,7 +8,6 @@ import ganymedes01.aobd.recipes.RecipesModule;
 import java.util.ArrayList;
 import java.util.List;
 
-import mekanism.api.gas.Gas;
 import mekanism.api.gas.GasRegistry;
 import mekanism.api.gas.GasStack;
 import mekanism.api.gas.OreGas;
@@ -21,12 +20,12 @@ import net.minecraftforge.oredict.OreDictionary;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class Mekanism extends RecipesModule {
+public class Mekanism8 extends RecipesModule {
 
 	private static List<OreGas> gasList = new ArrayList<OreGas>();
 
-	public Mekanism() {
-		super(CompatType.MEKANISM, "iron", "gold", "silver", "lead", "osmium", "copper", "tin");
+	public Mekanism8() {
+		super(CompatType.MEKANISM8, "iron", "gold", "silver", "lead", "osmium", "copper", "tin");
 	}
 
 	@Override
