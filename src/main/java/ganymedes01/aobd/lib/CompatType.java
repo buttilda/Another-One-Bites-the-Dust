@@ -22,34 +22,37 @@ import ganymedes01.aobd.recipes.modules.TinkersConstruct;
 import ganymedes01.aobd.recipes.modules.UltraTech;
 import cpw.mods.fml.common.Loader;
 
-public enum CompatType
-{
+public enum CompatType {
 
 	IC2("IC2", IndustrialCraft.class, "dustTiny", "crushedPurified", "crushed", "dust"),
 	RAILCRAFT("Railcraft", Railcraft.class, "crushed"),
 	ENDERIO("EnderIO", EnderIO.class, "dust"),
-	MEKANISM7("Mekanism", Mekanism7.class, "clump", "crystal", "shard", "dustDirty", "dust")
-			{
-				@Override
-				public boolean isEnabled() {
-					if(!(enabled && Loader.isModLoaded(modID())))
-							return false;
+	MEKANISM7("Mekanism", Mekanism7.class, "clump", "crystal", "shard", "dustDirty", "dust") {
+		@Override
+		public boolean isEnabled() {
+			if (!super.isEnabled())
+				return false;
 
-					try {return Class.forName("mekanism.common.recipe.RecipeHandler") != null;}
-					catch(ClassNotFoundException e) {return false;}
-				}
-			},
-	MEKANISM8("Mekanism", Mekanism8.class, "clump", "crystal", "shard", "dustDirty", "dust")
-			{
-				@Override
-				public boolean isEnabled() {
-					if(!(enabled && Loader.isModLoaded(modID())))
-						return false;
+			try {
+				return Class.forName("mekanism.common.recipe.RecipeHandler") != null;
+			} catch (ClassNotFoundException e) {
+				return false;
+			}
+		}
+	},
+	MEKANISM8("Mekanism", Mekanism8.class, "clump", "crystal", "shard", "dustDirty", "dust") {
+		@Override
+		public boolean isEnabled() {
+			if (!super.isEnabled())
+				return false;
 
-					try {return Class.forName("mekanism.api.recipe.RecipeHelper") != null;}
-					catch(ClassNotFoundException e) {return false;}
-				}
-			},
+			try {
+				return Class.forName("mekanism.api.recipe.RecipeHelper") != null;
+			} catch (ClassNotFoundException e) {
+				return false;
+			}
+		}
+	},
 	THAUMCRAFT("Thaumcraft", Thaumcraft.class, "cluster"),
 	THERMAL_EXPANSION("ThermalExpansion", ThermalExpansion.class, "dust"),
 	FACTORISATION("factorization", Factorization.class, "crystalline", "cleanGravel", "reduced", "dirtyGravel"),
