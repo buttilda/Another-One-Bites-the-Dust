@@ -8,12 +8,10 @@ import ganymedes01.aobd.recipes.RecipesModule;
 import java.util.ArrayList;
 import java.util.List;
 
-import mekanism.api.AdvancedInput;
-import mekanism.api.gas.Gas;
 import mekanism.api.gas.GasRegistry;
 import mekanism.api.gas.GasStack;
 import mekanism.api.gas.OreGas;
-import mekanism.common.recipe.RecipeHandler;
+import mekanism.api.recipe.RecipeHelper;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
@@ -22,12 +20,12 @@ import net.minecraftforge.oredict.OreDictionary;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class Mekanism extends RecipesModule {
+public class Mekanism8 extends RecipesModule {
 
 	private static List<OreGas> gasList = new ArrayList<OreGas>();
 
-	public Mekanism() {
-		super(CompatType.MEKANISM, "iron", "gold", "silver", "lead", "osmium", "copper", "tin");
+	public Mekanism8() {
+		super(CompatType.MEKANISM8, "iron", "gold", "silver", "lead", "osmium", "copper", "tin");
 	}
 
 	@Override
@@ -42,31 +40,29 @@ public class Mekanism extends RecipesModule {
 
 	@Override
 	public void initOre(Ore ore) {
-		Gas hydrogenChloride = GasRegistry.getGas("hydrogenChloride");
-
 		String name = ore.name();
 		OreGas clean = new OreGasAOBD(name, "clean" + name, "oregas." + name.toLowerCase());
 		OreGas slurry = new OreGasAOBD(name, name, "oregas." + name.toLowerCase()).setCleanGas(clean);
 		gasList.add(slurry);
 
 		for (ItemStack stack : OreDictionary.getOres("ore" + name))
-			RecipeHandler.addEnrichmentChamberRecipe(stack, getOreStack("dust", ore, 2));
-		RecipeHandler.addEnrichmentChamberRecipe(getOreStack("dustDirty", ore), getOreStack("dust", ore));
+			RecipeHelper.addEnrichmentChamberRecipe(stack, getOreStack("dust", ore, 2));
+		RecipeHelper.addEnrichmentChamberRecipe(getOreStack("dustDirty", ore), getOreStack("dust", ore));
 
-		RecipeHandler.addCrusherRecipe(getOreStack("clump", ore), getOreStack("dustDirty", ore));
-
-		for (ItemStack stack : OreDictionary.getOres("ore" + name))
-			RecipeHandler.addPurificationChamberRecipe(stack, getOreStack("clump", ore, 3));
-		RecipeHandler.addPurificationChamberRecipe(getOreStack("shard", ore), getOreStack("clump", ore));
+		RecipeHelper.addCrusherRecipe(getOreStack("clump", ore), getOreStack("dustDirty", ore));
 
 		for (ItemStack stack : OreDictionary.getOres("ore" + name))
-			RecipeHandler.addChemicalInjectionChamberRecipe(new AdvancedInput(stack, hydrogenChloride), getOreStack("shard", ore, 4));
-		RecipeHandler.addChemicalInjectionChamberRecipe(new AdvancedInput(getOreStack("crystal", ore), hydrogenChloride), getOreStack("shard", ore));
+			RecipeHelper.addPurificationChamberRecipe(stack, getOreStack("clump", ore, 3));
+		RecipeHelper.addPurificationChamberRecipe(getOreStack("shard", ore), getOreStack("clump", ore));
 
 		for (ItemStack stack : OreDictionary.getOres("ore" + name))
-			RecipeHandler.addChemicalDissolutionChamberRecipe(stack, new GasStack(slurry, 1000));
-		RecipeHandler.addChemicalWasherRecipe(new GasStack(slurry, 1), new GasStack(slurry.getCleanGas(), 1));
-		RecipeHandler.addChemicalCrystallizerRecipe(new GasStack(slurry.getCleanGas(), 200), getOreStack("crystal", ore));
+			RecipeHelper.addChemicalInjectionChamberRecipe(stack, "hydrogenChloride", getOreStack("shard", ore, 4));
+		RecipeHelper.addChemicalInjectionChamberRecipe(getOreStack("crystal", ore), "hydrogenChloride", getOreStack("shard", ore));
+
+		for (ItemStack stack : OreDictionary.getOres("ore" + name))
+			RecipeHelper.addChemicalDissolutionChamberRecipe(stack, new GasStack(slurry, 1000));
+		RecipeHelper.addChemicalWasherRecipe(new GasStack(slurry, 1), new GasStack(slurry.getCleanGas(), 1));
+		RecipeHelper.addChemicalCrystallizerRecipe(new GasStack(slurry.getCleanGas(), 200), getOreStack("crystal", ore));
 	}
 
 	@SideOnly(Side.CLIENT)
