@@ -21,6 +21,7 @@ import ganymedes01.aobd.recipes.modules.ThermalExpansion;
 import ganymedes01.aobd.recipes.modules.TinkersConstruct;
 import ganymedes01.aobd.recipes.modules.UltraTech;
 import cpw.mods.fml.common.Loader;
+import cpw.mods.fml.common.ModContainer;
 
 public enum CompatType {
 
@@ -32,12 +33,10 @@ public enum CompatType {
 		public boolean isEnabled() {
 			if (!super.isEnabled())
 				return false;
-
-			try {
-				return Class.forName("mekanism.common.recipe.RecipeHandler") != null;
-			} catch (ClassNotFoundException e) {
-				return false;
-			}
+			for (ModContainer mod : Loader.instance().getActiveModList())
+				if ("Mekanism".equals(mod.getModId()))
+					return mod.getVersion().startsWith("7");
+			return false;
 		}
 	},
 	MEKANISM8("Mekanism", Mekanism8.class, "clump", "crystal", "shard", "dustDirty", "dust") {
@@ -45,12 +44,10 @@ public enum CompatType {
 		public boolean isEnabled() {
 			if (!super.isEnabled())
 				return false;
-
-			try {
-				return Class.forName("mekanism.api.recipe.RecipeHelper") != null;
-			} catch (ClassNotFoundException e) {
-				return false;
-			}
+			for (ModContainer mod : Loader.instance().getActiveModList())
+				if ("Mekanism".equals(mod.getModId()))
+					return mod.getVersion().startsWith("8");
+			return false;
 		}
 	},
 	THAUMCRAFT("Thaumcraft", Thaumcraft.class, "cluster"),
