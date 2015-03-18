@@ -35,12 +35,8 @@ public class IndustrialCraft extends RecipesModule {
 			addSmeltingNoDupes(getOreStack("crushed", ore), getOreStack("ingot", ore), 0.2F);
 			GameRegistry.addSmelting(getOreStack("crushedPurified", ore), getOreStack("ingot", ore), 0.2F);
 
-			if (CompatType.MEKANISM7.isEnabled() && ore.isCompatEnabled(CompatType.MEKANISM7))
+			if (CompatType.MEKANISM.isEnabled() && ore.isCompatEnabled(CompatType.MEKANISM))
 				Recipes.macerator.addRecipe(new RecipeInputOreDict("clump" + name), null, getOreStack("dustDirty", ore));
-
-			if (CompatType.MEKANISM8.isEnabled() && ore.isCompatEnabled(CompatType.MEKANISM8))
-				Recipes.macerator.addRecipe(new RecipeInputOreDict("clump" + name), null, getOreStack("dustDirty", ore));
-
 		} catch (Exception e) {
 		}
 	}

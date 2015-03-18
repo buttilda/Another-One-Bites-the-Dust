@@ -6,8 +6,7 @@ import ganymedes01.aobd.lib.CompatType;
 import ganymedes01.aobd.lib.Reference;
 import ganymedes01.aobd.ore.OreFinder;
 import ganymedes01.aobd.recipes.ModulesHandler;
-import ganymedes01.aobd.recipes.modules.Mekanism7;
-import ganymedes01.aobd.recipes.modules.Mekanism8;
+import ganymedes01.aobd.recipes.modules.Mekanism;
 import ganymedes01.aobd.recipes.modules.TinkersConstruct;
 import ganymedes01.aobd.recipes.modules.UltraTech;
 import net.minecraft.creativetab.CreativeTabs;
@@ -99,11 +98,8 @@ public class AOBD {
 	@SideOnly(Side.CLIENT)
 	public void stitchEventPre(TextureStitchEvent.Pre event) {
 		// Register icons for Mekanism's gases
-		if (CompatType.MEKANISM7.isEnabled() && event.map.getTextureType() == 0)
-			Mekanism7.registerIcons(event.map);
-
-		if (CompatType.MEKANISM8.isEnabled() && event.map.getTextureType() == 0)
-			Mekanism8.registerIcons(event.map);
+		if (CompatType.MEKANISM.isEnabled() && event.map.getTextureType() == 0)
+			Mekanism.registerIcons(event.map);
 
 		// Register icons for TiC's molten metals
 		if (CompatType.TINKERS_CONSTRUCT.isEnabled() && event.map.getTextureType() == 0)

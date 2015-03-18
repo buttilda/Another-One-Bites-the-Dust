@@ -8,8 +8,7 @@ import ganymedes01.aobd.recipes.modules.Factorization;
 import ganymedes01.aobd.recipes.modules.GanysNether;
 import ganymedes01.aobd.recipes.modules.Hydraulicraft;
 import ganymedes01.aobd.recipes.modules.IndustrialCraft;
-import ganymedes01.aobd.recipes.modules.Mekanism7;
-import ganymedes01.aobd.recipes.modules.Mekanism8;
+import ganymedes01.aobd.recipes.modules.Mekanism;
 import ganymedes01.aobd.recipes.modules.ModularSystems;
 import ganymedes01.aobd.recipes.modules.NetherOres;
 import ganymedes01.aobd.recipes.modules.Railcraft;
@@ -21,35 +20,13 @@ import ganymedes01.aobd.recipes.modules.ThermalExpansion;
 import ganymedes01.aobd.recipes.modules.TinkersConstruct;
 import ganymedes01.aobd.recipes.modules.UltraTech;
 import cpw.mods.fml.common.Loader;
-import cpw.mods.fml.common.ModContainer;
 
 public enum CompatType {
 
 	IC2("IC2", IndustrialCraft.class, "dustTiny", "crushedPurified", "crushed", "dust"),
 	RAILCRAFT("Railcraft", Railcraft.class, "crushed"),
 	ENDERIO("EnderIO", EnderIO.class, "dust"),
-	MEKANISM7("Mekanism", Mekanism7.class, "clump", "crystal", "shard", "dustDirty", "dust") {
-		@Override
-		public boolean isEnabled() {
-			if (!super.isEnabled())
-				return false;
-			for (ModContainer mod : Loader.instance().getActiveModList())
-				if ("Mekanism".equals(mod.getModId()))
-					return mod.getVersion().startsWith("7");
-			return false;
-		}
-	},
-	MEKANISM8("Mekanism", Mekanism8.class, "clump", "crystal", "shard", "dustDirty", "dust") {
-		@Override
-		public boolean isEnabled() {
-			if (!super.isEnabled())
-				return false;
-			for (ModContainer mod : Loader.instance().getActiveModList())
-				if ("Mekanism".equals(mod.getModId()))
-					return mod.getVersion().startsWith("8");
-			return false;
-		}
-	},
+	MEKANISM("Mekanism", Mekanism.class, "clump", "crystal", "shard", "dustDirty", "dust"),
 	THAUMCRAFT("Thaumcraft", Thaumcraft.class, "cluster"),
 	THERMAL_EXPANSION("ThermalExpansion", ThermalExpansion.class, "dust"),
 	FACTORISATION("factorization", Factorization.class, "crystalline", "cleanGravel", "reduced", "dirtyGravel"),
