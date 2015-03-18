@@ -1,0 +1,37 @@
+# Item
+item.aobd.dust.name=Пыль (%s)
+item.aobd.crushed.name=Измельчённая руда (%s)
+item.aobd.crushedPurified.name=Очищенная измельчённая руда (%s)
+item.aobd.dustTiny.name=Крошечная кучка пыли (%s)
+item.aobd.cluster.name=Природное скопление (%s)
+item.aobd.dirtyGravel.name=Грязная гравиевая руда (%s)
+item.aobd.cleanGravel.name=Чистая гравиевая руда (%s)
+item.aobd.reduced.name=Раздробленные куски (%s)
+item.aobd.crystalline.name=Кристаллизован. (%s)
+item.aobd.clump.name=Глыба (%s)
+item.aobd.shard.name=Осколок (%s)
+item.aobd.dustDirty.name=Грязная пыль (%s)
+item.aobd.crystal.name=Кристалл (%s)
+item.aobd.chunk.name=Кусок (%s)
+item.aobd.nugget.name=Самородок (%s)
+item.aobd.ore.name=Руда (%s)
+
+# Blocks
+tile.aobd.block.name=Блок (%s)
+
+# Fluids
+fluid.aobd.moltenMetal.name=Расплавлен. (%s)
+
+# Gases
+gas.aobd.clean.name=Чистое расплавленное (%s)
+gas.aobd.dirty.name=Расплавленное (%s)
+gas.aobd.ore.name=Руда (%s)
+
+# Creative Tab
+itemGroup.aobd=AOBD
+
+# Research
+tc.research_category.AOBD=AOBD
+tc.research_name.PUREORE=Очищение руды
+tc.research_text.PUREORE=Очищайте ВСЕ руды
+tc.research_page.PUREORE.1=Природные скопления являются редкими концентрациями металлов в своей чистейшей форме. Вы обнаружили способ очистки и концентрации обычной руды в природный кластера.<BR>Когда эти кластеры выплавлены, они произведут в два раза больше слитков.

@@ -1,0 +1,29 @@
+# Item
+item.aobd.dust.name=%s 가루
+item.aobd.crushed.name=분쇄된 %s 광석
+item.aobd.crushedPurified.name=분쇄·정제된 %s 광석
+item.aobd.dustTiny.name=%s가루 조각
+item.aobd.cluster.name=순수한 %s 덩어리
+item.aobd.dirtyGravel.name=더러운 %s광석 자갈
+item.aobd.cleanGravel.name=새척한 %s광석 자갈
+item.aobd.reduced.name=작은 %s광석 덩어리
+item.aobd.crystalline.name=수정 %s광석
+item.aobd.clump.name=%s광석 묶음
+item.aobd.shard.name=%s 샤드
+item.aobd.dustDirty.name=더러운 %s광석 가루
+item.aobd.crystal.name=%s 수정
+item.aobd.chunk.name=더러운 %s 조각
+
+# Gas
+gas.aobd.clean.name=새척한 %s광석 슬러리
+gas.aobd.dirty.name=%s 슬러지
+gas.aobd.ore.name=%s 광석
+
+# Creative Tab
+itemGroup.aobd=AOBD
+
+# Research
+tc.research_category.AOBD=AOBD
+tc.research_name.PUREORE=광물 정제
+tc.research_text.PUREORE=모든광물을 정제!
+tc.research_page.PUREORE.1=순수한 덩어리는 금속이 가장 순수한 상태로 뭉쳐있는 희귀한 현상입니다. 일반적인 광석들을 정제하고 농축시켜서 순수한 덩어리로 가공하는 방법을 알아내었습니다.<BR>구울 경우 두 배의 주괴를 얻을 수 있습니다.

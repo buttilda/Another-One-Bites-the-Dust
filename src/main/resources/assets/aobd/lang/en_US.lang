@@ -1,0 +1,40 @@
+# Metals
+metal.aobd.fzdarkiron.name=Dark Iron
+
+# Items
+item.aobd.dust.name=%s Dust
+item.aobd.crushed.name=Crushed %s Ore
+item.aobd.crushedPurified.name=Purified Crushed %s Ore
+item.aobd.dustTiny.name=Tiny Pile of %s Dust
+item.aobd.cluster.name=Native %s Cluster
+item.aobd.dirtyGravel.name=Dirty %s Gravel
+item.aobd.cleanGravel.name=Clean %s Gravel
+item.aobd.reduced.name=Reduced %s Chunks
+item.aobd.crystalline.name=Crystalline %s
+item.aobd.clump.name=%s Clump
+item.aobd.shard.name=%s Shard
+item.aobd.dustDirty.name=Dirty %s Dust
+item.aobd.crystal.name=%s Crystal
+item.aobd.chunk.name=%s Chunk
+item.aobd.nugget.name=%s Nugget
+item.aobd.ore.name=%s Ore
+
+# Blocks
+tile.aobd.block.name=%s Block
+
+# Fluids
+fluid.aobd.moltenMetal.name=Molten %s
+
+# Gases
+gas.aobd.clean.name=Clean %s Slurry
+gas.aobd.dirty.name=%s Slurry
+gas.aobd.ore.name=%s Ore
+
+# Creative Tab
+itemGroup.aobd=AOBD
+
+# Research
+tc.research_category.AOBD=AOBD
+tc.research_name.PUREORE=Ore Purification
+tc.research_text.PUREORE=Purificate ALL the ores
+tc.research_page.PUREORE.1=Native clusters are rare concentrations of metals in its purest form. You have discovered a way to purify and concentrate normal ores into a native cluster.<BR>When smelted these clusters produce twice the normal amount of ingots.
