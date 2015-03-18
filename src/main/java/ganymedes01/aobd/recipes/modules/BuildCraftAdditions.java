@@ -16,10 +16,7 @@ public class BuildCraftAdditions extends RecipesModule {
 	public void initOre(Ore ore) {
 		NBTTagCompound nbt = new NBTTagCompound();
 		nbt.setString("Input", "ore" + ore.name());
-
-		NBTTagCompound outputTag = new NBTTagCompound();
-		getOreStack("dust", ore, 2).writeToNBT(outputTag);
-		nbt.setTag("Output", outputTag);
+		nbt.setTag("Output", getOreStack("dust", ore, 2).writeToNBT(new NBTTagCompound()));
 
 		FMLInterModComms.sendMessage("bcadditions", "addDustingRecipe", nbt);
 	}

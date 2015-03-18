@@ -25,30 +25,18 @@ public class Hydraulicraft extends RecipesModule {
 	}
 
 	private void addCrushingRecipe(ItemStack input, ItemStack output, float pressureRatio) {
-		NBTTagCompound toRegister = new NBTTagCompound();
-		NBTTagCompound itemFrom = new NBTTagCompound();
-		NBTTagCompound itemTo = new NBTTagCompound();
-
-		input.writeToNBT(itemFrom);
-		output.writeToNBT(itemTo);
-
-		toRegister.setTag("itemFrom", itemFrom);
-		toRegister.setTag("itemTo", itemTo);
-		toRegister.setFloat("pressureRatio", pressureRatio);
-		FMLInterModComms.sendMessage("HydCraft", "registerCrushingRecipe", toRegister);
+		NBTTagCompound nbt = new NBTTagCompound();
+		nbt.setTag("itemFrom", input.writeToNBT(new NBTTagCompound()));
+		nbt.setTag("itemTo", output.writeToNBT(new NBTTagCompound()));
+		nbt.setFloat("pressureRatio", pressureRatio);
+		FMLInterModComms.sendMessage("HydCraft", "registerCrushingRecipe", nbt);
 	}
 
 	private void addWashingRecipe(ItemStack input, ItemStack output, float pressureRatio) {
-		NBTTagCompound toRegister = new NBTTagCompound();
-		NBTTagCompound itemFrom = new NBTTagCompound();
-		NBTTagCompound itemTo = new NBTTagCompound();
-
-		input.writeToNBT(itemFrom);
-		output.writeToNBT(itemTo);
-
-		toRegister.setTag("itemFrom", itemFrom);
-		toRegister.setTag("itemTo", itemTo);
-		toRegister.setFloat("pressureRatio", pressureRatio);
-		FMLInterModComms.sendMessage("HydCraft", "registerWashingRecipe", toRegister);
+		NBTTagCompound nbt = new NBTTagCompound();
+		nbt.setTag("itemFrom", input.writeToNBT(new NBTTagCompound()));
+		nbt.setTag("itemTo", output.writeToNBT(new NBTTagCompound()));
+		nbt.setFloat("pressureRatio", pressureRatio);
+		FMLInterModComms.sendMessage("HydCraft", "registerWashingRecipe", nbt);
 	}
 }

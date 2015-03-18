@@ -26,20 +26,11 @@ public class ThermalExpansion extends RecipesModule {
 		NBTTagCompound data = new NBTTagCompound();
 
 		data.setInteger("energy", energy);
-
-		NBTTagCompound inputCompound = new NBTTagCompound();
-		input.writeToNBT(inputCompound);
-		data.setTag("input", inputCompound);
-
-		NBTTagCompound outputCompound = new NBTTagCompound();
-		output.writeToNBT(outputCompound);
-		data.setTag("primaryOutput", outputCompound);
+		data.setTag("input", input.writeToNBT(new NBTTagCompound()));
+		data.setTag("primaryOutput", output.writeToNBT(new NBTTagCompound()));
 
 		if (bonus != null) {
-			NBTTagCompound outputCompound2 = new NBTTagCompound();
-			bonus.writeToNBT(outputCompound2);
-			data.setTag("secondaryOutput", outputCompound2);
-
+			data.setTag("secondaryOutput", bonus.writeToNBT(new NBTTagCompound()));
 			data.setInteger("secondaryChance", chance);
 		}
 
@@ -50,24 +41,12 @@ public class ThermalExpansion extends RecipesModule {
 		NBTTagCompound data = new NBTTagCompound();
 
 		data.setInteger("energy", energy);
-
-		NBTTagCompound input1Compound = new NBTTagCompound();
-		input1.writeToNBT(input1Compound);
-		data.setTag("primaryInput", input1Compound);
-
-		NBTTagCompound input2Compound = new NBTTagCompound();
-		input2.writeToNBT(input2Compound);
-		data.setTag("secondaryInput", input2Compound);
-
-		NBTTagCompound output1Compound = new NBTTagCompound();
-		output1.writeToNBT(output1Compound);
-		data.setTag("primaryOutput", output1Compound);
+		data.setTag("primaryInput", input1.writeToNBT(new NBTTagCompound()));
+		data.setTag("secondaryInput", input2.writeToNBT(new NBTTagCompound()));
+		data.setTag("primaryOutput", output1.writeToNBT(new NBTTagCompound()));
 
 		if (output2 != null) {
-			NBTTagCompound output2Compound = new NBTTagCompound();
-			output2.writeToNBT(output2Compound);
-			data.setTag("secondaryOutput", output2Compound);
-
+			data.setTag("secondaryOutput", output2.writeToNBT(new NBTTagCompound()));
 			data.setInteger("secondaryChance", chance);
 		}
 
