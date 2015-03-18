@@ -5,14 +5,14 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/forge17"/>
 	<classpathentry kind="lib" path="libs/appliedenergistics2-rv1-stable-1.jar"/>
-	<classpathentry kind="lib" path="libs/industrialcraft-2-2.2.667-experimental-dev.jar"/>
+	<classpathentry kind="lib" path="libs/Factorization-1.7.10-0.8.88.8.8888h.jar"/>
+	<classpathentry kind="lib" path="libs/Flaxbeard&apos;sSteamPower-1.7.10-0.28.5.jar"/>
+	<classpathentry kind="lib" path="libs/Ganys Nether-1.7.8.jar"/>
+	<classpathentry kind="lib" path="libs/industrialcraft-2-2.2.695-experimental-dev.jar"/>
+	<classpathentry kind="lib" path="libs/MekanismAll-1.7.10-8.0.0.homebaked.jar"/>
+	<classpathentry kind="lib" path="libs/RandomAdditions Alpha 0.10 mc1.7.10.jar"/>
 	<classpathentry kind="lib" path="libs/TConstruct-1.7.10-1.7.1d.jar"/>
 	<classpathentry kind="lib" path="libs/Thaumcraft-1.7.10-4.2.1.4.jar"/>
 	<classpathentry kind="lib" path="libs/Ultratech-1.7.10-0.9.6.1.jar"/>
-	<classpathentry kind="lib" path="libs/Flaxbeard&apos;sSteamPower-1.7.10-0.28.5.jar"/>
-	<classpathentry kind="lib" path="libs/MekanismAll-1.7.10-8.0.0.homebaked.jar"/>
-	<classpathentry kind="lib" path="libs/RandomAdditions Alpha 0.10 mc1.7.10.jar"/>
-	<classpathentry kind="lib" path="libs/Factorization-1.7.10-0.8.88.8.8888h.jar"/>
-	<classpathentry kind="lib" path="libs/Ganys Nether-1.7.8.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
