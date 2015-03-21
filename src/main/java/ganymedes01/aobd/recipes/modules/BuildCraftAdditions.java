@@ -9,7 +9,7 @@ import cpw.mods.fml.common.event.FMLInterModComms;
 public class BuildCraftAdditions extends RecipesModule {
 
 	public BuildCraftAdditions() {
-		super(CompatType.BC_ADDITIONS, "iron", "gold");
+		super(CompatType.BC_ADDITIONS, "iron", "gold", "diamond", "emerald", "coal", "charcoal", "obsidian", "enderpearl", "netherquartz", "bronze", "manganese", "heptizon", "damascussteel", "angmallen", "steel", "eximite", "meutoite", "desichalkos", "prometheum", "deepiron", "infuscolium", "blacksteel", "oureclase", "astralsilver", "carmot", "mithril", "rubracium", "quicksilver", "haderoth", "orichalcum", "celenegil", "adamantine", "atlarus", "tartarite", "ignatius", "shadowiron", "lemurite", "midasium", "vyroxeres", "ceruclase", "alduorite", "kalendrite", "vulcanite", "sanguinite", "shadowsteel", "inolashite", "amordrine", "zinc", "brass", "electrum", "aluminum", "ardite", "cobalt", "copper", "lead", "nickel", "platinum", "silver", "tin", "apatite", "osmium", "sulfur", "saltpeter", "certusquartz", "aluminumbrass", "alumite", "pigiron", "invar", "signalum", "lumium", "enderiumbase", "enderium", "eletricalsteel", "energeticalloy", "phasedgold", "redstonealloy", "conductiveiron", "phasediron", "darksteel", "soularium", "fzdarkiron");
 	}
 
 	@Override
