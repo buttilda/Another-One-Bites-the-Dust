@@ -14,5 +14,7 @@
 	<classpathentry kind="lib" path="libs/Thaumcraft-1.7.10-4.2.1.4.jar"/>
 	<classpathentry kind="lib" path="libs/Ultratech-1.7.10-0.9.6.1.jar"/>
 	<classpathentry kind="lib" path="libs/Mekanism-1.7.10-8.0.0.188.jar"/>
+	<classpathentry kind="lib" path="libs/DragonAPI 1.7.10 V5c.jar"/>
+	<classpathentry kind="lib" path="libs/RotaryCraft 1.7.10 V5c.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

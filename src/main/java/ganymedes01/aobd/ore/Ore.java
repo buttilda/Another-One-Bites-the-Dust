@@ -117,6 +117,10 @@ public class Ore {
 		return colour.getRGB() & 0x00FFFFFF;
 	}
 
+	public Color getColour() {
+		return colour;
+	}
+
 	public void setColour(Color colour) {
 		if (colour != null)
 			this.colour = colour;
