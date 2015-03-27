@@ -8,17 +8,17 @@ import ganymedes01.aobd.recipes.RecipesModule;
 import java.util.ArrayList;
 import java.util.List;
 
-import mekanism.api.AdvancedInput;
 import mekanism.api.gas.Gas;
 import mekanism.api.gas.GasRegistry;
 import mekanism.api.gas.GasStack;
 import mekanism.api.gas.OreGas;
-import mekanism.common.recipe.RecipeHandler;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.StatCollector;
 import net.minecraftforge.oredict.OreDictionary;
+import cpw.mods.fml.common.event.FMLInterModComms;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -42,31 +42,95 @@ public class Mekanism extends RecipesModule {
 
 	@Override
 	public void initOre(Ore ore) {
-		Gas hydrogenChloride = GasRegistry.getGas("hydrogenChloride");
-
 		String name = ore.name();
 		OreGas clean = new OreGasAOBD(name, "clean" + name, "oregas." + name.toLowerCase());
 		OreGas slurry = new OreGasAOBD(name, name, "oregas." + name.toLowerCase()).setCleanGas(clean);
 		gasList.add(slurry);
 
 		for (ItemStack stack : OreDictionary.getOres("ore" + name))
-			RecipeHandler.addEnrichmentChamberRecipe(stack, getOreStack("dust", ore, 2));
-		RecipeHandler.addEnrichmentChamberRecipe(getOreStack("dustDirty", ore), getOreStack("dust", ore));
+			addEnrichmentChamberRecipe(stack, getOreStack("dust", ore, 2));
+		addEnrichmentChamberRecipe(getOreStack("dustDirty", ore), getOreStack("dust", ore));
 
-		RecipeHandler.addCrusherRecipe(getOreStack("clump", ore), getOreStack("dustDirty", ore));
+		addCrusherRecipe(getOreStack("clump", ore), getOreStack("dustDirty", ore));
+
+		Gas oxygen = GasRegistry.getGas("oxygen");
+		for (ItemStack stack : OreDictionary.getOres("ore" + name))
+			addPurificationChamberRecipe(stack, oxygen, getOreStack("clump", ore, 3));
+		addPurificationChamberRecipe(getOreStack("shard", ore), oxygen, getOreStack("clump", ore));
+
+		Gas hydrogenChloride = GasRegistry.getGas("hydrogenChloride");
+		for (ItemStack stack : OreDictionary.getOres("ore" + name))
+			addChemicalInjectionChamberRecipe(stack, hydrogenChloride, getOreStack("shard", ore, 4));
+		addChemicalInjectionChamberRecipe(getOreStack("crystal", ore), hydrogenChloride, getOreStack("shard", ore));
 
 		for (ItemStack stack : OreDictionary.getOres("ore" + name))
-			RecipeHandler.addPurificationChamberRecipe(stack, getOreStack("clump", ore, 3));
-		RecipeHandler.addPurificationChamberRecipe(getOreStack("shard", ore), getOreStack("clump", ore));
+			addChemicalDissolutionChamberRecipe(stack, new GasStack(slurry, 1000));
+		addChemicalWasherRecipe(new GasStack(slurry, 1), new GasStack(slurry.getCleanGas(), 1));
+		addChemicalCrystallizerRecipe(new GasStack(slurry.getCleanGas(), 200), getOreStack("crystal", ore));
+	}
 
-		for (ItemStack stack : OreDictionary.getOres("ore" + name))
-			RecipeHandler.addChemicalInjectionChamberRecipe(new AdvancedInput(stack, hydrogenChloride), getOreStack("shard", ore, 4));
-		RecipeHandler.addChemicalInjectionChamberRecipe(new AdvancedInput(getOreStack("crystal", ore), hydrogenChloride), getOreStack("shard", ore));
+	private static void addEnrichmentChamberRecipe(ItemStack input, ItemStack output) {
+		addRecipe("EnrichmentChamberRecipe", input, output);
+	}
 
-		for (ItemStack stack : OreDictionary.getOres("ore" + name))
-			RecipeHandler.addChemicalDissolutionChamberRecipe(stack, new GasStack(slurry, 1000));
-		RecipeHandler.addChemicalWasherRecipe(new GasStack(slurry, 1), new GasStack(slurry.getCleanGas(), 1));
-		RecipeHandler.addChemicalCrystallizerRecipe(new GasStack(slurry.getCleanGas(), 200), getOreStack("crystal", ore));
+	private static void addCrusherRecipe(ItemStack input, ItemStack output) {
+		addRecipe("CrusherRecipe", input, output);
+	}
+
+	private static void addPurificationChamberRecipe(ItemStack input, Gas gas, ItemStack output) {
+		addRecipe("PurificationChamberRecipe", input, gas, output);
+	}
+
+	private static void addChemicalInjectionChamberRecipe(ItemStack input, Gas gas, ItemStack output) {
+		addRecipe("ChemicalInjectionChamberRecipe", input, gas, output);
+	}
+
+	private static void addChemicalDissolutionChamberRecipe(ItemStack input, GasStack output) {
+		addRecipe("ChemicalDissolutionChamberRecipe", input, output);
+	}
+
+	private static void addChemicalWasherRecipe(GasStack input, GasStack output) {
+		addRecipe("ChemicalWasherRecipe", input, output);
+	}
+	
+	private static void addChemicalCrystallizerRecipe(GasStack input, ItemStack output) {
+		addRecipe("ChemicalCrystallizerRecipe", input, output);
+	}
+
+	private static void addRecipe(String key, ItemStack input, ItemStack output) {
+		NBTTagCompound nbt = new NBTTagCompound();
+		nbt.setTag("input", input.writeToNBT(new NBTTagCompound()));
+		nbt.setTag("output", output.writeToNBT(new NBTTagCompound()));
+		FMLInterModComms.sendMessage("Mekanism", key, nbt);
+	}
+
+	private static void addRecipe(String key, ItemStack input, Gas gas, ItemStack output) {
+		NBTTagCompound nbt = new NBTTagCompound();
+		nbt.setTag("input", input.writeToNBT(new NBTTagCompound()));
+		nbt.setTag("gasType", gas.write(new NBTTagCompound()));
+		nbt.setTag("output", output.writeToNBT(new NBTTagCompound()));
+		FMLInterModComms.sendMessage("Mekanism", key, nbt);
+	}
+
+	private static void addRecipe(String key, ItemStack input, GasStack output) {
+		NBTTagCompound nbt = new NBTTagCompound();
+		nbt.setTag("input", input.writeToNBT(new NBTTagCompound()));
+		nbt.setTag("output", output.write(new NBTTagCompound()));
+		FMLInterModComms.sendMessage("Mekanism", key, nbt);
+	}
+
+	private static void addRecipe(String key, GasStack input, GasStack output) {
+		NBTTagCompound nbt = new NBTTagCompound();
+		nbt.setTag("input", input.write(new NBTTagCompound()));
+		nbt.setTag("output", output.write(new NBTTagCompound()));
+		FMLInterModComms.sendMessage("Mekanism", key, nbt);
+	}
+
+	private static void addRecipe(String key, GasStack input, ItemStack output) {
+		NBTTagCompound nbt = new NBTTagCompound();
+		nbt.setTag("input", input.write(new NBTTagCompound()));
+		nbt.setTag("output", output.writeToNBT(new NBTTagCompound()));
+		FMLInterModComms.sendMessage("Mekanism", key, nbt);
 	}
 
 	@SideOnly(Side.CLIENT)

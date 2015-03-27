@@ -2,6 +2,7 @@ package ganymedes01.aobd.lib;
 
 import ganymedes01.aobd.recipes.RecipesModule;
 import ganymedes01.aobd.recipes.modules.AppliedEnergistics;
+import ganymedes01.aobd.recipes.modules.BuildCraftAdditions;
 import ganymedes01.aobd.recipes.modules.EnderIO;
 import ganymedes01.aobd.recipes.modules.Factorization;
 import ganymedes01.aobd.recipes.modules.GanysNether;
@@ -12,6 +13,7 @@ import ganymedes01.aobd.recipes.modules.ModularSystems;
 import ganymedes01.aobd.recipes.modules.NetherOres;
 import ganymedes01.aobd.recipes.modules.Railcraft;
 import ganymedes01.aobd.recipes.modules.RandomAdditions;
+import ganymedes01.aobd.recipes.modules.RotaryCraft;
 import ganymedes01.aobd.recipes.modules.SimpleOreGrinder;
 import ganymedes01.aobd.recipes.modules.Steamcraft;
 import ganymedes01.aobd.recipes.modules.Thaumcraft;
@@ -38,7 +40,9 @@ public enum CompatType {
 	HYDRAULICRAFT("HydCraft", Hydraulicraft.class, "dust", "chunk"),
 	TINKERS_CONSTRUCT("TConstruct", TinkersConstruct.class, "block"),
 	SIMPLE_ORE_GRINDER("simpleoregrinder", SimpleOreGrinder.class, "dust"),
-	STEAMCRAFT("Steamcraft", Steamcraft.class, "dust");
+	STEAMCRAFT("Steamcraft", Steamcraft.class, "dust"),
+	BC_ADDITIONS("bcadditions", BuildCraftAdditions.class, "dust"),
+	ROTARYCRAFT("RotaryCraft", RotaryCraft.class);
 
 	final String modid;
 	final String[] prefixes;

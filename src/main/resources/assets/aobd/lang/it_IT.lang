@@ -1,4 +1,4 @@
-# Item
+# Items
 item.aobd.dust.name=Polvere di %s
 item.aobd.crushed.name=%s grezzo schiacciato
 item.aobd.crushedPurified.name=%s grezzo schiacciato purificato
@@ -6,8 +6,26 @@ item.aobd.dustTiny.name=Piccola pila di polvere di %s
 item.aobd.cluster.name=Agglomerato di %s puro
 item.aobd.dirtyGravel.name=Ghiaia di %s sporca
 item.aobd.cleanGravel.name=Ghiaia %s pulita
-item.aobd.reduced.name=Pezzo di  %s ridotto
+item.aobd.reduced.name=Pezzo di %s ridotto
 item.aobd.crystalline.name=%s cristallino
+item.aobd.clump.name=Grumo di
+item.aobd.shard.name=Frammento di %s
+item.aobd.dustDirty.name=Polvere sporca di %s
+item.aobd.crystal.name=Cristallo di %s
+item.aobd.chunk.name=Pezzo di %s
+item.aobd.nugget.name=Pepita di %s
+item.aobd.ore.name=%s grezzo
+
+# Blocks
+tile.aobd.block.name=Blocco di %s
+
+# Fluids
+fluid.aobd.moltenMetal.name=%s fuso
+
+# Gases
+gas.aobd.clean.name=Fanghiglia %s pulita
+gas.aobd.dirty.name=Fanghiglia di %s
+gas.aobd.ore.name=%s Ore
 
 # Creative Tab
 itemGroup.aobd=AOBD

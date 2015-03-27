@@ -37,7 +37,6 @@ public class IndustrialCraft extends RecipesModule {
 
 			if (CompatType.MEKANISM.isEnabled() && ore.isCompatEnabled(CompatType.MEKANISM))
 				Recipes.macerator.addRecipe(new RecipeInputOreDict("clump" + name), null, getOreStack("dustDirty", ore));
-
 		} catch (Exception e) {
 		}
 	}
