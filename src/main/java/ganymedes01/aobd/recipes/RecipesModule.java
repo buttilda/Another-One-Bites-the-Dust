@@ -51,19 +51,19 @@ public abstract class RecipesModule {
 
 	private static final Map<String, ItemStack> cache = new HashMap<String, ItemStack>();
 
-	protected static ItemStack getOreStack(String prefix, Ore ore) {
+	public static ItemStack getOreStack(String prefix, Ore ore) {
 		return getOreStack(prefix, ore, 1, false);
 	}
 
-	protected static ItemStack getOreStack(String prefix, Ore ore, int size) {
+	public static ItemStack getOreStack(String prefix, Ore ore, int size) {
 		return getOreStack(prefix, ore, size, false);
 	}
 
-	protected static ItemStack getOreStackExtra(String prefix, Ore ore) {
+	public static ItemStack getOreStackExtra(String prefix, Ore ore) {
 		return getOreStack(prefix, ore, 1, true);
 	}
 
-	protected static ItemStack getOreStackExtra(String prefix, Ore ore, int size) {
+	public static ItemStack getOreStackExtra(String prefix, Ore ore, int size) {
 		return getOreStack(prefix, ore, size, true);
 	}
 
