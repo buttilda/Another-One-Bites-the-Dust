@@ -21,8 +21,8 @@ public class AOBDItem extends Item {
 
 	private Boolean hasEffect = null;
 
-	private final Ore ore;
-	private final String base;
+	protected final Ore ore;
+	protected final String base;
 
 	public AOBDItem(String base, Ore ore) {
 		this.ore = ore;
@@ -32,10 +32,18 @@ public class AOBDItem extends Item {
 		setUnlocalizedName(Reference.MOD_ID + "." + base + ore);
 	}
 
+	protected String getFullName() {
+		return "item." + Reference.MOD_ID + "." + base + ore.name() + ".name";
+	}
+
+	protected String getShortName() {
+		return "item." + Reference.MOD_ID + "." + base + ".name";
+	}
+
 	@Override
 	public String getItemStackDisplayName(ItemStack stack) {
-		String fullName = "item.aobd." + base + ore.name() + ".name";
-		String shortName = "item.aobd." + base + ".name";
+		String fullName = getFullName();
+		String shortName = getShortName();
 		return StatCollector.canTranslate(fullName) ? StatCollector.translateToLocal(fullName) : String.format(StatCollector.translateToLocal(shortName), ore.translatedName());
 	}
 

@@ -18,11 +18,15 @@ public class AOBDBlock extends Block {
 
 	public static final List<String> BLOCKS_PREFIXES = Arrays.asList("block");
 
-	private final Ore ore;
-	private final String base;
+	protected final Ore ore;
+	protected final String base;
 
 	public AOBDBlock(String base, Ore ore) {
-		super(Material.iron);
+		this(Material.iron, base, ore);
+	}
+
+	public AOBDBlock(Material material, String base, Ore ore) {
+		super(material);
 		this.ore = ore;
 		this.base = base;
 		setCreativeTab(AOBD.tab);
@@ -30,10 +34,18 @@ public class AOBDBlock extends Block {
 		setBlockTextureName(Reference.MOD_ID + ":" + base);
 	}
 
+	protected String getFullName() {
+		return "tile." + Reference.MOD_ID + "." + base + ore.name() + ".name";
+	}
+
+	protected String getShortName() {
+		return "tile." + Reference.MOD_ID + "." + base + ".name";
+	}
+
 	@Override
 	public String getLocalizedName() {
-		String fullName = "tile.aobd." + base + ore.name() + ".name";
-		String shortName = "tile.aobd." + base + ".name";
+		String fullName = getFullName();
+		String shortName = getShortName();
 		return StatCollector.canTranslate(fullName) ? StatCollector.translateToLocal(fullName) : String.format(StatCollector.translateToLocal(shortName), ore.translatedName());
 	}
 
