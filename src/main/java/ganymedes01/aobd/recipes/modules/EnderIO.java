@@ -7,7 +7,7 @@ import ganymedes01.aobd.recipes.RecipesModule;
 import cpw.mods.fml.common.event.FMLInterModComms;
 
 public class EnderIO extends RecipesModule {
-	
+
 	//@formatter:off
 	private static final String xmlMessage = "<recipeGroup name=\"AOBD\">" + 
                                                  "<recipe name=\"%sOre\" energyCost=\"%d\">" +
@@ -35,7 +35,7 @@ public class EnderIO extends RecipesModule {
 	private static void addSAGMillRecipe(String input, int energy, String extra) {
 		if (OreDictionary.getOres("dust" + extra).isEmpty())
 			extra = input;
-		
+
 		FMLInterModComms.sendMessage("EnderIO", "recipe:sagmill", String.format(xmlMessage, input, energy, input, input, extra));
 	}
 }

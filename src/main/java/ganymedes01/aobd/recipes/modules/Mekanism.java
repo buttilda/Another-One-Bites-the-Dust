@@ -92,7 +92,7 @@ public class Mekanism extends RecipesModule {
 	private static void addChemicalWasherRecipe(GasStack input, GasStack output) {
 		addRecipe("ChemicalWasherRecipe", input, output);
 	}
-	
+
 	private static void addChemicalCrystallizerRecipe(GasStack input, ItemStack output) {
 		addRecipe("ChemicalCrystallizerRecipe", input, output);
 	}
