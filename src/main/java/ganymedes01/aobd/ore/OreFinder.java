@@ -1,6 +1,7 @@
 package ganymedes01.aobd.ore;
 
 import ganymedes01.aobd.AOBD;
+import ganymedes01.aobd.api.AOBDAddonManager;
 import ganymedes01.aobd.blocks.AOBDBlock;
 import ganymedes01.aobd.items.AOBDItem;
 import ganymedes01.aobd.items.AOBDItemBlock;
@@ -79,6 +80,8 @@ public class OreFinder {
 						registerOre(prefix + name, new AOBDItem(prefix, ore));
 					}
 			}
+
+		AOBDAddonManager.passOreListToAddons(Ore.ores);
 	}
 
 	private static void generateItems(CompatType compat, String[] prefixes) {
@@ -98,7 +101,7 @@ public class OreFinder {
 			}
 	}
 
-	private static void registerOre(String ore, AOBDBlock block) {
+	public static void registerOre(String ore, AOBDBlock block) {
 		if (OreDictionary.getOres(ore).isEmpty()) {
 			GameRegistry.registerBlock(block, AOBDItemBlock.class, ore);
 			OreDictionary.registerOre(ore, block);
@@ -106,7 +109,7 @@ public class OreFinder {
 		}
 	}
 
-	private static void registerOre(String ore, AOBDItem item) {
+	public static void registerOre(String ore, AOBDItem item) {
 		if (OreDictionary.getOres(ore).isEmpty()) {
 			GameRegistry.registerItem(item, ore);
 			OreDictionary.registerOre(ore, item);

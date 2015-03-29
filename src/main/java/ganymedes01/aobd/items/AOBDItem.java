@@ -28,6 +28,7 @@ public class AOBDItem extends Item {
 		this.ore = ore;
 		this.base = base;
 		setCreativeTab(AOBD.tab);
+		setTextureName(Reference.MOD_ID + ":" + base);
 		setUnlocalizedName(Reference.MOD_ID + "." + base + ore);
 	}
 
@@ -73,8 +74,8 @@ public class AOBDItem extends Item {
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IIconRegister reg) {
 		icon = new IIcon[2];
-		icon[0] = reg.registerIcon(Reference.MOD_ID + ":" + base);
-		icon[1] = reg.registerIcon(Reference.MOD_ID + ":" + base + "_overlay");
+		icon[0] = reg.registerIcon(getIconString());
+		icon[1] = reg.registerIcon(getIconString() + "_overlay");
 	}
 
 	@SideOnly(Side.CLIENT)
