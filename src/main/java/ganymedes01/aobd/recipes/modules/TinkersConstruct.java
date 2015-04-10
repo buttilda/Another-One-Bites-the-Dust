@@ -37,9 +37,11 @@ public class TinkersConstruct extends RecipesModule {
 
 	@Override
 	public void initOre(Ore ore) {
-		Fluid fluid = new MoltenMetal(ore);
-		FluidRegistry.registerFluid(fluid);
-
+		Fluid fluid;
+		if ((fluid = FluidRegistry.getFluid(ore.name().toLowerCase())) == null) {
+			fluid = new MoltenMetal(ore);
+			FluidRegistry.registerFluid(fluid);
+		}
 		int temp = (int) ore.energy(600);
 
 		ItemStack block = null;
