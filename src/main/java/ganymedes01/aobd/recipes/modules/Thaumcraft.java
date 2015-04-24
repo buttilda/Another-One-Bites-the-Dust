@@ -38,6 +38,7 @@ public class Thaumcraft extends RecipesModule {
 			FMLInterModComms.sendMessage("Thaumcraft", "nativeCluster", s1 + "," + s2 + "," + 1);
 		}
 		GameRegistry.addSmelting(cluster, getOreStack("ingot", ore, 2), 0.2F);
+		ThaumcraftApi.addSmeltingBonus(cluster, getOreStack("nugget", ore, 0));
 	}
 
 	@Override

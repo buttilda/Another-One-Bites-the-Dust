@@ -28,7 +28,7 @@ public enum CompatType {
 	RAILCRAFT("Railcraft", Railcraft.class, "crushed"),
 	ENDERIO("EnderIO", EnderIO.class, "dust"),
 	MEKANISM("Mekanism", Mekanism.class, "clump", "crystal", "shard", "dustDirty", "dust"),
-	THAUMCRAFT("Thaumcraft", Thaumcraft.class, "cluster"),
+	THAUMCRAFT("Thaumcraft", Thaumcraft.class, "cluster", "nugget"),
 	THERMAL_EXPANSION("ThermalExpansion", ThermalExpansion.class, "dust"),
 	FACTORISATION("factorization", Factorization.class, "crystalline", "cleanGravel", "reduced", "dirtyGravel"),
 	RANDOM_ADDITIONS("randomadditions", RandomAdditions.class, "dust"),
