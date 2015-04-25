@@ -45,7 +45,7 @@ public class RotaryCraft extends RecipesModule {
 							modifiersField.setAccessible(true);
 							modifiersField.setInt(field, field.getModifiers() & ~Modifier.FINAL);
 
-							field.set(entry, index == 1 ? ore.getColour().brighter().getRGB() : ore.getColour().darker().getRGB());
+							field.set(entry, index == 1 ? ore.getColour().brighter().brighter().getRGB() : ore.getColour().darker().darker().getRGB());
 						} catch (Exception e) {
 						}
 					break;
