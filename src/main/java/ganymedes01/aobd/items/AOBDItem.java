@@ -63,7 +63,7 @@ public class AOBDItem extends Item {
 					hasEffect = true;
 		}
 
-		return hasEffect;
+		return pass == 0 ? hasEffect : false;
 	}
 
 	@Override
