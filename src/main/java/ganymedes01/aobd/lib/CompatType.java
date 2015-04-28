@@ -2,6 +2,7 @@ package ganymedes01.aobd.lib;
 
 import ganymedes01.aobd.recipes.RecipesModule;
 import ganymedes01.aobd.recipes.modules.AppliedEnergistics;
+import ganymedes01.aobd.recipes.modules.AuraCascade;
 import ganymedes01.aobd.recipes.modules.BuildCraftAdditions;
 import ganymedes01.aobd.recipes.modules.ElectricalAge;
 import ganymedes01.aobd.recipes.modules.EnderIO;
@@ -44,7 +45,8 @@ public enum CompatType {
 	STEAMCRAFT("Steamcraft", Steamcraft.class, "dust"),
 	BC_ADDITIONS("bcadditions", BuildCraftAdditions.class, "dust"),
 	ROTARYCRAFT("RotaryCraft", RotaryCraft.class),
-	ELECTRICAL_AGE("Eln", ElectricalAge.class, "dust");
+	ELECTRICAL_AGE("Eln", ElectricalAge.class, "dust"),
+	AURA_CASCADE("aura", AuraCascade.class, "dust");
 
 	final String modid;
 	final String[] prefixes;
