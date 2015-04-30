@@ -4,7 +4,6 @@
 	<classpathentry kind="src" path="src/main/resources"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/forge17"/>
-	<classpathentry kind="lib" path="libs/appliedenergistics2-rv1-stable-1.jar"/>
 	<classpathentry kind="lib" path="libs/Factorization-1.7.10-0.8.88.8.8888h.jar"/>
 	<classpathentry kind="lib" path="libs/Flaxbeard&apos;sSteamPower-1.7.10-0.28.5.jar"/>
 	<classpathentry kind="lib" path="libs/Ganys Nether-1.7.8.jar"/>
@@ -17,5 +16,6 @@
 	<classpathentry kind="lib" path="libs/DragonAPI 1.7.10 V5c.jar"/>
 	<classpathentry kind="lib" path="libs/RotaryCraft 1.7.10 V5c.jar"/>
 	<classpathentry kind="lib" path="libs/ElectricalAge_BETA-1.9_r46.jar"/>
+	<classpathentry kind="lib" path="libs/appliedenergistics2-rv2-beta-30.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
