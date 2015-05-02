@@ -2,7 +2,6 @@
 <classpath>
 	<classpathentry kind="src" path="src/main/java"/>
 	<classpathentry kind="src" path="src/main/resources"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/forge17"/>
 	<classpathentry kind="lib" path="libs/Factorization-1.7.10-0.8.88.8.8888h.jar"/>
 	<classpathentry kind="lib" path="libs/Flaxbeard&apos;sSteamPower-1.7.10-0.28.5.jar"/>
