@@ -7,4 +7,6 @@ import java.util.Collection;
 public interface IAOBDAddon {
 
 	void receiveOreList(Collection<Ore> ores);
+
+	void notifyColourCreation();
 }

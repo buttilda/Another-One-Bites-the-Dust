@@ -18,4 +18,9 @@ public class AOBDAddonManager {
 		for (IAOBDAddon addon : addons)
 			addon.receiveOreList(ores);
 	}
+
+	public static void notifyColourCreation() {
+		for (IAOBDAddon addon : addons)
+			addon.notifyColourCreation();
+	}
 }

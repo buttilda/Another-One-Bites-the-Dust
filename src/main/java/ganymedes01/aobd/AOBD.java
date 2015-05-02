@@ -1,5 +1,6 @@
 package ganymedes01.aobd;
 
+import ganymedes01.aobd.api.AOBDAddonManager;
 import ganymedes01.aobd.configuration.ConfigHandler;
 import ganymedes01.aobd.items.AOBDItem;
 import ganymedes01.aobd.lib.CompatType;
@@ -96,6 +97,9 @@ public class AOBD {
 			// Set the colours of the RotaryCraft related items
 			if (CompatType.ROTARYCRAFT.isEnabled())
 				RotaryCraft.setOresColour();
+
+			// Tell add-ons to create their colours
+			AOBDAddonManager.notifyColourCreation();
 		}
 	}
 
