@@ -43,8 +43,8 @@ public class Mekanism extends RecipesModule {
 	@Override
 	public void initOre(Ore ore) {
 		String name = ore.name();
-		OreGas clean = new OreGasAOBD(name, "clean" + name, "oregas." + name.toLowerCase());
-		OreGas slurry = new OreGasAOBD(name, name, "oregas." + name.toLowerCase()).setCleanGas(clean);
+		OreGas clean = new OreGasAOBD(ore, "clean" + name, "oregas." + name.toLowerCase());
+		OreGas slurry = new OreGasAOBD(ore, name, "oregas." + name.toLowerCase()).setCleanGas(clean);
 		gasList.add(slurry);
 
 		for (ItemStack stack : OreDictionary.getOres("ore" + name))
@@ -145,22 +145,33 @@ public class Mekanism extends RecipesModule {
 
 	private static class OreGasAOBD extends OreGas {
 
-		private final String ore;
+		private final Ore ore;
+		private final String name;
+
+		public OreGasAOBD(Ore ore, String s, String name) {
+			super(s, name);
+			this.name = null;
+			this.ore = ore;
+			GasRegistry.register(this);
+		}
 
 		public OreGasAOBD(String ore, String s, String name) {
 			super(s, name);
-			this.ore = ore;
+			this.ore = null;
+			this.name = ore;
 			GasRegistry.register(this);
 		}
 
 		@Override
 		public String getLocalizedName() {
-			return String.format(StatCollector.translateToLocal("gas.aobd." + (isClean() ? "clean" : "dirty") + ".name"), ore);
+			String fullName = String.format(StatCollector.translateToLocal("gas.aobd." + (isClean() ? "clean" : "dirty") + ore.name() + ".name"), ore);
+			String shortName = String.format(StatCollector.translateToLocal("gas.aobd." + (isClean() ? "clean" : "dirty") + ".name"), ore);
+			return StatCollector.canTranslate(fullName) ? StatCollector.translateToLocal(fullName) : String.format(StatCollector.translateToLocal(shortName), name != null ? name : ore.translatedName());
 		}
 
 		@Override
 		public String getOreName() {
-			return String.format(StatCollector.translateToLocal("gas.aobd.ore.name"), ore);
+			return String.format(StatCollector.translateToLocal("gas.aobd.ore.name"), name != null ? name : ore.translatedName());
 		}
 	}
 }
