@@ -164,8 +164,8 @@ public class Mekanism extends RecipesModule {
 
 		@Override
 		public String getLocalizedName() {
-			String fullName = String.format(StatCollector.translateToLocal("gas.aobd." + (isClean() ? "clean" : "dirty") + (ore != null ? ore.name() : name) + ".name"), ore);
-			String shortName = String.format(StatCollector.translateToLocal("gas.aobd." + (isClean() ? "clean" : "dirty") + ".name"), ore != null ? ore : name);
+			String fullName = "gas.aobd." + (isClean() ? "clean" : "dirty") + (ore != null ? ore.name() : name) + ".name";
+			String shortName = "gas.aobd." + (isClean() ? "clean" : "dirty") + ".name";
 			return StatCollector.canTranslate(fullName) ? StatCollector.translateToLocal(fullName) : String.format(StatCollector.translateToLocal(shortName), name != null ? name : ore.translatedName());
 		}
 
