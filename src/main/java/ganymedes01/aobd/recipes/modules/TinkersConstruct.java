@@ -37,12 +37,21 @@ public class TinkersConstruct extends RecipesModule {
 
 	@Override
 	public void initOre(Ore ore) {
+		String fluidName = ore.name().toLowerCase();
+		if ("yellorium".equals(fluidName))
+			fluidName = "aobdYellorium";
+
 		Fluid fluid;
-		if ((fluid = FluidRegistry.getFluid(ore.name().toLowerCase())) == null) {
+		if ((fluid = FluidRegistry.getFluid(fluidName)) == null) {
 			fluid = new MoltenMetal(ore);
 			FluidRegistry.registerFluid(fluid);
 		}
 		int temp = (int) ore.energy(600);
+
+		int blockLiquidValue = TConstruct.blockLiquidValue;
+		int oreLiquidValue = TConstruct.oreLiquidValue;
+		int ingotLiquidValue = TConstruct.ingotLiquidValue;
+		int nuggetLiquidValue = TConstruct.nuggetLiquidValue;
 
 		ItemStack block = null;
 		for (ItemStack b : OreDictionary.getOres("block" + ore.name()))
@@ -53,19 +62,19 @@ public class TinkersConstruct extends RecipesModule {
 			throw new RuntimeException("Couldn't find a block" + ore.name() + " that was actually a block. This error should not happen. Please report it!");
 
 		// Block
-		addMeltingRecipe(block, temp, new FluidStack(fluid, TConstruct.blockLiquidValue));
-		TConstructRegistry.getBasinCasting().addCastingRecipe(block, new FluidStack(fluid, TConstruct.blockLiquidValue), 50);
+		addMeltingRecipe(block, temp, new FluidStack(fluid, blockLiquidValue));
+		TConstructRegistry.getBasinCasting().addCastingRecipe(block, new FluidStack(fluid, blockLiquidValue), 50);
 
 		// Ore
-		addMeltingRecipe(getOreStack("ore", ore), temp, new FluidStack(fluid, TConstruct.oreLiquidValue));
+		addMeltingRecipe(getOreStack("ore", ore), temp, new FluidStack(fluid, oreLiquidValue));
 
 		// Ingot
-		Smeltery.addMelting(getOreStack("ingot", ore), Block.getBlockFromItem(block.getItem()), block.getItemDamage(), temp, new FluidStack(fluid, TConstruct.ingotLiquidValue));
-		TConstructRegistry.getTableCasting().addCastingRecipe(getOreStack("ingot", ore), new FluidStack(fluid, TConstruct.ingotLiquidValue), new ItemStack(TinkerSmeltery.metalPattern), 50);
+		Smeltery.addMelting(getOreStack("ingot", ore), Block.getBlockFromItem(block.getItem()), block.getItemDamage(), temp, new FluidStack(fluid, ingotLiquidValue));
+		TConstructRegistry.getTableCasting().addCastingRecipe(getOreStack("ingot", ore), new FluidStack(fluid, ingotLiquidValue), new ItemStack(TinkerSmeltery.metalPattern), 50);
 
 		// Others
-		tryAddRecipeForItem("nugget", ore, block, fluid, temp, TConstruct.nuggetLiquidValue);
-		tryAddRecipeForItem("dust", ore, block, fluid, temp, TConstruct.ingotLiquidValue);
+		tryAddRecipeForItem("nugget", ore, block, fluid, temp, nuggetLiquidValue);
+		tryAddRecipeForItem("dust", ore, block, fluid, temp, ingotLiquidValue);
 		if (block.getItem() instanceof AOBDItemBlock) { // Avoid adding duplicate recipes this way
 			GameRegistry.addRecipe(new ShapedOreRecipe(block, "xxx", "xxx", "xxx", 'x', "ingot" + ore.name()));
 			GameRegistry.addRecipe(new ShapelessOreRecipe(getOreStack("ingot", ore, 9), "block" + ore.name()));
