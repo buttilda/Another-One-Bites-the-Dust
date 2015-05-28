@@ -3,7 +3,7 @@
   "modid": "aobd",
   "name": "Another One Bites The Dust",
   "description": "AOBD dynamically finds all the ores and ingots added by any mod and makes them processable in IC2, EnderIO, RailCraft, Mekanism, Thermal Expansion, Thaumcraft, UltraTech, Factorization, RandomAdditions and Gany's Nether machines!",
-  "version": "2.6.2",
+  "version": "2.6.3",
   "mcversion":"1.7.10",
   "url": "",
   "updateUrl": "",
