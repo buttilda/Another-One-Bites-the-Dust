@@ -74,9 +74,12 @@ public class TinkersConstruct extends RecipesModule {
 		Smeltery.addMelting(getOreStack("ingot", ore), Block.getBlockFromItem(block.getItem()), block.getItemDamage(), temp, new FluidStack(fluid, ingotLiquidValue));
 		TConstructRegistry.getTableCasting().addCastingRecipe(getOreStack("ingot", ore), new FluidStack(fluid, ingotLiquidValue), new ItemStack(TinkerSmeltery.metalPattern), 50);
 
+		// Nugget
+		tryAddMelting("nugget", ore, block, fluid, temp, nuggetLiquidValue);
+		tryAddCasting("nugget", ore, new FluidStack(fluid, nuggetLiquidValue), 27);
+
 		// Others
-		tryAddRecipeForItem("nugget", ore, block, fluid, temp, nuggetLiquidValue);
-		tryAddRecipeForItem("dust", ore, block, fluid, temp, ingotLiquidValue);
+		tryAddMelting("dust", ore, block, fluid, temp, ingotLiquidValue);
 		if (block.getItem() instanceof AOBDItemBlock) { // Avoid adding duplicate recipes this way
 			GameRegistry.addRecipe(new ShapedOreRecipe(block, "xxx", "xxx", "xxx", 'x', "ingot" + ore.name()));
 			GameRegistry.addRecipe(new ShapelessOreRecipe(getOreStack("ingot", ore, 9), "block" + ore.name()));
@@ -90,9 +93,16 @@ public class TinkersConstruct extends RecipesModule {
 			Smeltery.addMelting(input, Blocks.iron_block, 0, temp, output);
 	}
 
-	private void tryAddRecipeForItem(String prefix, Ore ore, ItemStack block, Fluid fluid, int temp, int fluidAmount) {
+	private void tryAddMelting(String prefix, Ore ore, ItemStack block, Fluid fluid, int temp, int fluidAmount) {
 		try {
 			Smeltery.addMelting(getOreStack(prefix, ore), Block.getBlockFromItem(block.getItem()), block.getItemDamage(), temp, new FluidStack(fluid, fluidAmount));
+		} catch (NullPointerException e) {
+		}
+	}
+
+	private void tryAddCasting(String prefix, Ore ore, FluidStack fluid, int patternMeta) {
+		try {
+			TConstructRegistry.getTableCasting().addCastingRecipe(getOreStack(prefix, ore), fluid, new ItemStack(TinkerSmeltery.metalPattern, 1, patternMeta), 50);
 		} catch (NullPointerException e) {
 		}
 	}
