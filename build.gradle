@@ -22,7 +22,7 @@ group = "ganymedes01.aobd"
 archivesBaseName = "AOBD"
 
 minecraft {
-    version = "1.7.10-10.13.3.1395-1710ls"
+    version = "1.7.10-10.13.4.1448-1.7.10"
     assetDir = "eclipse/assets"
 }
 
