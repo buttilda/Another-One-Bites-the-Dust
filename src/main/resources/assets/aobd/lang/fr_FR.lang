@@ -1,20 +1,27 @@
+# Metals
+metal.aobd.fzdarkiron.name=Fer sombre
+metal.aobd.heeendium.name=Endium
+metal.aobd.elntungsten.name=Tungstène
+
 # Item
 item.aobd.dust.name=Poudre de %s
-item.aobd.crushed.name=Minerai Broyé de %s
-item.aobd.crushedPurified.name=Minerai Broyé de %s Purifié 
-item.aobd.dustTiny.name=Petit Tas de Poudre de %s
+item.aobd.crushed.name=Minerai broyé de %s
+item.aobd.crushedPurified.name=Minerai broyé de %s purifié 
+item.aobd.dustTiny.name=Petit tas de poudre de %s
 item.aobd.cluster.name=Amas inné de %s
-item.aobd.dirtyGravel.name=Gravier de %s Sale
-item.aobd.cleanGravel.name=Gravier de %s Propre
+item.aobd.dirtyGravel.name=Gravier de %s sale
+item.aobd.cleanGravel.name=Gravier de %s propre
 item.aobd.reduced.name=Morceaux réduits de %s
-item.aobd.crystalline.name=%s Cristallin
+item.aobd.crystalline.name=%s cristallin
 item.aobd.clump.name=Tesson de %s
 item.aobd.shard.name=Eclat de %s
-item.aobd.dustDirty.name=Poudre Sale de %s
+item.aobd.dustDirty.name=Poudre sale de %s
 item.aobd.crystal.name=Cristal de %s
 item.aobd.chunk.name=Eclat de %s
 item.aobd.nugget.name=Pépite de %s
 item.aobd.ore.name=Minerai de %s
+item.aobd.ground.name=Minerai de %s broyé
+item.aobd.dustImpure.name=Poudre impure de %s
 
 # Blocks
 tile.aobd.block.name=Bloc de %s
@@ -23,7 +30,7 @@ tile.aobd.block.name=Bloc de %s
 fluid.aobd.moltenMetal.name=%s Fondu
 
 # Gas
-gas.aobd.clean.name=Pâte Propre de %s
+gas.aobd.clean.name=Pâte propre de %s
 gas.aobd.dirty.name=Pâte de %s
 gas.aobd.ore.name=Minerai de %s
 
@@ -34,4 +41,4 @@ itemGroup.aobd=AOBD
 tc.research_category.AOBD=AOBD
 tc.research_name.PUREORE=Purification de Minerai
 tc.research_text.PUREORE=Purifiez tous les Minerais
-tc.research_page.PUREORE.1=Les Amas innés sont de rares concentrations de métaux dans leur forme les plus rares. Vous avez découvert une façon de purifié et de concentré des minerais normaux en Amas innés.<BR>Quand ces amas sont cuits, ils produisent le double de la quantité normal de lingots.
+tc.research_page.PUREORE.1=Les Amas innés sont de rares concentrations de métaux dans leurs formes les plus rares. Vous avez découvert une façon de purifier et de concentrer des minerais normaux en Amas innés.<BR>Quand ces amas sont cuits, ils produisent le double de la quantité normale de lingots.
