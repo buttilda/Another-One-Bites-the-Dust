@@ -6,6 +6,7 @@ import ganymedes01.aobd.recipes.modules.AuraCascade;
 import ganymedes01.aobd.recipes.modules.BuildCraftAdditions;
 import ganymedes01.aobd.recipes.modules.ElectricalAge;
 import ganymedes01.aobd.recipes.modules.EnderIO;
+import ganymedes01.aobd.recipes.modules.EngineersToolbox;
 import ganymedes01.aobd.recipes.modules.Factorization;
 import ganymedes01.aobd.recipes.modules.GanysNether;
 import ganymedes01.aobd.recipes.modules.Hydraulicraft;
@@ -46,7 +47,8 @@ public enum CompatType {
 	BC_ADDITIONS("bcadditions", BuildCraftAdditions.class, "dust"),
 	ROTARYCRAFT("RotaryCraft", RotaryCraft.class),
 	ELECTRICAL_AGE("Eln", ElectricalAge.class, "dust"),
-	AURA_CASCADE("aura", AuraCascade.class, "dust");
+	AURA_CASCADE("aura", AuraCascade.class, "dust"),
+	ENGINEERS_TOOLBOX("eng_toolbox", EngineersToolbox.class, "ground", "dustImpure", "dust");
 
 	final String modid;
 	final String[] prefixes;

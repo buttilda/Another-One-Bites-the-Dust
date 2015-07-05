@@ -20,6 +20,8 @@ item.aobd.crystal.name=%s Crystal
 item.aobd.chunk.name=%s Chunk
 item.aobd.nugget.name=%s Nugget
 item.aobd.ore.name=%s Ore
+item.aobd.ground.name=Ground %s Ore
+item.aobd.dustImpure.name=Impure %s Dust
 
 # Blocks
 tile.aobd.block.name=%s Block
