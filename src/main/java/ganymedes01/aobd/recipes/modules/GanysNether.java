@@ -5,6 +5,9 @@ import ganymedes01.aobd.ore.Ore;
 import ganymedes01.aobd.recipes.RecipesModule;
 import ganymedes01.ganysnether.recipes.MagmaticCentrifugeRecipes;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.oredict.ShapedOreRecipe;
+import net.minecraftforge.oredict.ShapelessOreRecipe;
+import cpw.mods.fml.common.registry.GameRegistry;
 
 public class GanysNether extends RecipesModule {
 
@@ -19,5 +22,7 @@ public class GanysNether extends RecipesModule {
 		ItemStack nugget = getOreStackExtra("nugget", ore);
 
 		MagmaticCentrifugeRecipes.INSTANCE.addRecipe("ore" + name, "ore" + name, ingot, ingot, ingot, nugget);
+		GameRegistry.addRecipe(new ShapedOreRecipe(getOreStack("ingot", ore), "xxx", "xxx", "xxx", 'x', "nugget" + name));
+		GameRegistry.addRecipe(new ShapelessOreRecipe(getOreStack("nugget", ore, 9), "ingot" + name));
 	}
 }
