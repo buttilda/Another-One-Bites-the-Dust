@@ -3,7 +3,7 @@ package ganymedes01.aobd.recipes.modules;
 import ganymedes01.aobd.lib.CompatType;
 import ganymedes01.aobd.ore.Ore;
 import ganymedes01.aobd.recipes.RecipesModule;
-import blusunrize.immersiveengineering.api.CrusherRecipe;
+import blusunrize.immersiveengineering.api.tool.CrusherRecipe;
 
 public class ImmersiveEngineering extends RecipesModule {
 
