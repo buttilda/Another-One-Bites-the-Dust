@@ -39,4 +39,18 @@ public class Hydraulicraft extends RecipesModule {
 		nbt.setFloat("pressureRatio", pressureRatio);
 		FMLInterModComms.sendMessage("HydCraft", "registerWashingRecipe", nbt);
 	}
+	// @Override
+	// public void initOre(Ore ore) {
+	// addCrushingRecipe("ore" + ore.name(), getOreStack("chunk", ore, 2), 1.0F);
+	// addCrushingRecipe("ingot" + ore.name(), getOreStack("dust", ore), 0.5F);
+	// addWashingRecipe("chunk" + ore.name(), getOreStack("dust", ore), 400F);
+	// }
+	//
+	// private void addCrushingRecipe(String input, ItemStack output, float pressureRatio) {
+	// HydraulicRecipes.INSTANCE.addCrushingRecipe(new FluidShapelessOreRecipe(output, input).setPressure(pressureRatio).setCraftingTime(200));
+	// }
+	//
+	// private void addWashingRecipe(String input, ItemStack output, float pressureRatio) {
+	// HydraulicRecipes.INSTANCE.addWasherRecipe(new FluidShapelessOreRecipe(output, input).addFluidInput(new FluidStack(FluidRegistry.WATER, 1000)).setCraftingTime(200));
+	// }
 }
