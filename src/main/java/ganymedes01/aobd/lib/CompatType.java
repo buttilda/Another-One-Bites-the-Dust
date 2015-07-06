@@ -10,6 +10,7 @@ import ganymedes01.aobd.recipes.modules.EngineersToolbox;
 import ganymedes01.aobd.recipes.modules.Factorization;
 import ganymedes01.aobd.recipes.modules.GanysNether;
 import ganymedes01.aobd.recipes.modules.Hydraulicraft;
+import ganymedes01.aobd.recipes.modules.ImmersiveEngineering;
 import ganymedes01.aobd.recipes.modules.IndustrialCraft;
 import ganymedes01.aobd.recipes.modules.Mekanism;
 import ganymedes01.aobd.recipes.modules.ModularSystems;
@@ -48,7 +49,8 @@ public enum CompatType {
 	ROTARYCRAFT("RotaryCraft", RotaryCraft.class),
 	ELECTRICAL_AGE("Eln", ElectricalAge.class, "dust"),
 	AURA_CASCADE("aura", AuraCascade.class, "dust"),
-	ENGINEERS_TOOLBOX("eng_toolbox", EngineersToolbox.class, "ground", "dustImpure", "dust");
+	ENGINEERS_TOOLBOX("eng_toolbox", EngineersToolbox.class, "ground", "dustImpure", "dust"),
+	IMMERSIVE_ENGINEERING("ImmersiveEngineering", ImmersiveEngineering.class, "dust");
 
 	final String modid;
 	final String[] prefixes;

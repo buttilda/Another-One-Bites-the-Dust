@@ -17,5 +17,6 @@
 	<classpathentry kind="lib" path="libs/ElectricalAge_BETA-1.9_r46.jar"/>
 	<classpathentry kind="lib" path="libs/appliedenergistics2-rv2-beta-30.jar"/>
 	<classpathentry kind="lib" path="libs/EngineersToolbox-1.2.2.0-BETA.jar"/>
+	<classpathentry kind="lib" path="libs/ImmersiveEngineering-0.3.3.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
