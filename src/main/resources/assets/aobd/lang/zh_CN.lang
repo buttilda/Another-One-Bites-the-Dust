@@ -1,13 +1,50 @@
 # Item
+metal.aobd.fzdarkiron.name=玄铁
+metal.aobd.heeendium.name=末金
+metal.aobd.elntungsten.name=钨
+metal.aobd.platinum.name=铂
+metal.aobd.silver.name=银
+metal.aobd.lead.name=铅
+metal.aobd.osmium.name=锇
+metal.aobd.nickel.name=镍
+metal.aobd.aluminum.name=铝
+metal.aobd.Ardite.name=阿迪特
+metal.aobd.Cobalt.name=钴
+metal.aobd.eximite.name=虚空
+metal.aobd.meutoite.name=龙魂石
+metal.aobd.prometheum.name=幻金
+metal.aobd.deepiron.name=深铁
+metal.aobd.infuscolium.name=魔金
+metal.aobd.oureclase.name=地晶
+metal.aobd.astralsilver.name=星银
+metal.aobd.carmot.name=耀金
+metal.aobd.mithril.name=秘银
+metal.aobd.rubracium.name=褐铜
+metal.aobd.orichalcum.name=奥利哈尔钢
+metal.aobd.adamantine.name=精金
+metal.aobd.atlarus.name=金钻
+metal.aobd.ignatius.name=伊格内休斯
+metal.aobd.shadowiron.name=暗影铁
+metal.aobd.lemurite.name=利莫利亚
+metal.aobd.midasium.name=溶火金
+metal.aobd.vyroxeres.name=幽冥剧毒晶
+metal.aobd.ceruclase.name=暗影秘银
+metal.aobd.alduorite.name=神秘蓝金
+metal.aobd.kalendrite.name=幽冥魂
+metal.aobd.vulcanite.name=熔岩结晶
+metal.aobd.sanguinite.name=狱炎
+metal.aobd.zinc.name=锌
+metal.aobd.yellorium.name=黄铀
+
 item.aobd.dust.name=%s粉
 item.aobd.crushed.name=粉碎%s矿石
 item.aobd.crushedPurified.name=纯净的粉碎%s矿石
 item.aobd.dustTiny.name=小撮%s粉
 item.aobd.cluster.name=纯净的%s矿簇
-item.aobd.dirtyGravel.name=污浊的%s砾石
-item.aobd.cleanGravel.name=纯净的%s砾石
+item.aobd.dirtyGravel.name=污浊的%s矿渣
+item.aobd.cleanGravel.name=干净的%s矿渣
 item.aobd.reduced.name=还原%s块
-item.aobd.crystalline.name=结晶质%s
+item.aobd.crystalline.name=晶化%s
 item.aobd.clump.name=%s碎块
 item.aobd.shard.name=%s碎片
 item.aobd.dustDirty.name=污浊的%s粉
@@ -15,11 +52,19 @@ item.aobd.crystal.name=%s晶体
 item.aobd.chunk.name=%块
 item.aobd.nugget.name=%s粒
 item.aobd.ore.name=%s矿石
+item.aobd.ground.name=磨碎%s矿石
+item.aobd.dustImpure.name=不纯%s粉
+
+# Blocks
+tile.aobd.block.name=%s方块
+
+# Fluids
+fluid.aobd.moltenMetal.name=熔融%s
 
 # Gas
 gas.aobd.clean.name=纯净的%s浆液
 gas.aobd.dirty.name=%s浆液
-gas.aobd.ore.name=%s矿石
+gas.aobd.ore.name=%s矿
 
 # Creative Tab
 itemGroup.aobd=AOBD
