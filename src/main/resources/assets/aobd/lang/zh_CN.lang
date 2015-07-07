@@ -4,10 +4,10 @@ item.aobd.crushed.name=粉碎%s矿石
 item.aobd.crushedPurified.name=纯净的粉碎%s矿石
 item.aobd.dustTiny.name=小撮%s粉
 item.aobd.cluster.name=纯净的%s矿簇
-item.aobd.dirtyGravel.name=污浊的%s砾石
-item.aobd.cleanGravel.name=纯净的%s砾石
+item.aobd.dirtyGravel.name=污浊的%s矿渣
+item.aobd.cleanGravel.name=干净的%s矿渣
 item.aobd.reduced.name=还原%s块
-item.aobd.crystalline.name=结晶质%s
+item.aobd.crystalline.name=晶化%s
 item.aobd.clump.name=%s碎块
 item.aobd.shard.name=%s碎片
 item.aobd.dustDirty.name=污浊的%s粉
@@ -19,7 +19,7 @@ item.aobd.ore.name=%s矿石
 # Gas
 gas.aobd.clean.name=纯净的%s浆液
 gas.aobd.dirty.name=%s浆液
-gas.aobd.ore.name=%s矿石
+gas.aobd.ore.name=%s矿
 
 # Creative Tab
 itemGroup.aobd=AOBD
