@@ -15,6 +15,14 @@ item.aobd.crystal.name=%s晶体
 item.aobd.chunk.name=%块
 item.aobd.nugget.name=%s粒
 item.aobd.ore.name=%s矿石
+item.aobd.ground.name=磨碎%s矿石
+item.aobd.dustImpure.name=不纯%s粉
+
+# Blocks
+tile.aobd.block.name=%s方块
+
+# Fluids
+fluid.aobd.moltenMetal.name=熔融%s
 
 # Gas
 gas.aobd.clean.name=纯净的%s浆液
