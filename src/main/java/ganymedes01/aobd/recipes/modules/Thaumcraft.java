@@ -1,5 +1,6 @@
 package ganymedes01.aobd.recipes.modules;
 
+import ganymedes01.aobd.items.AOBDItem;
 import ganymedes01.aobd.lib.CompatType;
 import ganymedes01.aobd.lib.Reference;
 import ganymedes01.aobd.ore.Ore;
@@ -11,6 +12,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.oredict.OreDictionary;
+import net.minecraftforge.oredict.ShapedOreRecipe;
+import net.minecraftforge.oredict.ShapelessOreRecipe;
 import thaumcraft.api.ThaumcraftApi;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.AspectList;
@@ -39,6 +42,12 @@ public class Thaumcraft extends RecipesModule {
 		}
 		GameRegistry.addSmelting(cluster, getOreStack("ingot", ore, 2), 0.2F);
 		ThaumcraftApi.addSmeltingBonus(cluster, getOreStack("nugget", ore, 0));
+
+		ItemStack nugget = getOreStack("nugget", ore, 9);
+		if (nugget.getItem() instanceof AOBDItem) { // Only add recipes if the nugget was created by AOBD
+			GameRegistry.addRecipe(new ShapedOreRecipe(getOreStack("ingot", ore), "xxx", "xxx", "xxx", 'x', "nugget" + ore.name()));
+			GameRegistry.addRecipe(new ShapelessOreRecipe(nugget, "ingot" + ore.name()));
+		}
 	}
 
 	@Override
