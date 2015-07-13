@@ -2,6 +2,7 @@
 metal.aobd.fzdarkiron.name=玄铁
 metal.aobd.heeendium.name=末金
 metal.aobd.elntungsten.name=钨
+metal.aobd.tungsten.name=钨
 metal.aobd.platinum.name=铂
 metal.aobd.silver.name=银
 metal.aobd.lead.name=铅
@@ -22,6 +23,7 @@ metal.aobd.mithril.name=秘银
 metal.aobd.rubracium.name=褐铜
 metal.aobd.orichalcum.name=奥利哈尔钢
 metal.aobd.adamantine.name=精金
+metal.aobd.adamantium.name=精金
 metal.aobd.atlarus.name=金钻
 metal.aobd.ignatius.name=伊格内休斯
 metal.aobd.shadowiron.name=暗影铁
@@ -35,6 +37,11 @@ metal.aobd.vulcanite.name=熔岩结晶
 metal.aobd.sanguinite.name=狱炎
 metal.aobd.zinc.name=锌
 metal.aobd.yellorium.name=黄铀
+metal.aobd.uranium.name=铀
+metal.aobd.nikolite.name=蓝石
+metal.aobd.steel.name=钢
+metal.aobd.titanium.name=钛
+metal.aobd.rutile.name=金红石
 
 item.aobd.dust.name=%s粉
 item.aobd.crushed.name=粉碎%s矿石
