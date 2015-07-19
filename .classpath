@@ -18,5 +18,6 @@
 	<classpathentry kind="lib" path="libs/appliedenergistics2-rv2-beta-30.jar"/>
 	<classpathentry kind="lib" path="libs/EngineersToolbox-1.2.2.0-BETA.jar"/>
 	<classpathentry kind="lib" path="libs/ImmersiveEngineering-0.4.0.jar"/>
+	<classpathentry kind="lib" path="libs/HydCraft-1.7.10-2.1.176-universal.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

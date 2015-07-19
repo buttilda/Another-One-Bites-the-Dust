@@ -3,10 +3,10 @@ package ganymedes01.aobd.recipes.modules;
 import ganymedes01.aobd.lib.CompatType;
 import ganymedes01.aobd.ore.Ore;
 import ganymedes01.aobd.recipes.RecipesModule;
+import k4unl.minecraft.Hydraulicraft.api.HCApi;
+import k4unl.minecraft.Hydraulicraft.api.recipes.FluidShapelessOreRecipe;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraftforge.oredict.OreDictionary;
-import cpw.mods.fml.common.event.FMLInterModComms;
+import cpw.mods.fml.common.registry.GameRegistry;
 
 public class Hydraulicraft extends RecipesModule {
 
@@ -16,41 +16,17 @@ public class Hydraulicraft extends RecipesModule {
 
 	@Override
 	public void initOre(Ore ore) {
-		for (ItemStack stack : OreDictionary.getOres("ore" + ore.name()))
-			addCrushingRecipe(stack, getOreStack("chunk", ore, 2), 1.0F);
-		for (ItemStack stack : OreDictionary.getOres("ingot" + ore.name()))
-			addCrushingRecipe(stack, getOreStack("dust", ore), 0.5F);
-		for (ItemStack stack : OreDictionary.getOres("chunk" + ore.name()))
-			addWashingRecipe(stack, getOreStack("dust", ore), 400F);
+		addCrushingRecipe("ore" + ore.name(), getOreStack("chunk", ore, 2), 1.0F);
+		addCrushingRecipe("ingot" + ore.name(), getOreStack("dust", ore), 0.5F);
+		addWashingRecipe("chunk" + ore.name(), getOreStack("dust", ore));
+		GameRegistry.addSmelting(getOreStack("chunk", ore), getOreStack("ingot", ore), (float) ore.energy(0.5F));
 	}
 
-	private void addCrushingRecipe(ItemStack input, ItemStack output, float pressureRatio) {
-		NBTTagCompound nbt = new NBTTagCompound();
-		nbt.setTag("itemFrom", input.writeToNBT(new NBTTagCompound()));
-		nbt.setTag("itemTo", output.writeToNBT(new NBTTagCompound()));
-		nbt.setFloat("pressureRatio", pressureRatio);
-		FMLInterModComms.sendMessage("HydCraft", "registerCrushingRecipe", nbt);
+	private void addCrushingRecipe(String input, ItemStack output, float pressureRatio) {
+		HCApi.getInstance().getRecipeHandler().addCrushingRecipe(new FluidShapelessOreRecipe(output, input).setPressure(pressureRatio).setCraftingTime(200));
 	}
 
-	private void addWashingRecipe(ItemStack input, ItemStack output, float pressureRatio) {
-		NBTTagCompound nbt = new NBTTagCompound();
-		nbt.setTag("itemFrom", input.writeToNBT(new NBTTagCompound()));
-		nbt.setTag("itemTo", output.writeToNBT(new NBTTagCompound()));
-		nbt.setFloat("pressureRatio", pressureRatio);
-		FMLInterModComms.sendMessage("HydCraft", "registerWashingRecipe", nbt);
+	private void addWashingRecipe(String input, ItemStack output) {
+		HCApi.getInstance().getRecipeHandler().addWasherRecipe(new FluidShapelessOreRecipe(output, input));
 	}
-	// @Override
-	// public void initOre(Ore ore) {
-	// addCrushingRecipe("ore" + ore.name(), getOreStack("chunk", ore, 2), 1.0F);
-	// addCrushingRecipe("ingot" + ore.name(), getOreStack("dust", ore), 0.5F);
-	// addWashingRecipe("chunk" + ore.name(), getOreStack("dust", ore), 400F);
-	// }
-	//
-	// private void addCrushingRecipe(String input, ItemStack output, float pressureRatio) {
-	// HydraulicRecipes.INSTANCE.addCrushingRecipe(new FluidShapelessOreRecipe(output, input).setPressure(pressureRatio).setCraftingTime(200));
-	// }
-	//
-	// private void addWashingRecipe(String input, ItemStack output, float pressureRatio) {
-	// HydraulicRecipes.INSTANCE.addWasherRecipe(new FluidShapelessOreRecipe(output, input).addFluidInput(new FluidStack(FluidRegistry.WATER, 1000)).setCraftingTime(200));
-	// }
 }
