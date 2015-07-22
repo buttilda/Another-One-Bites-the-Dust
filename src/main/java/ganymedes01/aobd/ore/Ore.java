@@ -32,7 +32,7 @@ public class Ore {
 	}
 
 	public static Ore newOre(String name) {
-		int e;
+		double e;
 		if (name.equals("Cobalt") || name.equals("Ardite") || name.equals("FzDarkIron"))
 			e = 3;
 		else if (name.equals("Osmium") || name.equals("Tungsten"))

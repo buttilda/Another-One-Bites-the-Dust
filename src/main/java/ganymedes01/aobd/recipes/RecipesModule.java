@@ -1,6 +1,7 @@
 package ganymedes01.aobd.recipes;
 
 import ganymedes01.aobd.lib.CompatType;
+import ganymedes01.aobd.lib.Reference;
 import ganymedes01.aobd.ore.Ore;
 import ganymedes01.aobd.ore.OreFinder;
 
@@ -11,12 +12,23 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
+import net.minecraft.util.IIcon;
+import net.minecraft.util.StatCollector;
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.oredict.OreDictionary;
 import cpw.mods.fml.common.registry.GameRegistry;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public abstract class RecipesModule {
+
+	@SideOnly(Side.CLIENT)
+	private static IIcon still, flow;
 
 	private final CompatType type;
 	private final List<String> blacklist;
@@ -126,5 +138,60 @@ public abstract class RecipesModule {
 
 	public CompatType type() {
 		return type;
+	}
+
+	protected Fluid getFluid(Ore ore) {
+		String fluidName = ore.name().toLowerCase();
+		if ("yellorium".equals(fluidName))
+			fluidName = "aobdYellorium";
+		Fluid fluid;
+		if ((fluid = FluidRegistry.getFluid(fluidName)) == null) {
+			fluid = new MoltenMetal(ore, fluidName);
+			FluidRegistry.registerFluid(fluid);
+		}
+		return fluid;
+	}
+
+	@SideOnly(Side.CLIENT)
+	public static void registerMoltenMetalIcons(TextureMap map) {
+		still = map.registerIcon(Reference.MOD_ID + ":fluid_still");
+		flow = map.registerIcon(Reference.MOD_ID + ":fluid_flow");
+	}
+
+	protected static class MoltenMetal extends Fluid {
+
+		private final Ore ore;
+
+		public MoltenMetal(Ore ore, String name) {
+			super(name);
+			this.ore = ore;
+		}
+
+		@Override
+		public IIcon getStillIcon() {
+			return still;
+		}
+
+		@Override
+		public IIcon getFlowingIcon() {
+			return flow;
+		}
+
+		@Override
+		public int getColor() {
+			return ore.colour();
+		}
+
+		@Override
+		public String getUnlocalizedName() {
+			return "fluid." + Reference.MOD_ID + "." + unlocalizedName;
+		}
+
+		@Override
+		public String getLocalizedName(FluidStack stack) {
+			String fullName = "fluid.aobd.molten" + ore.name() + ".name";
+			String shortName = "fluid.aobd.moltenMetal.name";
+			return StatCollector.canTranslate(fullName) ? StatCollector.translateToLocal(fullName) : String.format(StatCollector.translateToLocal(shortName), ore.translatedName());
+		}
 	}
 }

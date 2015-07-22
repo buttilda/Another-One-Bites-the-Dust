@@ -2,18 +2,13 @@ package ganymedes01.aobd.recipes.modules;
 
 import ganymedes01.aobd.items.AOBDItemBlock;
 import ganymedes01.aobd.lib.CompatType;
-import ganymedes01.aobd.lib.Reference;
 import ganymedes01.aobd.ore.Ore;
 import ganymedes01.aobd.recipes.RecipesModule;
 import net.minecraft.block.Block;
-import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
-import net.minecraft.util.StatCollector;
 import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
@@ -23,13 +18,8 @@ import tconstruct.library.TConstructRegistry;
 import tconstruct.library.crafting.Smeltery;
 import tconstruct.smeltery.TinkerSmeltery;
 import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class TinkersConstruct extends RecipesModule {
-
-	@SideOnly(Side.CLIENT)
-	private static IIcon still, flow;
 
 	public TinkersConstruct() {
 		super(CompatType.TINKERS_CONSTRUCT, "iron", "gold", "aluminium", "cobalt", "ardite", "platinum", "nickel", "silver", "lead", "copper", "tin", "steel", "endium");
@@ -37,15 +27,7 @@ public class TinkersConstruct extends RecipesModule {
 
 	@Override
 	public void initOre(Ore ore) {
-		String fluidName = ore.name().toLowerCase();
-		if ("yellorium".equals(fluidName))
-			fluidName = "aobdYellorium";
-
-		Fluid fluid;
-		if ((fluid = FluidRegistry.getFluid(fluidName)) == null) {
-			fluid = new MoltenMetal(ore, fluidName);
-			FluidRegistry.registerFluid(fluid);
-		}
+		Fluid fluid = getFluid(ore);
 
 		int temp = (int) ore.energy(600);
 
@@ -105,49 +87,6 @@ public class TinkersConstruct extends RecipesModule {
 		try {
 			TConstructRegistry.getTableCasting().addCastingRecipe(getOreStack(prefix, ore), fluid, new ItemStack(TinkerSmeltery.metalPattern, 1, patternMeta), 50);
 		} catch (NullPointerException e) {
-		}
-	}
-
-	@SideOnly(Side.CLIENT)
-	public static void registerIcons(TextureMap map) {
-		still = map.registerIcon(Reference.MOD_ID + ":fluid_still");
-		flow = map.registerIcon(Reference.MOD_ID + ":fluid_flow");
-	}
-
-	private static class MoltenMetal extends Fluid {
-
-		private final Ore ore;
-
-		public MoltenMetal(Ore ore, String name) {
-			super(name);
-			this.ore = ore;
-		}
-
-		@Override
-		public IIcon getStillIcon() {
-			return still;
-		}
-
-		@Override
-		public IIcon getFlowingIcon() {
-			return flow;
-		}
-
-		@Override
-		public int getColor() {
-			return ore.colour();
-		}
-
-		@Override
-		public String getUnlocalizedName() {
-			return "fluid." + Reference.MOD_ID + "." + unlocalizedName;
-		}
-
-		@Override
-		public String getLocalizedName(FluidStack stack) {
-			String fullName = "fluid.aobd.molten" + ore.name() + ".name";
-			String shortName = "fluid.aobd.moltenMetal.name";
-			return StatCollector.canTranslate(fullName) ? StatCollector.translateToLocal(fullName) : String.format(StatCollector.translateToLocal(shortName), ore.translatedName());
 		}
 	}
 }
