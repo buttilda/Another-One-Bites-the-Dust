@@ -38,13 +38,12 @@ public class TinkersConstruct extends RecipesModule {
 	@Override
 	public void initOre(Ore ore) {
 		String fluidName = ore.name().toLowerCase();
-		boolean isYellorium = "yellorium".equals(fluidName);
-		if (isYellorium)
+		if ("yellorium".equals(fluidName))
 			fluidName = "aobdYellorium";
 
 		Fluid fluid;
 		if ((fluid = FluidRegistry.getFluid(fluidName)) == null) {
-			fluid = isYellorium ? new MoltenMetal(ore, fluidName) : new MoltenMetal(ore);
+			fluid = new MoltenMetal(ore, fluidName);
 			FluidRegistry.registerFluid(fluid);
 		}
 
@@ -116,10 +115,6 @@ public class TinkersConstruct extends RecipesModule {
 	private static class MoltenMetal extends Fluid {
 
 		private final Ore ore;
-
-		public MoltenMetal(Ore ore) {
-			this(ore, ore.name().toLowerCase());
-		}
 
 		public MoltenMetal(Ore ore, String name) {
 			super(name);
