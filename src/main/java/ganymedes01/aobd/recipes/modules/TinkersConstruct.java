@@ -79,6 +79,8 @@ public class TinkersConstruct extends RecipesModule {
 
 		// Others
 		tryAddMelting("dust", ore, block, fluid, temp, ingotLiquidValue);
+		tryAddMelting("crushed", ore, block, fluid, temp, ingotLiquidValue); // Railcraft
+		tryAddMelting("cluster", ore, block, fluid, temp, 2 * ingotLiquidValue); // Thaumcraft
 		if (block.getItem() instanceof AOBDItemBlock) { // Avoid adding duplicate recipes this way
 			GameRegistry.addRecipe(new ShapedOreRecipe(block, "xxx", "xxx", "xxx", 'x', "ingot" + ore.name()));
 			GameRegistry.addRecipe(new ShapelessOreRecipe(getOreStack("ingot", ore, 9), "block" + ore.name()));
