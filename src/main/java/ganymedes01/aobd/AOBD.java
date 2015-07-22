@@ -7,9 +7,9 @@ import ganymedes01.aobd.lib.CompatType;
 import ganymedes01.aobd.lib.Reference;
 import ganymedes01.aobd.ore.OreFinder;
 import ganymedes01.aobd.recipes.ModulesHandler;
+import ganymedes01.aobd.recipes.RecipesModule;
 import ganymedes01.aobd.recipes.modules.Mekanism;
 import ganymedes01.aobd.recipes.modules.RotaryCraft;
-import ganymedes01.aobd.recipes.modules.TinkersConstruct;
 import ganymedes01.aobd.recipes.modules.UltraTech;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
@@ -110,9 +110,10 @@ public class AOBD {
 		if (CompatType.MEKANISM.isEnabled() && event.map.getTextureType() == 0)
 			Mekanism.registerIcons(event.map);
 
-		// Register icons for TiC's molten metals
-		if (CompatType.TINKERS_CONSTRUCT.isEnabled() && event.map.getTextureType() == 0)
-			TinkersConstruct.registerIcons(event.map);
+		// Register icons for molten metals
+		if (event.map.getTextureType() == 0)
+			if (CompatType.TINKERS_CONSTRUCT.isEnabled() || CompatType.MARICULTURE.isEnabled())
+				RecipesModule.registerMoltenMetalIcons(event.map);
 	}
 
 	@SideOnly(Side.CLIENT)
