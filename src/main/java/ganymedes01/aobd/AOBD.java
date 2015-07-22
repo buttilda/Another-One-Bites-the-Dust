@@ -10,7 +10,6 @@ import ganymedes01.aobd.recipes.ModulesHandler;
 import ganymedes01.aobd.recipes.RecipesModule;
 import ganymedes01.aobd.recipes.modules.Mekanism;
 import ganymedes01.aobd.recipes.modules.RotaryCraft;
-import ganymedes01.aobd.recipes.modules.UltraTech;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -55,9 +54,6 @@ public class AOBD {
 
 	@EventHandler
 	public void init(FMLInitializationEvent event) {
-		if (CompatType.ULTRA_TECH.isEnabled())
-			UltraTech.registerOres();
-
 		// Find ores
 		OreFinder.preInit();
 

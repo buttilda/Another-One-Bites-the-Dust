@@ -24,7 +24,6 @@ import ganymedes01.aobd.recipes.modules.Steamcraft;
 import ganymedes01.aobd.recipes.modules.Thaumcraft;
 import ganymedes01.aobd.recipes.modules.ThermalExpansion;
 import ganymedes01.aobd.recipes.modules.TinkersConstruct;
-import ganymedes01.aobd.recipes.modules.UltraTech;
 import cpw.mods.fml.common.Loader;
 
 public enum CompatType {
@@ -38,7 +37,6 @@ public enum CompatType {
 	FACTORISATION("factorization", Factorization.class, "crystalline", "cleanGravel", "reduced", "dirtyGravel"),
 	RANDOM_ADDITIONS("randomadditions", RandomAdditions.class, "dust"),
 	GANYS_NETHER("ganysnether", GanysNether.class, "nugget"),
-	ULTRA_TECH("UltraTech", UltraTech.class, "chunk", "dust"),
 	MODULAR_SYSTEMS("modularsystems", ModularSystems.class, "dust"),
 	NETHER_ORES("NetherOres", NetherOres.class, "ore"),
 	APPLIED_ENERGISTICS("appliedenergistics2", AppliedEnergistics.class, "dust"),
