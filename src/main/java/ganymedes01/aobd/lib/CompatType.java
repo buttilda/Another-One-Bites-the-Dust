@@ -12,6 +12,7 @@ import ganymedes01.aobd.recipes.modules.GanysNether;
 import ganymedes01.aobd.recipes.modules.Hydraulicraft;
 import ganymedes01.aobd.recipes.modules.ImmersiveEngineering;
 import ganymedes01.aobd.recipes.modules.IndustrialCraft;
+import ganymedes01.aobd.recipes.modules.Magneticraft;
 import ganymedes01.aobd.recipes.modules.Mariculture;
 import ganymedes01.aobd.recipes.modules.Mekanism;
 import ganymedes01.aobd.recipes.modules.ModularSystems;
@@ -50,7 +51,8 @@ public enum CompatType {
 	AURA_CASCADE("aura", AuraCascade.class, "dust"),
 	ENGINEERS_TOOLBOX("eng_toolbox", EngineersToolbox.class, "ground", "dustImpure", "dust"),
 	IMMERSIVE_ENGINEERING("ImmersiveEngineering", ImmersiveEngineering.class, "dust"),
-	MARICULTURE("Mariculture", Mariculture.class, "dust", "nugget", "block");
+	MARICULTURE("Mariculture", Mariculture.class, "dust", "nugget", "block"),
+	MAGNETICRAFT("Magneticraft", Magneticraft.class, "chunk", "dust", "sand");
 
 	final String modid;
 	final String[] prefixes;
