@@ -6,11 +6,11 @@ import ganymedes01.aobd.ore.Ore;
 import ganymedes01.aobd.ore.OreFinder;
 
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.item.ItemStack;
@@ -122,8 +122,8 @@ public abstract class RecipesModule {
 
 	@SuppressWarnings("unchecked")
 	protected void addSmeltingNoDupes(ItemStack input, ItemStack output, float xp) {
-		for (ItemStack stack : (Collection<ItemStack>) FurnaceRecipes.smelting().getSmeltingList().values())
-			if (areStacksTheSame(stack, output))
+		for (ItemStack stack : (Set<ItemStack>) FurnaceRecipes.smelting().getSmeltingList().keySet())
+			if (areStacksTheSame(stack, input))
 				return;
 		GameRegistry.addSmelting(input, output, xp);
 	}
