@@ -61,6 +61,7 @@ item.aobd.nugget.name=%s粒
 item.aobd.ore.name=%s矿石
 item.aobd.ground.name=磨碎%s矿石
 item.aobd.dustImpure.name=不纯%s粉
+item.aobd.sand.name=%s矿砂
 
 # Blocks
 tile.aobd.block.name=%s方块
