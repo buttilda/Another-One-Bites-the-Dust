@@ -52,7 +52,7 @@ public enum CompatType {
 	ENGINEERS_TOOLBOX("eng_toolbox", EngineersToolbox.class, "ground", "dustImpure", "dust"),
 	IMMERSIVE_ENGINEERING("ImmersiveEngineering", ImmersiveEngineering.class, "dust"),
 	MARICULTURE("Mariculture", Mariculture.class, "dust", "nugget", "block"),
-	MAGNETICRAFT("Magneticraft", Magneticraft.class, "chunk", "dust", "sand");
+	MAGNETICRAFT("Magneticraft", Magneticraft.class, "chunk", "dust", "rubble", "pebbles");
 
 	final String modid;
 	final String[] prefixes;

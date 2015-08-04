@@ -22,7 +22,8 @@ item.aobd.nugget.name=%s Nugget
 item.aobd.ore.name=%s Ore
 item.aobd.ground.name=Ground %s Ore
 item.aobd.dustImpure.name=Impure %s Dust
-item.aobd.sand.name=%s Sand Ore
+item.aobd.rubble.name=%s Rubble
+item.aobd.pebbles.name=%s Pebbles
 
 # Blocks
 tile.aobd.block.name=%s Block

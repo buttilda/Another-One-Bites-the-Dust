@@ -11,17 +11,25 @@ import com.cout970.magneticraft.api.acces.MgRecipeRegister;
 public class Magneticraft extends RecipesModule {
 
 	public Magneticraft() {
-		super(CompatType.MAGNETICRAFT, "iron", "gold", "copper", "thorium", "uranium", "silver", "tin", "lead", "aluminium", "zinc", "nickel", "titanium", "tungsten", "sulfur");
+		super(CompatType.MAGNETICRAFT, "aluminium", "aluminum", "ardite", "bismuth", "chromium", "cobalt", "copper", "gold", "iridium", "iron", "lead", "lithium", "manganese", "mithril", "zinc", "nickel", "nickel", "osmium", "platinum", "silver", "thorium", "tin", "titanium", "tungsten", "uranium", "zinc", "sulfur");
 	}
 
 	@Override
 	public void initOre(Ore ore) {
 		for (ItemStack stack : OreDictionary.getOres("ore" + ore.name()))
-			MgRecipeRegister.registerCrusherRecipe(stack, getOreStack("chunk", ore), getOreStackExtra("dust", ore), 5, null, 0);
+			MgRecipeRegister.registerCrusherRecipe(stack, getOreStack("chunk", ore), getOreStack("dust", ore), 0.05F, getOreStackExtra("dust", ore), 0.05F);
 		for (ItemStack stack : OreDictionary.getOres("chunk" + ore.name())) {
-			MgRecipeRegister.registerGrinderRecipe(stack, getOreStack("sand", ore), getOreStackExtra("dust", ore), 0.05F, null, 0);
-			addSmeltingNoDupes(stack, getOreStack("ingot", ore), 0.0F);
+			MgRecipeRegister.registerGrinderRecipe(stack, getOreStack("rubble", ore), getOreStack("dust", ore), 0.05F, getOreStackExtra("dust", ore), 0.05F);
+			addSmeltingNoDupes(stack, getOreStack("ingot", ore, 2), 0.0F);
 		}
-		addSmeltingNoDupes(getOreStack("sand", ore), getOreStack("ingot", ore, 2), 0.0F);
+		for (ItemStack stack : OreDictionary.getOres("rubble" + ore.name())) {
+			MgRecipeRegister.registerGrinderRecipe(stack, getOreStack("pebbles", ore), getOreStack("dust", ore), 0.05F, getOreStackExtra("dust", ore), 0.05F);
+			addSmeltingNoDupes(stack, getOreStack("ingot", ore, 2), 0.0F);
+		}
+		for (ItemStack stack : OreDictionary.getOres("pebbles" + ore.name())) {
+			MgRecipeRegister.registerSifterRecipe(stack, getOreStack("dust", ore, 3), getOreStackExtra("dust", ore), 0.05F);
+			addSmeltingNoDupes(stack, getOreStack("ingot", ore, 2), 0.0F);
+		}
+		addSmeltingNoDupes(getOreStack("dust", ore), getOreStack("ingot", ore), 0.0F);
 	}
 }
