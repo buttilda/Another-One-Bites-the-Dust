@@ -143,13 +143,10 @@ public abstract class RecipesModule {
 	protected Fluid getFluid(Ore ore) {
 		String fluidName = ore.name().toLowerCase();
 		if ("yellorium".equals(fluidName))
-			fluidName = "aobdYellorium";
-		Fluid fluid;
-		if ((fluid = FluidRegistry.getFluid(fluidName)) == null) {
-			fluid = new MoltenMetal(ore, fluidName);
-			FluidRegistry.registerFluid(fluid);
-		}
-		return fluid;
+			fluidName = "aobdyellorium";
+		if (!FluidRegistry.isFluidRegistered(fluidName))
+			FluidRegistry.registerFluid(new MoltenMetal(ore, fluidName));
+		return FluidRegistry.getFluid(fluidName);
 	}
 
 	@SideOnly(Side.CLIENT)
