@@ -19,7 +19,7 @@ public class RotaryCraft extends RecipesModule {
 	private static final List<Ore> usedOres = new LinkedList<Ore>();
 
 	public RotaryCraft() {
-		super(CompatType.ROTARYCRAFT);
+		super(CompatType.ROTARYCRAFT, "gold", "iron", "copper", "lead", "silver", "platinum", "nickel", "aluminium", "aluminum", "iridium", "tungsten", "osmium", "cobalt");
 	}
 
 	@Override
