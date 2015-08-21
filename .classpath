@@ -20,6 +20,6 @@
 	<classpathentry kind="lib" path="libs/HydCraft-1.7.10-2.1.176-universal.jar"/>
 	<classpathentry kind="lib" path="libs/Mariculture-Deluxe-1.7.10-1.2.4.2a.jar"/>
 	<classpathentry kind="lib" path="libs/magneticraft-0.3.3.jar"/>
-	<classpathentry kind="lib" path="libs/ImmersiveEngineering-0.5.1.jar"/>
+	<classpathentry kind="lib" path="libs/ImmersiveEngineering-0.5.4.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
