@@ -12,8 +12,6 @@
 	<classpathentry kind="lib" path="libs/Thaumcraft-1.7.10-4.2.1.4.jar"/>
 	<classpathentry kind="lib" path="libs/Ultratech-1.7.10-0.9.6.1.jar"/>
 	<classpathentry kind="lib" path="libs/Mekanism-1.7.10-8.0.0.188.jar"/>
-	<classpathentry kind="lib" path="libs/DragonAPI 1.7.10 V5c.jar"/>
-	<classpathentry kind="lib" path="libs/RotaryCraft 1.7.10 V5c.jar"/>
 	<classpathentry kind="lib" path="libs/ElectricalAge_BETA-1.9_r46.jar"/>
 	<classpathentry kind="lib" path="libs/appliedenergistics2-rv2-beta-30.jar"/>
 	<classpathentry kind="lib" path="libs/EngineersToolbox-1.2.2.0-BETA.jar"/>
@@ -21,5 +19,7 @@
 	<classpathentry kind="lib" path="libs/Mariculture-Deluxe-1.7.10-1.2.4.2a.jar"/>
 	<classpathentry kind="lib" path="libs/magneticraft-0.3.3.jar"/>
 	<classpathentry kind="lib" path="libs/ImmersiveEngineering-0.5.4.jar"/>
+	<classpathentry kind="lib" path="libs/DragonAPI 1.7.10 V7f.jar"/>
+	<classpathentry kind="lib" path="libs/RotaryCraft 1.7.10 V7f.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

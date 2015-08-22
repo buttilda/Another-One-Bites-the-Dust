@@ -19,7 +19,7 @@ public class RotaryCraft extends RecipesModule {
 	private static final List<Ore> usedOres = new LinkedList<Ore>();
 
 	public RotaryCraft() {
-		super(CompatType.ROTARYCRAFT, "gold", "iron", "copper", "lead", "silver", "platinum", "nickel", "aluminium", "aluminum", "iridium", "tungsten", "osmium", "cobalt");
+		super(CompatType.ROTARYCRAFT, "gold", "iron", "coal", "redstone", "copper", "lead", "silver", "platinum", "nickel", "aluminium", "aluminum", "iridium", "tungsten", "osmium", "cobalt");
 	}
 
 	@Override
@@ -28,6 +28,7 @@ public class RotaryCraft extends RecipesModule {
 			ExtractAPI.addCustomExtractEntry(ore.name(), OreRarity.COMMON, "INGOT", ore.name(), 1, 0, 0, null, "ore" + ore.name());
 			usedOres.add(ore);
 		} catch (IllegalArgumentException e) {
+			e.printStackTrace();
 		}
 	}
 
