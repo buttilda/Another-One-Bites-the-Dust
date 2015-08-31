@@ -9,7 +9,8 @@ import java.lang.reflect.Modifier;
 import java.util.LinkedList;
 import java.util.List;
 
-import Reika.DragonAPI.Interfaces.OreType.OreRarity;
+import Reika.DragonAPI.Interfaces.Registry.OreType.OreRarity;
+import Reika.DragonAPI.ModRegistry.ModOreList;
 import Reika.RotaryCraft.API.ExtractAPI;
 import Reika.RotaryCraft.Auxiliary.CustomExtractLoader;
 import Reika.RotaryCraft.Auxiliary.CustomExtractLoader.CustomExtractEntry;
@@ -19,17 +20,17 @@ public class RotaryCraft extends RecipesModule {
 	private static final List<Ore> usedOres = new LinkedList<Ore>();
 
 	public RotaryCraft() {
-		super(CompatType.ROTARYCRAFT, "gold", "iron", "coal", "redstone", "copper", "lead", "silver", "platinum", "nickel", "aluminium", "aluminum", "iridium", "tungsten", "osmium", "cobalt");
+		super(CompatType.ROTARYCRAFT, "gold", "iron", "redstone", "diamond", "emerald", "lapis", "quartz", "aluminium", "aluminum");
 	}
 
 	@Override
 	public void initOre(Ore ore) {
-		try {
-			ExtractAPI.addCustomExtractEntry(ore.name(), OreRarity.COMMON, "INGOT", ore.name(), 1, 0, 0, null, "ore" + ore.name());
-			usedOres.add(ore);
-		} catch (IllegalArgumentException e) {
-			e.printStackTrace();
-		}
+		for (ModOreList oreList : ModOreList.values())
+			if (oreList.name().toLowerCase().equals(ore.name().toLowerCase()))
+				return;
+
+		ExtractAPI.addCustomExtractEntry(ore.name(), OreRarity.COMMON, "INGOT", ore.name(), 1, 0, 0, null, "ore" + ore.name());
+		usedOres.add(ore);
 	}
 
 	public static void setOresColour() {
