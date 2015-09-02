@@ -14,14 +14,16 @@ item.aobd.cleanGravel.name=Gravier de %s propre
 item.aobd.reduced.name=Morceaux réduits de %s
 item.aobd.crystalline.name=%s cristallin
 item.aobd.clump.name=Tesson de %s
-item.aobd.shard.name=Eclat de %s
+item.aobd.shard.name=Éclat de %s
 item.aobd.dustDirty.name=Poudre sale de %s
 item.aobd.crystal.name=Cristal de %s
-item.aobd.chunk.name=Eclat de %s
+item.aobd.chunk.name=Éclat de %s
 item.aobd.nugget.name=Pépite de %s
 item.aobd.ore.name=Minerai de %s
 item.aobd.ground.name=Minerai de %s broyé
 item.aobd.dustImpure.name=Poudre impure de %s
+item.aobd.rubble.name=Décombres de %s
+item.aobd.pebbles.name=Cailloux de %s
 
 # Blocks
 tile.aobd.block.name=Bloc de %s
@@ -30,8 +32,8 @@ tile.aobd.block.name=Bloc de %s
 fluid.aobd.moltenMetal.name=%s Fondu
 
 # Gas
-gas.aobd.clean.name=Pâte propre de %s
-gas.aobd.dirty.name=Pâte de %s
+gas.aobd.clean.name=Boue lavée de %s
+gas.aobd.dirty.name=Boue de %s
 gas.aobd.ore.name=Minerai de %s
 
 # Creative Tab
