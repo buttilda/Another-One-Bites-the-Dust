@@ -24,9 +24,17 @@ item.aobd.ground.name=Ground %s Ore
 item.aobd.dustImpure.name=Impure %s Dust
 item.aobd.rubble.name=%s Rubble
 item.aobd.pebbles.name=%s Pebbles
+item.aobd.oreBroken.name=Broken %s Ore
+item.aobd.oreNetherBroken.name=Broken %s Ore
+item.aobd.oreCrushed.name=Crushed %s Ore
+item.aobd.orePowdered.name=Powdered %s Ore
 
 # Blocks
 tile.aobd.block.name=%s Block
+tile.aobd.oreDust.name=%s Ore Dust
+tile.aobd.oreSand.name=%s Ore Sand
+tile.aobd.oreGravel.name=%s Ore Gravel
+tile.aobd.oreNetherGravel.name=%s Ore Gravel
 
 # Fluids
 fluid.aobd.moltenMetal.name=Molten %s

@@ -93,7 +93,7 @@ public class OreFinder {
 
 				for (String prefix : prefixes) {
 					String str = prefix.trim();
-					if (AOBDBlock.BLOCKS_PREFIXES.contains(str))
+					if (AOBDBlock.BLOCKS_PREFIXES.containsKey(str))
 						registerOre(str + name, new AOBDBlock(str, ore));
 					else
 						registerOre(str + name, new AOBDItem(str, ore));

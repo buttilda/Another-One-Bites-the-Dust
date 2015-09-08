@@ -20,5 +20,6 @@
 	<classpathentry kind="lib" path="libs/HydCraft-1.7.10-2.1.227-universal.jar"/>
 	<classpathentry kind="lib" path="libs/DragonAPI 1.7.10 V8b.jar"/>
 	<classpathentry kind="lib" path="libs/RotaryCraft 1.7.10 V8b.jar"/>
+	<classpathentry kind="lib" path="libs/Ex-Nihilo-1.38-46.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

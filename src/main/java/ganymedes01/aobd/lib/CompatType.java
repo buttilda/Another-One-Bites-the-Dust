@@ -7,6 +7,7 @@ import ganymedes01.aobd.recipes.modules.BuildCraftAdditions;
 import ganymedes01.aobd.recipes.modules.ElectricalAge;
 import ganymedes01.aobd.recipes.modules.EnderIO;
 import ganymedes01.aobd.recipes.modules.EngineersToolbox;
+import ganymedes01.aobd.recipes.modules.ExNihilo;
 import ganymedes01.aobd.recipes.modules.Factorization;
 import ganymedes01.aobd.recipes.modules.GanysNether;
 import ganymedes01.aobd.recipes.modules.Hydraulicraft;
@@ -52,7 +53,8 @@ public enum CompatType {
 	ENGINEERS_TOOLBOX("eng_toolbox", EngineersToolbox.class, "ground", "dustImpure", "dust"),
 	IMMERSIVE_ENGINEERING("ImmersiveEngineering", ImmersiveEngineering.class, "dust"),
 	MARICULTURE("Mariculture", Mariculture.class, "dust", "nugget", "block"),
-	MAGNETICRAFT("Magneticraft", Magneticraft.class, "chunk", "dust", "rubble", "pebbles");
+	MAGNETICRAFT("Magneticraft", Magneticraft.class, "chunk", "dust", "rubble", "pebbles"),
+	EX_NIHILO("exnihilo", ExNihilo.class, "oreSand", "oreDust", "oreGravel", "oreNetherGravel", "oreBroken", "oreNetherBroken", "oreCrushed", "orePowdered");
 
 	final String modid;
 	final String[] prefixes;
