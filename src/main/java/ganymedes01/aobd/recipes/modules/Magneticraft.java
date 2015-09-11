@@ -6,7 +6,7 @@ import ganymedes01.aobd.recipes.RecipesModule;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 
-import com.cout970.magneticraft.api.acces.MgRecipeRegister;
+import com.cout970.magneticraft.api.access.MgRecipeRegister;
 
 public class Magneticraft extends RecipesModule {
 

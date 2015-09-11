@@ -15,11 +15,11 @@
 	<classpathentry kind="lib" path="libs/appliedenergistics2-rv2-beta-30.jar"/>
 	<classpathentry kind="lib" path="libs/EngineersToolbox-1.2.2.0-BETA.jar"/>
 	<classpathentry kind="lib" path="libs/Mariculture-Deluxe-1.7.10-1.2.4.2a.jar"/>
-	<classpathentry kind="lib" path="libs/magneticraft-0.3.3.jar"/>
 	<classpathentry kind="lib" path="libs/ImmersiveEngineering-0.5.4.jar"/>
 	<classpathentry kind="lib" path="libs/HydCraft-1.7.10-2.1.227-universal.jar"/>
 	<classpathentry kind="lib" path="libs/DragonAPI 1.7.10 V8b.jar"/>
 	<classpathentry kind="lib" path="libs/RotaryCraft 1.7.10 V8b.jar"/>
 	<classpathentry kind="lib" path="libs/Ex-Nihilo-1.38-46.jar"/>
+	<classpathentry kind="lib" path="libs/magneticraft-0.4.5.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
