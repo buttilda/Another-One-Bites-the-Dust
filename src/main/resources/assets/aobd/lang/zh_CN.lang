@@ -1,6 +1,5 @@
 # Item
-item.aobd.rubble.name=%s 砾石
-item.aobd.pebbles.name=%s 石子
+
 metal.aobd.fzdarkiron.name=玄铁
 metal.aobd.heeendium.name=末金
 metal.aobd.elntungsten.name=钨
@@ -64,9 +63,19 @@ item.aobd.ore.name=%s矿石
 item.aobd.ground.name=磨碎%s矿石
 item.aobd.dustImpure.name=不纯%s粉
 item.aobd.sand.name=%s矿砂
+item.aobd.rubble.name=%s 砾石
+item.aobd.pebbles.name=%s 石子
+item.aobd.oreBroken.name=碎裂 %s 矿
+item.aobd.oreNetherBroken.name=碎裂 %s 矿
+item.aobd.oreCrushed.name=粉碎 %s 矿
+item.aobd.orePowdered.name=粉状 %s 矿
 
 # Blocks
 tile.aobd.block.name=%s方块
+tile.aobd.oreDust.name=%s 矿尘土
+tile.aobd.oreSand.name=%s 矿沙子
+tile.aobd.oreGravel.name=%s 矿砂砾
+tile.aobd.oreNetherGravel.name=%s 矿砂砾
 
 # Fluids
 fluid.aobd.moltenMetal.name=熔融%s
