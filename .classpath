@@ -7,7 +7,6 @@
 	<classpathentry kind="lib" path="libs/Flaxbeard&apos;sSteamPower-1.7.10-0.28.5.jar"/>
 	<classpathentry kind="lib" path="libs/Ganys Nether-1.7.8.jar"/>
 	<classpathentry kind="lib" path="libs/industrialcraft-2-2.2.695-experimental-dev.jar"/>
-	<classpathentry kind="lib" path="libs/RandomAdditions Alpha 0.10 mc1.7.10.jar"/>
 	<classpathentry kind="lib" path="libs/TConstruct-1.7.10-1.8.3b.jar"/>
 	<classpathentry kind="lib" path="libs/Thaumcraft-1.7.10-4.2.1.4.jar"/>
 	<classpathentry kind="lib" path="libs/Mekanism-1.7.10-8.0.0.188.jar"/>
@@ -21,5 +20,6 @@
 	<classpathentry kind="lib" path="libs/RotaryCraft 1.7.10 V8b.jar"/>
 	<classpathentry kind="lib" path="libs/Ex-Nihilo-1.38-46.jar"/>
 	<classpathentry kind="lib" path="libs/magneticraft-0.4.5.jar"/>
+	<classpathentry kind="lib" path="libs/RandomAdditions Alpha 0.11.15 mc1.7.10.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

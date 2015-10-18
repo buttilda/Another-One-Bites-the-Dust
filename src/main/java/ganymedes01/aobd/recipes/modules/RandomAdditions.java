@@ -4,8 +4,8 @@ import ganymedes01.aobd.lib.CompatType;
 import ganymedes01.aobd.ore.Ore;
 import ganymedes01.aobd.recipes.RecipesModule;
 
-import com.creativemd.randomadditions.common.energy.machine.MachineSystem;
-import com.creativemd.randomadditions.common.energy.machine.recipe.MachineRecipe;
+import com.creativemd.randomadditions.common.systems.machine.MachineRecipe;
+import com.creativemd.randomadditions.common.systems.machine.SubSystemMachine;
 
 public class RandomAdditions extends RecipesModule {
 
@@ -16,7 +16,7 @@ public class RandomAdditions extends RecipesModule {
 	@Override
 	public void initOre(Ore ore) {
 		String name = ore.name();
-		MachineSystem.crusher.registerRecipe(new MachineRecipe("ingot" + name, getOreStack("dust", ore), 250));
-		MachineSystem.crusher.registerRecipe(new MachineRecipe("ore" + name, getOreStack("dust", ore, 2), 250));
+		SubSystemMachine.instance.crusher.registerRecipe(new MachineRecipe("ingot" + name, getOreStack("dust", ore)));
+		SubSystemMachine.instance.crusher.registerRecipe(new MachineRecipe("ore" + name, getOreStack("dust", ore, 2)));
 	}
 }
