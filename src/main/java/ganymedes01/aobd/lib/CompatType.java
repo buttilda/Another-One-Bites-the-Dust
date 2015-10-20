@@ -54,7 +54,7 @@ public enum CompatType {
 	IMMERSIVE_ENGINEERING("ImmersiveEngineering", ImmersiveEngineering.class, "dust"),
 	MARICULTURE("Mariculture", Mariculture.class, "dust", "nugget", "block"),
 	MAGNETICRAFT("Magneticraft", Magneticraft.class, "chunk", "dust", "rubble", "pebbles"),
-	EX_NIHILO("exnihilo", ExNihilo.class);
+	EX_NIHILO("exnihilo", ExNihilo.class, "orePowdered", "oreBroken", "oreNetherBroken", "oreCrushed", "oreSand", "oreDust", "oreGravel", "oreNetherGravel");
 
 	final String modid;
 	final String[] prefixes;

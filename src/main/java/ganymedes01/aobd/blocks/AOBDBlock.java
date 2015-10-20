@@ -3,7 +3,6 @@ package ganymedes01.aobd.blocks;
 import ganymedes01.aobd.AOBD;
 import ganymedes01.aobd.lib.Reference;
 import ganymedes01.aobd.ore.Ore;
-import ganymedes01.aobd.recipes.modules.ExNihilo;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -13,20 +12,22 @@ import java.util.Map;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.client.renderer.texture.TextureMap;
+import net.minecraft.util.IIcon;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.IBlockAccess;
+import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class AOBDBlock extends Block {
 
+	public static final int RENDER_ID = RenderingRegistry.getNextAvailableRenderId();
+
 	public static final List<AOBDBlock> ALL_BLOCKS = new ArrayList<AOBDBlock>();
 	public static final Map<String, Float> BLOCKS_PREFIXES = new HashMap<String, Float>();
 	public static final Map<String, Material> BLOCKS_MATERIALS = new HashMap<String, Material>();
 	public static final Map<String, Block.SoundType> BLOCKS_SOUNDS = new HashMap<String, Block.SoundType>();
-	public static final Map<String, String[]> BLOCKS_EXNIHILO = new HashMap<String, String[]>();
+	public static final List<String> BLOCKS_WITH_OVERLAYS = new ArrayList<String>();
 	static {
 		BLOCKS_PREFIXES.put("block", 4F);
 		BLOCKS_PREFIXES.put("oreSand", 0.4F);
@@ -46,14 +47,15 @@ public class AOBDBlock extends Block {
 		BLOCKS_SOUNDS.put("oreGravel", Block.soundTypeGravel);
 		BLOCKS_SOUNDS.put("oreNetherGravel", Block.soundTypeGravel);
 
-		BLOCKS_EXNIHILO.put("oreSand", new String[] { "IconSandBase", "IconSandTemplate" });
-		BLOCKS_EXNIHILO.put("oreDust", new String[] { "IconDustBase", "IconDustTemplate" });
-		BLOCKS_EXNIHILO.put("oreGravel", new String[] { "IconGravelBase", "IconGravelTemplate" });
-		BLOCKS_EXNIHILO.put("oreNetherGravel", new String[] { "IconGravelBaseNether", "IconGravelTemplate" });
+		BLOCKS_WITH_OVERLAYS.add("oreGravel");
+		BLOCKS_WITH_OVERLAYS.add("oreNetherGravel");
 	}
 
+	public boolean isRenderingOverlay = false;
 	protected final Ore ore;
 	protected final String base;
+	@SideOnly(Side.CLIENT)
+	private IIcon overlay;
 
 	public AOBDBlock(String base, Ore ore) {
 		this(BLOCKS_MATERIALS.get(base), base, ore);
@@ -92,6 +94,11 @@ public class AOBDBlock extends Block {
 	}
 
 	@Override
+	public int getRenderType() {
+		return RENDER_ID;
+	}
+
+	@Override
 	public String getLocalizedName() {
 		String fullName = getFullName();
 		String shortName = getShortName();
@@ -100,31 +107,27 @@ public class AOBDBlock extends Block {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void registerBlockIcons(IIconRegister reg) {
-		String[] type = BLOCKS_EXNIHILO.get(base);
-		if (type != null) {
-			TextureMap map = (TextureMap) reg;
-			TextureAtlasSprite texture = ExNihilo.createIcon(this, type[0], type[1], map);
+	public IIcon getIcon(int side, int meta) {
+		return isRenderingOverlay ? overlay : super.getIcon(side, meta);
+	}
 
-			TextureAtlasSprite existing = map.getTextureExtry(texture.getIconName());
-			if (existing == null) {
-				boolean success = map.setTextureEntry(texture.getIconName(), texture);
-				if (success)
-					blockIcon = map.getTextureExtry(texture.getIconName());
-			}
-		} else
-			super.registerBlockIcons(reg);
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void registerBlockIcons(IIconRegister reg) {
+		super.registerBlockIcons(reg);
+		if (BLOCKS_WITH_OVERLAYS.contains(base))
+			overlay = reg.registerIcon(getTextureName() + "_overlay");
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public int colorMultiplier(IBlockAccess world, int x, int y, int z) {
-		return BLOCKS_EXNIHILO.containsKey(base) ? super.colorMultiplier(world, x, y, z) : ore.colour();
+		return isRenderingOverlay ? super.colorMultiplier(world, x, y, z) : ore.colour();
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public int getRenderColor(int meta) {
-		return BLOCKS_EXNIHILO.containsKey(base) ? super.getRenderColor(meta) : ore.colour();
+		return isRenderingOverlay ? super.getRenderColor(meta) : ore.colour();
 	}
 }

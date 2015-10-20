@@ -1,18 +1,16 @@
 package ganymedes01.aobd.recipes.modules;
 
-import exnihilo.images.Resource;
-import exnihilo.images.TextureDynamic;
-import ganymedes01.aobd.blocks.AOBDBlock;
-import ganymedes01.aobd.items.AOBDItem;
+import exnihilo.registries.HammerRegistry;
+import exnihilo.registries.SieveRegistry;
 import ganymedes01.aobd.lib.CompatType;
-import ganymedes01.aobd.lib.Reference;
 import ganymedes01.aobd.ore.Ore;
 import ganymedes01.aobd.recipes.RecipesModule;
-import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.client.renderer.texture.TextureMap;
-import net.minecraft.util.ResourceLocation;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.oredict.ShapedOreRecipe;
+import cpw.mods.fml.common.registry.GameRegistry;
 
 public class ExNihilo extends RecipesModule {
 
@@ -22,31 +20,44 @@ public class ExNihilo extends RecipesModule {
 
 	@Override
 	public void initOre(Ore ore) {
-	}
+		Block dust = Block.getBlockFromName("exnihilo:dust");
+		Block crushedNetherrack = Block.getBlockFromName("exnihilo:exnihilo.gravel_nether");
 
-	@SideOnly(Side.CLIENT)
-	public static TextureAtlasSprite createIcon(AOBDItem item, String base, String template, TextureMap map) {
-		String name = item.getBaseName();
-		Ore ore = item.getOre();
-		ResourceLocation baseTexture = Resource.getItemTextureLocation("exnihilo", base);
-		ResourceLocation templateTexture = Resource.getItemTextureLocation("exnihilo", template);
-		return createIcon(name, ore, baseTexture, templateTexture, map);
-	}
+		ItemStack oreStack = getOreStack("ore", ore);
+		ItemStack brokenOreStack = getOreStack("oreBroken", ore);
+		ItemStack brokenNetherOreStack = getOreStack("oreNetherBroken", ore);
+		ItemStack crushedOreStack = getOreStack("oreCrushed", ore);
+		ItemStack powderedOreStack = getOreStack("orePowdered", ore);
+		ItemStack gravelOreStack = getOreStack("oreGravel", ore);
+		ItemStack gravelNetherOreStack = getOreStack("oreNetherGravel", ore);
+		ItemStack sandOreStack = getOreStack("oreSand", ore);
+		ItemStack dustOreStack = getOreStack("oreDust", ore);
 
-	@SideOnly(Side.CLIENT)
-	public static TextureAtlasSprite createIcon(AOBDBlock block, String base, String template, TextureMap map) {
-		String name = block.getBaseName();
-		Ore ore = block.getOre();
-		ResourceLocation baseTexture = Resource.getBlockTextureLocation("exnihilo", base);
-		ResourceLocation templateTexture = Resource.getBlockTextureLocation("exnihilo", template);
-		return createIcon(name, ore, baseTexture, templateTexture, map);
-	}
+		// Shaped recipes
+		GameRegistry.addRecipe(new ShapedOreRecipe(gravelOreStack, "xx", "xx", 'x', "oreBroken" + ore.name()));
+		GameRegistry.addRecipe(new ShapedOreRecipe(gravelNetherOreStack, "xx", "xx", 'x', "oreNetherBroken" + ore.name()));
+		GameRegistry.addRecipe(new ShapedOreRecipe(sandOreStack, "xx", "xx", 'x', "oreCrushed" + ore.name()));
+		GameRegistry.addRecipe(new ShapedOreRecipe(dustOreStack, "xx", "xx", 'x', "orePowdered" + ore.name()));
 
-	@SideOnly(Side.CLIENT)
-	private static TextureAtlasSprite createIcon(String name, Ore ore, ResourceLocation baseTexture, ResourceLocation templateTexture, TextureMap map) {
-		float red = ore.getColour().getRed() / 255F;
-		float green = ore.getColour().getGreen() / 255F;
-		float blue = ore.getColour().getBlue() / 255F;
-		return new TextureDynamic(Reference.MOD_ID + ":" + name + ore.name(), baseTexture, templateTexture, new exnihilo.registries.helpers.Color(red, green, blue, 1));
+		// Smelting ore dust into ingots
+		GameRegistry.addSmelting(dustOreStack, getOreStack("ingot", ore), 0.1F);
+
+		// Sieving gravel into broken ore
+		SieveRegistry.register(Blocks.gravel, brokenOreStack.getItem(), brokenOreStack.getItemDamage(), (int) (20 / ore.energy(1)));
+
+		// Sieving sand into crushed ore
+		SieveRegistry.register(Blocks.sand, crushedOreStack.getItem(), crushedOreStack.getItemDamage(), (int) (20 / ore.energy(1)));
+
+		// Sieving dust into powdered ore
+		SieveRegistry.register(dust, powderedOreStack.getItem(), powderedOreStack.getItemDamage(), (int) (20 / ore.energy(1)));
+
+		// Hammering ore into broken ore
+		if (oreStack.getItem() instanceof ItemBlock) {
+			Block oreBlock = Block.getBlockFromItem(oreStack.getItem());
+			HammerRegistry.registerOre(oreBlock, oreStack.getItemDamage(), brokenOreStack.getItem(), brokenOreStack.getItemDamage());
+		}
+
+		// Sieving netherrack into broken ore
+		SieveRegistry.register(crushedNetherrack, 0, brokenNetherOreStack.getItem(), brokenNetherOreStack.getItemDamage(), 17);
 	}
 }

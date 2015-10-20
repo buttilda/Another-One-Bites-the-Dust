@@ -4,14 +4,7 @@ import ganymedes01.aobd.AOBD;
 import ganymedes01.aobd.client.ItemOreRenderer;
 import ganymedes01.aobd.lib.Reference;
 import ganymedes01.aobd.ore.Ore;
-import ganymedes01.aobd.recipes.modules.ExNihilo;
-
-import java.util.HashMap;
-import java.util.Map;
-
 import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
@@ -22,14 +15,6 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class AOBDItem extends Item {
-
-	public static final Map<String, String[]> ITEMS_EXNIHILO = new HashMap<String, String[]>();
-	static {
-		ITEMS_EXNIHILO.put("oreBroken", new String[] { "ItemBrokenBase", "ItemBrokenTemplate" });
-		ITEMS_EXNIHILO.put("oreNetherBroken", new String[] { "ItemBrokenBaseNether", "ItemBrokenTemplate" });
-		ITEMS_EXNIHILO.put("oreCrushed", new String[] { "ItemCrushedBase", "ItemCrushedTemplate" });
-		ITEMS_EXNIHILO.put("orePowdered", new String[] { "ItemPowderedBase", "ItemPowderedTemplate" });
-	}
 
 	@SideOnly(Side.CLIENT)
 	private IIcon[] icon;
@@ -98,31 +83,15 @@ public class AOBDItem extends Item {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public IIcon getIconFromDamageForRenderPass(int meta, int pass) {
-		String[] type = ITEMS_EXNIHILO.get(base);
-		if (type != null)
-			return itemIcon;
 		return pass == 0 ? icon[0] : icon[1];
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IIconRegister reg) {
-		String[] type = ITEMS_EXNIHILO.get(base);
-		if (type != null) {
-			TextureMap map = (TextureMap) reg;
-			TextureAtlasSprite texture = ExNihilo.createIcon(this, type[0], type[1], map);
-
-			TextureAtlasSprite existing = map.getTextureExtry(texture.getIconName());
-			if (existing == null) {
-				boolean success = map.setTextureEntry(texture.getIconName(), texture);
-				if (success)
-					itemIcon = map.getTextureExtry(texture.getIconName());
-			}
-		} else {
-			icon = new IIcon[2];
-			icon[0] = reg.registerIcon(getIconString());
-			icon[1] = reg.registerIcon(getIconString() + "_overlay");
-		}
+		icon = new IIcon[2];
+		icon[0] = reg.registerIcon(getIconString());
+		icon[1] = reg.registerIcon(getIconString() + "_overlay");
 	}
 
 	@SideOnly(Side.CLIENT)

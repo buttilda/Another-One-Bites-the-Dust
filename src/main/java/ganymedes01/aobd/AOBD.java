@@ -1,6 +1,7 @@
 package ganymedes01.aobd;
 
 import ganymedes01.aobd.api.AOBDAddonManager;
+import ganymedes01.aobd.client.AOBDBlockRenderer;
 import ganymedes01.aobd.configuration.ConfigHandler;
 import ganymedes01.aobd.items.AOBDItem;
 import ganymedes01.aobd.lib.CompatType;
@@ -17,6 +18,7 @@ import net.minecraftforge.client.IItemRenderer;
 import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.common.MinecraftForge;
+import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -120,5 +122,7 @@ public class AOBD {
 				if (renderer != null)
 					MinecraftForgeClient.registerItemRenderer(item, renderer);
 			}
+
+		RenderingRegistry.registerBlockHandler(new AOBDBlockRenderer());
 	}
 }
