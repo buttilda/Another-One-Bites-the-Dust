@@ -15,7 +15,6 @@ public class AOBDBlockRenderer implements ISimpleBlockRenderingHandler {
 	@Override
 	public void renderInventoryBlock(Block block, int meta, int modelID, RenderBlocks renderer) {
 		AOBDBlock aobdBlock = (AOBDBlock) block;
-		Tessellator tessellator = Tessellator.instance;
 		GL11.glTranslatef(-0.5F, -0.5F, -0.5F);
 
 		aobdBlock.isRenderingOverlay = false;
@@ -25,6 +24,18 @@ public class AOBDBlockRenderer implements ISimpleBlockRenderingHandler {
 		float b = (colour & 255) / 255.0F;
 		GL11.glColor3f(r, g, b);
 		renderer.setRenderBounds(0, 0, 0, 1, 1, 1);
+		renderBlock(block, meta, renderer);
+
+		if (AOBDBlock.BLOCKS_WITH_OVERLAYS.contains(aobdBlock.getBaseName())) {
+			GL11.glColor3f(1, 1, 1);
+			aobdBlock.isRenderingOverlay = true;
+			renderer.setRenderBounds(0, 0, 0, 1, 1, 1);
+			renderBlock(block, meta, renderer);
+		}
+	}
+
+	private void renderBlock(Block block, int meta, RenderBlocks renderer) {
+		Tessellator tessellator = Tessellator.instance;
 		tessellator.startDrawingQuads();
 		tessellator.setNormal(0.0F, -1.0F, 0.0F);
 		renderer.renderFaceYNeg(block, 0.0D, 0.0D, 0.0D, renderer.getBlockIconFromSideAndMetadata(block, 0, meta));
@@ -39,26 +50,6 @@ public class AOBDBlockRenderer implements ISimpleBlockRenderingHandler {
 		tessellator.setNormal(1.0F, 0.0F, 0.0F);
 		renderer.renderFaceXPos(block, 0.0D, 0.0D, 0.0D, renderer.getBlockIconFromSideAndMetadata(block, 5, meta));
 		tessellator.draw();
-
-		if (AOBDBlock.BLOCKS_WITH_OVERLAYS.contains(aobdBlock.getBaseName())) {
-			GL11.glColor3f(1, 1, 1);
-			aobdBlock.isRenderingOverlay = true;
-			renderer.setRenderBounds(0, 0, 0, 1, 1, 1);
-			tessellator.startDrawingQuads();
-			tessellator.setNormal(0.0F, -1.0F, 0.0F);
-			renderer.renderFaceYNeg(block, 0.0D, 0.0D, 0.0D, renderer.getBlockIconFromSideAndMetadata(block, 0, meta));
-			tessellator.setNormal(0.0F, 1.0F, 0.0F);
-			renderer.renderFaceYPos(block, 0.0D, 0.0D, 0.0D, renderer.getBlockIconFromSideAndMetadata(block, 1, meta));
-			tessellator.setNormal(0.0F, 0.0F, -1.0F);
-			renderer.renderFaceZNeg(block, 0.0D, 0.0D, 0.0D, renderer.getBlockIconFromSideAndMetadata(block, 2, meta));
-			tessellator.setNormal(0.0F, 0.0F, 1.0F);
-			renderer.renderFaceZPos(block, 0.0D, 0.0D, 0.0D, renderer.getBlockIconFromSideAndMetadata(block, 3, meta));
-			tessellator.setNormal(-1.0F, 0.0F, 0.0F);
-			renderer.renderFaceXNeg(block, 0.0D, 0.0D, 0.0D, renderer.getBlockIconFromSideAndMetadata(block, 4, meta));
-			tessellator.setNormal(1.0F, 0.0F, 0.0F);
-			renderer.renderFaceXPos(block, 0.0D, 0.0D, 0.0D, renderer.getBlockIconFromSideAndMetadata(block, 5, meta));
-			tessellator.draw();
-		}
 	}
 
 	@Override
