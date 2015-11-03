@@ -1,0 +1,90 @@
+metal.aobd.fzdarkiron.name=黒鉄
+metal.aobd.heeendium.name=エンディウム
+metal.aobd.elntungsten.name=タングステン
+metal.aobd.tungsten.name=タングステン
+metal.aobd.platinum.name=プラチナ
+metal.aobd.silver.name=銀
+metal.aobd.lead.name=鉛
+metal.aobd.osmium.name=オスミウム
+metal.aobd.nickel.name=ニッケル
+metal.aobd.aluminum.name=アルミニウム
+metal.aobd.Ardite.name=アーダイト
+metal.aobd.Cobalt.name=コバルト
+metal.aobd.eximite.name=エクシマイト
+metal.aobd.meutoite.name=ミュートイト
+metal.aobd.prometheum.name=プロメテウム
+metal.aobd.deepiron.name=黒鉄
+metal.aobd.infuscolium.name=インフスコリウム
+metal.aobd.oureclase.name=樹鉄
+metal.aobd.astralsilver.name=アストラルシルバー
+metal.aobd.carmot.name=カーモット
+metal.aobd.mithril.name=ミスリル
+metal.aobd.rubracium.name=ルブラシウム
+metal.aobd.orichalcum.name=オリハルコン
+metal.aobd.adamantine.name=アダマンタイン
+metal.aobd.adamantium.name=アダマンタイウム
+metal.aobd.atlarus.name=アトラルス
+metal.aobd.ignatius.name=イグネイティウス
+metal.aobd.shadowiron.name=暗黒鉄
+metal.aobd.lemurite.name=レムライト
+metal.aobd.midasium.name=ミダシウム
+metal.aobd.vyroxeres.name=ヴァイロキセレス
+metal.aobd.ceruclase.name=ケルクレウス
+metal.aobd.alduorite.name=アドゥロライト
+metal.aobd.kalendrite.name=カレンドライト
+metal.aobd.vulcanite.name=ヴァルカナイト
+metal.aobd.sanguinite.name=サンギナイト
+metal.aobd.zinc.name=亜鉛
+metal.aobd.yellorium.name=イエロリウム
+metal.aobd.uranium.name=ウラン
+metal.aobd.nikolite.name=ニコライト
+metal.aobd.steel.name=鋼
+metal.aobd.titanium.name=チタン
+metal.aobd.rutile.name=ルチル
+
+# Items
+item.aobd.dust.name=%s の粉
+item.aobd.crushed.name=砕けた %s 鉱石
+item.aobd.crushedPurified.name=純粋な砕けた %s 鉱石
+item.aobd.dustTiny.name=%s の小さな粉
+item.aobd.cluster.name=自然 %s クラスター
+item.aobd.dirtyGravel.name=汚い %s の砂利
+item.aobd.cleanGravel.name=きれいな %s の砂利
+item.aobd.reduced.name=還元 %s の塊
+item.aobd.crystalline.name=結晶 %s
+item.aobd.clump.name=%s の塊
+item.aobd.shard.name=%s の結晶
+item.aobd.dustDirty.name=汚れた %s の粉
+item.aobd.crystal.name=%s の結晶
+item.aobd.chunk.name=%s の塊
+item.aobd.nugget.name=%s 塊
+item.aobd.ore.name=%s 鉱石
+
+item.aobd.oreBroken.name=破損した %s 鉱石
+item.aobd.oreNetherBroken.name=破損した %s 鉱石
+item.aobd.oreCrushed.name=砕けた %s 鉱石
+item.aobd.orePowdered.name=粉末状の %s 鉱石
+
+# Blocks
+tile.aobd.block.name=%s ブロック
+tile.aobd.oreDust.name=%s 鉱石の粉
+tile.aobd.oreSand.name=%s 鉱石の砂
+tile.aobd.oreGravel.name=%s 鉱石の砂利
+tile.aobd.oreNetherGravel.name=%s 鉱石の砂利
+
+# Fluids
+fluid.aobd.moltenMetal.name=融解 %s
+
+# Gases
+gas.aobd.clean.name=クリーンな %s のスラリー
+gas.aobd.dirty.name=%s のスラリー
+gas.aobd.ore.name=%s 鉱石
+
+# Creative Tab
+itemGroup.aobd=AOBD
+
+# Research
+tc.research_category.AOBD=AOBD
+tc.research_name.PUREORE=Ore Purification
+tc.research_text.PUREORE=Purificate ALL the ores
+tc.research_page.PUREORE.1=Native clusters are rare concentrations of metals in its purest form. You have discovered a way to purify and concentrate normal ores into a native cluster.<BR>When smelted these clusters produce twice the normal amount of ingots.
