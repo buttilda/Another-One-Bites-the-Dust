@@ -85,6 +85,6 @@ itemGroup.aobd=AOBD
 
 # Research
 tc.research_category.AOBD=AOBD
-tc.research_name.PUREORE=Ore Purification
+tc.research_name.PUREORE=鉱石の純化
 tc.research_text.PUREORE=Purificate ALL the ores
-tc.research_page.PUREORE.1=Native clusters are rare concentrations of metals in its purest form. You have discovered a way to purify and concentrate normal ores into a native cluster.<BR>When smelted these clusters produce twice the normal amount of ingots.
+tc.research_page.PUREORE.1=自然金属クラスターは金属が濃縮した最も純粋な珍しい形であると言える。普通の鉱石をそのようなクラスターに純化し濃縮する方法を発見した。<BR>これらのクラスターを処理すれば通常の倍量のインゴットが得られるだろう。
