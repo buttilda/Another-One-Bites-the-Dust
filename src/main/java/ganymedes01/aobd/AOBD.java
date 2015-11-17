@@ -1,8 +1,21 @@
 package ganymedes01.aobd;
 
+import cpw.mods.fml.client.registry.RenderingRegistry;
+import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.Mod;
+import cpw.mods.fml.common.Mod.EventHandler;
+import cpw.mods.fml.common.Mod.Instance;
+import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLPostInitializationEvent;
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import ganymedes01.aobd.api.AOBDAddonManager;
 import ganymedes01.aobd.client.AOBDBlockRenderer;
+import ganymedes01.aobd.client.ItemGlassBottleRenderer;
 import ganymedes01.aobd.configuration.ConfigHandler;
+import ganymedes01.aobd.items.AOBDGlassBottle;
 import ganymedes01.aobd.items.AOBDItem;
 import ganymedes01.aobd.lib.CompatType;
 import ganymedes01.aobd.lib.Reference;
@@ -18,17 +31,6 @@ import net.minecraftforge.client.IItemRenderer;
 import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.common.MinecraftForge;
-import cpw.mods.fml.client.registry.RenderingRegistry;
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.Mod.EventHandler;
-import cpw.mods.fml.common.Mod.Instance;
-import cpw.mods.fml.common.event.FMLInitializationEvent;
-import cpw.mods.fml.common.event.FMLPostInitializationEvent;
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 @Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.VERSION_NUMBER, dependencies = Reference.DEPENDENCIES, guiFactory = Reference.GUI_FACTORY_CLASS)
 public class AOBD {
@@ -122,6 +124,9 @@ public class AOBD {
 				if (renderer != null)
 					MinecraftForgeClient.registerItemRenderer(item, renderer);
 			}
+
+		for (Item item : AOBDGlassBottle.bottles)
+			MinecraftForgeClient.registerItemRenderer(item, ItemGlassBottleRenderer.INSTANCE);
 
 		RenderingRegistry.registerBlockHandler(new AOBDBlockRenderer());
 	}

@@ -1,10 +1,5 @@
 package ganymedes01.aobd.recipes;
 
-import ganymedes01.aobd.lib.CompatType;
-import ganymedes01.aobd.lib.Reference;
-import ganymedes01.aobd.ore.Ore;
-import ganymedes01.aobd.ore.OreFinder;
-
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
@@ -12,18 +7,26 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import cpw.mods.fml.common.registry.GameRegistry;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import ganymedes01.aobd.items.AOBDGlassBottle;
+import ganymedes01.aobd.lib.CompatType;
+import ganymedes01.aobd.lib.Reference;
+import ganymedes01.aobd.ore.Ore;
+import ganymedes01.aobd.ore.OreFinder;
 import net.minecraft.client.renderer.texture.TextureMap;
+import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.StatCollector;
 import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.oredict.OreDictionary;
-import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public abstract class RecipesModule {
 
@@ -144,8 +147,15 @@ public abstract class RecipesModule {
 		String fluidName = ore.name().toLowerCase();
 		if ("yellorium".equals(fluidName))
 			fluidName = "aobdyellorium";
-		if (!FluidRegistry.isFluidRegistered(fluidName))
+		if (!FluidRegistry.isFluidRegistered(fluidName)) {
 			FluidRegistry.registerFluid(new MoltenMetal(ore, fluidName));
+
+			// If the fluid was created by AOBD, create a bottle that contains it
+			Fluid fluid = FluidRegistry.getFluid(fluidName);
+			Item bottle = new AOBDGlassBottle(fluid);
+			GameRegistry.registerItem(bottle, "bottle_" + fluidName);
+			FluidContainerRegistry.registerFluidContainer(new FluidStack(fluid, FluidContainerRegistry.BUCKET_VOLUME), new ItemStack(bottle), new ItemStack(Items.glass_bottle));
+		}
 		return FluidRegistry.getFluid(fluidName);
 	}
 

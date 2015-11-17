@@ -28,6 +28,7 @@ item.aobd.oreBroken.name=Broken %s Ore
 item.aobd.oreNetherBroken.name=Broken %s Ore
 item.aobd.oreCrushed.name=Crushed %s Ore
 item.aobd.orePowdered.name=Powdered %s Ore
+item.aobd.glassBottle.name=%s Bottle
 
 # Blocks
 tile.aobd.block.name=%s Block
