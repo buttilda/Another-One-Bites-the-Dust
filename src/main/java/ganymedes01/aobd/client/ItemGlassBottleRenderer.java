@@ -132,10 +132,6 @@ public class ItemGlassBottleRenderer implements IItemRenderer {
 
 	private void renderItemIn2D(ItemStack stack) {
 		IIcon icon = stack.getIconIndex();
-		renderIconIn2D(icon);
-	}
-
-	private void renderIconIn2D(IIcon icon) {
 		GL11.glColor3f(1F, 1F, 1F);
 		Minecraft.getMinecraft().renderEngine.bindTexture(TextureMap.locationItemsTexture);
 		ItemRenderer.renderItemIn2D(Tessellator.instance, icon.getMaxU(), icon.getMinV(), icon.getMinU(), icon.getMaxV(), icon.getIconWidth(), icon.getIconHeight(), 0.0625F);
