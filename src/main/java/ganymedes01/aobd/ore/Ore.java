@@ -1,8 +1,5 @@
 package ganymedes01.aobd.ore;
 
-import ganymedes01.aobd.lib.CompatType;
-import ganymedes01.aobd.lib.Reference;
-
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -11,6 +8,8 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import ganymedes01.aobd.lib.CompatType;
+import ganymedes01.aobd.lib.Reference;
 import net.minecraft.util.StatCollector;
 
 public class Ore {
@@ -18,6 +17,8 @@ public class Ore {
 	public static final ArrayList<Ore> ores = new ArrayList<Ore>();
 
 	private static final Map<String, String> defaultOres = new HashMap<String, String>();
+	private static final Map<String, Color> defaultOreColours = new HashMap<String, Color>();
+
 	static {
 		defaultOres.put("Cobalt", "Iron");
 		defaultOres.put("Ardite", "Gold");
@@ -29,6 +30,12 @@ public class Ore {
 		defaultOres.put("Silver", "Lead");
 		defaultOres.put("Nickel", "Platinum");
 		defaultOres.put("FzDarkIron", "Silver");
+
+		defaultOreColours.put("Cobalt", new Color(0x2376DD));
+		defaultOreColours.put("Ardite", new Color(0xF48A00));
+		defaultOreColours.put("Aluminium", new Color(0xEDEDED));
+		defaultOreColours.put("Tin", new Color(0xD8BFAA));
+		defaultOreColours.put("Copper", new Color(0xEF6600));
 	}
 
 	public static Ore newOre(String name) {
@@ -51,6 +58,10 @@ public class Ore {
 		Ore ore = newOre(name);
 		ore.energy *= 2;
 		return ore;
+	}
+
+	public static Color getDefaultOreColour(String oreName) {
+		return defaultOreColours.get(oreName);
 	}
 
 	private final String name;

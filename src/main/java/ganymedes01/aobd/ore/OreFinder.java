@@ -1,13 +1,5 @@
 package ganymedes01.aobd.ore;
 
-import ganymedes01.aobd.AOBD;
-import ganymedes01.aobd.api.AOBDAddonManager;
-import ganymedes01.aobd.blocks.AOBDBlock;
-import ganymedes01.aobd.items.AOBDItem;
-import ganymedes01.aobd.items.AOBDItemBlock;
-import ganymedes01.aobd.lib.CompatType;
-import ganymedes01.aobd.recipes.ModulesHandler;
-
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.lang.reflect.Method;
@@ -20,14 +12,21 @@ import java.util.Set;
 
 import javax.imageio.ImageIO;
 
+import cpw.mods.fml.common.Loader;
+import cpw.mods.fml.common.registry.GameRegistry;
+import ganymedes01.aobd.AOBD;
+import ganymedes01.aobd.api.AOBDAddonManager;
+import ganymedes01.aobd.blocks.AOBDBlock;
+import ganymedes01.aobd.items.AOBDItem;
+import ganymedes01.aobd.items.AOBDItemBlock;
+import ganymedes01.aobd.lib.CompatType;
+import ganymedes01.aobd.recipes.ModulesHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.oredict.OreDictionary;
-import cpw.mods.fml.common.Loader;
-import cpw.mods.fml.common.registry.GameRegistry;
 
 public class OreFinder {
 
@@ -136,6 +135,10 @@ public class OreFinder {
 		List<ItemStack> ores = OreDictionary.getOres("ingot" + oreName);
 		if (ores.isEmpty())
 			return null;
+
+		Color colour = Ore.getDefaultOreColour(oreName);
+		if (colour != null)
+			return colour;
 
 		Set<Color> colours = new LinkedHashSet<Color>();
 		for (ItemStack stack : ores)
