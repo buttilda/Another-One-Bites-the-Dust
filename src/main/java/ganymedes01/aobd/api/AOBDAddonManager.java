@@ -1,10 +1,10 @@
 package ganymedes01.aobd.api;
 
-import ganymedes01.aobd.ore.Ore;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+
+import ganymedes01.aobd.ore.Ore;
 
 public class AOBDAddonManager {
 

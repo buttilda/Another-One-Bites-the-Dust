@@ -1,12 +1,12 @@
 package ganymedes01.aobd.recipes.modules;
 
+import com.cout970.magneticraft.api.access.MgRecipeRegister;
+
 import ganymedes01.aobd.lib.CompatType;
 import ganymedes01.aobd.ore.Ore;
 import ganymedes01.aobd.recipes.RecipesModule;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
-
-import com.cout970.magneticraft.api.access.MgRecipeRegister;
 
 public class Magneticraft extends RecipesModule {
 

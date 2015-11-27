@@ -1,5 +1,6 @@
 package ganymedes01.aobd.recipes.modules;
 
+import cpw.mods.fml.common.registry.GameRegistry;
 import exnihilo.registries.HammerRegistry;
 import exnihilo.registries.SieveRegistry;
 import ganymedes01.aobd.lib.CompatType;
@@ -10,7 +11,6 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.ShapedOreRecipe;
-import cpw.mods.fml.common.registry.GameRegistry;
 
 public class ExNihilo extends RecipesModule {
 

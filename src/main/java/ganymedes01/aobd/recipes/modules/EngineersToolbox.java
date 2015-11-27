@@ -1,12 +1,12 @@
 package ganymedes01.aobd.recipes.modules;
 
+import cpw.mods.fml.common.registry.GameRegistry;
 import emasher.api.CentrifugeRecipeRegistry;
 import emasher.api.GrinderRecipeRegistry;
 import emasher.api.MultiSmelterRecipeRegistry;
 import ganymedes01.aobd.lib.CompatType;
 import ganymedes01.aobd.ore.Ore;
 import ganymedes01.aobd.recipes.RecipesModule;
-import cpw.mods.fml.common.registry.GameRegistry;
 
 public class EngineersToolbox extends RecipesModule {
 

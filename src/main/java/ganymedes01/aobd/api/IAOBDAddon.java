@@ -1,8 +1,8 @@
 package ganymedes01.aobd.api;
 
-import ganymedes01.aobd.ore.Ore;
-
 import java.util.Collection;
+
+import ganymedes01.aobd.ore.Ore;
 
 public interface IAOBDAddon {
 

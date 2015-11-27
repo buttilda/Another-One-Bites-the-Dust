@@ -1,5 +1,6 @@
 package ganymedes01.aobd.recipes.modules;
 
+import cpw.mods.fml.common.registry.GameRegistry;
 import ganymedes01.aobd.items.AOBDItemBlock;
 import ganymedes01.aobd.lib.CompatType;
 import ganymedes01.aobd.ore.Ore;
@@ -17,7 +18,6 @@ import tconstruct.TConstruct;
 import tconstruct.library.TConstructRegistry;
 import tconstruct.library.crafting.Smeltery;
 import tconstruct.smeltery.TinkerSmeltery;
-import cpw.mods.fml.common.registry.GameRegistry;
 
 public class TinkersConstruct extends RecipesModule {
 

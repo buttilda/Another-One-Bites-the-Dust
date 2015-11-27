@@ -1,5 +1,7 @@
 package ganymedes01.aobd.items;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import ganymedes01.aobd.AOBD;
 import ganymedes01.aobd.client.ItemOreRenderer;
 import ganymedes01.aobd.lib.Reference;
@@ -11,8 +13,6 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.StatCollector;
 import net.minecraftforge.client.IItemRenderer;
 import net.minecraftforge.oredict.OreDictionary;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class AOBDItem extends Item {
 

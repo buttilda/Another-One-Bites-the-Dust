@@ -1,12 +1,11 @@
 package ganymedes01.aobd.recipes;
 
-import ganymedes01.aobd.lib.CompatType;
-import ganymedes01.aobd.ore.Ore;
-
 import java.util.HashMap;
 import java.util.Map;
 
 import cpw.mods.fml.common.registry.GameRegistry;
+import ganymedes01.aobd.lib.CompatType;
+import ganymedes01.aobd.ore.Ore;
 
 public class ModulesHandler {
 

@@ -1,5 +1,6 @@
 package ganymedes01.aobd.recipes.modules;
 
+import cpw.mods.fml.common.registry.GameRegistry;
 import ganymedes01.aobd.items.AOBDItem;
 import ganymedes01.aobd.lib.CompatType;
 import ganymedes01.aobd.ore.Ore;
@@ -8,7 +9,6 @@ import ganymedes01.ganysnether.recipes.MagmaticCentrifugeRecipes;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
-import cpw.mods.fml.common.registry.GameRegistry;
 
 public class GanysNether extends RecipesModule {
 

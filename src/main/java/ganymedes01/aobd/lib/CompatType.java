@@ -1,5 +1,6 @@
 package ganymedes01.aobd.lib;
 
+import cpw.mods.fml.common.Loader;
 import ganymedes01.aobd.recipes.RecipesModule;
 import ganymedes01.aobd.recipes.modules.AppliedEnergistics;
 import ganymedes01.aobd.recipes.modules.AuraCascade;
@@ -26,7 +27,6 @@ import ganymedes01.aobd.recipes.modules.Steamcraft;
 import ganymedes01.aobd.recipes.modules.Thaumcraft;
 import ganymedes01.aobd.recipes.modules.ThermalExpansion;
 import ganymedes01.aobd.recipes.modules.TinkersConstruct;
-import cpw.mods.fml.common.Loader;
 
 public enum CompatType {
 

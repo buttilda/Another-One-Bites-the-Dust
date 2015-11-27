@@ -1,18 +1,17 @@
 package ganymedes01.aobd.configuration;
 
-import ganymedes01.aobd.AOBD;
-import ganymedes01.aobd.lib.CompatType;
-import ganymedes01.aobd.lib.Reference;
-import ganymedes01.aobd.ore.Ore;
-
 import java.awt.Color;
 import java.io.File;
 import java.util.HashSet;
 import java.util.Set;
 
-import net.minecraftforge.common.config.Configuration;
 import cpw.mods.fml.client.event.ConfigChangedEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import ganymedes01.aobd.AOBD;
+import ganymedes01.aobd.lib.CompatType;
+import ganymedes01.aobd.lib.Reference;
+import ganymedes01.aobd.ore.Ore;
+import net.minecraftforge.common.config.Configuration;
 
 public class ConfigHandler {
 

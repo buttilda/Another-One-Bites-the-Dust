@@ -1,12 +1,12 @@
 package ganymedes01.aobd.recipes.modules;
 
+import cpw.mods.fml.common.registry.GameRegistry;
 import ganymedes01.aobd.lib.CompatType;
 import ganymedes01.aobd.ore.Ore;
 import ganymedes01.aobd.recipes.RecipesModule;
 import k4unl.minecraft.Hydraulicraft.api.HCApi;
 import k4unl.minecraft.Hydraulicraft.api.recipes.FluidShapelessOreRecipe;
 import net.minecraft.item.ItemStack;
-import cpw.mods.fml.common.registry.GameRegistry;
 
 public class Hydraulicraft extends RecipesModule {
 

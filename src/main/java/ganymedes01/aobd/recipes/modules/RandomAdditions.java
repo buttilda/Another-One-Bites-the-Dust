@@ -1,11 +1,11 @@
 package ganymedes01.aobd.recipes.modules;
 
+import com.creativemd.randomadditions.common.systems.machine.MachineRecipe;
+import com.creativemd.randomadditions.common.systems.machine.SubSystemMachine;
+
 import ganymedes01.aobd.lib.CompatType;
 import ganymedes01.aobd.ore.Ore;
 import ganymedes01.aobd.recipes.RecipesModule;
-
-import com.creativemd.randomadditions.common.systems.machine.MachineRecipe;
-import com.creativemd.randomadditions.common.systems.machine.SubSystemMachine;
 
 public class RandomAdditions extends RecipesModule {
 

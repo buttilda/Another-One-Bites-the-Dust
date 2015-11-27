@@ -1,9 +1,5 @@
 package ganymedes01.aobd.recipes.modules;
 
-import ganymedes01.aobd.lib.CompatType;
-import ganymedes01.aobd.ore.Ore;
-import ganymedes01.aobd.recipes.RecipesModule;
-
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.LinkedList;
@@ -14,6 +10,9 @@ import Reika.DragonAPI.ModRegistry.ModOreList;
 import Reika.RotaryCraft.API.ExtractAPI;
 import Reika.RotaryCraft.Auxiliary.CustomExtractLoader;
 import Reika.RotaryCraft.Auxiliary.CustomExtractLoader.CustomExtractEntry;
+import ganymedes01.aobd.lib.CompatType;
+import ganymedes01.aobd.ore.Ore;
+import ganymedes01.aobd.recipes.RecipesModule;
 
 public class RotaryCraft extends RecipesModule {
 

@@ -1,23 +1,22 @@
 package ganymedes01.aobd.blocks;
 
-import ganymedes01.aobd.AOBD;
-import ganymedes01.aobd.lib.Reference;
-import ganymedes01.aobd.ore.Ore;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import cpw.mods.fml.client.registry.RenderingRegistry;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import ganymedes01.aobd.AOBD;
+import ganymedes01.aobd.lib.Reference;
+import ganymedes01.aobd.ore.Ore;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.IBlockAccess;
-import cpw.mods.fml.client.registry.RenderingRegistry;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class AOBDBlock extends Block {
 
