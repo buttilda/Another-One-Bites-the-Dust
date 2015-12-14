@@ -1,5 +1,4 @@
-# Item
-
+# Metal
 metal.aobd.fzdarkiron.name=玄铁
 metal.aobd.heeendium.name=末金
 metal.aobd.elntungsten.name=钨
@@ -43,7 +42,16 @@ metal.aobd.nikolite.name=蓝石
 metal.aobd.steel.name=钢
 metal.aobd.titanium.name=钛
 metal.aobd.rutile.name=金红石
+metal.aobd.gold.name=金
+metal.aobd.iron.name=铁
+metal.aobd.copper.name=铜
+metal.aobd.tin.name=锡
+metal.aobd.cobalt.name=钴
+metal.aobd.ardite.name=阿迪特
+metal.aobd.aluminium.name=铝
 
+
+# Item
 item.aobd.dust.name=%s粉
 item.aobd.crushed.name=粉碎%s矿石
 item.aobd.crushedPurified.name=纯净的粉碎%s矿石
