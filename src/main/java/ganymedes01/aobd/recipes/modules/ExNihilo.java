@@ -32,12 +32,19 @@ public class ExNihilo extends RecipesModule {
 		ItemStack gravelNetherOreStack = getOreStack("oreNetherGravel", ore);
 		ItemStack sandOreStack = getOreStack("oreSand", ore);
 		ItemStack dustOreStack = getOreStack("oreDust", ore);
+		ItemStack ingot = getOreStack("ingot", ore);
 
 		// Shaped recipes
 		GameRegistry.addRecipe(new ShapedOreRecipe(gravelOreStack, "xx", "xx", 'x', "oreBroken" + ore.name()));
 		GameRegistry.addRecipe(new ShapedOreRecipe(gravelNetherOreStack, "xx", "xx", 'x', "oreNetherBroken" + ore.name()));
 		GameRegistry.addRecipe(new ShapedOreRecipe(sandOreStack, "xx", "xx", 'x', "oreCrushed" + ore.name()));
 		GameRegistry.addRecipe(new ShapedOreRecipe(dustOreStack, "xx", "xx", 'x', "orePowdered" + ore.name()));
+
+		// Smelting recipes
+		GameRegistry.addSmelting(gravelOreStack, ingot.copy(), 0.0F);
+		GameRegistry.addSmelting(gravelNetherOreStack, ingot.copy(), 0.0F);
+		GameRegistry.addSmelting(sandOreStack, ingot.copy(), 0.0F);
+		GameRegistry.addSmelting(dustOreStack, ingot.copy(), 0.0F);
 
 		// Smelting ore dust into ingots
 		GameRegistry.addSmelting(dustOreStack, getOreStack("ingot", ore), 0.1F);
@@ -52,12 +59,23 @@ public class ExNihilo extends RecipesModule {
 		SieveRegistry.register(dust, powderedOreStack.getItem(), powderedOreStack.getItemDamage(), (int) (20 / ore.energy(1)));
 
 		// Hammering ore into broken ore
-		if (oreStack.getItem() instanceof ItemBlock) {
-			Block oreBlock = Block.getBlockFromItem(oreStack.getItem());
-			HammerRegistry.registerOre(oreBlock, oreStack.getItemDamage(), brokenOreStack.getItem(), brokenOreStack.getItemDamage());
-		}
+		registerHammering(oreStack, brokenOreStack);
 
 		// Sieving netherrack into broken ore
 		SieveRegistry.register(crushedNetherrack, 0, brokenNetherOreStack.getItem(), brokenNetherOreStack.getItemDamage(), 17);
+
+		// Hammering gravel ore into crushed ore
+		registerHammering(gravelOreStack, crushedOreStack);
+		registerHammering(gravelNetherOreStack, crushedOreStack);
+
+		// Hammering sand ore into powdered ore
+		registerHammering(sandOreStack, powderedOreStack);
+	}
+
+	private void registerHammering(ItemStack input, ItemStack output) {
+		if (input.getItem() instanceof ItemBlock) {
+			Block block = Block.getBlockFromItem(input.getItem());
+			HammerRegistry.registerOre(block, input.getItemDamage(), output.getItem(), output.getItemDamage());
+		}
 	}
 }

@@ -18,8 +18,8 @@
 	<classpathentry kind="lib" path="libs/DragonAPI 1.7.10 V8b.jar"/>
 	<classpathentry kind="lib" path="libs/RotaryCraft 1.7.10 V8b.jar"/>
 	<classpathentry kind="lib" path="libs/Ex-Nihilo-1.38-46.jar"/>
-	<classpathentry kind="lib" path="libs/RandomAdditions Alpha 0.11.15 mc1.7.10.jar"/>
 	<classpathentry kind="lib" path="libs/TConstruct-1.7.10-1.8.8.jar"/>
 	<classpathentry kind="lib" path="libs/magneticraft-0.6.0-beta2.jar"/>
+	<classpathentry kind="lib" path="libs/RandomAdditions Alpha 0.11.22 mc1.7.10.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
