@@ -17,12 +17,12 @@ buildscript {
 
 apply plugin: 'forge'
 
-version = "2.8.4"
+version = "2.9.0"
 group = "ganymedes01.aobd"
 archivesBaseName = "AOBD"
 
 minecraft {
-    version = "1.7.10-10.13.4.1448-1.7.10"
+    version = "1.7.10-10.13.4.1558-1.7.10"
     runDir = "eclipse/assets"
 }
 
