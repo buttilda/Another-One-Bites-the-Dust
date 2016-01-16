@@ -69,6 +69,7 @@ item.aobd.oreBroken.name=碎裂 %s 矿
 item.aobd.oreNetherBroken.name=碎裂 %s 矿
 item.aobd.oreCrushed.name=粉碎 %s 矿
 item.aobd.orePowdered.name=粉状 %s 矿
+item.aobd.glassBottle.name=%s 瓶
 
 # Blocks
 tile.aobd.block.name=%s方块
