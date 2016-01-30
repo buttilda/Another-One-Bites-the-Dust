@@ -20,6 +20,16 @@ public class Mariculture extends RecipesModule {
 
 	@Override
 	public void initOre(Ore ore) {
+	}
+
+	@Override
+	protected void postInit() {
+		for (Ore ore : Ore.ores)
+			if (isOreEnabled(ore))
+				addRecipesFor(ore);
+	}
+
+	private void addRecipesFor(Ore ore) {
 		Fluid fluid = getFluid(ore);
 
 		MaricultureHandlers.crucible.addRecipe(new RecipeSmelter(getOreStack("ingot", ore), 500 + (int) ore.energy(600), new FluidStack(fluid, MetalRates.INGOT), null, 0));
