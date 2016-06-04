@@ -23,7 +23,6 @@ import ganymedes01.aobd.ore.OreFinder;
 import ganymedes01.aobd.recipes.ModulesHandler;
 import ganymedes01.aobd.recipes.RecipesModule;
 import ganymedes01.aobd.recipes.modules.Mekanism;
-import ganymedes01.aobd.recipes.modules.RotaryCraft;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -93,10 +92,6 @@ public class AOBD {
 
 			// Create colour configs
 			ConfigHandler.INSTANCE.initColourConfigs();
-
-			// Set the colours of the RotaryCraft related items
-			if (CompatType.ROTARYCRAFT.isEnabled())
-				RotaryCraft.setOresColour();
 
 			// Tell add-ons to create their colours
 			AOBDAddonManager.notifyColourCreation();

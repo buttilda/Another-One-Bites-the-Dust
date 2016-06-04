@@ -21,7 +21,6 @@ import ganymedes01.aobd.recipes.modules.ModularSystems;
 import ganymedes01.aobd.recipes.modules.NetherOres;
 import ganymedes01.aobd.recipes.modules.Railcraft;
 import ganymedes01.aobd.recipes.modules.RandomAdditions;
-import ganymedes01.aobd.recipes.modules.RotaryCraft;
 import ganymedes01.aobd.recipes.modules.SimpleOreGrinder;
 import ganymedes01.aobd.recipes.modules.Steamcraft;
 import ganymedes01.aobd.recipes.modules.Thaumcraft;
@@ -47,7 +46,6 @@ public enum CompatType {
 	SIMPLE_ORE_GRINDER("simpleoregrinder", SimpleOreGrinder.class, "dust"),
 	STEAMCRAFT("Steamcraft", Steamcraft.class, "dust"),
 	BC_ADDITIONS("bcadditions", BuildCraftAdditions.class, "dust"),
-	ROTARYCRAFT("RotaryCraft", RotaryCraft.class),
 	ELECTRICAL_AGE("Eln", ElectricalAge.class, "dust"),
 	AURA_CASCADE("aura", AuraCascade.class, "dust"),
 	ENGINEERS_TOOLBOX("eng_toolbox", EngineersToolbox.class, "ground", "dustImpure", "dust"),
