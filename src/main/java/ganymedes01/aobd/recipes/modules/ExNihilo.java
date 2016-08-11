@@ -15,7 +15,7 @@ import net.minecraftforge.oredict.ShapedOreRecipe;
 public class ExNihilo extends RecipesModule {
 
 	public ExNihilo() {
-		super(CompatType.EX_NIHILO, "iron", "gold", "copper", "tin", "lead", "silver", "nickel", "platinum", "aluminum", "osmium");
+		super(CompatType.EX_NIHILO, "iron", "gold", "copper", "tin", "lead", "silver", "nickel", "platinum", "aluminum", "osmium", "cobalt", "ardite", "mithril");
 	}
 
 	@Override
